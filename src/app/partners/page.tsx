@@ -46,7 +46,7 @@ export default function PartnersPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Grow your practice by growing great workplaces.
         </h1>
@@ -65,7 +65,7 @@ export default function PartnersPage() {
       {/* WHY PARTNER */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Why partner</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Why partner</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             What partnership gives your practice.
           </h2>
@@ -105,7 +105,7 @@ export default function PartnersPage() {
 
       {/* WHO WE PARTNER WITH */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Who we partner with
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -130,7 +130,7 @@ export default function PartnersPage() {
       {/* PARTNER TIERS */}
       <section id="tiers" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Partner tiers</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Partner tiers</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Three tiers. One standard.
           </h2>
@@ -152,7 +152,7 @@ export default function PartnersPage() {
 
       {/* HOW PARTNERSHIP WORKS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           How partnership works
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -188,7 +188,7 @@ export default function PartnersPage() {
       {/* PARTNER APPLICATION FORM */}
       <section id="apply" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Partner application form
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

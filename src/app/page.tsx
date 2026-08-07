@@ -74,7 +74,7 @@ export default function Home() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8 lg:py-24">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Be an Organisation of Choice.
         </h1>
@@ -96,15 +96,15 @@ export default function Home() {
       <div className="border-y border-border bg-muted/60 py-6">
         <div className="mx-auto flex max-w-6xl flex-wrap items-center justify-center gap-x-4 gap-y-3 px-4 text-center text-sm text-navy sm:px-6 lg:px-8">
           <span>Independent, third-party assessment</span>
-          <span aria-hidden className="text-gold">
+          <span aria-hidden className="text-gold-ink">
             •
           </span>
           <span>Multi-stakeholder evaluation</span>
-          <span aria-hidden className="text-gold">
+          <span aria-hidden className="text-gold-ink">
             •
           </span>
           <span>Annual verification</span>
-          <span aria-hidden className="text-gold">
+          <span aria-hidden className="text-gold-ink">
             •
           </span>
           <span>
@@ -115,7 +115,7 @@ export default function Home() {
 
       {/* WHAT IS ORGANISATION OF CHOICE */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           What is Organisation of Choice
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -144,7 +144,7 @@ export default function Home() {
       {/* AUDIENCE ROUTER */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Audience router
           </p>
           <AudienceRouterCards
@@ -178,7 +178,7 @@ export default function Home() {
 
       {/* WHY CERTIFICATION PAYS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Why certification pays
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -197,7 +197,7 @@ export default function Home() {
       {/* HOW IT WORKS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">How it works</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">How it works</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Three steps to certification.
           </h2>
@@ -212,7 +212,7 @@ export default function Home() {
 
       {/* CERTIFICATION LEVELS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Certification levels
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -231,7 +231,7 @@ export default function Home() {
       {/* TESTIMONIALS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Testimonials</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Testimonials</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             What certified organisations say.
           </h2>
@@ -255,7 +255,7 @@ export default function Home() {
 
       {/* INSIGHTS PREVIEW */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Insights preview
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

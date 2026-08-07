@@ -34,7 +34,7 @@ export default function CertificationPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Certification you can stand behind.
         </h1>
@@ -48,7 +48,7 @@ export default function CertificationPage() {
       {/* WHAT WE ASSESS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             What we assess
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -77,7 +77,7 @@ export default function CertificationPage() {
 
       {/* THE ASSESSMENT PROCESS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           The assessment process
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -85,7 +85,7 @@ export default function CertificationPage() {
         </h2>
         <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
           <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold">01</span>
+            <span className="font-heading text-3xl font-bold text-gold-ink">01</span>
             <h3 className="font-heading text-lg font-semibold text-navy-ink">
               Application &amp; scoping (<Placeholder>duration</Placeholder>).
             </h3>
@@ -96,7 +96,7 @@ export default function CertificationPage() {
             </p>
           </li>
           <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold">02</span>
+            <span className="font-heading text-3xl font-bold text-gold-ink">02</span>
             <h3 className="font-heading text-lg font-semibold text-navy-ink">
               Evidence &amp; self-assessment (<Placeholder>duration</Placeholder>).
             </h3>
@@ -107,7 +107,7 @@ export default function CertificationPage() {
             </p>
           </li>
           <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold">03</span>
+            <span className="font-heading text-3xl font-bold text-gold-ink">03</span>
             <h3 className="font-heading text-lg font-semibold text-navy-ink">
               Multi-stakeholder assessment (<Placeholder>duration</Placeholder>).
             </h3>
@@ -118,7 +118,7 @@ export default function CertificationPage() {
             </p>
           </li>
           <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold">04</span>
+            <span className="font-heading text-3xl font-bold text-gold-ink">04</span>
             <h3 className="font-heading text-lg font-semibold text-navy-ink">
               Review &amp; determination (<Placeholder>duration</Placeholder>).
             </h3>
@@ -129,7 +129,7 @@ export default function CertificationPage() {
             </p>
           </li>
           <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold">05</span>
+            <span className="font-heading text-3xl font-bold text-gold-ink">05</span>
             <h3 className="font-heading text-lg font-semibold text-navy-ink">
               Certification &amp; beyond.
             </h3>
@@ -146,7 +146,7 @@ export default function CertificationPage() {
       {/* CERTIFICATION LEVELS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Certification levels
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -165,7 +165,7 @@ export default function CertificationPage() {
 
       {/* SCORING & CRITERIA */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Scoring &amp; criteria
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -198,7 +198,7 @@ export default function CertificationPage() {
       {/* FAQ */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Frequently asked questions
           </p>
           <FAQAccordion className="mt-8 max-w-3xl" items={certificationFaqs} />

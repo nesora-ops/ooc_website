@@ -42,6 +42,7 @@
   --color-navy: var(--navy);
   --color-navy-ink: var(--navy-ink);
   --color-gold: var(--gold);
+  --color-gold-ink: var(--gold-ink);
   --color-teal: var(--teal);
   --radius-sm: calc(var(--radius) * 0.6);
   --radius-md: calc(var(--radius) * 0.8);
@@ -57,6 +58,11 @@
   --navy: #0b1f3a;
   --navy-ink: #14243d;
   --gold: #b8912f;
+  /* Text-only gold for light backgrounds. Brand gold (#b8912f) is 2.95:1 on
+     white and 2.73:1 on --muted, below WCAG AA 4.5:1; this is 5.32:1 / 4.93:1.
+     Use --gold for fills, borders, and gold-on-navy (5.61:1), which all pass.
+     PRD §5 marks these hexes adjustable during build. */
+  --gold-ink: #846722;
   --teal: #0f6e62;
 
   --background: #ffffff;

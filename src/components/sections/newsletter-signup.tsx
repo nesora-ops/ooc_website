@@ -46,9 +46,11 @@ export function NewsletterSignup() {
 
   return (
     <div>
-      <h3 className="font-heading text-lg font-semibold text-white">
+      {/* h2, not h3: this is a top-level footer section, and content-light
+          pages have no intervening h2 — h3 here created an h1→h3 jump. */}
+      <h2 className="font-heading text-lg font-semibold text-white">
         Insight worth hiring for, monthly.
-      </h3>
+      </h2>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Input
           type="email"

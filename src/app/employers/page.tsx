@@ -46,7 +46,7 @@ export default function EmployersPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           You&apos;ve built a great workplace. Now prove it.
         </h1>
@@ -65,7 +65,7 @@ export default function EmployersPage() {
       {/* THE PROBLEM WE SOLVE */}
       <section id="why-certify" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             The problem we solve
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -92,7 +92,7 @@ export default function EmployersPage() {
 
       {/* WHAT YOU RECEIVE */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           What you receive
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -110,7 +110,7 @@ export default function EmployersPage() {
       {/* THE PROCESS FOR YOU */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             The process for you
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -144,7 +144,7 @@ export default function EmployersPage() {
 
       {/* PRICING */}
       <section id="pricing" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Pricing</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Pricing</p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           Transparent, size-based pricing.
         </h2>
@@ -167,7 +167,7 @@ export default function EmployersPage() {
       {/* CASE STUDIES */}
       <section id="case-studies" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Case studies</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Case studies</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Organisations that made it official.
           </h2>
@@ -183,7 +183,7 @@ export default function EmployersPage() {
 
       {/* APPLICATION FORM */}
       <section id="apply" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Application form
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

@@ -40,7 +40,7 @@ export default function ResourcesPage() {
 
       {/* HUB HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hub hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hub hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Ideas worth working with.
         </h1>
@@ -53,7 +53,7 @@ export default function ResourcesPage() {
       {/* HUB SECTIONS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hub sections</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hub sections</p>
           <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
             {sections.map((section) => (
               <Card key={section.title} className="h-full">

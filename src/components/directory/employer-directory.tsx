@@ -19,7 +19,7 @@ const ALL = "All";
 const levelStyles: Record<CertificationLevel, string> = {
   Bronze: "bg-[#7A4B21]/10 text-[#7A4B21] border-[#7A4B21]/30",
   Silver: "bg-[#5B6472]/10 text-[#5B6472] border-[#5B6472]/30",
-  Gold: "bg-gold/10 text-gold border-gold/40",
+  Gold: "bg-gold/10 text-gold-ink border-gold/40",
 };
 
 const unique = (values: string[]) => [ALL, ...Array.from(new Set(values)).sort()];

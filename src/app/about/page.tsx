@@ -32,7 +32,7 @@ export default function AboutPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Making workplace quality visible.
         </h1>
@@ -46,7 +46,7 @@ export default function AboutPage() {
       {/* OUR STORY */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">Our story</p>
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Our story</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Our story.
           </h2>
@@ -79,7 +79,7 @@ export default function AboutPage() {
 
       {/* MISSION AND VISION */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Mission and vision
         </p>
         <div className="mt-8 grid max-w-4xl gap-10 sm:grid-cols-2">
@@ -105,7 +105,7 @@ export default function AboutPage() {
       {/* WHAT MAKES US DIFFERENT */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             What makes us different
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -123,7 +123,7 @@ export default function AboutPage() {
 
       {/* TEAM AND GOVERNANCE */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Team and governance
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

@@ -16,9 +16,10 @@ export function Footer() {
         <div className="grid gap-10 sm:grid-cols-2 lg:grid-cols-5">
           {footerColumns.map((column) => (
             <div key={column.title}>
-              <h3 className="font-heading text-sm font-semibold uppercase tracking-wide text-gold">
+              {/* h2 for the same reason as the newsletter heading above. */}
+              <h2 className="font-heading text-sm font-semibold uppercase tracking-wide text-gold">
                 {column.title}
-              </h3>
+              </h2>
               <ul className="mt-4 space-y-2.5">
                 {column.links.map((link) => (
                   <li key={link.href}>

@@ -31,7 +31,7 @@ export default function ContactPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Hero</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Let&apos;s talk.
         </h1>
@@ -45,7 +45,7 @@ export default function ContactPage() {
       {/* CONTACT DETAILS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold">
+          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Contact details
           </p>
           <dl className="mt-8 grid gap-x-8 gap-y-4 sm:grid-cols-2">
@@ -63,7 +63,7 @@ export default function ContactPage() {
 
       {/* ENQUIRY FORM */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold">Enquiry form</p>
+        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Enquiry form</p>
         <div className="mt-8 max-w-3xl">
           <ContactForm />
         </div>
