@@ -9,7 +9,9 @@ Records project overview and status. Read this alongside `PRD.md` (spec) and `PL
 - **Phase 2 (mock data files)** ✅ done — commits `7584fb4`, `f239a96`.
 - **Phase 3 (all 13 pages)** ✅ done — commits `6581d2f`, `ce00928`, `40598ca`, `feff2d5`, `8e4414f`, `c23e5d8`, `1ea5a8a`. Every route in PRD §4 is built with verbatim source-doc copy.
 - **Phase 4 (cross-cutting polish)** ✅ done — commits `8c0d3ee`, `8ab367f`. SEO (sitemap/robots/metadataBase), accessibility pass (heading hierarchy + WCAG AA contrast), final source-doc diff, and fixes from the user's browser check. **One item deliberately left open: the responsive pass at 375/768px**, which needs a browser.
-- **Not pushed.** Phase 3 commits are local only — the default defer-push posture applies (last session's push approval was for that session's request). Confirm before pushing.
+- **Phase 5.5 (bug fixes, audits & cleanups)** ✅ documented in `PLAN.md` — the standing consolidated record of every defect found, audit run, and cleanup made after a phase was marked done. Append future cleanup passes there rather than starting a new section.
+- **All pushed** to `origin/main` as of 2026-08-08 (11 commits, through `a7cccca`). Repo is **private** — it holds the client's confidential copy document, so it must stay that way. Default posture remains: push only when asked.
+- **There is no Phase 5 defined.** `PLAN.md` ends at Phase 4 + 5.5; the frontend phase is complete. Anything further (backend, CMS, real form persistence) is PRD §10 out-of-scope and needs the user to define it.
 - All commits are pushed to `origin/main` (`https://github.com/nesora-ops/ooc_website.git`) as of this session.
 
 ## Blockers status — both resolved as of 2026-08-07, Phase 3 is unblocked

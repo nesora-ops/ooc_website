@@ -137,6 +137,46 @@ Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy 
 
 ---
 
+## Phase 5.5 — Bug Fixes, Audits & Cleanups ✅ done (consolidated record)
+
+Consolidated log of every defect found, audit run, and correction made after a phase was first marked complete. Recorded here rather than only in commit messages so the trail survives a context clear.
+
+*Note on ordering: this work was carried out during Phase 4 (commits `8c0d3ee`, `8ab367f`), i.e. before any Phase 5 exists. It is numbered 5.5 at the user's request as the standing home for bug-fix/audit/cleanup records; future cleanup passes should be appended here.*
+
+### A. Bugs found and fixed
+
+| # | Severity | Bug | How it was caught | Fix |
+|---|---|---|---|---|
+| 1 | **High — invisible UI** | shadcn `outline` button variant sets `bg-background` (white). White-on-navy outline buttons rendered as blank white boxes: cookie banner "Manage preferences", and `CTABand`'s secondary CTA ("Explore Certified Employers") on Home and Directory. | **User's 1280px browser screenshot.** Build, lint, tsc, and HTML-string assertions all passed it — it is a computed-style defect, invisible to static analysis. | `bg-transparent` added to both call sites, with a comment explaining why. |
+| 2 | **High — broken promise** | Cookie Policy states preferences are changeable "at any time through the cookie preference centre linked in the website footer". No such link existed, and `CookieConsent` returned `null` once consent was stored, making the dialog permanently unreachable. | Reading the Phase 3 legal copy against the Phase 1 implementation. | Component stays mounted and hides only the banner; new `CookiePreferencesLink` in the footer reopens the dialog via the `ooc:open-cookie-preferences` window event. |
+| 3 | **Medium — a11y** | Brand gold `#b8912f` as text on light backgrounds = 2.95:1 on white, 2.73:1 on `--muted`; WCAG AA needs 4.5:1. Used for the section eyebrow on every page. | Contrast audit (computed WCAG ratios for 14 palette pairs). | New `--gold-ink` token `#846722` (5.32:1 / 4.93:1) for text on light. Brand gold retained for fills, borders, and gold-on-navy (5.61:1 — already passing). |
+| 4 | **Low — a11y** | Footer column headings and the newsletter heading were `h3`, so content-light pages (glossary, guides, blog, legal) jumped `h1`→`h3`. | Heading-hierarchy audit across all 26 rendered pages. | Both promoted to `h2` — they are top-level footer sections. |
+| 5 | **Low — fidelity** | Phase 1 chrome predated the source PDF and paraphrased two user-facing strings: cookie banner body ("with your permission…" vs "with your consent… You can accept all cookies, or manage your preferences") and the newsletter success line ("Keep an eye on your inbox…" vs "The next edition will find you."). | Diffing Phase 1 output against the PDF once it arrived. | Both restored verbatim. |
+
+### B. Audits run (and what they proved)
+
+- **Rendered-copy audit** — parsed prerendered HTML for all pages, asserting ~100 specific source-doc strings (all 6 "what you receive" items, all 11 employer + 10 partner form fields, all 8 partner types, 3 tiers, 5 process stages, 3 cookie categories, 3 directory use-cases, 4 benefit blocks, mission/vision, 3 differentiators). **Result:** no copy skipped or paraphrased.
+- **Placeholder audit** — 61 `[PLACEHOLDER; …]` markers confirmed rendering *visibly*. **Result:** nothing silently blank or fabricated.
+- **Accessibility audit** — 26 pages checked for `h1` count, heading jumps, `lang`, and control labelling. **Result:** 2 real issues (rows 3–4 above); the remainder were false positives — Radix `aria-hidden` proxy inputs and controls named via `aria-label` or an associated `<label for>`, each individually verified rather than "fixed".
+- **Contrast audit** — 14 palette pairs computed against WCAG AA. **Result:** all pass after the `--gold-ink` fix.
+- **Logic audits** — form Zod rules (empty / malformed email / unchecked consent reject with intended messages; valid payload passes) and the directory filter predicate (case-insensitive, partial match, whitespace-only no-op, combined filters, empty-state path) exercised in isolation.
+- **Sitemap audit** — 26 URLs verified (16 static + 10 blog); `robots.txt` output inspected.
+
+### C. Cleanups
+
+- Removed a clumsy `.map((t) => t as …)` cast in `data/glossary.ts` in favour of an optional field on the `GlossaryTerm` type.
+- Replaced a hack in the Home testimonials that abused `<Placeholder>`'s bracket-wrapping to fake two markers; now honest `<figure>`/`<blockquote>`/`<figcaption>` with two real markers.
+- Dropped a needless `benefits[0]`/`benefits[1]` array indirection on the Partners page — the array bought nothing when one paragraph needed inline JSX anyway.
+- Centralised the production origin in `src/lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` override) instead of hardcoding it in both `sitemap.ts` and `robots.ts`.
+
+### D. Standing rules learned
+
+1. **Static checks cannot catch computed-style defects.** Build/lint/tsc/HTML assertions all missed bug #1. Any white-on-dark `outline` button needs an explicit `bg-transparent`.
+2. **`text-gold` on a light background is a WCAG failure** — use `text-gold-ink`. The header wordmark is the one intentional exception (logotype, WCAG 1.4.3-exempt).
+3. **Treat pre-PDF copy as suspect.** Anything written in Phases 0–1 that reads like a summary rather than a quote should be re-checked against the source doc.
+
+---
+
 ## Explicitly Out of Scope (PRD §10 — do not build in this phase)
 
 Supabase/DB wiring · CMS/admin UI · real email delivery/server-side form handling beyond optional Web3Forms client POST · authentication · payments/checkout · real analytics · production legal text for Terms/Privacy.
@@ -146,4 +186,5 @@ Supabase/DB wiring · CMS/admin UI · real email delivery/server-side form handl
 ## Git
 
 - Commits as work lands per phase/page (not one giant commit), identity `nesora-ops` / `ops@nesora.co.in` (local config, verified before first commit).
-- No remote add, no push — left for explicit user approval per AUTHOR.md.
+- ~~No remote add, no push~~ — superseded. Remote is `https://github.com/nesora-ops/ooc_website.git` (**private**), branch `main`, and everything through Phase 4 + 5.5 is pushed. Pushes still happen only on explicit user request, not automatically.
+- Before pushing: confirm the repo-local identity is `nesora-ops` (the machine's *global* git identity is a different user), confirm `gh` has `nesora-ops` as the active account, and check nothing sensitive is staged. Note the repo contains the client's confidential source copy document — it must stay private.
