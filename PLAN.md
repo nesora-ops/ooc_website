@@ -59,15 +59,19 @@ Order matters — build top-down (layout shell → content patterns → forms �
 
 ---
 
-## Phase 2 — Data Files (static, mock — no DB)
+## Phase 2 — Data Files (static, mock — no DB) ✅ done (commit `7584fb4`)
 
-- [ ] `data/employers.ts` — 6–10 fictional certified employers (name, industry, location, level Bronze/Silver/Gold, scope, validity, logo placeholder). Structured for client-side search/filter.
-- [ ] `data/blog-posts.ts` — 10 launch titles (verbatim from PRD/source doc) + slug + short teaser/lorem body + placeholder date/author.
-- [ ] `data/glossary.ts` — 16 terms + definitions (verbatim, PRD §7.7c list).
-- [ ] `data/faqs.ts` — Certification page FAQs (6 Q&A) + Resources FAQ page grouped Q&A (Employers 4 / Job seekers 3 / Partners 2) — verbatim.
-- [ ] `data/guides.ts` — 3 placeholder guide entries (title/description as `[PLACEHOLDER]`).
+Files live at `src/data/` (not root `data/`) for import consistency with the rest of the app (`src/lib`, `src/components`) — import as `@/data/employers` etc.
 
-**Verify:** each file typed, imported without error, matches PRD counts exactly (10 blog titles, 16 glossary terms, etc.).
+- [x] `data/employers.ts` — 8 fictional certified employers (name, industry, location, level Bronze/Silver/Gold, scope, validity). Fully fabricated per PRD §8 exception 3, which explicitly permits this for directory demo data.
+- [x] `data/blog-posts.ts` — 10 entries, correct shape (slug/teaser/date/author), but **titles are placeholder-marked, not real** — see blocker note below.
+- [x] `data/glossary.ts` — 16 terms (the real term names, taken directly from PRD §7.7c's list), but **definitions are placeholder-marked** — see blocker note below.
+- [x] `data/faqs.ts` — exact PRD counts (Certification 6; Resources FAQ Employers 4 / Job seekers 3 / Partners 2), but **both questions and answers are placeholder-marked** — see blocker note below.
+- [x] `data/guides.ts` — 3 guide entries, title/description placeholder-marked. Not blocked on the source PDF — PRD §7.7b specifies these as placeholder content directly.
+
+**Verified:** `npx tsc --noEmit` clean, `npm run build` clean, `npm run lint` clean, and every array/group length checked at runtime against PRD's exact counts (all matched).
+
+**Blocker reflected in this phase:** blog titles, glossary definitions, and FAQ Q&A text all need the source PDF (see "Known gap for Phase 3" under Phase 1 above — still unresolved). Per CLAUDE.md ("never fabricate real-sounding facts") and PRD §8 policy #1, none of that content was invented — each field uses a `[PLACEHOLDER; ... — pending source PDF]` string instead, so the data shape is 100% ready and Phase 3 (or a follow-up patch) just needs to swap in real strings once the PDF is available. This is a deliberate deviation from the original Phase 2 plan text above, which assumed verbatim content would already be transcribable.
 
 ---
 
