@@ -1,0 +1,118 @@
+# PLAN.md — Master Implementation Plan (Frontend Phase)
+
+Derived from `PRD.md` (site map §4, page specs §7) and `PROMPT.md`. Scope: **frontend only**. CMS/admin, database, auth, real backend form persistence are explicitly deferred (PRD §10) — nothing below touches them.
+
+Status markers: `[ ]` not started · use checkboxes as work progresses.
+
+---
+
+## Assumptions (flag before/while building; do not silently resolve differently)
+
+- Next.js 14+ App Router, TypeScript, Tailwind, shadcn/ui, RHF + Zod, Web3Forms, lucide-react — per PRD §3, not challenged.
+- `/employers/apply` is an anchor on `/employers` (`/employers#apply`), not a separate route — per PRD §4 note.
+- Directory mock data: 6–10 fictional employers, single swappable data file (`data/employers.ts` or `.json`).
+- Blog: 10 real titles (source doc), lorem/teaser bodies, one dynamic `[slug]` stub template rather than 10 hand-written pages.
+- Placeholders render as a visually distinct component (e.g. `<Placeholder>` wrapper: dashed border/muted bg + `[bracketed]` text), used consistently everywhere PRD marks `[PLACEHOLDER; ...]`.
+- Newsletter is a component (footer + `/resources`), not a route.
+- Cookie consent: localStorage only, no real analytics script, 3 toggles (Strictly necessary locked / Analytics / Functional).
+- Web3Forms: if `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, forms still validate and show a "not yet connected" message on submit instead of POSTing/erroring.
+
+If any of these turn out wrong once building starts, stop and flag rather than improvising further.
+
+---
+
+## Phase 0 — Scaffold & Foundations
+
+- [ ] `npx create-next-app@latest` in this directory (TypeScript, Tailwind, App Router, `src/` layout, ESLint) — scaffold directly here, not a subfolder.
+- [ ] Init shadcn/ui; add primitives as needed per component (button, input, textarea, select, radio-group, checkbox, accordion, dialog, sheet/drawer, badge, card, form).
+- [ ] Install RHF + Zod, lucide-react.
+- [ ] `.gitignore`: Next.js/Node defaults + `.env`. Verify `.env` stays empty/untracked.
+- [ ] `git init` (if not already), initial commit as `nesora-ops` (`ops@nesora.co.in`) — check local `git config user.name`/`user.email` before first commit, set locally if needed. **Do not add remote or push** (per AUTHOR.md — user-confirmed step).
+- [ ] Global design tokens: Tailwind theme extension with palette from PRD §5 (navy `#0B1F3A`, navy-ink `#14243D`, gold `#B8912F`, teal `#0F6E62`, bg/bg-muted/text/text-muted/border) as CSS variables + Tailwind color keys. Pick heading/body fonts (e.g. a serif or confident sans for display + Inter for body) via `next/font`.
+- [ ] `lib/utils.ts` (shadcn `cn` helper, already scaffolded by shadcn init).
+- [ ] Base `app/layout.tsx`: font setup, global metadata defaults, wraps children in Header/Footer/CookieBanner (built next phase).
+
+**Verify:** `npm run dev` renders blank Next.js app with Tailwind + shadcn working; `npm run build` succeeds.
+
+---
+
+## Phase 1 — Shared Primitives (build before any page, since every page depends on these)
+
+Order matters — build top-down (layout shell → content patterns → forms → directory pieces):
+
+1. [ ] `<Placeholder>` component — the single reusable way to render every `[PLACEHOLDER; ...]` marker (dashed/muted styling, visible bracketed text). Used everywhere in PRD §8.
+2. [ ] `<Header>` / nav — logo, links (About, Certification, For Employers, For Job Seekers/Directory, Partners, Resources, Contact), primary CTA "Apply for Certification" button, sticky. Mobile: hamburger → shadcn `Sheet` drawer.
+3. [ ] `<Footer>` — 5 columns (Organisation of Choice / For Employers / For Job Seekers / Partners / Legal & Contact) per PRD §7.9, baseline copyright line with `<Placeholder>` year, social icon row (disabled `#` hrefs, placeholder URLs).
+4. [ ] `<CookieConsentBanner>` + preference centre dialog — bottom-fixed bar (Accept all / Manage preferences), dialog with 3 toggles (Strictly necessary locked-on, Analytics, Functional), persists to localStorage, no real analytics wired.
+5. [ ] `<SectionHeaderBar>` — solid navy bar, white uppercase text pattern used atop every page (HOME, ABOUT, THE CERTIFICATION, etc.).
+6. [ ] `<CTABand>` — reusable closing-CTA section (Home, About, Certification, Contact, Directory).
+7. [ ] `<NumberedSteps>` — numbered-step pattern (Home "How it works", Partners "How partnership works").
+8. [ ] `<FAQAccordion>` — Q&A accordion (Certification page, FAQ page), built on shadcn `Accordion`.
+9. [ ] `<AudienceRouterCards>` — 3-card layout (Employers / Job Seekers / Partners) for Home.
+10. [ ] `<TrustStrip>` — trust marker row for Home.
+11. [ ] `<NewsletterSignup>` — email input + Subscribe, consent microcopy, success state; embeddable in footer and `/resources`.
+12. [ ] Form infrastructure: shared `useWeb3Form` hook/util (POST to Web3Forms if key present, else return "not yet connected" result), shared success/thank-you state component, shared Zod schema patterns (email, phone, required-consent checkbox).
+
+**Verify:** Header/Footer/CookieBanner render on a placeholder `/` route; mobile drawer works at ~375px; cookie banner persists dismiss/preferences across reload.
+
+---
+
+## Phase 2 — Data Files (static, mock — no DB)
+
+- [ ] `data/employers.ts` — 6–10 fictional certified employers (name, industry, location, level Bronze/Silver/Gold, scope, validity, logo placeholder). Structured for client-side search/filter.
+- [ ] `data/blog-posts.ts` — 10 launch titles (verbatim from PRD/source doc) + slug + short teaser/lorem body + placeholder date/author.
+- [ ] `data/glossary.ts` — 16 terms + definitions (verbatim, PRD §7.7c list).
+- [ ] `data/faqs.ts` — Certification page FAQs (6 Q&A) + Resources FAQ page grouped Q&A (Employers 4 / Job seekers 3 / Partners 2) — verbatim.
+- [ ] `data/guides.ts` — 3 placeholder guide entries (title/description as `[PLACEHOLDER]`).
+
+**Verify:** each file typed, imported without error, matches PRD counts exactly (10 blog titles, 16 glossary terms, etc.).
+
+---
+
+## Phase 3 — Pages, in PRD §4 order
+
+Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy — do not paraphrase), placeholders via `<Placeholder>`, wrapped in shared Header/Footer, per-page `<title>`/meta description, semantic heading hierarchy. Commit after each page reaches a buildable state.
+
+- [ ] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Bronze/Silver/Gold) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.
+- [ ] **3.2 About (`/about`)** — Hero → Our story (3 paragraphs, 2 placeholders) → Mission & Vision → "What makes us different" (3 bold-lead paragraphs) → Team & governance (Ketaki + 2 placeholder slots) → CTABand.
+- [ ] **3.3 The Certification (`/certification`)** — Hero → What we assess (framework sections list + evidence/mandatory-gates explanation) → Assessment process (5 numbered stages, each with placeholder duration) → Certification levels (longer descriptions) → Scoring & criteria (+ placeholder thresholds) → FAQAccordion (6 Q&A) → CTABand.
+- [ ] **3.4 For Employers (`/employers`)** — Hero+CTA → Problem we solve (2 paragraphs) → What you receive (6-item list) → Process narrative + link to `/certification` → Pricing framing + placeholder tiers block → Case studies (3 placeholder slots) → Application form (§7.4a fields, RHF+Zod, Web3Forms, thank-you referencing placeholder response time) at `#apply` anchor.
+- [ ] **3.5 For Job Seekers + Directory (`/directory`)** — Hero+CTA → "Why it matters" (3 paragraphs) → "How to use the directory" (3 use-case blocks) → Certified Employer Directory: search box (org name) + filters (Industry/Location/Level) + card grid over `data/employers.ts`, verbatim empty-state copy → CTABand ("For Employers").
+- [ ] **3.6 Channel Partners (`/partners`)** — Hero+CTA → "Why partner" (3 bold-lead blocks + placeholder commercial terms) → "Who we partner with" list → Partner tiers (Silver/Gold/Platinum + placeholder advancement criteria) → NumberedSteps "How partnership works" (4 steps) → Partner Application Form (§7.6 fields) + thank-you.
+- [ ] **3.7 Resources Hub (`/resources`)** — Hub hero → 4 section cards (Blog/Guides/Glossary/FAQs) → NewsletterSignup section.
+  - [ ] **3.7a Blog listing (`/resources/blog`)** — 10 cards from `data/blog-posts.ts`.
+  - [ ] **3.7b Blog post stub (`/resources/blog/[slug]`)** — dynamic route, teaser/lorem body, title/meta from data.
+  - [ ] **3.7c Guides (`/resources/guides`)** — 3 placeholder cards, disabled "coming soon" download action.
+  - [ ] **3.7d Glossary (`/resources/glossary`)** — 16 terms alphabetical, term+definition list from `data/glossary.ts`.
+  - [ ] **3.7e FAQ (`/resources/faq`)** — grouped FAQAccordion (Employers/Job seekers/Partners) from `data/faqs.ts`.
+- [ ] **3.8 News & Press (`/news`)** — Hero → Media kit block (verbatim boilerplate, no placeholder) + disabled "available on request" logo/imagery note → Media enquiry form (§7.8 fields) + thank-you.
+- [ ] **3.9 Contact (`/contact`)** — Hero + placeholder response time → Contact details block (all placeholder fields) → Enquiry form (§7.9 fields, enquiry-type select) + thank-you → CTABand.
+- [ ] **3.10 Legal — Terms (`/terms`)** — prose page, `[PLACEHOLDER; final Terms text]` + placeholder grievance officer, clearly visible, not fabricated.
+- [ ] **3.11 Legal — Privacy (`/privacy`)** — same treatment as Terms.
+- [ ] **3.12 Legal — Cookies (`/cookies`)** — full verbatim real text from source doc (not a placeholder), cookie categories, with placeholder cookie inventory / contact email / effective date only where PRD marks them.
+
+**Verify per page:** builds without error, matches PRD §7 subsection line-for-line (no skipped list items/paragraphs), responsive at 375/768/1280.
+
+---
+
+## Phase 4 — Cross-cutting Polish & Non-Functional Pass
+
+- [ ] SEO: per-page metadata (`title`, `description`) for all routes; `sitemap.xml` + `robots.txt`.
+- [ ] Accessibility pass: keyboard nav through header/drawer/accordions/forms, label associations, focus-visible states, contrast check against navy/gold/teal palette.
+- [ ] Full responsive pass at ~375px / 768px / 1280px+ across every route (PRD §13).
+- [ ] `npm run build` clean (zero errors/warnings), no console errors in dev.
+- [ ] Final PRD §7 section-by-section diff pass — confirm no copy skipped/paraphrased, all 5 forms validate + show success state, directory search/filter works, cookie banner + preference centre works.
+- [ ] Summarize build + assumptions made, per PROMPT.md closing instruction.
+
+---
+
+## Explicitly Out of Scope (PRD §10 — do not build in this phase)
+
+Supabase/DB wiring · CMS/admin UI · real email delivery/server-side form handling beyond optional Web3Forms client POST · authentication · payments/checkout · real analytics · production legal text for Terms/Privacy.
+
+---
+
+## Git
+
+- Commits as work lands per phase/page (not one giant commit), identity `nesora-ops` / `ops@nesora.co.in` (local config, verified before first commit).
+- No remote add, no push — left for explicit user approval per AUTHOR.md.
