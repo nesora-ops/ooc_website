@@ -21,18 +21,18 @@ If any of these turn out wrong once building starts, stop and flag rather than i
 
 ---
 
-## Phase 0 — Scaffold & Foundations
+## Phase 0 — Scaffold & Foundations ✅ done (commit `620de19`)
 
-- [ ] `npx create-next-app@latest` in this directory (TypeScript, Tailwind, App Router, `src/` layout, ESLint) — scaffold directly here, not a subfolder.
-- [ ] Init shadcn/ui; add primitives as needed per component (button, input, textarea, select, radio-group, checkbox, accordion, dialog, sheet/drawer, badge, card, form).
-- [ ] Install RHF + Zod, lucide-react.
-- [ ] `.gitignore`: Next.js/Node defaults + `.env`. Verify `.env` stays empty/untracked.
-- [ ] `git init` (if not already), initial commit as `nesora-ops` (`ops@nesora.co.in`) — check local `git config user.name`/`user.email` before first commit, set locally if needed. **Do not add remote or push** (per AUTHOR.md — user-confirmed step).
-- [ ] Global design tokens: Tailwind theme extension with palette from PRD §5 (navy `#0B1F3A`, navy-ink `#14243D`, gold `#B8912F`, teal `#0F6E62`, bg/bg-muted/text/text-muted/border) as CSS variables + Tailwind color keys. Pick heading/body fonts (e.g. a serif or confident sans for display + Inter for body) via `next/font`.
-- [ ] `lib/utils.ts` (shadcn `cn` helper, already scaffolded by shadcn init).
-- [ ] Base `app/layout.tsx`: font setup, global metadata defaults, wraps children in Header/Footer/CookieBanner (built next phase).
+- [x] `npx create-next-app@latest` in this directory (TypeScript, Tailwind, App Router, `src/` layout, ESLint) — scaffold directly here, not a subfolder. *(create-next-app refuses non-empty dirs since PRD/PLAN/etc. already existed here — scaffolded into a temp dir and copied the generated app files in, excluding its own README/CLAUDE.md/AGENTS.md so our real docs weren't clobbered.)*
+- [x] Init shadcn/ui; add primitives as needed per component (button, input, textarea, select, radio-group, checkbox, accordion, dialog, sheet/drawer, badge, card, form). *(Latest shadcn CLI defaults to a "Base UI" primitive flavor whose `form` registry entry is currently an empty stub — nothing installs, no error. Pinned to `shadcn@3.8.5`, the mature Radix-based CLI PRD §3 asks for, and reinitialized; all 14 primitives incl. `form` installed cleanly.)*
+- [x] Install RHF + Zod, lucide-react. *(lucide-react came in via shadcn init; added react-hook-form, zod, @hookform/resolvers directly.)*
+- [x] `.gitignore`: Next.js/Node defaults + `.env`. Verify `.env` stays empty/untracked. *(default Next.js `.gitignore` already covers `.env*`; confirmed via `git check-ignore`.)*
+- [x] `git init` (if not already), initial commit as `nesora-ops` (`ops@nesora.co.in`) — check local `git config user.name`/`user.email` before first commit, set locally if needed. **Do not add remote or push** (per AUTHOR.md — user-confirmed step). *(global git identity on this machine is a different user; set `nesora-ops`/`ops@nesora.co.in` locally for this repo only. Branch renamed `master`→`main`. No remote added.)*
+- [x] Global design tokens: Tailwind theme extension with palette from PRD §5 (navy `#0B1F3A`, navy-ink `#14243D`, gold `#B8912F`, teal `#0F6E62`, bg/bg-muted/text/text-muted/border) as CSS variables + Tailwind color keys. Pick heading/body fonts (e.g. a serif or confident sans for display + Inter for body) via `next/font`. *(`globals.css` `:root` now carries the exact PRD hex values, mapped into shadcn's semantic slots — primary=gold/navy-ink text, secondary=navy, accent=teal, muted=bg-muted/text-muted, border/input=E5E1D8, ring=teal — plus raw `--color-navy`/`-navy-ink`/`-gold`/`-teal` Tailwind keys for direct utility use in Phase 1 components. Fonts: Inter (body, `--font-sans`) + Fraunces (heading, `--font-heading`) via `next/font/google`, replacing the Geist default; also fixed a latent scaffold bug where `--font-sans`/`--font-heading` theme keys pointed at a CSS variable the old Geist setup never actually set.)*
+- [x] `lib/utils.ts` (shadcn `cn` helper, already scaffolded by shadcn init).
+- [x] Base `app/layout.tsx`: font setup, global metadata defaults. *(Header/Footer/CookieBanner wrapping deferred to Phase 1 as planned, once those components exist. Base metadata title/description set to real OOC copy instead of "Create Next App" boilerplate.)*
 
-**Verify:** `npm run dev` renders blank Next.js app with Tailwind + shadcn working; `npm run build` succeeds.
+**Verified:** `npm run build` succeeds cleanly (Next.js 16.3, Turbopack) both right after scaffold and again after the token/font changes.
 
 ---
 
