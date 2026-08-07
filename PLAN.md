@@ -120,14 +120,20 @@ Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy 
 
 ---
 
-## Phase 4 — Cross-cutting Polish & Non-Functional Pass
+## Phase 4 — Cross-cutting Polish & Non-Functional Pass ✅ done (commits `8c0d3ee`, `8ab367f`)
 
-- [ ] SEO: per-page metadata (`title`, `description`) for all routes; `sitemap.xml` + `robots.txt`.
-- [ ] Accessibility pass: keyboard nav through header/drawer/accordions/forms, label associations, focus-visible states, contrast check against navy/gold/teal palette.
-- [ ] Full responsive pass at ~375px / 768px / 1280px+ across every route (PRD §13).
-- [ ] `npm run build` clean (zero errors/warnings), no console errors in dev.
-- [ ] Final PRD §7 section-by-section diff pass — confirm no copy skipped/paraphrased, all 5 forms validate + show success state, directory search/filter works, cookie banner + preference centre works.
-- [ ] Summarize build + assumptions made, per PROMPT.md closing instruction.
+- [x] SEO: per-page metadata (`title`, `description`) for all routes; `sitemap.xml` + `robots.txt`. *(Metadata already landed per-route in Phase 3. Added `sitemap.ts`/`robots.ts` via the Next file conventions — 26 urls verified (16 static + 10 blog) — plus `metadataBase` and OpenGraph defaults, with the origin in `src/lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` override for previews).)*
+- [x] Accessibility pass. *(Audited all 26 rendered pages. **Two real fixes:** footer/newsletter headings were `h3`, causing an h1→h3 jump on content-light pages — promoted to `h2`; and brand gold as *text* on light backgrounds failed WCAG AA (2.95:1 white / 2.73:1 muted) across every section eyebrow — added a `--gold-ink` token (#846722, 5.32:1 / 4.93:1) for text on light, keeping brand gold for fills/borders and gold-on-navy (5.61:1, passing). Header wordmark keeps brand gold: logotypes are exempt under WCAG 1.4.3. All 14 palette pairs now pass AA. Other initial findings were false positives — Radix `aria-hidden` proxy inputs, and controls named via `aria-label` or an associated `<label for>`, each verified correct.)*
+- [ ] **Full responsive pass at ~375px / 768px / 1280px+ across every route (PRD §13)** — *not done; requires a browser. The user's 1280px screenshot looked correct. 375/768 still unverified.*
+- [x] `npm run build` clean (zero errors/warnings). *(Also `npm run lint` and `npx tsc --noEmit` clean. "No console errors in dev" is browser-dependent and unverified.)*
+- [x] Final source-doc section-by-section diff pass — confirmed no copy skipped or paraphrased. *(Asserted ~100 specific strings across 10 pages: all 6 "what you receive" items, all 11 employer + 10 partner form fields, all 8 partner types, all 3 tiers, all 5 process stages, all 3 cookie categories, all 3 directory use-cases, the 4 benefit blocks, mission/vision, and the 3 differentiators. The directory empty-state copy is conditionally rendered, so it is absent from prerendered HTML by design — confirmed present in the client bundle and exercised via the filter test.)*
+- [x] Summarize build + assumptions made, per PROMPT.md closing instruction. *(In MEMORY.md and the session summary.)*
+
+**Fixed in Phase 4 from the user's browser check:** the shadcn `outline` button variant sets `bg-background` (white), so `Manage preferences` on the navy cookie bar rendered white-on-white — invisible. The same bug hit `CTABand`'s secondary button on Home and Directory. Both now set `bg-transparent`. This was invisible to build/lint and to HTML-level checks — only the screenshot caught it.
+
+**Also corrected:** Phase 1 chrome predated the source PDF and had paraphrased two pieces of copy (cookie banner body, newsletter success message) — both restored verbatim. And the Cookie Policy's verbatim promise that preferences are changeable "through the cookie preference centre linked in the website footer" was untrue: the dialog became unreachable once the banner was dismissed. `CookieConsent` now stays mounted (hiding only the banner) and a footer trigger reopens it via a window event — Phase 1 had judged this scope creep, but the source doc specifies it.
+
+**Known remaining gaps:** the responsive pass above; `_global-error.html` (Next's built-in fallback, which we don't own) renders without a `lang` attribute — fixable only by adding our own `global-error.tsx`, deliberately not done as it adds a page outside the PRD site map.
 
 ---
 

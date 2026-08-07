@@ -8,7 +8,7 @@ Records project overview and status. Read this alongside `PRD.md` (spec) and `PL
 - **Phase 1 (shared primitives)** ✅ done — commits `7de2fb8`, `1d58291`.
 - **Phase 2 (mock data files)** ✅ done — commits `7584fb4`, `f239a96`.
 - **Phase 3 (all 13 pages)** ✅ done — commits `6581d2f`, `ce00928`, `40598ca`, `feff2d5`, `8e4414f`, `c23e5d8`, `1ea5a8a`. Every route in PRD §4 is built with verbatim source-doc copy.
-- **Phase 4 (cross-cutting polish: SEO/sitemap, a11y, responsive pass, final diff) is next.**
+- **Phase 4 (cross-cutting polish)** ✅ done — commits `8c0d3ee`, `8ab367f`. SEO (sitemap/robots/metadataBase), accessibility pass (heading hierarchy + WCAG AA contrast), final source-doc diff, and fixes from the user's browser check. **One item deliberately left open: the responsive pass at 375/768px**, which needs a browser.
 - **Not pushed.** Phase 3 commits are local only — the default defer-push posture applies (last session's push approval was for that session's request). Confirm before pushing.
 - All commits are pushed to `origin/main` (`https://github.com/nesora-ops/ooc_website.git`) as of this session.
 
@@ -34,12 +34,18 @@ One side effect from this phase worth knowing about: running `next dev` auto-app
 
 Verification approach used (worth repeating in Phase 4): build+lint is not sufficient on its own, so rendered HTML was parsed to assert verbatim copy is present, all 61 `[PLACEHOLDER; ...]` markers were confirmed to render *visibly*, and the two pieces of real logic (form Zod rules, directory filter predicate) were exercised in isolation with edge cases. Anything browser-dependent (responsive breakpoints, drawer, cookie banner, keyboard nav) remains unverified by design — see `PLAN.md` Phase 3 "Not verified".
 
+**Phase 4** — SEO: `src/app/sitemap.ts` + `robots.ts` (Next file conventions), origin in `src/lib/site-url.ts` with a `NEXT_PUBLIC_SITE_URL` override, `metadataBase` + OpenGraph defaults in the root layout. Accessibility: footer/newsletter headings `h3`→`h2` (fixed an h1→h3 jump on content-light pages) and a new `--gold-ink` token for gold text on light backgrounds. Plus three corrections to Phase 1 chrome — see below.
+
+**The lesson from Phase 4 worth carrying forward:** the user's single 1280px screenshot caught a bug that build, lint, tsc, and all my HTML-level assertions had missed — the shadcn `outline` button variant sets `bg-background` (white), so white-on-navy outline buttons rendered as invisible white boxes (cookie banner "Manage preferences", and `CTABand`'s secondary button on Home/Directory). **Static checks cannot catch computed-style problems.** Any future white-on-dark outline button needs an explicit `bg-transparent`.
+
 ## Key deviations / assumptions made (flagged, not silent)
 
 - Header's primary CTA ("Apply for Certification") routes to `/employers#apply` — PRD doesn't pin this explicitly.
 - Footer link hrefs for items that PRD groups under a single route (e.g., all 4 "For Employers" footer links point into the one `/employers` page) use anchor ids (`#apply`, `#pricing`, `#case-studies`, etc.) that don't exist yet — Phase 3 needs to add matching `id` attributes to those page sections.
 - `NewsletterSignup` is placed only in the footer (global, every page), not duplicated on `/resources` — PRD offered both options and called it the build agent's call.
-- Cookie preference centre has no way to reopen after first dismissal (no persistent footer trigger) — PRD only specifies the banner's own two entry points; anything more would be scope creep per CLAUDE.md.
+- ~~Cookie preference centre has no way to reopen after first dismissal~~ — **reversed in Phase 4.** The source doc's Cookie Policy explicitly states preferences are changeable "through the cookie preference centre linked in the website footer," so the Phase 1 "scope creep" call was made without the PDF. `CookieConsent` now stays mounted (hiding only the banner) and `CookiePreferencesLink` in the footer reopens the dialog via the `ooc:open-cookie-preferences` window event.
+- Phase 1 chrome paraphrased two bits of copy because it predated the PDF (cookie banner body, newsletter success line). Both restored verbatim in Phase 4 — **if any other Phase 0/1 user-facing string looks like a summary rather than a quote, check it against the PDF.**
+- Gold has two tokens now: `--gold` (#b8912f) for fills/borders/gold-on-navy, `--gold-ink` (#846722) for text on light backgrounds. Using `text-gold` on a light background is a WCAG AA failure — use `text-gold-ink`. The header wordmark is the one intentional exception (logotype, WCAG-exempt).
 - shadcn CLI pinned to `3.8.5` project-wide — don't `npx shadcn@latest add ...` for future components without checking this still applies, or the `form`-registry-stub problem will resurface.
 - Blog slugs derive from the real titles, replacing Phase 2's `launch-article-N` stubs. Any external link built against the old slugs would break (nothing links to them yet).
 - Next 16 requires `params` to be awaited in dynamic routes (`params: Promise<{slug}>`) — verified against `node_modules/next/dist/docs/01-app/.../dynamic-routes.md`, not memory. Check the bundled docs rather than assuming for any further Next API work.
@@ -58,5 +64,6 @@ Verification approach used (worth repeating in Phase 4): build+lint is not suffi
 1. Read `PRD.md`, `PLAN.md` (Phase 3 checklist — it's the detailed page-by-page task list), and this file, in that order.
 2. The source PDF is now at repo root: `758ab571-OOCWebsiteContentConsolidated.pdf` — read it directly for verbatim page copy per page (24 pages, one section per page roughly). Confirmed to match PRD.md's IA.
 3. Check whether the user has done their promised browser check of Phase 1 chrome (mobile drawer, cookie banner) — it's tracked as a task inside Phase 3 now, not a gate, but ask if it hasn't happened and page work is far enough along that it matters.
-4. Phase 3 is complete — start Phase 4 (SEO/sitemap/robots, accessibility pass, responsive pass at 375/768/1280, final section-by-section diff against the source PDF, build summary). Per-page metadata already exists on every route from Phase 3, so Phase 4's SEO item is mostly `sitemap.xml` + `robots.txt`.
+4. **Phases 0–4 are complete.** The only outstanding planned item is the responsive pass at 375px/768px (1280px was checked by the user and looked right). Everything else in `PLAN.md` is ticked with build notes.
+5. Nothing is queued after that — the frontend phase is done. Backend work (Supabase/DB, CMS, real form persistence, auth, payments) remains explicitly out of scope per PRD §10; don't start any of it without the user asking.
 5. Ignore `OOC_Website_Content_Document.docx` if it resurfaces anywhere — it was a different, unrelated document mistakenly uploaded earlier in the 2026-08-07 session, not a source for this project.
