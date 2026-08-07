@@ -36,24 +36,26 @@ If any of these turn out wrong once building starts, stop and flag rather than i
 
 ---
 
-## Phase 1 — Shared Primitives (build before any page, since every page depends on these)
+## Phase 1 — Shared Primitives ✅ done (commit `7de2fb8`)
 
 Order matters — build top-down (layout shell → content patterns → forms → directory pieces):
 
-1. [ ] `<Placeholder>` component — the single reusable way to render every `[PLACEHOLDER; ...]` marker (dashed/muted styling, visible bracketed text). Used everywhere in PRD §8.
-2. [ ] `<Header>` / nav — logo, links (About, Certification, For Employers, For Job Seekers/Directory, Partners, Resources, Contact), primary CTA "Apply for Certification" button, sticky. Mobile: hamburger → shadcn `Sheet` drawer.
-3. [ ] `<Footer>` — 5 columns (Organisation of Choice / For Employers / For Job Seekers / Partners / Legal & Contact) per PRD §7.9, baseline copyright line with `<Placeholder>` year, social icon row (disabled `#` hrefs, placeholder URLs).
-4. [ ] `<CookieConsentBanner>` + preference centre dialog — bottom-fixed bar (Accept all / Manage preferences), dialog with 3 toggles (Strictly necessary locked-on, Analytics, Functional), persists to localStorage, no real analytics wired.
-5. [ ] `<SectionHeaderBar>` — solid navy bar, white uppercase text pattern used atop every page (HOME, ABOUT, THE CERTIFICATION, etc.).
-6. [ ] `<CTABand>` — reusable closing-CTA section (Home, About, Certification, Contact, Directory).
-7. [ ] `<NumberedSteps>` — numbered-step pattern (Home "How it works", Partners "How partnership works").
-8. [ ] `<FAQAccordion>` — Q&A accordion (Certification page, FAQ page), built on shadcn `Accordion`.
-9. [ ] `<AudienceRouterCards>` — 3-card layout (Employers / Job Seekers / Partners) for Home.
-10. [ ] `<TrustStrip>` — trust marker row for Home.
-11. [ ] `<NewsletterSignup>` — email input + Subscribe, consent microcopy, success state; embeddable in footer and `/resources`.
-12. [ ] Form infrastructure: shared `useWeb3Form` hook/util (POST to Web3Forms if key present, else return "not yet connected" result), shared success/thank-you state component, shared Zod schema patterns (email, phone, required-consent checkbox).
+1. [x] `<Placeholder>` component — the single reusable way to render every `[PLACEHOLDER; ...]` marker (dashed/muted styling, visible bracketed text). Used everywhere in PRD §8. *(`src/components/placeholder.tsx`; `inline`/`block` variants, renders the literal `[PLACEHOLDER; ...]` text so it's traceable back to the PRD marker.)*
+2. [x] `<Header>` / nav — logo, links (About, Certification, For Employers, For Job Seekers/Directory, Partners, Resources, Contact), primary CTA "Apply for Certification" button, sticky. Mobile: hamburger → shadcn `Sheet` drawer. *(`src/components/layout/header.tsx`; active-link highlighting via `usePathname`. CTA routes to `/employers#apply` — an assumption, since PRD doesn't pin the CTA's target explicitly.)*
+3. [x] `<Footer>` — 5 columns (Organisation of Choice / For Employers / For Job Seekers / Partners / Legal & Contact) per PRD §7.9, baseline copyright line with `<Placeholder>` year, social icon row (disabled `#` hrefs, placeholder URLs). *(`src/components/layout/footer.tsx` + link map in `src/lib/site-config.ts`. Deviation: the installed lucide-react ships no brand/logo icons at all (`Linkedin`/`Instagram`/`Twitter`/`Youtube` are all `undefined` — removed from the library, not a version-pin issue) — social row renders as disabled text-label pills instead of logo glyphs. Also embeds `<NewsletterSignup>` in the footer per PRD §7.10's "likely placed in footer" suggestion, so it's not duplicated on `/resources`.)*
+4. [x] `<CookieConsentBanner>` + preference centre dialog — bottom-fixed bar (Accept all / Manage preferences), dialog with 3 toggles (Strictly necessary locked-on, Analytics, Functional), persists to localStorage, no real analytics wired. *(`src/components/layout/cookie-consent.tsx`. Added the shadcn `switch` primitive for the toggles — needed but not itemized in the original Phase 0 primitive list. Reads localStorage via `useSyncExternalStore` rather than `useEffect`+`setState`, which the project's `react-hooks/set-state-in-effect` lint rule flagged as an anti-pattern; same-tab updates are propagated via a manually-dispatched `StorageEvent` since the native `storage` event only fires cross-tab. No persistent way to reopen preferences after first dismissal — PRD only specifies the banner's own two entry points, so a footer/settings trigger would be scope creep.)*
+5. [x] `<SectionHeaderBar>` — solid navy bar, white uppercase text pattern used atop every page (HOME, ABOUT, THE CERTIFICATION, etc.).
+6. [x] `<CTABand>` — reusable closing-CTA section (Home, About, Certification, Contact, Directory).
+7. [x] `<NumberedSteps>` — numbered-step pattern (Home "How it works", Partners "How partnership works").
+8. [x] `<FAQAccordion>` — Q&A accordion (Certification page, FAQ page), built on shadcn `Accordion`.
+9. [x] `<AudienceRouterCards>` — 3-card layout (Employers / Job Seekers / Partners) for Home.
+10. [x] `<TrustStrip>` — trust marker row for Home.
+11. [x] `<NewsletterSignup>` — email input + Subscribe, consent microcopy, success state; embeddable in footer and `/resources`. *(Placed in the footer only, per #3 above. Uses the exact PRD §7.10 success copy: "You're subscribed — welcome.")*
+12. [x] Form infrastructure: shared `useWeb3Form` hook/util (POST to Web3Forms if key present, else return "not yet connected" result), shared success/thank-you state component, shared Zod schema patterns (email, phone, required-consent checkbox). *(`src/lib/forms/use-web3-form.ts`, `src/lib/forms/schemas.ts`, `src/components/forms/form-feedback.tsx`.)*
 
-**Verify:** Header/Footer/CookieBanner render on a placeholder `/` route; mobile drawer works at ~375px; cookie banner persists dismiss/preferences across reload.
+**Verified:** `npm run build` and `npm run lint` both pass with zero errors/warnings. Confirmed via the dev server's rendered HTML that header nav, footer (incl. newsletter), and the cookie banner all render on the placeholder `/` route. **Not done:** an actual browser check of the mobile drawer and cookie-banner interactions at ~375px — skipped at the user's direction; worth a manual pass before final sign-off.
+
+**Known gap for Phase 3:** the source PDF (`758ab571-OOCWebsiteContentConsolidated.pdf`) referenced throughout PRD.md as the verbatim-copy source of truth is not present anywhere in this repo (confirmed via full-tree search). Phase 3 needs actual page body copy (Home hero paragraphs, About story, Certification FAQ answers, full Cookie Policy text, etc.) — PRD §7 only gives condensed summaries and explicitly defers the real text to that source doc. This should be resolved (get the PDF, or get the copy some other way) before Phase 3 starts.
 
 ---
 
