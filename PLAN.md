@@ -168,6 +168,17 @@ Consolidated log of every defect found, audit run, and correction made after a p
 - Replaced a hack in the Home testimonials that abused `<Placeholder>`'s bracket-wrapping to fake two markers; now honest `<figure>`/`<blockquote>`/`<figcaption>` with two real markers.
 - Dropped a needless `benefits[0]`/`benefits[1]` array indirection on the Partners page — the array bought nothing when one paragraph needed inline JSX anyway.
 - Centralised the production origin in `src/lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` override) instead of hardcoding it in both `sitemap.ts` and `robots.ts`.
+- **Deleted `src/components/sections/trust-strip.tsx`** (dead code). It was built in Phase 1 as a 4-tile `value`/`label` grid, guessing at the format from PRD's condensed description. The real source doc turned out to specify an inline bullet-separated strip ("Independent, third-party assessment • Multi-stakeholder evaluation • …"), so Phase 3's Home page implemented that inline and orphaned the component. Verified zero importers before removing; build/lint/tsc clean after.
+
+### C2. Dead-code audit — remaining findings (not acted on)
+
+- `src/components/ui/radio-group.tsx` and `src/components/ui/separator.tsx` are **unused**. Both were installed speculatively in Phase 0's shadcn primitive list; no page or component imports them. Left in place deliberately — they are design-system primitives that Phase 6 (design) may well want, and removing them is trivially reversible via the shadcn CLI (pinned to `3.8.5`). Revisit if Phase 6 finishes without using them.
+- Every other non-`ui/` module under `src/components`, `src/lib`, and `src/data` has at least one importer — verified by script.
+
+### C3. Missing pages (gaps, not bugs — deliberately not built)
+
+- **No custom `not-found.tsx`.** A 404 currently renders Next's bare default ("404 · This page could not be found") *inside* our Header/Footer chrome, so it is functional and on-brand at the edges but unstyled in the middle. Not in the PRD site map; worth adding during Phase 6 design.
+- **No custom `global-error.tsx`.** Next's built-in fallback renders its own `<html>` without a `lang` attribute — a genuine (if rarely-seen) a11y gap that can only be fixed by owning the page. Same call as above: adding it means introducing a page outside the PRD site map.
 
 ### D. Standing rules learned
 

@@ -1,71 +1,97 @@
-# MEMORY.md — Project Status Log
+# MEMORY.md — Project Status & Handoff
 
-Records project overview and status. Read this alongside `PRD.md` (spec) and `PLAN.md` (checklist with build notes) before doing anything — this file is the narrative/handoff layer; `PLAN.md` is the source of truth for what's checked off.
+Narrative/handoff layer. `PRD.md` is the spec, `PLAN.md` is the source of truth for what's checked off (with per-phase build notes), and `758ab571-OOCWebsiteContentConsolidated.pdf` (repo root) is the verbatim copy source. Read all three before acting.
 
-## Current status (as of 2026-08-07, end of session 3)
+**Last updated:** 2026-08-08, end of session 4.
 
-- **Phase 0 (scaffold)** ✅ done — commits `620de19`, `e9a2659`.
-- **Phase 1 (shared primitives)** ✅ done — commits `7de2fb8`, `1d58291`.
-- **Phase 2 (mock data files)** ✅ done — commits `7584fb4`, `f239a96`.
-- **Phase 3 (all 13 pages)** ✅ done — commits `6581d2f`, `ce00928`, `40598ca`, `feff2d5`, `8e4414f`, `c23e5d8`, `1ea5a8a`. Every route in PRD §4 is built with verbatim source-doc copy.
-- **Phase 4 (cross-cutting polish)** ✅ done — commits `8c0d3ee`, `8ab367f`. SEO (sitemap/robots/metadataBase), accessibility pass (heading hierarchy + WCAG AA contrast), final source-doc diff, and fixes from the user's browser check. **One item deliberately left open: the responsive pass at 375/768px**, which needs a browser.
-- **Phase 5.5 (bug fixes, audits & cleanups)** ✅ documented in `PLAN.md` — the standing consolidated record of every defect found, audit run, and cleanup made after a phase was marked done. Append future cleanup passes there rather than starting a new section.
-- **All pushed** to `origin/main` as of 2026-08-08 (11 commits, through `a7cccca`). Repo is **private** — it holds the client's confidential copy document, so it must stay that way. Default posture remains: push only when asked.
-- **There is no Phase 5 defined.** `PLAN.md` ends at Phase 4 + 5.5; the frontend phase is complete. Anything further (backend, CMS, real form persistence) is PRD §10 out-of-scope and needs the user to define it.
-- All commits are pushed to `origin/main` (`https://github.com/nesora-ops/ooc_website.git`) as of this session.
+---
 
-## Blockers status — both resolved as of 2026-08-07, Phase 3 is unblocked
+## TL;DR for a fresh session
 
-1. **Source PDF received and verified.** The user first uploaded `OOC_Website_Content_Document.docx` (a Word doc by a different author/client framing — 12-page IA with `/apply`, `/certified-organizations`, `/verify`, `/events`, `/team`, no Employers/Partners split, no Bronze/Silver/Gold levels). This turned out to be **the wrong document** — unrelated to this project's brief, flagged by the user ("Wait i think its wrong") and superseded. The user then supplied the correct file, matching the exact name PRD.md cites: `758ab571-OOCWebsiteContentConsolidated.pdf` — now copied into the repo root (was previously only in Claude's upload store, never in the repo, which is why prior sessions couldn't find it via `Glob **/*.pdf`).
-   - **Verified this PDF matches PRD.md's site map and Phase 2's data shapes exactly**: same 13-route IA (Home/About/Certification/Employers+apply/Directory/Partners/Resources hub with Blog+Guides+Glossary+FAQ/News & Press/Contact/Terms/Privacy/Cookies), Bronze/Silver/Gold levels throughout, and — cross-checked directly — 10 blog launch titles, exactly 16 glossary terms, exactly 6 Certification-page FAQs, exactly 4/3/2 Resources-FAQ groups (Employers/Job seekers/Partners), all matching what Phase 2's `src/data/*.ts` files were already built with correct shape/counts for.
-   - **Next actual work**: replace the `[PLACEHOLDER; ... — pending source PDF]` strings in `src/data/blog-posts.ts`, `glossary.ts`, `faqs.ts` with the real text now available in the PDF (pages 16–18 for those three; full page-by-page copy is in the PDF for the Phase 3 page-building itself). Many other fields in the PDF are themselves still `[PLACEHOLDER; ...]` in the source doc (e.g. pricing tiers, validity period, response times, testimonial quotes, team bios, case studies, contact details, legal text) — those stay as `<Placeholder>` in the built site per PRD §8 policy, they are not blockers.
+**The frontend build phase is complete.** All 13 routes exist with verbatim source-doc copy, build/lint/tsc are clean, and everything is pushed.
 
-2. **Visual/manual browser check — moved into Phase 3, no longer a gate.** Per the user's explicit instruction this session, this is no longer a blocker that must clear *before* Phase 3 starts. Phase 1 built the sticky Header, mobile hamburger → Sheet drawer, Footer, and the cookie consent banner + preference-centre dialog (Accept all / Manage preferences / 3 toggles, persisted to `localStorage`) — never checked in an actual browser (build/lint/rendered-HTML only). Tracked now as a task *within* Phase 3 (see `PLAN.md`) rather than a pre-Phase-3 gate. The user still intends to do this check themselves (screenshot), just not before Phase 3 can begin.
+**What happens next is not Claude's work.** Phase 6 is **design**, and the user has said explicitly they will do it themselves. Do not start restyling, redesigning, or "improving" the visual layer unprompted. What exists now is deliberately a structural exoskeleton — correct copy, correct semantics, correct behaviour, plain styling — for the user to design on top of.
 
-## What's built so far (by phase)
+After Phase 6, the deferred backend work (PRD §10) becomes relevant, but only when the user asks.
 
-**Phase 0** — Next.js 16 (App Router, TypeScript, Tailwind v4) scaffolded in place (had to build in a temp dir and copy in, since this directory already had PRD/PLAN/etc. and `create-next-app` refuses non-empty dirs). shadcn/ui pinned to `shadcn@3.8.5` (the Radix-based CLI) after the newer default CLI's `form` component turned out to be a broken/empty registry stub under its new "Base UI" flavor. RHF + Zod + lucide-react installed. Tailwind theme tokens in `src/app/globals.css` carry the exact PRD §5 navy/gold/teal hex values, mapped into shadcn's semantic slots plus raw `navy`/`navy-ink`/`gold`/`teal` Tailwind color keys. Fonts: Inter (body) + Fraunces (heading) via `next/font`. Git identity set locally (not globally) to `nesora-ops` / `ops@nesora.co.in`; branch renamed `master` → `main`.
+---
 
-**Phase 1** — Global chrome wired into `src/app/layout.tsx`: `Header` (sticky, active-link nav via `usePathname`, mobile `Sheet` drawer), `Footer` (5-column sitemap from `src/lib/site-config.ts`, embedded `NewsletterSignup`, disabled text-label social placeholders — the installed lucide-react ships **no** brand/logo icons at all, confirmed by inspecting its exports), `CookieConsent` (banner + preference dialog, `localStorage`-backed via `useSyncExternalStore` rather than `useEffect`+`setState` — the project's `react-hooks/set-state-in-effect` lint rule flagged the effect+setState pattern as an anti-pattern and pushed toward `useSyncExternalStore` for reading external state cleanly). Also built: `Placeholder`, `SectionHeaderBar`, `CTABand`, `NumberedSteps`, `FAQAccordion`, `AudienceRouterCards`, `TrustStrip`, and form infrastructure (`useWeb3Form` hook with graceful "not connected" fallback when `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, `FormFeedback`, shared Zod field schemas in `src/lib/forms/schemas.ts`). Added the shadcn `switch` primitive (needed for cookie toggles, missed in the original Phase 0 primitive list). `src/app/page.tsx` is currently a **temporary placeholder** exercising the shared shell — Phase 3 replaces it with the real Home page.
+## Status by phase
 
-One side effect from this phase worth knowing about: running `next dev` auto-appends a "Next 16 agent guidance" block to the bottom of `CLAUDE.md` (a real Next 16 feature — `node_modules/next/dist/server/lib/generate-agent-files.js` — that regenerates on every dev run). It was kept and committed rather than stripped, since Next's own comment in that block says stripping it just recreates the diff on the next `next dev` run. If it reappears as an uncommitted diff after running `npm run dev` again, that's expected — just commit it.
+| Phase | State | Commits |
+|---|---|---|
+| 0 — Scaffold & foundations | ✅ done | `620de19`, `e9a2659` |
+| 1 — Shared primitives | ✅ done | `7de2fb8`, `1d58291` |
+| 2 — Mock data files | ✅ done | `7584fb4`, `f239a96` |
+| 3 — All 13 pages | ✅ done | `6581d2f` → `1ea5a8a`, `0cdca35` |
+| 4 — Cross-cutting polish | ✅ done | `8c0d3ee`, `8ab367f`, `a7cccca` |
+| 5.5 — Bug fixes, audits, cleanups | ✅ done | `12818b0` + this session |
+| 5 | **does not exist** — never defined | — |
+| 6 — Design | **user's own work, not Claude's** | — |
 
-**Phase 2** — `src/data/employers.ts` (8 fictional certified employers, fully fabricated per PRD §8's explicit exception for directory demo data), `src/data/guides.ts` (3 entries, explicitly placeholder content per PRD §7.7b, not blocked on anything), `src/data/blog-posts.ts` / `glossary.ts` / `faqs.ts` (correct shape and exact PRD counts, content placeholder-marked pending the source PDF — see blocker #1 above).
+Everything is pushed to `origin/main`. Working tree clean.
 
-**Phase 3** — All 13 routes built from the source PDF's verbatim copy: `/`, `/about`, `/certification`, `/employers` (+ `#apply` form), `/directory` (search + Industry/Location/Level filters over `employers.ts`), `/partners` (+ `#apply` form), `/resources` hub with `/blog`, `/blog/[slug]`, `/guides`, `/glossary`, `/faq`, then `/news` (media enquiry form), `/contact` (enquiry form), `/terms`, `/privacy`, `/cookies`. Four of the five forms now exist as components in `src/components/forms/` (employer, partner, media, contact — newsletter was already in the footer from Phase 1), all sharing `useWeb3Form` + the Zod field schemas. The three previously-blocked data files (`blog-posts.ts`, `glossary.ts`, `faqs.ts`) now carry real content.
+### The one outstanding item
 
-Verification approach used (worth repeating in Phase 4): build+lint is not sufficient on its own, so rendered HTML was parsed to assert verbatim copy is present, all 61 `[PLACEHOLDER; ...]` markers were confirmed to render *visibly*, and the two pieces of real logic (form Zod rules, directory filter predicate) were exercised in isolation with edge cases. Anything browser-dependent (responsive breakpoints, drawer, cookie banner, keyboard nav) remains unverified by design — see `PLAN.md` Phase 3 "Not verified".
+**Responsive pass at 375px and 768px has never been run.** The user verified 1280px via screenshot and it looked correct; the narrow breakpoints are unverified. This needs a real browser — static checks cannot substitute. It is the only planned item left incomplete, and it may be moot once Phase 6 design work reflows things anyway.
 
-**Phase 4** — SEO: `src/app/sitemap.ts` + `robots.ts` (Next file conventions), origin in `src/lib/site-url.ts` with a `NEXT_PUBLIC_SITE_URL` override, `metadataBase` + OpenGraph defaults in the root layout. Accessibility: footer/newsletter headings `h3`→`h2` (fixed an h1→h3 jump on content-light pages) and a new `--gold-ink` token for gold text on light backgrounds. Plus three corrections to Phase 1 chrome — see below.
+---
 
-**The lesson from Phase 4 worth carrying forward:** the user's single 1280px screenshot caught a bug that build, lint, tsc, and all my HTML-level assertions had missed — the shadcn `outline` button variant sets `bg-background` (white), so white-on-navy outline buttons rendered as invisible white boxes (cookie banner "Manage preferences", and `CTABand`'s secondary button on Home/Directory). **Static checks cannot catch computed-style problems.** Any future white-on-dark outline button needs an explicit `bg-transparent`.
+## What exists
 
-## Key deviations / assumptions made (flagged, not silent)
+**13 routes:** `/` · `/about` · `/certification` · `/employers` (+`#apply`) · `/directory` · `/partners` (+`#apply`) · `/resources` (+`/blog`, `/blog/[slug]`, `/guides`, `/glossary`, `/faq`) · `/news` · `/contact` · `/terms` · `/privacy` · `/cookies`. Plus generated `sitemap.xml` and `robots.txt`.
 
-- Header's primary CTA ("Apply for Certification") routes to `/employers#apply` — PRD doesn't pin this explicitly.
-- Footer link hrefs for items that PRD groups under a single route (e.g., all 4 "For Employers" footer links point into the one `/employers` page) use anchor ids (`#apply`, `#pricing`, `#case-studies`, etc.) that don't exist yet — Phase 3 needs to add matching `id` attributes to those page sections.
-- `NewsletterSignup` is placed only in the footer (global, every page), not duplicated on `/resources` — PRD offered both options and called it the build agent's call.
-- ~~Cookie preference centre has no way to reopen after first dismissal~~ — **reversed in Phase 4.** The source doc's Cookie Policy explicitly states preferences are changeable "through the cookie preference centre linked in the website footer," so the Phase 1 "scope creep" call was made without the PDF. `CookieConsent` now stays mounted (hiding only the banner) and `CookiePreferencesLink` in the footer reopens the dialog via the `ooc:open-cookie-preferences` window event.
-- Phase 1 chrome paraphrased two bits of copy because it predated the PDF (cookie banner body, newsletter success line). Both restored verbatim in Phase 4 — **if any other Phase 0/1 user-facing string looks like a summary rather than a quote, check it against the PDF.**
-- Gold has two tokens now: `--gold` (#b8912f) for fills/borders/gold-on-navy, `--gold-ink` (#846722) for text on light backgrounds. Using `text-gold` on a light background is a WCAG AA failure — use `text-gold-ink`. The header wordmark is the one intentional exception (logotype, WCAG-exempt).
-- shadcn CLI pinned to `3.8.5` project-wide — don't `npx shadcn@latest add ...` for future components without checking this still applies, or the `form`-registry-stub problem will resurface.
-- Blog slugs derive from the real titles, replacing Phase 2's `launch-article-N` stubs. Any external link built against the old slugs would break (nothing links to them yet).
-- Next 16 requires `params` to be awaited in dynamic routes (`params: Promise<{slug}>`) — verified against `node_modules/next/dist/docs/01-app/.../dynamic-routes.md`, not memory. Check the bundled docs rather than assuming for any further Next API work.
-- Source-doc placeholders embedded in FAQ answers stay literal strings in `data/faqs.ts` (the accordion takes plain strings) instead of `<Placeholder>` elements — they still render visibly, but a future refactor of FAQ rendering should keep that in mind.
+**Stack:** Next.js 16 (App Router, Turbopack), TypeScript, Tailwind v4, shadcn/ui (Radix), RHF + Zod, lucide-react. Deploy target is Vercel (not yet deployed).
 
-## Git / repo state
+**Global chrome** (`src/app/layout.tsx`): sticky `Header` with mobile Sheet drawer · `Footer` (5-column sitemap from `src/lib/site-config.ts`, embedded `NewsletterSignup`, `CookiePreferencesLink`) · `CookieConsent` (banner + preference dialog, localStorage via `useSyncExternalStore`).
 
-- Local git identity (repo-local, not global): `nesora-ops` / `ops@nesora.co.in`. The machine's *global* git config is a different identity (`hkforprojects`) — always confirm `git config user.name`/`user.email` (no `--global`) before committing here.
-- `gh` CLI: multiple accounts authenticated on this machine (`nesora-ops`, `hkforprojects`, `boliwaladevs`). Active account was switched to `nesora-ops` via `gh auth switch --user nesora-ops` this session — if a future session finds a different account active, switch back before pushing/creating anything under this repo's identity.
-- Remote: `https://github.com/nesora-ops/ooc_website.git`, branch `main`.
-- **Pushed to origin as of this session.** AUTHOR.md's original instruction was to defer pushing until explicit user approval — the user gave that approval explicitly in this session's request ("git push everything"), so all commits through Phase 2 are on GitHub now. Future sessions should go back to the default-defer-push posture (confirm before pushing) unless told otherwise again.
-- `.env` stays empty and gitignored (`.env*` in the default Next.js `.gitignore`) — never commit real secrets/keys there.
+**Five forms**, all sharing `useWeb3Form` + `src/lib/forms/schemas.ts`: employer application, partner application, contact, media enquiry, newsletter. **None submit anywhere** — `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, so they validate then show a "not yet connected" state. That is intended behaviour, not a bug.
 
-## For the next agent picking this up
+**Mock data** in `src/data/`: `employers.ts` (8 fictional certified employers — the only fabricated content, explicitly permitted by PRD §8), `blog-posts.ts` (10 real titles, placeholder bodies), `glossary.ts` (16 real definitions), `faqs.ts` (real Q&A), `guides.ts` (placeholder).
 
-1. Read `PRD.md`, `PLAN.md` (Phase 3 checklist — it's the detailed page-by-page task list), and this file, in that order.
-2. The source PDF is now at repo root: `758ab571-OOCWebsiteContentConsolidated.pdf` — read it directly for verbatim page copy per page (24 pages, one section per page roughly). Confirmed to match PRD.md's IA.
-3. Check whether the user has done their promised browser check of Phase 1 chrome (mobile drawer, cookie banner) — it's tracked as a task inside Phase 3 now, not a gate, but ask if it hasn't happened and page work is far enough along that it matters.
-4. **Phases 0–4 are complete.** The only outstanding planned item is the responsive pass at 375px/768px (1280px was checked by the user and looked right). Everything else in `PLAN.md` is ticked with build notes.
-5. Nothing is queued after that — the frontend phase is done. Backend work (Supabase/DB, CMS, real form persistence, auth, payments) remains explicitly out of scope per PRD §10; don't start any of it without the user asking.
-5. Ignore `OOC_Website_Content_Document.docx` if it resurfaces anywhere — it was a different, unrelated document mistakenly uploaded earlier in the 2026-08-07 session, not a source for this project.
+**~61 `[PLACEHOLDER; …]` markers** render visibly across the site via `<Placeholder>`. These are the source doc's *own* unresolved fields (pricing tiers, response times, validity period, team bios, testimonials, case studies, contact details, legal text). They are correct as-is — do not invent values for them.
+
+---
+
+## Rules that bit us before — do not relearn these the hard way
+
+1. **Static checks cannot catch computed-style bugs.** The shadcn `outline` variant sets `bg-background` (white); white-on-navy outline buttons rendered as invisible white boxes on the cookie banner and CTA bands. Build, lint, tsc, and HTML-string assertions all passed it — only the user's screenshot caught it. **Any white-on-dark outline button needs an explicit `bg-transparent`.**
+2. **`text-gold` on a light background is a WCAG AA failure** (2.95:1). Use **`text-gold-ink`** (`#846722`). `--gold` (`#b8912f`) is for fills, borders, and gold-on-navy only. The header wordmark is the one intentional exception (logotype, WCAG-exempt).
+3. **Verify against the PDF, not PRD summaries.** PRD §7 is condensed; the PDF is verbatim. Phases 0–1 predated the PDF and paraphrased two user-facing strings (cookie banner, newsletter success) — both later corrected. If any Phase 0/1 string reads like a summary rather than a quote, check it.
+4. **Check the bundled Next docs, not memory.** This is Next 16 and differs from training data — e.g. dynamic-route `params` is a `Promise` and must be awaited. Docs live at `node_modules/next/dist/docs/`.
+5. **shadcn CLI is pinned to `3.8.5`.** Do not `npx shadcn@latest add …` — the newer default CLI ships a broken empty `form` registry stub under its "Base UI" flavour.
+6. **`next dev` rewrites `CLAUDE.md`**, re-appending a Next 16 agent-guidance block. Expected; commit it rather than stripping it.
+7. **Never fabricate.** PRD §8 policy #1. The one sanctioned exception is directory demo data in `employers.ts`.
+
+---
+
+## Git / repo
+
+- Remote `https://github.com/nesora-ops/ooc_website.git`, branch `main`. **Private, and must stay private** — the repo contains the client's confidential copy document.
+- Repo-local identity `nesora-ops` / `ops@nesora.co.in`. **The machine's global git identity is a different user** — always confirm with `git config user.name` (no `--global`) before committing.
+- `gh` has three accounts authenticated (`nesora-ops`, `hkforprojects`, `boliwaladevs`). `nesora-ops` must be active; switch with `gh auth switch --user nesora-ops`.
+- Push only when the user asks. `.env` is untracked and must stay that way.
+
+---
+
+## Decisions and deviations worth knowing
+
+- **Header CTA** routes to `/employers#apply` — an assumption; the source doc doesn't pin it.
+- **Newsletter lives only in the footer** (global), not duplicated on `/resources`. The doc allowed either.
+- **Blog slugs derive from real titles** (e.g. `bronze-silver-gold-how-to-read-an-ooc-certification-level`), replacing Phase 2's `launch-article-N` stubs. All 10 prerender via `generateStaticParams`.
+- **Social links render as disabled text pills**, not logo glyphs — the installed lucide-react ships no brand icons at all (verified by inspecting its exports, not a version-pin issue).
+- **FAQ answers keep source-doc placeholders as literal strings** in `data/faqs.ts` (the accordion takes plain strings). They still render visibly, but a future FAQ-rendering refactor should preserve that.
+- **Cookie preference centre is reachable from the footer** via the `ooc:open-cookie-preferences` window event. Phase 1 had judged this scope creep; the source doc's Cookie Policy explicitly promises it, so Phase 4 reversed that call.
+- **`radio-group` and `separator` shadcn primitives are unused** — installed speculatively in Phase 0, deliberately retained since Phase 6 design may want them.
+- **No custom `not-found.tsx` or `global-error.tsx`.** A 404 renders Next's bare default inside our chrome; `global-error` renders without a `lang` attribute (a real, minor a11y gap). Both were left out as pages outside the PRD site map — good candidates to add during Phase 6.
+- **`TrustStrip` was deleted** in sprint 5.5 as dead code — Phase 1 built it as a 4-tile grid guessing at the format; the real doc specifies an inline bullet strip, which Home implements directly.
+
+---
+
+## Verification approach (repeat it — build-passing is not evidence)
+
+Across Phases 3–5.5, correctness was established by parsing the *rendered* HTML rather than trusting the build: ~100 verbatim source-doc strings asserted across 10 pages; all 61 placeholders confirmed visibly rendered; a 26-page audit of heading hierarchy, `lang`, and control labelling; 14 palette pairs computed against WCAG AA; and the two pieces of real logic (form Zod rules, directory filter predicate) exercised in isolation with edge cases including the empty-state path.
+
+Most first-pass audit "findings" were false positives (Radix `aria-hidden` proxies, controls named via `aria-label`). **Verify each before fixing** — do not "fix" things that are already correct.
+
+Anything browser-dependent — responsive reflow, drawer behaviour, focus rings, console errors — remains outside what these checks can prove.
