@@ -77,6 +77,11 @@ Files live at `src/data/` (not root `data/`) for import consistency with the res
 
 ## Phase 3 — Pages, in PRD §4 order
 
+**Unblocked as of 2026-08-07.** Source PDF (`758ab571-OOCWebsiteContentConsolidated.pdf`) now in repo root and verified to match this checklist's IA and Phase 2's data shapes exactly. (An earlier `.docx` upload this session briefly looked like a conflicting spec — it was an unrelated document, mistakenly uploaded; disregard it if it resurfaces.)
+
+- [ ] Manual browser check of Phase 1 chrome (mobile drawer at ~375px, cookie banner accept/dismiss + preference persistence across reload) — moved here from a pre-Phase-3 gate per user instruction. User is doing this themselves; ask for the screenshot/result if it hasn't shown up by the time page work starts.
+- [ ] Replace `[PLACEHOLDER; ... — pending source PDF]` strings in `src/data/blog-posts.ts`, `glossary.ts`, `faqs.ts` with real text from the PDF (pages 16–18).
+
 Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy — do not paraphrase), placeholders via `<Placeholder>`, wrapped in shared Header/Footer, per-page `<title>`/meta description, semantic heading hierarchy. Commit after each page reaches a buildable state.
 
 - [ ] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Bronze/Silver/Gold) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.

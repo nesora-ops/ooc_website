@@ -1,11 +1,9 @@
 // Blog listing seed data (PRD §7.7a: 10 launch titles, teaser/lorem bodies).
 //
-// BLOCKED: the source PDF (758ab571-OOCWebsiteContentConsolidated.pdf) that
-// PRD.md cites as the source of the real 10 launch titles is not present in
-// this repo. Titles below are placeholder-marked, not invented, per PRD §8
-// policy #1 (never fabricate real-sounding facts/titles). Swap in the real
-// titles once the source doc is available — the rest of the shape (slug,
-// teaser, date, author) is ready to use as-is.
+// Titles are verbatim from the source doc
+// (758ab571-OOCWebsiteContentConsolidated.pdf, "Blog — launch article titles").
+// The doc supplies titles only — no article bodies or publish dates exist yet,
+// so teaser/date stay placeholder-marked per PRD §8 policy #1.
 
 export type BlogPost = {
   slug: string;
@@ -15,14 +13,30 @@ export type BlogPost = {
   author: string;
 };
 
-export const blogPosts: BlogPost[] = Array.from({ length: 10 }, (_, i) => {
-  const n = i + 1;
-  return {
-    slug: `launch-article-${n}`,
-    title: `[PLACEHOLDER; launch article ${n} title — pending source PDF]`,
-    teaser:
-      "Full article content is out of scope for this phase. This is placeholder teaser text standing in for the article body.",
-    date: "[PLACEHOLDER; publish date]",
-    author: "Organisation of Choice Team",
-  };
-});
+const titles = [
+  'Why "Great Culture" Claims No Longer Work — and What Does',
+  "The Real Cost of Attrition — and the Culture Levers That Reduce It",
+  "Bronze, Silver, Gold: How to Read an OOC Certification Level",
+  "Ten Questions to Ask in an Interview That Reveal Real Culture",
+  "Inside a Multi-Stakeholder Assessment: Why One Voice Is Never Enough",
+  "Employer Brand on a Mid-Market Budget: What Actually Moves the Needle",
+  "What HR Leaders Get Wrong About Engagement Surveys",
+  "The Job Seeker's Guide to Verifying an Employer Before You Sign",
+  "Why Workplace Quality Belongs on the Board Agenda",
+  "From Application to Certification: What the OOC Journey Really Involves",
+];
+
+const slugify = (title: string) =>
+  title
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-|-$/g, "");
+
+export const blogPosts: BlogPost[] = titles.map((title) => ({
+  slug: slugify(title),
+  title,
+  teaser:
+    "Full article content is out of scope for this phase. This is placeholder teaser text standing in for the article body.",
+  date: "[PLACEHOLDER; publish date]",
+  author: "Organisation of Choice Team",
+}));
