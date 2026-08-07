@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { CookiePreferencesLink } from "@/components/layout/cookie-preferences-link";
 import { NewsletterSignup } from "@/components/sections/newsletter-signup";
 import { Placeholder } from "@/components/placeholder";
 import { footerColumns, socialLinks } from "@/lib/site-config";
@@ -35,10 +36,13 @@ export function Footer() {
         </div>
 
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 sm:flex-row">
-          <p className="text-xs text-white/60">
-            © <Placeholder className="border-white/30 bg-white/5 text-white">year</Placeholder>{" "}
-            Organisation of Choice™ — a programme of Carbon Value Partners Private Limited.
-          </p>
+          <div className="flex flex-col items-center gap-2 sm:flex-row sm:gap-4">
+            <p className="text-xs text-white/60">
+              © <Placeholder className="border-white/30 bg-white/5 text-white">year</Placeholder>{" "}
+              Organisation of Choice™ — a programme of Carbon Value Partners Private Limited.
+            </p>
+            <CookiePreferencesLink />
+          </div>
           <div className="flex items-center gap-3">
             {socialLinks.map((platform) => (
               <span

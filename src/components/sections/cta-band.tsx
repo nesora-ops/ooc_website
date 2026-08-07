@@ -28,7 +28,9 @@ export function CTABand({ heading, body, primaryCta, secondaryCta, className }: 
               asChild
               size="lg"
               variant="outline"
-              className="border-white text-white hover:bg-white hover:text-navy"
+              // bg-transparent is required: the outline variant sets bg-background
+              // (white), which would render this white-on-white on the navy band.
+              className="border-white bg-transparent text-white hover:bg-white hover:text-navy"
             >
               <Link href={secondaryCta.href}>{secondaryCta.label}</Link>
             </Button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -15,6 +15,13 @@ import {
 } from "@/components/ui/dialog";
 
 const STORAGE_KEY = "ooc-cookie-consent";
+
+/**
+ * Lets the footer reopen the preference centre after the banner is gone — the
+ * Cookie Policy states preferences can be changed "at any time through the
+ * cookie preference centre linked in the website footer".
+ */
+export const OPEN_COOKIE_PREFERENCES_EVENT = "ooc:open-cookie-preferences";
 
 type Consent = { necessary: true; analytics: boolean; functional: boolean };
 
@@ -50,9 +57,20 @@ export function CookieConsent() {
   const [dialogOpen, setDialogOpen] = useState(false);
   const [draft, setDraft] = useState({ analytics: false, functional: false });
 
-  if (consent) {
-    return null;
-  }
+  // Reopened from the footer trigger once the banner has been dismissed.
+  useEffect(() => {
+    function handleOpen() {
+      const stored = parseConsent(window.localStorage.getItem(STORAGE_KEY) ?? "");
+      setDraft({
+        analytics: stored?.analytics ?? false,
+        functional: stored?.functional ?? false,
+      });
+      setDialogOpen(true);
+    }
+
+    window.addEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpen);
+    return () => window.removeEventListener(OPEN_COOKIE_PREFERENCES_EVENT, handleOpen);
+  }, []);
 
   function save(next: Consent) {
     window.localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
@@ -75,28 +93,39 @@ export function CookieConsent() {
 
   return (
     <>
+      {/* Banner is hidden once a choice is stored, but the component stays
+          mounted so the footer trigger can still reopen the dialog. */}
+      {!consent && (
       <div
         role="region"
         aria-label="Cookie consent"
         className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-navy text-white"
       >
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-4 sm:flex-row sm:px-6 lg:px-8">
+          {/* Verbatim source-doc banner copy; the Cookie Policy link is ours. */}
           <p className="text-sm text-white/80">
-            We use cookies to run this site and, with your permission, to understand how the site
-            is used. See our{" "}
+            We use cookies to run this site and, with your consent, to understand how it&apos;s
+            used. You can accept all cookies, or manage your preferences. See our{" "}
             <Link href="/cookies" className="underline hover:text-white">
               Cookie Policy
             </Link>
             .
           </p>
           <div className="flex shrink-0 items-center gap-3">
-            <Button variant="outline" className="border-white text-white hover:bg-white hover:text-navy" onClick={openPreferences}>
+            {/* bg-transparent is required: the outline variant sets bg-background
+                (white), which would render this white-on-white on the navy bar. */}
+            <Button
+              variant="outline"
+              className="border-white bg-transparent text-white hover:bg-white hover:text-navy"
+              onClick={openPreferences}
+            >
               Manage preferences
             </Button>
             <Button onClick={acceptAll}>Accept all</Button>
           </div>
         </div>
       </div>
+      )}
 
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>

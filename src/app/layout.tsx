@@ -5,6 +5,7 @@ import "./globals.css";
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
+import { siteUrl } from "@/lib/site-url";
 
 const bodyFont = Inter({
   variable: "--font-sans",
@@ -17,9 +18,15 @@ const headingFont = Fraunces({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Organisation of Choice™",
   description:
     "Independent workplace certification for employers who want to prove they're a great place to work.",
+  openGraph: {
+    siteName: "Organisation of Choice™",
+    type: "website",
+    locale: "en_IN",
+  },
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
