@@ -7,7 +7,9 @@ Records project overview and status. Read this alongside `PRD.md` (spec) and `PL
 - **Phase 0 (scaffold)** ✅ done — commits `620de19`, `e9a2659`.
 - **Phase 1 (shared primitives)** ✅ done — commits `7de2fb8`, `1d58291`.
 - **Phase 2 (mock data files)** ✅ done — commits `7584fb4`, `f239a96`.
-- **Phase 3 (build all pages) is next — unblocked as of 2026-08-07.** Both prior blockers (source PDF, browser check) are resolved/deferred — see below.
+- **Phase 3 (all 13 pages)** ✅ done — commits `6581d2f`, `ce00928`, `40598ca`, `feff2d5`, `8e4414f`, `c23e5d8`, `1ea5a8a`. Every route in PRD §4 is built with verbatim source-doc copy.
+- **Phase 4 (cross-cutting polish: SEO/sitemap, a11y, responsive pass, final diff) is next.**
+- **Not pushed.** Phase 3 commits are local only — the default defer-push posture applies (last session's push approval was for that session's request). Confirm before pushing.
 - All commits are pushed to `origin/main` (`https://github.com/nesora-ops/ooc_website.git`) as of this session.
 
 ## Blockers status — both resolved as of 2026-08-07, Phase 3 is unblocked
@@ -28,6 +30,10 @@ One side effect from this phase worth knowing about: running `next dev` auto-app
 
 **Phase 2** — `src/data/employers.ts` (8 fictional certified employers, fully fabricated per PRD §8's explicit exception for directory demo data), `src/data/guides.ts` (3 entries, explicitly placeholder content per PRD §7.7b, not blocked on anything), `src/data/blog-posts.ts` / `glossary.ts` / `faqs.ts` (correct shape and exact PRD counts, content placeholder-marked pending the source PDF — see blocker #1 above).
 
+**Phase 3** — All 13 routes built from the source PDF's verbatim copy: `/`, `/about`, `/certification`, `/employers` (+ `#apply` form), `/directory` (search + Industry/Location/Level filters over `employers.ts`), `/partners` (+ `#apply` form), `/resources` hub with `/blog`, `/blog/[slug]`, `/guides`, `/glossary`, `/faq`, then `/news` (media enquiry form), `/contact` (enquiry form), `/terms`, `/privacy`, `/cookies`. Four of the five forms now exist as components in `src/components/forms/` (employer, partner, media, contact — newsletter was already in the footer from Phase 1), all sharing `useWeb3Form` + the Zod field schemas. The three previously-blocked data files (`blog-posts.ts`, `glossary.ts`, `faqs.ts`) now carry real content.
+
+Verification approach used (worth repeating in Phase 4): build+lint is not sufficient on its own, so rendered HTML was parsed to assert verbatim copy is present, all 61 `[PLACEHOLDER; ...]` markers were confirmed to render *visibly*, and the two pieces of real logic (form Zod rules, directory filter predicate) were exercised in isolation with edge cases. Anything browser-dependent (responsive breakpoints, drawer, cookie banner, keyboard nav) remains unverified by design — see `PLAN.md` Phase 3 "Not verified".
+
 ## Key deviations / assumptions made (flagged, not silent)
 
 - Header's primary CTA ("Apply for Certification") routes to `/employers#apply` — PRD doesn't pin this explicitly.
@@ -35,6 +41,9 @@ One side effect from this phase worth knowing about: running `next dev` auto-app
 - `NewsletterSignup` is placed only in the footer (global, every page), not duplicated on `/resources` — PRD offered both options and called it the build agent's call.
 - Cookie preference centre has no way to reopen after first dismissal (no persistent footer trigger) — PRD only specifies the banner's own two entry points; anything more would be scope creep per CLAUDE.md.
 - shadcn CLI pinned to `3.8.5` project-wide — don't `npx shadcn@latest add ...` for future components without checking this still applies, or the `form`-registry-stub problem will resurface.
+- Blog slugs derive from the real titles, replacing Phase 2's `launch-article-N` stubs. Any external link built against the old slugs would break (nothing links to them yet).
+- Next 16 requires `params` to be awaited in dynamic routes (`params: Promise<{slug}>`) — verified against `node_modules/next/dist/docs/01-app/.../dynamic-routes.md`, not memory. Check the bundled docs rather than assuming for any further Next API work.
+- Source-doc placeholders embedded in FAQ answers stay literal strings in `data/faqs.ts` (the accordion takes plain strings) instead of `<Placeholder>` elements — they still render visibly, but a future refactor of FAQ rendering should keep that in mind.
 
 ## Git / repo state
 
@@ -49,5 +58,5 @@ One side effect from this phase worth knowing about: running `next dev` auto-app
 1. Read `PRD.md`, `PLAN.md` (Phase 3 checklist — it's the detailed page-by-page task list), and this file, in that order.
 2. The source PDF is now at repo root: `758ab571-OOCWebsiteContentConsolidated.pdf` — read it directly for verbatim page copy per page (24 pages, one section per page roughly). Confirmed to match PRD.md's IA.
 3. Check whether the user has done their promised browser check of Phase 1 chrome (mobile drawer, cookie banner) — it's tracked as a task inside Phase 3 now, not a gate, but ask if it hasn't happened and page work is far enough along that it matters.
-4. Start Phase 3 in the order `PLAN.md` lists (Home → About → Certification → For Employers → Directory → Partners → Resources hub/blog/guides/glossary/FAQ → News → Contact → legal pages), committing after each page reaches a buildable state, same cadence as Phases 0–2. First sub-task: replace the `[PLACEHOLDER; ... — pending source PDF]` strings in `src/data/blog-posts.ts`/`glossary.ts`/`faqs.ts` with the real text from PDF pages 16–18.
+4. Phase 3 is complete — start Phase 4 (SEO/sitemap/robots, accessibility pass, responsive pass at 375/768/1280, final section-by-section diff against the source PDF, build summary). Per-page metadata already exists on every route from Phase 3, so Phase 4's SEO item is mostly `sitemap.xml` + `robots.txt`.
 5. Ignore `OOC_Website_Content_Document.docx` if it resurfaces anywhere — it was a different, unrelated document mistakenly uploaded earlier in the 2026-08-07 session, not a source for this project.

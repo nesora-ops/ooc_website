@@ -75,34 +75,48 @@ Files live at `src/data/` (not root `data/`) for import consistency with the res
 
 ---
 
-## Phase 3 — Pages, in PRD §4 order
+## Phase 3 — Pages, in PRD §4 order ✅ done (commits `6581d2f` → `1ea5a8a`)
 
 **Unblocked as of 2026-08-07.** Source PDF (`758ab571-OOCWebsiteContentConsolidated.pdf`) now in repo root and verified to match this checklist's IA and Phase 2's data shapes exactly. (An earlier `.docx` upload this session briefly looked like a conflicting spec — it was an unrelated document, mistakenly uploaded; disregard it if it resurfaces.)
 
 - [ ] Manual browser check of Phase 1 chrome (mobile drawer at ~375px, cookie banner accept/dismiss + preference persistence across reload) — moved here from a pre-Phase-3 gate per user instruction. User is doing this themselves; ask for the screenshot/result if it hasn't shown up by the time page work starts.
-- [ ] Replace `[PLACEHOLDER; ... — pending source PDF]` strings in `src/data/blog-posts.ts`, `glossary.ts`, `faqs.ts` with real text from the PDF (pages 16–18).
+- [x] Replace `[PLACEHOLDER; ... — pending source PDF]` strings in `src/data/blog-posts.ts`, `glossary.ts`, `faqs.ts` with real text from the PDF (pages 16–18).
 
 Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy — do not paraphrase), placeholders via `<Placeholder>`, wrapped in shared Header/Footer, per-page `<title>`/meta description, semantic heading hierarchy. Commit after each page reaches a buildable state.
 
-- [ ] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Bronze/Silver/Gold) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.
-- [ ] **3.2 About (`/about`)** — Hero → Our story (3 paragraphs, 2 placeholders) → Mission & Vision → "What makes us different" (3 bold-lead paragraphs) → Team & governance (Ketaki + 2 placeholder slots) → CTABand.
-- [ ] **3.3 The Certification (`/certification`)** — Hero → What we assess (framework sections list + evidence/mandatory-gates explanation) → Assessment process (5 numbered stages, each with placeholder duration) → Certification levels (longer descriptions) → Scoring & criteria (+ placeholder thresholds) → FAQAccordion (6 Q&A) → CTABand.
-- [ ] **3.4 For Employers (`/employers`)** — Hero+CTA → Problem we solve (2 paragraphs) → What you receive (6-item list) → Process narrative + link to `/certification` → Pricing framing + placeholder tiers block → Case studies (3 placeholder slots) → Application form (§7.4a fields, RHF+Zod, Web3Forms, thank-you referencing placeholder response time) at `#apply` anchor.
-- [ ] **3.5 For Job Seekers + Directory (`/directory`)** — Hero+CTA → "Why it matters" (3 paragraphs) → "How to use the directory" (3 use-case blocks) → Certified Employer Directory: search box (org name) + filters (Industry/Location/Level) + card grid over `data/employers.ts`, verbatim empty-state copy → CTABand ("For Employers").
-- [ ] **3.6 Channel Partners (`/partners`)** — Hero+CTA → "Why partner" (3 bold-lead blocks + placeholder commercial terms) → "Who we partner with" list → Partner tiers (Silver/Gold/Platinum + placeholder advancement criteria) → NumberedSteps "How partnership works" (4 steps) → Partner Application Form (§7.6 fields) + thank-you.
-- [ ] **3.7 Resources Hub (`/resources`)** — Hub hero → 4 section cards (Blog/Guides/Glossary/FAQs) → NewsletterSignup section.
-  - [ ] **3.7a Blog listing (`/resources/blog`)** — 10 cards from `data/blog-posts.ts`.
-  - [ ] **3.7b Blog post stub (`/resources/blog/[slug]`)** — dynamic route, teaser/lorem body, title/meta from data.
-  - [ ] **3.7c Guides (`/resources/guides`)** — 3 placeholder cards, disabled "coming soon" download action.
-  - [ ] **3.7d Glossary (`/resources/glossary`)** — 16 terms alphabetical, term+definition list from `data/glossary.ts`.
-  - [ ] **3.7e FAQ (`/resources/faq`)** — grouped FAQAccordion (Employers/Job seekers/Partners) from `data/faqs.ts`.
-- [ ] **3.8 News & Press (`/news`)** — Hero → Media kit block (verbatim boilerplate, no placeholder) + disabled "available on request" logo/imagery note → Media enquiry form (§7.8 fields) + thank-you.
-- [ ] **3.9 Contact (`/contact`)** — Hero + placeholder response time → Contact details block (all placeholder fields) → Enquiry form (§7.9 fields, enquiry-type select) + thank-you → CTABand.
-- [ ] **3.10 Legal — Terms (`/terms`)** — prose page, `[PLACEHOLDER; final Terms text]` + placeholder grievance officer, clearly visible, not fabricated.
-- [ ] **3.11 Legal — Privacy (`/privacy`)** — same treatment as Terms.
-- [ ] **3.12 Legal — Cookies (`/cookies`)** — full verbatim real text from source doc (not a placeholder), cookie categories, with placeholder cookie inventory / contact email / effective date only where PRD marks them.
+- [x] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Bronze/Silver/Gold) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.
+- [x] **3.2 About (`/about`)** — Hero → Our story (3 paragraphs, 2 placeholders) → Mission & Vision → "What makes us different" (3 bold-lead paragraphs) → Team & governance (Ketaki + 2 placeholder slots) → CTABand.
+- [x] **3.3 The Certification (`/certification`)** — Hero → What we assess (framework sections list + evidence/mandatory-gates explanation) → Assessment process (5 numbered stages, each with placeholder duration) → Certification levels (longer descriptions) → Scoring & criteria (+ placeholder thresholds) → FAQAccordion (6 Q&A) → CTABand.
+- [x] **3.4 For Employers (`/employers`)** — Hero+CTA → Problem we solve (2 paragraphs) → What you receive (6-item list) → Process narrative + link to `/certification` → Pricing framing + placeholder tiers block → Case studies (3 placeholder slots) → Application form (§7.4a fields, RHF+Zod, Web3Forms, thank-you referencing placeholder response time) at `#apply` anchor.
+- [x] **3.5 For Job Seekers + Directory (`/directory`)** — Hero+CTA → "Why it matters" (3 paragraphs) → "How to use the directory" (3 use-case blocks) → Certified Employer Directory: search box (org name) + filters (Industry/Location/Level) + card grid over `data/employers.ts`, verbatim empty-state copy → CTABand ("For Employers").
+- [x] **3.6 Channel Partners (`/partners`)** — Hero+CTA → "Why partner" (3 bold-lead blocks + placeholder commercial terms) → "Who we partner with" list → Partner tiers (Silver/Gold/Platinum + placeholder advancement criteria) → NumberedSteps "How partnership works" (4 steps) → Partner Application Form (§7.6 fields) + thank-you.
+- [x] **3.7 Resources Hub (`/resources`)** — Hub hero → 4 section cards (Blog/Guides/Glossary/FAQs) → NewsletterSignup section.
+  - [x] **3.7a Blog listing (`/resources/blog`)** — 10 cards from `data/blog-posts.ts`.
+  - [x] **3.7b Blog post stub (`/resources/blog/[slug]`)** — dynamic route, teaser/lorem body, title/meta from data.
+  - [x] **3.7c Guides (`/resources/guides`)** — 3 placeholder cards, disabled "coming soon" download action.
+  - [x] **3.7d Glossary (`/resources/glossary`)** — 16 terms alphabetical, term+definition list from `data/glossary.ts`.
+  - [x] **3.7e FAQ (`/resources/faq`)** — grouped FAQAccordion (Employers/Job seekers/Partners) from `data/faqs.ts`.
+- [x] **3.8 News & Press (`/news`)** — Hero → Media kit block (verbatim boilerplate, no placeholder) + disabled "available on request" logo/imagery note → Media enquiry form (§7.8 fields) + thank-you.
+- [x] **3.9 Contact (`/contact`)** — Hero + placeholder response time → Contact details block (all placeholder fields) → Enquiry form (§7.9 fields, enquiry-type select) + thank-you → CTABand.
+- [x] **3.10 Legal — Terms (`/terms`)** — prose page, `[PLACEHOLDER; final Terms text]` + placeholder grievance officer, clearly visible, not fabricated.
+- [x] **3.11 Legal — Privacy (`/privacy`)** — same treatment as Terms.
+- [x] **3.12 Legal — Cookies (`/cookies`)** — full verbatim real text from source doc (not a placeholder), cookie categories, with placeholder cookie inventory / contact email / effective date only where PRD marks them.
 
 **Verify per page:** builds without error, matches PRD §7 subsection line-for-line (no skipped list items/paragraphs), responsive at 375/768/1280.
+
+**Verified (Phase 3):** all 13 routes build clean (`npm run build`, Next 16 Turbopack) and `npm run lint` is clean. Beyond the build, three checks were run against actual output rather than assumed:
+1. **Rendered copy** — parsed the prerendered HTML for every page and asserted the presence of key verbatim headings/paragraphs from the source doc (hero lines, section headings, boilerplate, form labels, directory card data). All passed.
+2. **Placeholders** — 61 `[PLACEHOLDER; ...]` markers render *visibly* across the pages; nothing silently blank or fabricated. Glossary's validity-period marker and all 16 terms confirmed present.
+3. **Logic** — the employer form's Zod rules (empty fields / malformed email / unchecked consent all reject with intended messages; complete payload passes) and the directory filter predicate (case-insensitive + partial name match, whitespace-only query as no-op, single/combined filters, contradictory combination reaching the empty state) were each exercised in isolation.
+
+**Not verified:** anything requiring a real browser — responsive behaviour at 375/768/1280, the mobile drawer, cookie-banner interaction, accordion/select keyboard behaviour, and live form submission (no `NEXT_PUBLIC_WEB3FORMS_KEY` set, so submits take the "not yet connected" path by design). These belong to the manual check above and the Phase 4 pass.
+
+**Deviations/decisions worth knowing:**
+- Blog slugs are derived from the real titles (e.g. `why-great-culture-claims-no-longer-work-and-what-does`) rather than the old `launch-article-N` stubs; all 10 prerender via `generateStaticParams`.
+- Dynamic route params are awaited (`params: Promise<{slug}>`) — required by this Next version, confirmed against `node_modules/next/dist/docs`, not assumed from memory.
+- Source-doc placeholders that sit *inside* FAQ answer text are kept as literal `[PLACEHOLDER; ...]` strings in `data/faqs.ts` (the accordion takes plain strings), rather than being restructured into `<Placeholder>` elements. They still render visibly.
+- Glossary's `GlossaryTerm` gained an optional `definitionPlaceholder` field — only "Validity period" uses it, matching the one trailing marker the source doc leaves there.
+- Home's "Insights preview" links the first 3 blog titles; the source doc specifies only the heading and hub link, so the teaser row is a judgement call within PRD §7.1's "link/teaser row" description.
 
 ---
 
