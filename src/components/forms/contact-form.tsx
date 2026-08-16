@@ -79,7 +79,10 @@ export function ContactForm() {
 
   return (
     <Form {...form}>
-      <form onSubmit={form.handleSubmit((values) => submit(values))} className="space-y-6">
+      <form
+        onSubmit={form.handleSubmit((values) => submit(values))}
+        className="space-y-6 !rounded-none !border-0 !bg-transparent !p-0 !shadow-none"
+      >
         <div className="grid gap-6 sm:grid-cols-2">
           <FormField
             control={form.control}
