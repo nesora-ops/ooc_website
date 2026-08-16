@@ -1,21 +1,12 @@
 import type { Metadata } from "next";
-import { Inter, Fraunces } from "next/font/google";
+import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
 import { Header } from "@/components/layout/header";
 import { Footer } from "@/components/layout/footer";
 import { CookieConsent } from "@/components/layout/cookie-consent";
+import { SiteMotion } from "@/components/layout/site-motion";
 import { siteUrl } from "@/lib/site-url";
-
-const bodyFont = Inter({
-  variable: "--font-sans",
-  subsets: ["latin"],
-});
-
-const headingFont = Fraunces({
-  variable: "--font-heading",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -29,15 +20,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({ children }: LayoutProps<"/">) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html
-      lang="en"
-      className={`${bodyFont.variable} ${headingFont.variable} h-full antialiased`}
-    >
+    <html lang="en" className={`${GeistSans.variable} h-full antialiased`}>
       <body className="flex min-h-full flex-col">
+        <a className="skip-link" href="#main-content">
+          Skip to content
+        </a>
         <Header />
-        <main className="flex-1">{children}</main>
+        <SiteMotion>
+          <main id="main-content" className="w-full max-w-full flex-1 overflow-x-clip">
+            {children}
+          </main>
+        </SiteMotion>
         <Footer />
         <CookieConsent />
       </body>
