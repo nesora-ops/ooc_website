@@ -42,7 +42,7 @@ export default function NewsPage() {
               </p>
               <p className="mt-8 text-sm leading-6 text-white/65">
                 Approved short description for press use. The programme operates across India,
-                certifies at Bronze, Silver, and Gold, and lists every current outcome publicly.
+                certifies at Silver, Gold, Platinum, and Diamond, and lists every current outcome publicly.
               </p>
             </div>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
