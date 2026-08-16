@@ -44,103 +44,259 @@
   --color-gold: var(--gold);
   --color-gold-ink: var(--gold-ink);
   --color-teal: var(--teal);
-  --radius-sm: calc(var(--radius) * 0.6);
+  --color-mint: var(--mint);
+  --color-coral: var(--coral);
+  --color-sky: var(--sky);
+  --color-butter: var(--butter);
+  --radius-sm: calc(var(--radius) * 0.55);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) * 1.4);
-  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-xl: calc(var(--radius) * 1.35);
+  --radius-2xl: calc(var(--radius) * 1.75);
   --radius-3xl: calc(var(--radius) * 2.2);
-  --radius-4xl: calc(var(--radius) * 2.6);
+  --radius-4xl: calc(var(--radius) * 2.7);
 }
 
 :root {
-  /* OOC brand palette — PRD §5 */
-  --navy: #0b1f3a;
-  --navy-ink: #14243d;
-  --gold: #b8912f;
-  /* Text-only gold for light backgrounds. Brand gold (#b8912f) is 2.95:1 on
-     white and 2.73:1 on --muted, below WCAG AA 4.5:1; this is 5.32:1 / 4.93:1.
-     Use --gold for fills, borders, and gold-on-navy (5.61:1), which all pass.
-     PRD §5 marks these hexes adjustable during build. */
-  --gold-ink: #846722;
-  --teal: #0f6e62;
+  --font-sans: var(--font-geist-sans), "Avenir Next", sans-serif;
+  --font-heading: var(--font-geist-sans), "Avenir Next", sans-serif;
 
-  --background: #ffffff;
-  --foreground: #1f2937;
+  --navy: #17324d;
+  --navy-ink: #102a43;
+  --gold: #e4b94f;
+  --gold-ink: #735a12;
+  --teal: #0a7168;
+  --mint: #dff4ec;
+  --coral: #ff8b70;
+  --sky: #dfe9ff;
+  --butter: #f7e8a4;
+
+  --background: #fbfcf8;
+  --foreground: #263846;
   --card: #ffffff;
-  --card-foreground: #1f2937;
+  --card-foreground: #263846;
   --popover: #ffffff;
-  --popover-foreground: #1f2937;
-  --primary: var(--gold);
-  --primary-foreground: var(--navy-ink);
-  --secondary: var(--navy);
+  --popover-foreground: #263846;
+  --primary: #0a7168;
+  --primary-foreground: #ffffff;
+  --secondary: #17324d;
   --secondary-foreground: #ffffff;
-  --muted: #f7f6f3;
-  --muted-foreground: #5b6472;
-  --accent: var(--teal);
-  --accent-foreground: #ffffff;
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: #e5e1d8;
-  --input: #e5e1d8;
-  --ring: var(--teal);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
-}
-
-.dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --muted: #f0f6f3;
+  --muted-foreground: #536673;
+  --accent: #dff4ec;
+  --accent-foreground: #123b3a;
+  --destructive: #b42318;
+  --border: #dce7e3;
+  --input: #cddbd6;
+  --ring: #0a7168;
+  --chart-1: #0a7168;
+  --chart-2: #ff8b70;
+  --chart-3: #6d80c5;
+  --chart-4: #e4b94f;
+  --chart-5: #79a798;
+  --radius: 0.9rem;
+  --sidebar: #f0f6f3;
+  --sidebar-foreground: #263846;
+  --sidebar-primary: #0a7168;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #dff4ec;
+  --sidebar-accent-foreground: #123b3a;
+  --sidebar-border: #dce7e3;
+  --sidebar-ring: #0a7168;
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
+  html {
+    @apply scroll-smooth font-sans;
+  }
+
   body {
     @apply bg-background text-foreground;
+    background-image:
+      radial-gradient(circle at 8% 2%, rgb(223 244 236 / 0.72), transparent 28rem),
+      radial-gradient(circle at 94% 18%, rgb(223 233 255 / 0.62), transparent 24rem);
+    background-attachment: fixed;
   }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-heading text-navy-ink;
+    letter-spacing: -0.035em;
+    text-wrap: balance;
+  }
+
+  p,
+  li,
+  dd {
+    text-wrap: pretty;
+  }
+
+  ::selection {
+    background: var(--butter);
+    color: var(--navy-ink);
+  }
+}
+
+@layer components {
+  .skip-link {
+    @apply fixed left-4 top-3 z-[60] -translate-y-24 rounded-lg bg-navy px-4 py-2 text-sm font-semibold text-white transition-transform focus:translate-y-0;
+  }
+
+  .page-shell {
+    @apply mx-auto max-w-7xl px-5 sm:px-8 lg:px-10;
+  }
+
+  .soft-grid {
+    background-image:
+      linear-gradient(rgb(23 50 77 / 0.045) 1px, transparent 1px),
+      linear-gradient(90deg, rgb(23 50 77 / 0.045) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  .noise-wash {
+    background-image:
+      radial-gradient(circle at 15% 25%, rgb(255 139 112 / 0.18), transparent 18rem),
+      radial-gradient(circle at 85% 12%, rgb(109 128 197 / 0.18), transparent 20rem),
+      radial-gradient(circle at 50% 100%, rgb(10 113 104 / 0.12), transparent 24rem);
+  }
+
+  .trust-marquee {
+    animation: trust-marquee 32s linear infinite;
+  }
+}
+
+@keyframes trust-marquee {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Existing page markup shares a disciplined set of utility patterns. These
+   unlayered refinements update every route without duplicating page shells. */
+main > section[class*="max-w-6xl"],
+main > section[class*="max-w-3xl"] {
+  position: relative;
+  max-width: 80rem;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+  padding-top: clamp(5rem, 9vw, 8.5rem);
+  padding-bottom: clamp(5.5rem, 10vw, 9rem);
+}
+
+main > section[class*="max-w-3xl"] {
+  max-width: 58rem;
+}
+
+main > div:first-child + section:not([data-standard-layout]) {
+  isolation: isolate;
+  overflow: hidden;
+  display: grid;
+  justify-items: center;
+  text-align: center;
+  border-bottom: 1px solid rgb(23 50 77 / 0.07);
+  background:
+    radial-gradient(circle at 88% 18%, rgb(223 233 255 / 0.9), transparent 19rem),
+    radial-gradient(circle at 8% 85%, rgb(223 244 236 / 0.9), transparent 18rem),
+    rgb(255 255 255 / 0.38);
+}
+
+main > div:first-child + section:not([data-standard-layout])::after {
+  content: "";
+  position: absolute;
+  z-index: -1;
+  right: clamp(1rem, 7vw, 7rem);
+  bottom: -5.5rem;
+  width: 11rem;
+  aspect-ratio: 1;
+  border-radius: 2.5rem;
+  border: 1px solid rgb(10 113 104 / 0.12);
+  background: rgb(255 139 112 / 0.16);
+  transform: rotate(14deg);
+}
+
+main > div:first-child + section:not([data-standard-layout]) > h1,
+main > div:first-child + section:not([data-standard-layout]) > p,
+main > div:first-child + section:not([data-standard-layout]) > div:not([class*="grid"]) {
+  margin-inline: auto;
+}
+
+main section.bg-muted\/40,
+main section.bg-muted\/60 {
+  background: color-mix(in srgb, var(--muted) 82%, white);
+  border-block: 1px solid rgb(23 50 77 / 0.055);
+}
+
+main section.bg-muted\/40 > div[class*="max-w-6xl"],
+main section.bg-muted\/60 > div[class*="max-w-6xl"] {
+  max-width: 80rem;
+  padding-left: clamp(1.25rem, 4vw, 2.5rem);
+  padding-right: clamp(1.25rem, 4vw, 2.5rem);
+  padding-top: clamp(5rem, 9vw, 8rem);
+  padding-bottom: clamp(5.5rem, 10vw, 8.5rem);
+}
+
+main section.bg-muted\/40 > div[class*="max-w-6xl"] > h2,
+main section.bg-muted\/60 > div[class*="max-w-6xl"] > h2 {
+  margin-inline: auto;
+  text-align: center;
+}
+
+main section > p[class~="uppercase"][class~="tracking-widest"],
+main section > div > p[class~="uppercase"][class~="tracking-widest"] {
+  display: none;
+}
+
+main h1[class*="text-4xl"] {
+  max-width: 64rem;
+  font-size: clamp(3rem, 7vw, 6.4rem);
+  line-height: 0.98;
+  font-weight: 650;
+}
+
+main h2[class*="text-3xl"] {
+  max-width: 52rem;
+  border: 0;
+  padding-bottom: 0;
+  font-size: clamp(2.1rem, 4.4vw, 4rem);
+  line-height: 1.02;
+  font-weight: 620;
+}
+
+main section:first-of-type p[class*="text-lg"] {
+  max-width: 44rem;
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem);
+  line-height: 1.7;
+}
+
+main form {
+  border-radius: 1.75rem;
+  border: 1px solid var(--border);
+  background: rgb(255 255 255 / 0.78);
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  box-shadow: 0 28px 80px rgb(23 50 77 / 0.08);
+  backdrop-filter: blur(16px);
+}
+
+main details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
   html {
-    @apply font-sans;
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
 }

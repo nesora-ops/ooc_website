@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { FileText, Image, MessageSquareText, UserRound } from "lucide-react";
 
 import { MediaEnquiryForm } from "@/components/forms/media-enquiry-form";
 import { Placeholder } from "@/components/placeholder";
@@ -17,7 +18,6 @@ export default function NewsPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           News &amp; press.
         </h1>
@@ -30,41 +30,46 @@ export default function NewsPage() {
       {/* MEDIA KIT */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Media kit</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            Media kit.
+            Everything a clear story needs.
           </h2>
-          <p className="mt-8 max-w-3xl text-muted-foreground">
-            Writing about Organisation of Choice™? The media kit contains our boilerplate
-            description, founder biography, logo files with usage guidance, and approved imagery.
-            For interviews, comment, or data enquiries, use the media contact below — we respond
-            quickly to working deadlines.
-          </p>
-
-          <h3 className="mt-10 font-heading text-lg font-semibold text-teal">
-            Boilerplate (approved standard description)
-          </h3>
-          <p className="mt-3 max-w-3xl border-l-2 border-gold/50 pl-4 text-muted-foreground">
-            Organisation of Choice™ is an independent workplace certification and employer branding
-            programme operated by Carbon Value Partners Private Limited. Through rigorous,
-            multi-stakeholder assessment of workplace culture, policies, systems, and employee
-            experience, OOC certifies employers at Bronze, Silver, and Gold levels and lists every
-            current certification in its public Certified Employer Directory. Founded by Ketaki, the
-            programme operates across India and assesses against global best practice. More at
-            organisationofchoice.com.
-          </p>
-
-          <p className="mt-8 max-w-3xl text-sm text-muted-foreground">
-            Logo files and approved imagery: <Placeholder>available on request</Placeholder>
+          <div className="mt-12 grid gap-3 lg:grid-cols-[1.2fr_0.8fr]">
+            <div className="rounded-[2rem] bg-navy p-8 text-white lg:p-10">
+              <MessageSquareText className="size-8 text-butter" aria-hidden strokeWidth={1.6} />
+              <p className="mt-12 font-heading text-2xl leading-snug text-white sm:text-3xl">
+                “Organisation of Choice™ is an independent workplace certification programme that
+                turns workplace culture, systems, and employee experience into verified proof.”
+              </p>
+              <p className="mt-8 text-sm leading-6 text-white/65">
+                Approved short description for press use. The programme operates across India,
+                certifies at Bronze, Silver, and Gold, and lists every current outcome publicly.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+              {[
+                { icon: FileText, title: "Programme boilerplate", body: "Approved long-form description and key facts." },
+                { icon: UserRound, title: "Founder biography", body: "Background, designation, and interview context." },
+                { icon: Image, title: "Logos & imagery", body: "Usage guidance and approved visual assets." },
+              ].map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="rounded-[1.75rem] border border-navy/8 bg-white/80 p-6">
+                    <Icon className="size-6 text-teal" aria-hidden strokeWidth={1.6} />
+                    <h3 className="mt-6 text-lg font-semibold text-navy-ink">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <p className="mt-6 text-sm text-muted-foreground">
+            Complete media kit: <Placeholder>available on request</Placeholder>
           </p>
         </div>
       </section>
 
       {/* MEDIA ENQUIRY FORM */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-          Media enquiry form
-        </p>
         <div className="mt-8 max-w-3xl">
           <MediaEnquiryForm />
         </div>

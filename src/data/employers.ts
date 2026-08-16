@@ -1,5 +1,5 @@
-// Mock Certified Employer Directory data — clearly fictional per PRD §8
-// exception 3 (single swappable file; real data comes from the backend later).
+// BACKEND TODO: every record below is intentionally fictional demo data.
+// Replace this array with certified-employer records from the production API.
 
 export type CertificationLevel = "Bronze" | "Silver" | "Gold";
 
@@ -11,6 +11,7 @@ export type Employer = {
   level: CertificationLevel;
   scope: "Entire organisation" | "Specific locations or divisions";
   validity: string;
+  isDemo: true;
 };
 
 export const employers: Employer[] = [
@@ -22,6 +23,7 @@ export const employers: Employer[] = [
     level: "Bronze",
     scope: "Entire organisation",
     validity: "Certified through Mar 2027",
+    isDemo: true,
   },
   {
     id: "meridian-health-sciences",
@@ -31,6 +33,7 @@ export const employers: Employer[] = [
     level: "Gold",
     scope: "Entire organisation",
     validity: "Certified through Nov 2027",
+    isDemo: true,
   },
   {
     id: "solaris-renewable-energy",
@@ -40,6 +43,7 @@ export const employers: Employer[] = [
     level: "Silver",
     scope: "Specific locations or divisions",
     validity: "Certified through Jul 2027",
+    isDemo: true,
   },
   {
     id: "bluewave-fintech",
@@ -49,6 +53,7 @@ export const employers: Employer[] = [
     level: "Gold",
     scope: "Entire organisation",
     validity: "Certified through Jan 2028",
+    isDemo: true,
   },
   {
     id: "crestline-manufacturing",
@@ -58,6 +63,7 @@ export const employers: Employer[] = [
     level: "Bronze",
     scope: "Specific locations or divisions",
     validity: "Certified through May 2027",
+    isDemo: true,
   },
   {
     id: "nimbus-cloud-technologies",
@@ -67,6 +73,7 @@ export const employers: Employer[] = [
     level: "Silver",
     scope: "Entire organisation",
     validity: "Certified through Sep 2027",
+    isDemo: true,
   },
   {
     id: "harborline-retail-group",
@@ -76,6 +83,7 @@ export const employers: Employer[] = [
     level: "Bronze",
     scope: "Specific locations or divisions",
     validity: "Certified through Feb 2027",
+    isDemo: true,
   },
   {
     id: "evergreen-agrotech",
@@ -85,5 +93,6 @@ export const employers: Employer[] = [
     level: "Silver",
     scope: "Entire organisation",
     validity: "Certified through Aug 2027",
+    isDemo: true,
   },
 ];
