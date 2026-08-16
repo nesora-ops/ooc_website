@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import { Award, Building2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
+import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { certificationFaqs } from "@/data/faqs";
 
@@ -15,15 +17,61 @@ export const metadata: Metadata = {
 const levels = [
   {
     name: "Bronze — Strong foundations.",
+    summary: "Fair, compliant, and well-run with the essential people systems in place.",
     body: "Bronze certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. For many organisations Bronze is the honest, credible starting point — public recognition that the fundamentals are genuinely in place, with a clear report showing the route to Silver.",
   },
   {
     name: "Silver — Engaged and improving.",
+    summary: "Mature systems, positive employee experience, and systematic improvement.",
     body: "Silver certification signifies an organisation whose investment in people is producing measurable results: employees report a genuinely positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional. Silver-certified employers stand out clearly in their talent markets.",
   },
   {
     name: "Gold — An employer others benchmark against.",
+    summary: "Industry-leading practices and an outstanding, consistent employee experience.",
     body: "Gold certification is reserved for exceptional workplaces: industry-leading practices, an outstanding and consistent employee experience across every assessed dimension, and evidence of innovation in how people are led, developed, and cared for. Gold-certified organisations are the reference point for their sector.",
+  },
+];
+
+const processStages = [
+  {
+    title: "Application & scoping",
+    duration: <Placeholder>duration</Placeholder>,
+    summary: "Choose the organisation, locations, divisions, or entities to be certified.",
+    detail: "We confirm eligibility, agree the assessment plan, and set the timeline with you.",
+    icon: FileSearch,
+    tone: "bg-sky text-navy",
+  },
+  {
+    title: "Evidence & self-assessment",
+    duration: <Placeholder>duration</Placeholder>,
+    summary: "Complete the structured self-assessment and upload supporting evidence.",
+    detail: "Our team reviews submissions as they arrive, so gaps surface early rather than at the end.",
+    icon: Building2,
+    tone: "bg-mint text-teal",
+  },
+  {
+    title: "Multi-stakeholder assessment",
+    duration: <Placeholder>duration</Placeholder>,
+    summary: "Employees, leadership, and independent assessors contribute distinct evidence.",
+    detail: "Employee input is confidential, leadership responses are verified, and no result rests on one voice.",
+    icon: MessageCircle,
+    tone: "bg-butter/70 text-gold-ink",
+  },
+  {
+    title: "Review & determination",
+    duration: <Placeholder>duration</Placeholder>,
+    summary: "The lead assessor consolidates inputs and applies the published scoring model.",
+    detail: "Mandatory gates are checked and the outcome is determined solely by the evidence.",
+    icon: ShieldCheck,
+    tone: "bg-coral/15 text-[#9a4635]",
+  },
+  {
+    title: "Certification & beyond",
+    duration: null,
+    summary: "Receive the level, report, benchmarks, directory listing, and OOC mark.",
+    detail: "Annual verification and full reassessment keep the certification current and credible.",
+    icon: Award,
+    tone: "bg-navy text-white",
   },
 ];
 
@@ -34,7 +82,6 @@ export default function CertificationPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Hero</p>
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Certification you can stand behind.
         </h1>
@@ -48,98 +95,78 @@ export default function CertificationPage() {
       {/* WHAT WE ASSESS */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-            What we assess
-          </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            What we assess.
+            Built systems meet lived experience.
           </h2>
-          <div className="mt-8 max-w-3xl space-y-6 text-muted-foreground">
-            <p>
-              The OOC framework examines the full employment experience, organised into assessment
-              sections covering the areas that matter most to a workplace: leadership and culture;
-              policies and fairness; compensation and benefits practices; learning and career
-              development; wellbeing and safety; diversity, equity and inclusion; communication and
-              voice; and the systems that hold it all together. Each section is assessed on both
-              what the organisation has put in place and how employees actually experience it.
-            </p>
-            <p>
-              Evidence is gathered from multiple assessor groups for every section — because a
-              policy that exists on paper but not in practice should not earn certification.
-              Responses are collected in structured formats suited to each group, from verified
-              documentary evidence to employee experience ratings, and certain fundamentals operate
-              as mandatory gates: an organisation cannot compensate for failing them with strong
-              scores elsewhere.
-            </p>
+          <div className="mx-auto mt-12 grid max-w-5xl overflow-hidden rounded-[2.25rem] border border-navy/8 bg-white/75 lg:grid-cols-[1fr_auto_1fr]">
+            <div className="p-8 lg:p-10">
+              <Building2 className="size-8 text-teal" aria-hidden strokeWidth={1.6} />
+              <h3 className="mt-8 text-2xl font-semibold text-navy-ink">What exists.</h3>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Policies, systems, leadership practices, learning, wellbeing, fairness, and the
+                evidence that holds them together.
+              </p>
+            </div>
+            <div className="relative grid min-h-24 place-items-center border-y border-navy/8 bg-mint px-8 lg:border-x lg:border-y-0">
+              <span className="grid size-20 place-items-center rounded-full bg-teal text-center text-xs font-bold uppercase tracking-widest text-white">
+                OOC<br />proof
+              </span>
+            </div>
+            <div className="p-8 lg:p-10">
+              <MessageCircle className="size-8 text-[#6d80c5]" aria-hidden strokeWidth={1.6} />
+              <h3 className="mt-8 text-2xl font-semibold text-navy-ink">What is experienced.</h3>
+              <p className="mt-3 leading-7 text-muted-foreground">
+                Confidential employee input, leadership responses, and independent evaluation of
+                how those systems work in practice.
+              </p>
+            </div>
           </div>
+          <ProgressiveDetails className="mx-auto mt-8 max-w-5xl" label="See every assessment dimension">
+            <p>
+              The framework covers leadership and culture; policies and fairness; compensation and
+              benefits; learning and career development; wellbeing and safety; diversity, equity
+              and inclusion; communication and voice; and the systems that connect them.
+            </p>
+            <p>
+              Evidence comes from multiple groups. Mandatory fundamentals act as gates, so a policy
+              that exists on paper but fails in practice cannot be hidden by a strong score elsewhere.
+            </p>
+          </ProgressiveDetails>
         </div>
       </section>
 
       {/* THE ASSESSMENT PROCESS */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-          The assessment process
-        </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-          The process, stage by stage.
+          Five checkpoints. One defensible outcome.
         </h2>
-        <ol className="mt-10 grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-          <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold-ink">01</span>
-            <h3 className="font-heading text-lg font-semibold text-navy-ink">
-              Application &amp; scoping (<Placeholder>duration</Placeholder>).
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              You tell us about your organisation and choose the scope of certification — the whole
-              organisation, or defined locations, divisions, or entities. We confirm eligibility,
-              agree the assessment plan, and set the timeline together.
-            </p>
-          </li>
-          <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold-ink">02</span>
-            <h3 className="font-heading text-lg font-semibold text-navy-ink">
-              Evidence &amp; self-assessment (<Placeholder>duration</Placeholder>).
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Your organisation completes the structured self-assessment on our digital platform and
-              uploads supporting evidence. Our team reviews submissions as they arrive, so gaps are
-              surfaced early rather than at the end.
-            </p>
-          </li>
-          <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold-ink">03</span>
-            <h3 className="font-heading text-lg font-semibold text-navy-ink">
-              Multi-stakeholder assessment (<Placeholder>duration</Placeholder>).
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              Employees contribute their experience through confidential structured input;
-              leadership responses are verified against evidence; and independent assessors evaluate
-              every section of the framework. No certification rests on a single voice.
-            </p>
-          </li>
-          <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold-ink">04</span>
-            <h3 className="font-heading text-lg font-semibold text-navy-ink">
-              Review &amp; determination (<Placeholder>duration</Placeholder>).
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              The lead assessor consolidates all inputs, applies the published scoring model,
-              confirms every mandatory gate has been met, and signs the assessment declaration. The
-              outcome — including your level — is determined solely by the evidence.
-            </p>
-          </li>
-          <li className="flex flex-col gap-2">
-            <span className="font-heading text-3xl font-bold text-gold-ink">05</span>
-            <h3 className="font-heading text-lg font-semibold text-navy-ink">
-              Certification &amp; beyond.
-            </h3>
-            <p className="text-sm text-muted-foreground">
-              You receive your certification, your detailed report with benchmarks and
-              recommendations, your public directory listing, and the OOC mark for your employer
-              brand. Certification is verified annually, and a full reassessment keeps it current —
-              so the mark always means what it says.
-            </p>
-          </li>
+        <ol className="relative mx-auto mt-14 max-w-5xl before:absolute before:bottom-0 before:left-6 before:top-0 before:w-px before:bg-teal/20 lg:before:left-0 lg:before:right-0 lg:before:top-8 lg:before:h-px lg:before:w-auto">
+          {processStages.map((stage) => {
+            const Icon = stage.icon;
+            return (
+              <li key={stage.title} className="relative grid gap-5 pb-10 pl-20 last:pb-0 lg:grid-cols-[7rem_1fr] lg:items-start lg:pl-0">
+                <div className="absolute left-0 top-0 lg:static">
+                  <span className={`grid size-12 place-items-center rounded-full ring-8 ring-background lg:size-16 ${stage.tone}`}>
+                    <Icon className="size-5 lg:size-6" aria-hidden strokeWidth={1.7} />
+                  </span>
+                </div>
+                <details className="group rounded-[1.75rem] border border-navy/8 bg-white/75 px-6 py-5 shadow-[0_18px_50px_rgba(23,50,77,0.05)] lg:px-8">
+                  <summary className="cursor-pointer list-none marker:content-none">
+                    <span className="flex flex-wrap items-center justify-between gap-3">
+                      <span className="text-xl font-semibold text-navy-ink">{stage.title}</span>
+                      <span className="text-xs font-semibold text-teal">
+                        {stage.duration ?? "Ongoing"}
+                      </span>
+                    </span>
+                    <span className="mt-2 block text-sm leading-6 text-muted-foreground">{stage.summary}</span>
+                  </summary>
+                  <p className="mt-4 border-t border-navy/8 pt-4 text-sm leading-6 text-muted-foreground">
+                    {stage.detail}
+                  </p>
+                </details>
+              </li>
+            );
+          })}
         </ol>
       </section>
 
@@ -152,12 +179,15 @@ export default function CertificationPage() {
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             The three levels of certification.
           </h2>
-          <div className="mt-8 max-w-3xl space-y-8">
+          <div className="mt-10 grid grid-flow-dense gap-3 md:grid-cols-3">
             {levels.map((level) => (
-              <div key={level.name}>
-                <h3 className="font-heading text-lg font-semibold text-teal">{level.name}</h3>
-                <p className="mt-2 text-muted-foreground">{level.body}</p>
-              </div>
+              <article key={level.name} className="rounded-[1.75rem] bg-white/80 p-6 shadow-[0_18px_50px_rgba(23,50,77,0.06)]">
+                <h3 className="font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
+                <p className="mt-3 text-sm leading-6 text-muted-foreground">{level.summary}</p>
+                <ProgressiveDetails className="mt-5" label="Full level description">
+                  <p className="text-sm leading-6">{level.body}</p>
+                </ProgressiveDetails>
+              </article>
             ))}
           </div>
         </div>
@@ -165,13 +195,17 @@ export default function CertificationPage() {
 
       {/* SCORING & CRITERIA */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+        <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Scoring &amp; criteria
         </p>
-        <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
+        <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           How scoring works.
         </h2>
-        <div className="mt-8 max-w-3xl space-y-6 text-muted-foreground">
+        <p className="mx-auto mt-8 max-w-3xl text-lg leading-8 text-muted-foreground">
+          Combined stakeholder evidence maps to published level thresholds, while mandatory
+          criteria protect the credibility of every outcome.
+        </p>
+        <ProgressiveDetails className="mx-auto mt-8 max-w-3xl" label="Read the scoring methodology">
           <p>
             Every section of the framework is scored from the combined input of all assessor groups,
             and section scores aggregate into an overall result that maps to a certification level.
@@ -192,16 +226,16 @@ export default function CertificationPage() {
             the gaps — because the purpose of the framework is better workplaces, not gatekeeping
             for its own sake.
           </p>
-        </div>
+        </ProgressiveDetails>
       </section>
 
       {/* FAQ */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-            Frequently asked questions
-          </p>
-          <FAQAccordion className="mt-8 max-w-3xl" items={certificationFaqs} />
+          <h2 className="mx-auto max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
+            Frequently asked questions.
+          </h2>
+          <FAQAccordion className="mx-auto mt-8 max-w-3xl" items={certificationFaqs} />
         </div>
       </section>
 
