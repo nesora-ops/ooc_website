@@ -48,7 +48,7 @@ export function NewsletterSignup() {
     <div>
       {/* h2, not h3: this is a top-level footer section, and content-light
           pages have no intervening h2 — h3 here created an h1→h3 jump. */}
-      <h2 className="font-heading text-lg font-semibold text-white">
+      <h2 className="font-heading text-xl font-semibold text-navy-ink">
         Insight worth hiring for, monthly.
       </h2>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
@@ -59,16 +59,16 @@ export function NewsletterSignup() {
           onChange={(e) => setEmail(e.target.value)}
           aria-label="Email address"
           aria-invalid={!!error}
-          className="bg-white text-foreground"
+          className="border-white bg-white text-foreground"
         />
         <Button type="submit" disabled={state.status === "submitting"}>
           {state.status === "submitting" ? "Subscribing…" : "Subscribe"}
         </Button>
       </form>
-      {error && <p className="mt-2 text-sm text-red-300">{error}</p>}
-      <p className="mt-3 text-xs text-white/60">
+      {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
+      <p className="mt-3 text-xs text-muted-foreground">
         By subscribing you agree to our{" "}
-        <Link href="/privacy" className="underline hover:text-white">
+        <Link href="/privacy" className="underline hover:text-teal">
           Privacy Policy
         </Link>
         .
