@@ -2,17 +2,15 @@
 
 Narrative/handoff layer. `PRD.md` is the spec, `PLAN.md` is the source of truth for what's checked off (with per-phase build notes), and `758ab571-OOCWebsiteContentConsolidated.pdf` (repo root) is the verbatim copy source. Read all three before acting.
 
-**Last updated:** 2026-08-08, end of session 4.
+**Last updated:** 2026-08-15, Phase 6 visual redesign and content-density revision complete.
 
 ---
 
 ## TL;DR for a fresh session
 
-**The frontend build phase is complete.** All 13 routes exist with verbatim source-doc copy, build/lint/tsc are clean, and everything is pushed.
+**The frontend and Phase 6 visual redesign are complete.** All 13 routes retain source-document copy and now share a premium light design system, responsive chrome, and progressive GSAP motion. Build/lint/tsc are clean.
 
-**What happens next is not Claude's work.** Phase 6 is **design**, and the user has said explicitly they will do it themselves. Do not start restyling, redesigning, or "improving" the visual layer unprompted. What exists now is deliberately a structural exoskeleton — correct copy, correct semantics, correct behaviour, plain styling — for the user to design on top of.
-
-After Phase 6, the deferred backend work (PRD §10) becomes relevant, but only when the user asks.
+The deferred backend work (PRD §10) becomes relevant only when the user asks. Forms intentionally remain unconnected when `NEXT_PUBLIC_WEB3FORMS_KEY` is unset.
 
 ---
 
@@ -27,13 +25,15 @@ After Phase 6, the deferred backend work (PRD §10) becomes relevant, but only w
 | 4 — Cross-cutting polish | ✅ done | `8c0d3ee`, `8ab367f`, `a7cccca` |
 | 5.5 — Bug fixes, audits, cleanups | ✅ done | `12818b0` + this session |
 | 5 | **does not exist** — never defined | — |
-| 6 — Design | **user's own work, not Claude's** | — |
+| 6 — Premium visual redesign | ✅ done | uncommitted workspace changes (2026-08-15) |
 
-Everything is pushed to `origin/main`. Working tree clean.
+Everything through Phase 5.5 is pushed to `origin/main`. Phase 6 is implemented locally and has not been committed or pushed.
 
-### The one outstanding item
+### Responsive verification
 
-**Responsive pass at 375px and 768px has never been run.** The user verified 1280px via screenshot and it looked correct; the narrow breakpoints are unverified. This needs a real browser — static checks cannot substitute. It is the only planned item left incomplete, and it may be moot once Phase 6 design work reflows things anyway.
+The redesigned homepage was visually checked at 1280px and 390px. Mobile navigation was opened and verified, touch targets are at least 44px, and primary public routes were checked for rendered H1 content and horizontal overflow. No overflow was found. A production build generated all 31 static/SSG pages successfully.
+
+The follow-up visual pass centres inner-page heroes, adds generated workplace and assessment imagery, and moves long supporting copy into native expandable sections. The Certified Employer Directory now has an explicit three-tier legend and tier-specific card surfaces. Desktop and 390px mobile browser checks passed with no overflow or console errors.
 
 ---
 
@@ -41,15 +41,15 @@ Everything is pushed to `origin/main`. Working tree clean.
 
 **13 routes:** `/` · `/about` · `/certification` · `/employers` (+`#apply`) · `/directory` · `/partners` (+`#apply`) · `/resources` (+`/blog`, `/blog/[slug]`, `/guides`, `/glossary`, `/faq`) · `/news` · `/contact` · `/terms` · `/privacy` · `/cookies`. Plus generated `sitemap.xml` and `robots.txt`.
 
-**Stack:** Next.js 16 (App Router, Turbopack), TypeScript, Tailwind v4, shadcn/ui (Radix), RHF + Zod, lucide-react. Deploy target is Vercel (not yet deployed).
+**Stack:** Next.js 16 (App Router, Turbopack), TypeScript, Tailwind v4, shadcn/ui (Radix), RHF + Zod, lucide-react, GSAP, and the self-hosted Geist font package. Deploy target is Vercel (not yet deployed).
 
 **Global chrome** (`src/app/layout.tsx`): sticky `Header` with mobile Sheet drawer · `Footer` (5-column sitemap from `src/lib/site-config.ts`, embedded `NewsletterSignup`, `CookiePreferencesLink`) · `CookieConsent` (banner + preference dialog, localStorage via `useSyncExternalStore`).
 
 **Five forms**, all sharing `useWeb3Form` + `src/lib/forms/schemas.ts`: employer application, partner application, contact, media enquiry, newsletter. **None submit anywhere** — `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, so they validate then show a "not yet connected" state. That is intended behaviour, not a bug.
 
-**Mock data** in `src/data/`: `employers.ts` (8 fictional certified employers — the only fabricated content, explicitly permitted by PRD §8), `blog-posts.ts` (10 real titles, placeholder bodies), `glossary.ts` (16 real definitions), `faqs.ts` (real Q&A), `guides.ts` (placeholder).
+**Demo data** in `src/data/`: `employers.ts` (8 fictional, visibly labelled records), `blog-posts.ts` (10 source titles with demo teasers/dates), `glossary.ts` (16 source definitions), `faqs.ts` (source Q&A with visibly stated demo estimates), and `guides.ts` (demo guide records). Former source placeholders render through `<Placeholder>` as labelled demo values with `data-demo-content` keys; backend integration must replace them before production.
 
-**~61 `[PLACEHOLDER; …]` markers** render visibly across the site via `<Placeholder>`. These are the source doc's *own* unresolved fields (pricing tiers, response times, validity period, team bios, testimonials, case studies, contact details, legal text). They are correct as-is — do not invent values for them.
+**Former source placeholders now render as demo content.** The original field key remains in `data-demo-content` and a tooltip; visible values carry a `demo` label. Treat every such value as temporary and replace it from the backend or confirmed client copy before production.
 
 ---
 
@@ -61,7 +61,7 @@ Everything is pushed to `origin/main`. Working tree clean.
 4. **Check the bundled Next docs, not memory.** This is Next 16 and differs from training data — e.g. dynamic-route `params` is a `Promise` and must be awaited. Docs live at `node_modules/next/dist/docs/`.
 5. **shadcn CLI is pinned to `3.8.5`.** Do not `npx shadcn@latest add …` — the newer default CLI ships a broken empty `form` registry stub under its "Base UI" flavour.
 6. **`next dev` rewrites `CLAUDE.md`**, re-appending a Next 16 agent-guidance block. Expected; commit it rather than stripping it.
-7. **Never fabricate.** PRD §8 policy #1. The one sanctioned exception is directory demo data in `employers.ts`.
+7. **Never present demo data as production fact.** The user explicitly authorised temporary values on 2026-08-15. Keep the visible `demo` treatment and `data-demo-content` / `data-demo-record` hooks until confirmed backend content replaces them.
 
 ---
 
@@ -80,7 +80,7 @@ Everything is pushed to `origin/main`. Working tree clean.
 - **Newsletter lives only in the footer** (global), not duplicated on `/resources`. The doc allowed either.
 - **Blog slugs derive from real titles** (e.g. `bronze-silver-gold-how-to-read-an-ooc-certification-level`), replacing Phase 2's `launch-article-N` stubs. All 10 prerender via `generateStaticParams`.
 - **Social links render as disabled text pills**, not logo glyphs — the installed lucide-react ships no brand icons at all (verified by inspecting its exports, not a version-pin issue).
-- **FAQ answers keep source-doc placeholders as literal strings** in `data/faqs.ts` (the accordion takes plain strings). They still render visibly, but a future FAQ-rendering refactor should preserve that.
+- **FAQ estimates are demo values** in `data/faqs.ts` and say so in the rendered sentence. Backend integration must replace pricing, timing, and validity estimates with confirmed values.
 - **Cookie preference centre is reachable from the footer** via the `ooc:open-cookie-preferences` window event. Phase 1 had judged this scope creep; the source doc's Cookie Policy explicitly promises it, so Phase 4 reversed that call.
 - **`radio-group` and `separator` shadcn primitives are unused** — installed speculatively in Phase 0, deliberately retained since Phase 6 design may want them.
 - **No custom `not-found.tsx` or `global-error.tsx`.** A 404 renders Next's bare default inside our chrome; `global-error` renders without a `lang` attribute (a real, minor a11y gap). Both were left out as pages outside the PRD site map — good candidates to add during Phase 6.
