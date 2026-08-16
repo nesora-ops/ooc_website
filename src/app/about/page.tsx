@@ -25,8 +25,8 @@ const differentiators = [
   },
   {
     lead: "We certify improvement, not perfection.",
-    summary: "Bronze, Silver, and Gold create a visible route forward.",
-    body: "The Bronze, Silver, and Gold levels exist because building a great workplace is a journey. Our detailed assessment reports show every organisation exactly where it stands and precisely what would move it forward. Certification with us is the beginning of a relationship, not the end of a transaction.",
+    summary: "Silver, Gold, Platinum, and Diamond create a visible route forward.",
+    body: "The Silver, Gold, Platinum, and Diamond levels exist because building a great workplace is a journey. Our detailed assessment reports show every organisation exactly where it stands and precisely what would move it forward. Certification with us is the beginning of a relationship, not the end of a transaction.",
   },
 ];
 
