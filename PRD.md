@@ -7,7 +7,7 @@
 **Domain:** organisationofchoice.com
 **Source of truth for copy:** `758ab571-OOCWebsiteContentConsolidated.pdf` (Version 1.0) — all page copy, form fields, and microcopy in this PRD are taken directly from that document. `[PLACEHOLDER; ...]` markers from the source doc are preserved as real placeholders in the built site (see §8).
 
-**What OOC does:** Assesses employers via a multi-stakeholder process (employees, leadership, independent assessors) against a published framework, and certifies them at **Bronze / Silver / Gold**. Certified organisations get a public directory listing, a certification mark, and a detailed report. Job seekers use the directory to vet employers. Consultants/advisors can become channel partners and refer clients.
+**What OOC does:** Assesses employers via a multi-stakeholder process (employees, leadership, independent assessors) against a published framework, and certifies them at **Silver / Gold / Platinum / Diamond**. Certified organisations get a public directory listing, a certification mark, and a detailed report. Job seekers use the directory to vet employers. Consultants/advisors can become channel partners and refer clients.
 
 ## 2. Phase Scope
 
@@ -112,7 +112,7 @@ All copy below is verbatim from the source doc (condensed here for structure; fu
 - **Audience router:** 3 cards — For Employers / For Job Seekers / For Partners, each with a short paragraph + link.
 - **Why certification pays:** H2 + 4 benefit blocks (Attract & retain talent / Build a credible employer brand / Improve with evidence / Stand out to every stakeholder).
 - **How it works:** H2 "Three steps to certification." — numbered 1. Apply / 2. Get assessed / 3. Get certified. CTA button.
-- **Certification levels:** Bronze/Silver/Gold one-paragraph summaries + closing line.
+- **Certification levels:** Silver/Gold/Platinum/Diamond one-paragraph summaries + closing line.
 - **Testimonials:** 3 placeholder testimonial slots (quote + attribution), all `[PLACEHOLDER]`.
 - **Insights preview:** "Latest insights." + link to resource hub (leave as a teaser card row pulling from blog seed data, or a simple link band if no blog cards exist yet — build agent's call).
 - **Closing CTA:** H2 "Ready to prove you're a great place to work?" + 2 CTAs.
@@ -129,7 +129,7 @@ All copy below is verbatim from the source doc (condensed here for structure; fu
 - Hero: "Certification you can stand behind."
 - What we assess: framework sections list (leadership & culture; policies & fairness; compensation & benefits; learning & career development; wellbeing & safety; DEI; communication & voice; systems) + evidence/mandatory-gates explanation.
 - The assessment process: 5 numbered stages, each with a `[PLACEHOLDER; duration]`.
-- Certification levels: Bronze / Silver / Gold, longer descriptions than Home.
+- Certification levels: Silver / Gold / Platinum / Diamond, longer descriptions than Home.
 - Scoring & criteria: how scoring works + mandatory criteria explanation + `[PLACEHOLDER; level thresholds]`.
 - FAQs: 6 Q&A pairs (accordion component) — duration, who assesses, cost, validity, "what if we don't achieve the level," confidentiality.
 - Closing CTA.
@@ -150,9 +150,9 @@ Submit → thank-you message referencing `[PLACEHOLDER; response time]`.
 - Hero: "Choose your next employer on proof, not promises." + CTA "Search the directory".
 - Why it matters: 3 paragraphs.
 - How to use the directory: 3 use-case blocks (Research an offer / Discover employers worth watching / Verify a claim).
-- **Certified Employer Directory:** search box (org name) + filters (Industry, Location, Certification level: Bronze/Silver/Gold). Grid/list of employer cards (logo placeholder, name, industry, location, level badge, scope, validity). Empty state copy provided verbatim.
+- **Certified Employer Directory:** search box (org name) + filters (Industry, Location, Certification level: Silver/Gold/Platinum/Diamond). Grid/list of employer cards (logo placeholder, name, industry, location, level badge, scope, validity). Empty state copy provided verbatim.
 - "For Employers" band CTA at bottom.
-- Seed with ~6–10 mock certified employers across levels/industries so the UI isn't empty during dev/demo.
+- Seed with ~6–10 mock certified employers across levels/industries so the UI is not empty during development.
 
 ### 7.6 Channel Partners (`/partners`)
 - Hero + CTA "Apply to Partner".
@@ -209,7 +209,7 @@ The source doc uses `[PLACEHOLDER; description]` extensively (pricing, durations
 
 1. **Never fabricate real-sounding facts** (no invented pricing numbers, no invented legal text, no invented team bios/names beyond "Ketaki" who is named in the source).
 2. Render placeholders as visibly-styled placeholder content in the UI (e.g., a subtly dashed/muted card or `[bracketed]` inline text) so it's obvious to a reviewer what's real copy vs. what's pending — not silently blank, not silently fake.
-3. Exception: the **Directory** needs sample data to demonstrate the UI. Use clearly fictional example organisations (e.g., "Aurora Logistics Pvt. Ltd. — Bronze — Pune") — this is mock seed data, not a placeholder-for-real-content situation, and should be obviously swappable (single data file).
+3. Exception: the **Directory** needs sample data to demonstrate the UI. Use clearly fictional example organisations (e.g., "Aurora Logistics Pvt. Ltd. — Silver — Pune") — this is mock seed data, not a placeholder-for-real-content situation, and should be obviously swappable (single data file).
 4. Exception: **blog articles** — the 10 titles are real (from source doc); body content per article can be short lorem/teaser placeholder text since full articles weren't provided.
 
 ## 9. Non-Functional Requirements
