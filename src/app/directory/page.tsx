@@ -81,8 +81,9 @@ export default function DirectoryPage() {
           </div>
           <ProgressiveDetails className="mx-auto mt-8 max-w-5xl" label="Why independent proof matters">
             <p>
-              Bronze confirms strong foundations, Silver shows mature systems and a positive
-              employee experience, and Gold marks a workplace others can benchmark against.
+              Silver confirms strong foundations, Gold shows mature systems and a positive
+              employee experience, Platinum recognises advanced consistency, and Diamond marks a
+              workplace others can benchmark against.
             </p>
             <p>
               Certification does not replace your judgement. It gives you verified evidence before
@@ -130,7 +131,7 @@ export default function DirectoryPage() {
             Certified Employer Directory.
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-center text-muted-foreground">
-            Filter the demo directory, then read the clearly labelled certification tier on each employer card.
+            Filter the directory, then read the clearly labelled certification tier on each employer card.
           </p>
           <div className="mt-8">
             <EmployerDirectory />
