@@ -59,15 +59,23 @@ const partnerTypes = [
 const tiers = [
   {
     name: "Silver tier.",
+    summary: "Programme training, standard terms, and a named contact.",
     body: "The starting point for every partner: full programme training, the partner marketing kit, a named programme contact, and standard commercial terms on every client introduced.",
   },
   {
     name: "Gold tier.",
+    summary: "Enhanced terms, co-marketing, and priority support.",
     body: "For established partners with an active client pipeline: enhanced commercial terms, co-marketing opportunities including joint events and content, and priority programme support.",
   },
   {
     name: "Platinum tier.",
-    body: "The programme's strategic partners: the strongest commercial terms, first access to new certifications and programme developments, joint go-to-market planning, and public recognition as a Platinum-tier partner of Organisation of Choice™.",
+    summary: "Advanced enablement, early access, and joint planning.",
+    body: "For high-performing partners with a mature client portfolio: advanced commercial terms, early access to programme developments, joint planning, and greater public visibility.",
+  },
+  {
+    name: "Diamond tier.",
+    summary: "Strategic terms, first access, and joint go-to-market leadership.",
+    body: "The programme's strategic partners: the strongest commercial terms, first access to new certifications and programme developments, joint go-to-market planning, and public recognition as a Diamond-tier partner of Organisation of Choice™.",
   },
 ];
 
@@ -100,7 +108,7 @@ const partnershipSteps = [
   {
     title: "Grow",
     description:
-      "Each certified client builds your partnership record toward Gold and Platinum, and a client base backed by independent proof.",
+      "Each certified client builds your partnership record toward Gold, Platinum, and Diamond, and a client base backed by independent proof.",
     position: "lg:bottom-0",
     tone: "border-coral bg-coral/10",
   },
@@ -253,24 +261,18 @@ export default function PartnersPage() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Partner tiers</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            Three tiers. One standard.
+            Four tiers. One standard.
           </h2>
           <p className="mt-8 max-w-3xl text-muted-foreground">
             Every partner joins at Silver tier and progresses on results. Tier reflects the scale
             and maturity of the partnership — commercial terms, enablement, and visibility grow with
             it. Advancement criteria: <Placeholder>tier advancement criteria</Placeholder>.
           </p>
-          <div className="mt-8 grid grid-flow-dense gap-3 sm:grid-cols-3">
+          <div className="mt-8 grid grid-flow-dense gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {tiers.map((tier) => (
               <article key={tier.name} className="rounded-[1.75rem] border border-border bg-white/80 p-6">
                 <h3 className="font-heading text-xl font-semibold text-navy-ink">{tier.name}</h3>
-                <p className="mt-3 text-sm text-muted-foreground">
-                  {tier.name.startsWith("Silver")
-                    ? "Programme training, standard terms, and a named contact."
-                    : tier.name.startsWith("Gold")
-                      ? "Enhanced terms, co-marketing, and priority support."
-                      : "Strategic terms, early access, and joint go-to-market planning."}
-                </p>
+                <p className="mt-3 text-sm text-muted-foreground">{tier.summary}</p>
                 <ProgressiveDetails className="mt-5" label="Full tier detail">
                   <p className="text-sm leading-6">{tier.body}</p>
                 </ProgressiveDetails>
