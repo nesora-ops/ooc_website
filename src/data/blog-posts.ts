@@ -2,8 +2,8 @@
 //
 // Titles are verbatim from the source doc
 // (758ab571-OOCWebsiteContentConsolidated.pdf, "Blog — launch article titles").
-// The doc supplies titles only — no article bodies or publish dates exist yet,
-// so teaser/date stay placeholder-marked per PRD §8 policy #1.
+// BACKEND TODO: the source supplies titles only. Teasers and dates below are
+// clearly labelled demo editorial data and must be replaced by CMS records.
 
 export type BlogPost = {
   slug: string;
@@ -11,6 +11,7 @@ export type BlogPost = {
   teaser: string;
   date: string;
   author: string;
+  isDemo: true;
 };
 
 const titles = [
@@ -32,11 +33,13 @@ const slugify = (title: string) =>
     .replace(/[^a-z0-9]+/g, "-")
     .replace(/^-|-$/g, "");
 
-export const blogPosts: BlogPost[] = titles.map((title) => ({
+const demoDates = ["12 Aug 2026", "28 Jul 2026", "09 Jul 2026", "24 Jun 2026", "05 Jun 2026"];
+
+export const blogPosts: BlogPost[] = titles.map((title, index) => ({
   slug: slugify(title),
   title,
-  teaser:
-    "Full article content is out of scope for this phase. This is placeholder teaser text standing in for the article body.",
-  date: "[PLACEHOLDER; publish date]",
+  teaser: `Demo preview — a practical introduction to ${title.toLowerCase()}, pending the final editorial article.`,
+  date: `${demoDates[index % demoDates.length]} · demo date`,
   author: "Organisation of Choice Team",
+  isDemo: true,
 }));
