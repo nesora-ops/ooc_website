@@ -1,8 +1,8 @@
 // FAQ data: Certification page (PRD §7.3, 6 Q&A) and Resources FAQ page
 // (PRD §7.7d, grouped: Employers 4 / Job seekers 3 / Partners 2).
 //
-// BACKEND TODO: values explicitly marked as demo estimates below replace
-// unresolved source fields and must be confirmed before production launch.
+// BACKEND TODO: illustrative estimates below replace unresolved source fields
+// and must be confirmed before production launch.
 
 export type FAQItem = { question: string; answer: string };
 
@@ -10,7 +10,7 @@ export const certificationFaqs: FAQItem[] = [
   {
     question: "How long does certification take?",
     answer:
-      "Most organisations complete the journey from application to certification in an illustrative 8–12 weeks (demo estimate). The largest variable is how quickly evidence and stakeholder inputs are completed on your side; our team supports you throughout to keep the process moving.",
+      "Most organisations complete the journey from application to certification in an illustrative 8–12 weeks. The largest variable is how quickly evidence and stakeholder inputs are completed on your side; our team supports you throughout to keep the process moving.",
   },
   {
     question: "Who conducts the assessment?",
@@ -20,12 +20,12 @@ export const certificationFaqs: FAQItem[] = [
   {
     question: "What does certification cost?",
     answer:
-      "Fees depend on organisation size and the scope being certified. Demo pricing starts from ₹1.8 lakh and scales by organisation size; your application confirmation will include the real quotation before any commitment is required.",
+      "Fees depend on organisation size and the scope being certified. Illustrative pricing starts from ₹1.8 lakh and scales by organisation size; your application confirmation will include the confirmed quotation before any commitment is required.",
   },
   {
     question: "How long does certification last?",
     answer:
-      "Certification is shown here with a demo validity period of 12 months, with annual verification in between and a full reassessment at renewal. Organisations that improve can move up a level at reassessment.",
+      "Certification is shown here with an illustrative validity period of 12 months, with annual verification in between and a full reassessment at renewal. Organisations that improve can move up a level at reassessment.",
   },
   {
     question: "What if we don't achieve the level we hoped for?",
@@ -44,7 +44,7 @@ export const resourcesFaqs: { employers: FAQItem[]; jobSeekers: FAQItem[]; partn
     {
       question: "Is certification suitable for small organisations?",
       answer:
-        "Yes. The framework scales with organisation size, and fees are size-based; the current screen uses illustrative pricing from ₹1.8 lakh (demo only). Smaller employers often benefit most, because certification gives them a credibility signal that usually only large employer brands enjoy.",
+        "Yes. The framework scales with organisation size, and fees are size-based; the current screen uses illustrative pricing from ₹1.8 lakh. Smaller employers often benefit most, because certification gives them a credibility signal that usually only large employer brands enjoy.",
     },
     {
       question: "Can we certify part of our organisation?",
