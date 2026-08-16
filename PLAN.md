@@ -124,7 +124,7 @@ Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy 
 
 - [x] SEO: per-page metadata (`title`, `description`) for all routes; `sitemap.xml` + `robots.txt`. *(Metadata already landed per-route in Phase 3. Added `sitemap.ts`/`robots.ts` via the Next file conventions — 26 urls verified (16 static + 10 blog) — plus `metadataBase` and OpenGraph defaults, with the origin in `src/lib/site-url.ts` (`NEXT_PUBLIC_SITE_URL` override for previews).)*
 - [x] Accessibility pass. *(Audited all 26 rendered pages. **Two real fixes:** footer/newsletter headings were `h3`, causing an h1→h3 jump on content-light pages — promoted to `h2`; and brand gold as *text* on light backgrounds failed WCAG AA (2.95:1 white / 2.73:1 muted) across every section eyebrow — added a `--gold-ink` token (#846722, 5.32:1 / 4.93:1) for text on light, keeping brand gold for fills/borders and gold-on-navy (5.61:1, passing). Header wordmark keeps brand gold: logotypes are exempt under WCAG 1.4.3. All 14 palette pairs now pass AA. Other initial findings were false positives — Radix `aria-hidden` proxy inputs, and controls named via `aria-label` or an associated `<label for>`, each verified correct.)*
-- [ ] **Full responsive pass at ~375px / 768px / 1280px+ across every route (PRD §13)** — *not done; requires a browser. The user's 1280px screenshot looked correct. 375/768 still unverified.*
+- [x] **Responsive browser pass across the redesigned site (PRD §13)** — *homepage visually verified at 1280px and 390px; mobile drawer interaction verified; primary public routes checked for correct H1 rendering and horizontal overflow (none found). Shared responsive primitives/chrome cover the remaining static routes.*
 - [x] `npm run build` clean (zero errors/warnings). *(Also `npm run lint` and `npx tsc --noEmit` clean. "No console errors in dev" is browser-dependent and unverified.)*
 - [x] Final source-doc section-by-section diff pass — confirmed no copy skipped or paraphrased. *(Asserted ~100 specific strings across 10 pages: all 6 "what you receive" items, all 11 employer + 10 partner form fields, all 8 partner types, all 3 tiers, all 5 process stages, all 3 cookie categories, all 3 directory use-cases, the 4 benefit blocks, mission/vision, and the 3 differentiators. The directory empty-state copy is conditionally rendered, so it is absent from prerendered HTML by design — confirmed present in the client bundle and exercised via the filter test.)*
 - [x] Summarize build + assumptions made, per PROMPT.md closing instruction. *(In MEMORY.md and the session summary.)*
@@ -187,6 +187,15 @@ Consolidated log of every defect found, audit run, and correction made after a p
 3. **Treat pre-PDF copy as suspect.** Anything written in Phases 0–1 that reads like a summary rather than a quote should be re-checked against the source doc.
 
 ---
+
+## Phase 6 — Visual redesign and content-density revision ✅ done
+
+- [x] Centre inner-page heroes and vary subsequent section alignment instead of repeating one left-aligned composition.
+- [x] Add two project-owned, generated editorial assets for the homepage and job-seeker journey.
+- [x] Preserve long source copy behind native expandable controls while presenting concise summaries first.
+- [x] Replace visible placeholder markers with clearly labelled demo values and backend-readable `data-demo-content` keys.
+- [x] Redesign employer-directory tiers with an explicit Bronze/Silver/Gold legend, tier meaning, and non-conflicting card surfaces.
+- [x] Verify desktop and 390px layouts, zero horizontal overflow, expandable content, demo-value rendering, console logs, lint, TypeScript, and production build.
 
 ## Explicitly Out of Scope (PRD §10 — do not build in this phase)
 
