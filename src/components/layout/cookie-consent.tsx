@@ -99,14 +99,14 @@ export function CookieConsent() {
       <div
         role="region"
         aria-label="Cookie consent"
-        className="fixed inset-x-0 bottom-0 z-50 border-t border-border bg-navy text-white"
+        className="fixed inset-x-3 bottom-3 z-50 mx-auto max-w-5xl rounded-2xl border border-navy/10 bg-white/92 text-foreground shadow-[0_24px_80px_rgba(23,50,77,0.18)] backdrop-blur-xl sm:inset-x-5"
       >
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-4 py-4 sm:flex-row sm:px-6 lg:px-8">
+        <div className="flex flex-col items-start justify-between gap-4 px-5 py-4 sm:flex-row sm:items-center sm:px-6">
           {/* Verbatim source-doc banner copy; the Cookie Policy link is ours. */}
-          <p className="text-sm text-white/80">
+          <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
             We use cookies to run this site and, with your consent, to understand how it&apos;s
             used. You can accept all cookies, or manage your preferences. See our{" "}
-            <Link href="/cookies" className="underline hover:text-white">
+            <Link href="/cookies" className="font-medium text-teal underline underline-offset-2">
               Cookie Policy
             </Link>
             .
@@ -116,7 +116,7 @@ export function CookieConsent() {
                 (white), which would render this white-on-white on the navy bar. */}
             <Button
               variant="outline"
-              className="border-white bg-transparent text-white hover:bg-white hover:text-navy"
+              className="border-navy/15 bg-white text-navy hover:bg-mint"
               onClick={openPreferences}
             >
               Manage preferences
