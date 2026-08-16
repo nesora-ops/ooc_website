@@ -47,7 +47,7 @@ const included = [
   },
   {
     lead: "A pathway to the next level",
-    body: "a clear, evidenced route from Bronze to Silver to Gold.",
+    body: "a clear, evidenced route from Silver through Gold and Platinum to Diamond.",
     icon: Route,
     className: "bg-coral/10 lg:col-span-4",
   },
@@ -197,7 +197,7 @@ export default function EmployersPage() {
           <div className="p-8 lg:p-10">
             <p className="text-sm font-semibold text-teal">Never your result</p>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
-              Bronze, Silver, and Gold cost the same for organisations of equal size and scope.
+              Silver, Gold, Platinum, and Diamond cost the same for organisations of equal size and scope.
               Outcomes are never for sale.
             </p>
           </div>
