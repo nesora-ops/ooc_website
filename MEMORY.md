@@ -67,7 +67,8 @@ The follow-up visual pass centres inner-page heroes, adds generated workplace an
 
 ## Git / repo
 
-- Remote `https://github.com/nesora-ops/ooc_website.git`, branch `main`. **Private, and must stay private** — the repo contains the client's confidential copy document.
+- Remote `https://github.com/nesora-ops/ooc_website.git`; active frontend work is pushed to branch `frontend`. **Private, and must stay private** — the repo contains the client's confidential copy document.
+- **Commit exactly one file per commit.** Never combine multiple files in one commit, even when they belong to the same feature.
 - Repo-local identity `nesora-ops` / `ops@nesora.co.in`. **The machine's global git identity is a different user** — always confirm with `git config user.name` (no `--global`) before committing.
 - `gh` has three accounts authenticated (`nesora-ops`, `hkforprojects`, `boliwaladevs`). `nesora-ops` must be active; switch with `gh auth switch --user nesora-ops`.
 - Push only when the user asks. `.env` is untracked and must stay that way.
