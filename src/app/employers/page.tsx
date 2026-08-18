@@ -172,7 +172,7 @@ export default function EmployersPage() {
           </ProgressiveDetails>
           <Link
             href="/certification"
-            className="mt-6 inline-block font-medium text-teal hover:underline"
+            className="mx-auto mt-6 flex w-fit items-center rounded-full bg-white px-6 py-3 font-medium text-teal shadow-sm transition-colors hover:bg-mint"
           >
             See the full assessment process →
           </Link>
@@ -230,13 +230,13 @@ export default function EmployersPage() {
 
       {/* APPLICATION FORM */}
       <section id="apply" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
+        <p className="mx-auto max-w-3xl text-center text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Application form
         </p>
-        <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
+        <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 text-center font-heading text-3xl font-bold text-navy-ink">
           Apply for certification.
         </h2>
-        <p className="mx-auto mt-8 max-w-3xl text-muted-foreground">
+        <p className="mx-auto mt-8 max-w-3xl text-center text-muted-foreground">
           Tell us about your organisation and we&apos;ll come back within{" "}
           <Placeholder>response time</Placeholder> with your eligibility confirmation, a written
           quotation, and a proposed assessment plan. Applying creates no obligation.
