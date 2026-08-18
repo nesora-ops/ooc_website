@@ -60,7 +60,7 @@ export default function DirectoryPage() {
           </h2>
           <div className="mx-auto mt-12 grid max-w-5xl items-stretch lg:grid-cols-[1fr_auto_1fr]">
             <div className="rounded-t-[2rem] border border-navy/8 bg-white/70 p-8 lg:rounded-l-[2rem] lg:rounded-tr-none">
-              <p className="font-heading text-5xl font-semibold text-navy/15">“Great culture”</p>
+              <p className="font-heading text-5xl font-semibold text-navy/40">“Great culture”</p>
               <h3 className="mt-10 text-xl font-semibold text-navy-ink">What an employer says</h3>
               <p className="mt-3 leading-7 text-muted-foreground">
                 Careers pages, interviews, and reviews can be useful—but they are polished,
