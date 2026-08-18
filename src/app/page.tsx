@@ -66,31 +66,38 @@ const steps = [
   {
     title: "Get certified.",
     description:
-      "Receive your certification level — Bronze, Silver, or Gold — along with a detailed report, your public directory listing, and the OOC certification mark for your employer brand.",
+      "Receive your certification level — Silver, Gold, Platinum, or Diamond — along with a detailed report, your public directory listing, and the OOC certification mark for your employer brand.",
   },
 ];
 
 const levels = [
   {
-    name: "Bronze",
+    name: "Silver",
     note: "Strong foundations",
     body: "Recognises organisations with the essential people practices in place: compliant, fair, and well run.",
-    className: "bg-[#f2dfcf]",
-    dot: "bg-[#95613a]",
-  },
-  {
-    name: "Silver",
-    note: "Engaged and improving",
-    body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
     className: "bg-[#e8edf0]",
     dot: "bg-[#71808a]",
   },
   {
     name: "Gold",
-    note: "A workplace others benchmark against",
-    body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
+    note: "Engaged and improving",
+    body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
     className: "bg-butter/70",
     dot: "bg-gold-ink",
+  },
+  {
+    name: "Platinum",
+    note: "Advanced and consistent",
+    body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
+    className: "bg-sky",
+    dot: "bg-[#6d80c5]",
+  },
+  {
+    name: "Diamond",
+    note: "A workplace others benchmark against",
+    body: "Recognises sustained excellence across people practices, employee experience, and organisational leadership.",
+    className: "bg-mint",
+    dot: "bg-teal",
   },
 ];
 
@@ -158,12 +165,13 @@ export default function Home() {
             </article>
             <article className="rounded-3xl bg-sky p-6">
               <p className="text-sm font-semibold text-[#5068aa]">A visible pathway</p>
-              <div className="mt-10 flex items-end gap-3" aria-label="Bronze, Silver and Gold certification levels">
-                <div className="h-16 flex-1 rounded-2xl bg-[#aa7651]" />
-                <div className="h-24 flex-1 rounded-2xl bg-[#8aa0af]" />
-                <div className="h-32 flex-1 rounded-2xl bg-gold" />
+              <div className="mt-10 flex items-end gap-2.5" aria-label="Silver, Gold, Platinum and Diamond certification levels">
+                <div className="h-14 flex-1 rounded-2xl bg-[#8aa0af]" />
+                <div className="h-20 flex-1 rounded-2xl bg-gold" />
+                <div className="h-[6.5rem] flex-1 rounded-2xl bg-[#6d80c5]" />
+                <div className="h-32 flex-1 rounded-2xl bg-teal" />
               </div>
-              <p className="mt-4 text-lg font-semibold text-navy-ink">Bronze. Silver. Gold.</p>
+              <p className="mt-4 text-base font-semibold text-navy-ink">Silver. Gold. Platinum. Diamond.</p>
             </article>
           </div>
         </div>
@@ -301,7 +309,7 @@ export default function Home() {
               Wherever you start, the framework shows you the path to the next level.
             </p>
           </div>
-          <div className="mt-12 grid gap-4 lg:grid-cols-3">
+          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {levels.map((level, index) => (
               <article key={level.name} className={cn("group rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8", level.className)}>
                 <div className="flex items-center justify-between">
@@ -366,7 +374,7 @@ export default function Home() {
       </section>
 
       <CTABand
-        heading="Ready to prove you're a great place to work?"
+        heading="Ready to prove you are an Organisation of Choice?"
         body="Join the employers who've turned their culture into certified, public proof — and let the right talent find you."
         primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
         secondaryCta={{ label: "Explore Certified Employers", href: "/directory" }}

@@ -49,19 +49,14 @@ export function TestimonialsCarousel() {
         ref={trackRef}
         className="flex snap-x snap-mandatory items-start gap-3 overflow-x-auto px-2 py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
       >
-        {testimonials.map((testimonial, index) => (
+        {testimonials.map((testimonial) => (
           <figure
             key={testimonial.name}
             tabIndex={0}
-            data-demo-content={`testimonial-${index + 1}`}
-            title={`Temporary demo data — replace from backend field: testimonial-${index + 1}`}
             className="group relative flex min-h-[22rem] basis-full shrink-0 snap-start flex-col justify-between rounded-[1.35rem] border border-navy/10 bg-white/80 p-6 text-navy-ink transition-[transform,background-color,color,box-shadow] duration-200 hover:-translate-y-1.5 hover:scale-[1.025] hover:bg-navy-ink hover:text-white hover:shadow-[0_24px_50px_rgba(16,42,67,0.22)] focus-visible:-translate-y-1.5 focus-visible:scale-[1.025] focus-visible:bg-navy-ink focus-visible:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-4 sm:basis-[calc(50%-0.375rem)] lg:basis-[calc(33.333%-0.5rem)]"
           >
             <div>
-              <span className="text-[0.65rem] font-bold uppercase tracking-[0.14em] text-coral-ink group-hover:text-butter group-focus-visible:text-butter">
-                Demo testimonial
-              </span>
-              <blockquote className="mt-5 text-xl font-medium leading-[1.25] tracking-[-0.025em]">
+              <blockquote className="text-xl font-medium leading-[1.25] tracking-[-0.025em]">
                 “{testimonial.quote}”
               </blockquote>
             </div>

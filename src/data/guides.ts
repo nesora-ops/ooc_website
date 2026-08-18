@@ -1,24 +1,21 @@
-// BACKEND TODO: demo guide records for layout only. Replace with CMS content.
+// BACKEND TODO: replace these temporary guide records with CMS content.
 
-export type Guide = { id: string; title: string; description: string; isDemo: true };
+export type Guide = { id: string; title: string; description: string };
 
 export const guides: Guide[] = [
   {
     id: "guide-1",
     title: "The evidence-led employer brand guide",
-    description: "Demo guide covering the signals candidates can verify before accepting an offer.",
-    isDemo: true,
+    description: "A guide to the signals candidates can verify before accepting an offer.",
   },
   {
     id: "guide-2",
     title: "Preparing for workplace assessment",
-    description: "Demo checklist for gathering stakeholder input and organising assessment evidence.",
-    isDemo: true,
+    description: "A checklist for gathering stakeholder input and organising assessment evidence.",
   },
   {
     id: "guide-3",
-    title: "Reading Bronze, Silver, and Gold",
-    description: "Demo explainer for understanding what each certification level communicates.",
-    isDemo: true,
+    title: "Reading Silver, Gold, Platinum, and Diamond",
+    description: "An explainer for understanding what each certification level communicates.",
   },
 ];

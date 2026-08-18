@@ -11,24 +11,29 @@ import { certificationFaqs } from "@/data/faqs";
 export const metadata: Metadata = {
   title: "The Certification — Organisation of Choice™",
   description:
-    "How OOC certification works: what we assess, the stage-by-stage assessment process, the three certification levels, and how scoring is applied.",
+    "How OOC certification works: what we assess, the stage-by-stage assessment process, the four certification levels, and how scoring is applied.",
 };
 
 const levels = [
   {
-    name: "Bronze — Strong foundations.",
+    name: "Silver — Strong foundations.",
     summary: "Fair, compliant, and well-run with the essential people systems in place.",
-    body: "Bronze certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. For many organisations Bronze is the honest, credible starting point — public recognition that the fundamentals are genuinely in place, with a clear report showing the route to Silver.",
+    body: "Silver certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. It is the credible starting point, with a clear report showing the route to Gold.",
   },
   {
-    name: "Silver — Engaged and improving.",
+    name: "Gold — Engaged and improving.",
     summary: "Mature systems, positive employee experience, and systematic improvement.",
-    body: "Silver certification signifies an organisation whose investment in people is producing measurable results: employees report a genuinely positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional. Silver-certified employers stand out clearly in their talent markets.",
+    body: "Gold certification signifies an organisation whose investment in people is producing measurable results: employees report a positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional.",
   },
   {
-    name: "Gold — An employer others benchmark against.",
+    name: "Platinum — Advanced and consistent.",
     summary: "Industry-leading practices and an outstanding, consistent employee experience.",
-    body: "Gold certification is reserved for exceptional workplaces: industry-leading practices, an outstanding and consistent employee experience across every assessed dimension, and evidence of innovation in how people are led, developed, and cared for. Gold-certified organisations are the reference point for their sector.",
+    body: "Platinum certification recognises advanced workplaces with industry-leading practices, an outstanding and consistent employee experience, and evidence of innovation in how people are led, developed, and cared for.",
+  },
+  {
+    name: "Diamond — A workplace others benchmark against.",
+    summary: "Sustained excellence across people practices, experience, and leadership.",
+    body: "Diamond certification is the highest level of recognition, reserved for organisations that sustain exceptional evidence across the framework and provide a workplace standard others can benchmark against.",
   },
 ];
 
@@ -177,9 +182,9 @@ export default function CertificationPage() {
             Certification levels
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            The three levels of certification.
+            The four levels of certification.
           </h2>
-          <div className="mt-10 grid grid-flow-dense gap-3 md:grid-cols-3">
+          <div className="mt-10 grid grid-flow-dense gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {levels.map((level) => (
               <article key={level.name} className="rounded-[1.75rem] bg-white/80 p-6 shadow-[0_18px_50px_rgba(23,50,77,0.06)]">
                 <h3 className="font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
@@ -209,7 +214,7 @@ export default function CertificationPage() {
           <p>
             Every section of the framework is scored from the combined input of all assessor groups,
             and section scores aggregate into an overall result that maps to a certification level.
-            Thresholds for Bronze, Silver, and Gold are published and applied identically to every
+            Thresholds for Silver, Gold, Platinum, and Diamond are published and applied identically to every
             organisation: <Placeholder>level thresholds</Placeholder>.
           </p>
           <p>

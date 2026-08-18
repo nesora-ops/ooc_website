@@ -63,7 +63,7 @@ Order matters — build top-down (layout shell → content patterns → forms �
 
 Files live at `src/data/` (not root `data/`) for import consistency with the rest of the app (`src/lib`, `src/components`) — import as `@/data/employers` etc.
 
-- [x] `data/employers.ts` — 8 fictional certified employers (name, industry, location, level Bronze/Silver/Gold, scope, validity). Fully fabricated per PRD §8 exception 3, which explicitly permits this for directory demo data.
+- [x] `data/employers.ts` — 8 fictional certified employers (name, industry, location, level Silver/Gold/Platinum/Diamond, scope, validity). Fully fabricated per PRD §8 exception 3, which explicitly permits sample directory data.
 - [x] `data/blog-posts.ts` — 10 entries, correct shape (slug/teaser/date/author), but **titles are placeholder-marked, not real** — see blocker note below.
 - [x] `data/glossary.ts` — 16 terms (the real term names, taken directly from PRD §7.7c's list), but **definitions are placeholder-marked** — see blocker note below.
 - [x] `data/faqs.ts` — exact PRD counts (Certification 6; Resources FAQ Employers 4 / Job seekers 3 / Partners 2), but **both questions and answers are placeholder-marked** — see blocker note below.
@@ -84,7 +84,7 @@ Files live at `src/data/` (not root `data/`) for import consistency with the res
 
 Each page: verbatim copy from PRD §7 (expand condensed PRD text into full copy — do not paraphrase), placeholders via `<Placeholder>`, wrapped in shared Header/Footer, per-page `<title>`/meta description, semantic heading hierarchy. Commit after each page reaches a buildable state.
 
-- [x] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Bronze/Silver/Gold) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.
+- [x] **3.1 Home (`/`)** — Hero (H1 + subhead + 2 CTAs) → TrustStrip (incl. placeholder org count) → "What is OOC" (H2 + 2 paragraphs + pull line) → AudienceRouterCards → "Why certification pays" (H2 + 4 benefit blocks) → NumberedSteps "How it works" + CTA → Certification levels summary (Silver/Gold/Platinum/Diamond) → Testimonials (3 placeholder slots) → Insights preview (link/teaser row to resources) → CTABand.
 - [x] **3.2 About (`/about`)** — Hero → Our story (3 paragraphs, 2 placeholders) → Mission & Vision → "What makes us different" (3 bold-lead paragraphs) → Team & governance (Ketaki + 2 placeholder slots) → CTABand.
 - [x] **3.3 The Certification (`/certification`)** — Hero → What we assess (framework sections list + evidence/mandatory-gates explanation) → Assessment process (5 numbered stages, each with placeholder duration) → Certification levels (longer descriptions) → Scoring & criteria (+ placeholder thresholds) → FAQAccordion (6 Q&A) → CTABand.
 - [x] **3.4 For Employers (`/employers`)** — Hero+CTA → Problem we solve (2 paragraphs) → What you receive (6-item list) → Process narrative + link to `/certification` → Pricing framing + placeholder tiers block → Case studies (3 placeholder slots) → Application form (§7.4a fields, RHF+Zod, Web3Forms, thank-you referencing placeholder response time) at `#apply` anchor.
@@ -193,9 +193,9 @@ Consolidated log of every defect found, audit run, and correction made after a p
 - [x] Centre inner-page heroes and vary subsequent section alignment instead of repeating one left-aligned composition.
 - [x] Add two project-owned, generated editorial assets for the homepage and job-seeker journey.
 - [x] Preserve long source copy behind native expandable controls while presenting concise summaries first.
-- [x] Replace visible placeholder markers with clearly labelled demo values and backend-readable `data-demo-content` keys.
-- [x] Redesign employer-directory tiers with an explicit Bronze/Silver/Gold legend, tier meaning, and non-conflicting card surfaces.
-- [x] Verify desktop and 390px layouts, zero horizontal overflow, expandable content, demo-value rendering, console logs, lint, TypeScript, and production build.
+- [x] Replace source placeholders with temporary values and backend-readable `data-content-key` hooks.
+- [x] Redesign employer-directory tiers with an explicit Silver/Gold/Platinum/Diamond legend, tier meaning, and neutral card surfaces.
+- [x] Verify desktop and 390px layouts, zero horizontal overflow, expandable content, temporary-value rendering, console logs, lint, TypeScript, and production build.
 
 ## Explicitly Out of Scope (PRD §10 — do not build in this phase)
 

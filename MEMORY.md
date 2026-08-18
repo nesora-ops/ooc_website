@@ -47,9 +47,9 @@ The follow-up visual pass centres inner-page heroes, adds generated workplace an
 
 **Five forms**, all sharing `useWeb3Form` + `src/lib/forms/schemas.ts`: employer application, partner application, contact, media enquiry, newsletter. **None submit anywhere** — `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, so they validate then show a "not yet connected" state. That is intended behaviour, not a bug.
 
-**Demo data** in `src/data/`: `employers.ts` (8 fictional, visibly labelled records), `blog-posts.ts` (10 source titles with demo teasers/dates), `glossary.ts` (16 source definitions), `faqs.ts` (source Q&A with visibly stated demo estimates), and `guides.ts` (demo guide records). Former source placeholders render through `<Placeholder>` as labelled demo values with `data-demo-content` keys; backend integration must replace them before production.
+**Temporary content** in `src/data/`: `employers.ts` (8 fictional records), `blog-posts.ts` (10 source titles with temporary teasers/dates), `glossary.ts` (16 source definitions), `faqs.ts` (source Q&A with illustrative estimates), and `guides.ts` (temporary guide records). Former source placeholders render through `<Placeholder>` with `data-content-key` hooks; backend integration must replace them before production.
 
-**Former source placeholders now render as demo content.** The original field key remains in `data-demo-content` and a tooltip; visible values carry a `demo` label. Treat every such value as temporary and replace it from the backend or confirmed client copy before production.
+**Former source placeholders now render as temporary content.** The original field key remains in `data-content-key` and a tooltip. Replace every such value from the backend or confirmed client copy before production.
 
 ---
 
@@ -61,13 +61,14 @@ The follow-up visual pass centres inner-page heroes, adds generated workplace an
 4. **Check the bundled Next docs, not memory.** This is Next 16 and differs from training data — e.g. dynamic-route `params` is a `Promise` and must be awaited. Docs live at `node_modules/next/dist/docs/`.
 5. **shadcn CLI is pinned to `3.8.5`.** Do not `npx shadcn@latest add …` — the newer default CLI ships a broken empty `form` registry stub under its "Base UI" flavour.
 6. **`next dev` rewrites `CLAUDE.md`**, re-appending a Next 16 agent-guidance block. Expected; commit it rather than stripping it.
-7. **Never present demo data as production fact.** The user explicitly authorised temporary values on 2026-08-15. Keep the visible `demo` treatment and `data-demo-content` / `data-demo-record` hooks until confirmed backend content replaces them.
+7. **Replace temporary content before production.** The user authorised temporary values on 2026-08-15 and removed their visible labels on 2026-08-17. Preserve `data-content-key` hooks until confirmed backend content replaces them.
 
 ---
 
 ## Git / repo
 
-- Remote `https://github.com/nesora-ops/ooc_website.git`, branch `main`. **Private, and must stay private** — the repo contains the client's confidential copy document.
+- Remote `https://github.com/nesora-ops/ooc_website.git`; active frontend work is pushed to branch `frontend`. **Private, and must stay private** — the repo contains the client's confidential copy document.
+- **Commit exactly one file per commit.** Never combine multiple files in one commit, even when they belong to the same feature.
 - Repo-local identity `nesora-ops` / `ops@nesora.co.in`. **The machine's global git identity is a different user** — always confirm with `git config user.name` (no `--global`) before committing.
 - `gh` has three accounts authenticated (`nesora-ops`, `hkforprojects`, `boliwaladevs`). `nesora-ops` must be active; switch with `gh auth switch --user nesora-ops`.
 - Push only when the user asks. `.env` is untracked and must stay that way.
@@ -78,9 +79,9 @@ The follow-up visual pass centres inner-page heroes, adds generated workplace an
 
 - **Header CTA** routes to `/employers#apply` — an assumption; the source doc doesn't pin it.
 - **Newsletter lives only in the footer** (global), not duplicated on `/resources`. The doc allowed either.
-- **Blog slugs derive from real titles** (e.g. `bronze-silver-gold-how-to-read-an-ooc-certification-level`), replacing Phase 2's `launch-article-N` stubs. All 10 prerender via `generateStaticParams`.
+- **Blog slugs derive from real titles** (e.g. `silver-gold-platinum-diamond-how-to-read-an-ooc-certification-level`), replacing Phase 2's `launch-article-N` stubs. All 10 prerender via `generateStaticParams`.
 - **Social links render as disabled text pills**, not logo glyphs — the installed lucide-react ships no brand icons at all (verified by inspecting its exports, not a version-pin issue).
-- **FAQ estimates are demo values** in `data/faqs.ts` and say so in the rendered sentence. Backend integration must replace pricing, timing, and validity estimates with confirmed values.
+- **FAQ estimates are illustrative values** in `data/faqs.ts`. Backend integration must replace pricing, timing, and validity estimates with confirmed values.
 - **Cookie preference centre is reachable from the footer** via the `ooc:open-cookie-preferences` window event. Phase 1 had judged this scope creep; the source doc's Cookie Policy explicitly promises it, so Phase 4 reversed that call.
 - **`radio-group` and `separator` shadcn primitives are unused** — installed speculatively in Phase 0, deliberately retained since Phase 6 design may want them.
 - **No custom `not-found.tsx` or `global-error.tsx`.** A 404 renders Next's bare default inside our chrome; `global-error` renders without a `lang` attribute (a real, minor a11y gap). Both were left out as pages outside the PRD site map — good candidates to add during Phase 6.

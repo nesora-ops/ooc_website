@@ -23,7 +23,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Certification level",
     definition:
-      "The tier awarded on certification — Bronze, Silver, or Gold — reflecting the overall assessment result against published thresholds.",
+      "The tier awarded on certification — Silver, Gold, Platinum, or Diamond — reflecting the overall assessment result against published thresholds.",
   },
   {
     term: "Certification mark",

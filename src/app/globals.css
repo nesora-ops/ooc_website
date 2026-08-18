@@ -116,6 +116,9 @@
 
   body {
     @apply bg-background text-foreground;
+    overflow-wrap: normal;
+    word-break: normal;
+    hyphens: none;
     background-image:
       radial-gradient(circle at 8% 2%, rgb(223 244 236 / 0.72), transparent 28rem),
       radial-gradient(circle at 94% 18%, rgb(223 233 255 / 0.62), transparent 24rem);

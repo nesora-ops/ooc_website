@@ -84,7 +84,7 @@ Source: `src/app/globals.css`.
 | Mint | `#DFF4EC` | Soft active state and supportive surface |
 | Gold | `#E4B94F` | Tier fill and decorative emphasis, not small text on light backgrounds |
 | Gold ink | `#735A12` | Accessible gold-family text on light surfaces |
-| Coral | `#FF8B70` | Warm accent, CTA bands, demo markers |
+| Coral | `#FF8B70` | Warm accent and CTA bands |
 | Sky | `#DFE9FF` | Cool secondary surface and header bar |
 | Butter | `#F7E8A4` | Warm tier/card surface |
 | Muted surface | `#F0F6F3` | Alternating section background |
@@ -171,7 +171,7 @@ Do not make a section compete across several of these questions at once.
 | Jakob’s Law | Familiar sticky header, logo-to-home link, desktop navigation, mobile drawer, labelled forms, accordions, footer sitemap, and conventional CTAs. | Innovate in composition, not in basic navigation or form behaviour. |
 | Hick’s Law | Each region limits primary decisions; hero and CTA bands generally expose one or two clear routes. | One visually dominant action per region. Avoid clusters of equal-priority buttons. |
 | Fitts’s Law | Buttons and icon controls generally use 44px or larger targets; mobile menu and carousel controls are large and isolated. | Preserve minimum 44×44 CSS-pixel touch targets and sufficient spacing. |
-| Miller’s Law / Chunking | Three certification levels, three audiences, grouped assessment steps, footer columns, FAQ groups, and form field groups. | Present 3–7 meaningful items per group; split larger sets into clear categories. |
+| Miller’s Law / Chunking | Four certification levels, three audiences, grouped assessment steps, footer columns, FAQ groups, and form field groups. | Present 3–7 meaningful items per group; split larger sets into clear categories. |
 | Von Restorff Effect | Teal primary CTAs, coral CTA bands, and navy hover states stand apart from pale surfaces. | Reserve the strongest contrast for the action or fact that should be remembered. |
 | Serial Position Effect | Primary action appears in the header and returns near the page conclusion; the final CTA closes the narrative. | Put the most important action near both entry and decision points, not after every section. |
 | Gestalt Proximity | Labels sit close to their controls; card titles, descriptions, and actions are vertically grouped; related footer links are grouped by column. | Spacing must communicate relationships before borders do. |
@@ -181,7 +181,7 @@ Do not make a section compete across several of these questions at once.
 | Figure–Ground | Dark navy text and controls sit clearly above warm, low-contrast canvases; CTA bands create a distinct decision layer. | Maintain strong contrast and avoid translucent text over busy backgrounds. |
 | Law of Prägnanz | Complex certification ideas are reduced to clear headings, short summaries, three-level systems, and familiar controls. | Prefer the simplest correct representation; do not oversimplify legal or assessment meaning. |
 | Progressive Disclosure | Native `details`, FAQ accordions, mobile Sheet navigation, select popovers, and cookie preferences reveal complexity on demand. | Show the decision-useful summary first and preserve full source copy behind an accessible disclosure. |
-| Goal-Gradient Effect | Apply → Get assessed → Get certified and Bronze → Silver → Gold make progress visible. | Use progression only when the underlying process is real; do not imply guaranteed advancement. |
+| Goal-Gradient Effect | Apply → Get assessed → Get certified and Silver → Gold → Platinum → Diamond make progress visible. | Use progression only when the underlying process is real; do not imply guaranteed advancement. |
 | Recognition over Recall | Explicit labels, visible tier legend, active navigation, descriptive CTA text, and directory filters reduce memory burden. | Prefer named choices over icon-only controls. Icon-only controls require accessible labels. |
 | Visibility of System Status | Active nav state, result count, submission/loading labels, form success/error/not-connected messages, open accordion state, and consent state. | Every user action must produce immediate and understandable feedback. |
 | Error Prevention | Input types, Zod validation, required consent, labelled controls, disabled submit state, and structured selects constrain invalid input. | Validate near the source, explain the fix, and preserve entered data after errors. |
@@ -189,8 +189,8 @@ Do not make a section compete across several of these questions at once.
 | Tesler’s Law | The interface absorbs complexity through filter logic, form schemas, grouped sections, and progressive details rather than placing all complexity on the user. | Do not remove necessary complexity; move it into structure, defaults, and validation. |
 | Postel’s Law | Directory search trims whitespace, ignores case, supports partial organisation-name matches, and treats an empty query as “all”. | Accept reasonable input variation while keeping outputs strict and predictable. |
 | Peak–End Rule | High-contrast CTA bands and a composed footer provide a deliberate conclusion after educational content. | End with a useful next step and reassurance, not a dead end. |
-| Social Proof Principle | Trust strip and testimonials demonstrate external validation. Current testimonials are visibly marked as demo content. | Never publish demo proof as real proof. Replace with verified organisations and quotes before production. |
-| Authority and Transparency | Independent assessment, published standard, annual verification, evidence-based tiers, visible scope, validity, and demo disclosures. | Trust must come from verifiable process and honest data status, not visual prestige alone. |
+| Social Proof Principle | Trust strip and testimonials demonstrate external validation. Current testimonial content must be replaced with verified organisations and quotes before production. | Never publish temporary proof as verified proof. |
+| Authority and Transparency | Independent assessment, published standard, annual verification, evidence-based tiers, visible scope, and validity. | Trust must come from verifiable process and honest data status, not visual prestige alone. |
 | Cognitive Load Reduction | Long copy is summarised on the first layer; the full meaning remains available through disclosures. | Concise does not mean deleted. Preserve meaning and source fidelity. |
 
 ## 6. UI element inventory
@@ -242,7 +242,7 @@ The homepage proof bento contains:
 
 - independent-assessment proof card;
 - employee, leadership, and assessor perspectives;
-- Bronze, Silver, and Gold pathway graphic.
+- Silver, Gold, Platinum, and Diamond pathway graphic.
 
 Do not replace this bento with the previously rejected team illustration unless explicitly requested.
 
@@ -268,7 +268,7 @@ Do not replace this bento with the previously rejected team illustration unless 
 - CTA bands.
 - FAQ accordions.
 - Native progressive-detail disclosures.
-- Placeholder/demo badges and backend-readable data hooks.
+- Temporary values with backend-readable data hooks.
 
 ### Testimonials carousel
 
@@ -283,7 +283,7 @@ Current locked behaviour:
 - The track uses mandatory horizontal scroll snapping.
 - One card is visible on mobile, two at `sm`, three at `lg`.
 - Scrollbars are visually hidden while native scrolling remains available.
-- Demo testimonials carry `data-demo-content`, a tooltip, and visible “Demo testimonial” text.
+- Testimonial content must be replaced with verified client quotes before production.
 
 Source: `src/components/sections/testimonials-carousel.tsx`.
 
@@ -300,8 +300,7 @@ Source: `src/components/sections/numbered-steps.tsx` and the homepage process se
 
 ### Certified Employer Directory
 
-- Visible “Demo directory” disclosure.
-- Bronze/Silver/Gold legend before filters.
+- Silver/Gold/Platinum/Diamond legend before filters.
 - Organisation-name search input.
 - Industry, location, and certification-level selects.
 - Live result count with `role="status"`.
@@ -309,15 +308,16 @@ Source: `src/components/sections/numbered-steps.tsx` and the homepage process se
 - Empty-state guidance.
 - Tier-specific badge, marker, border, and background.
 - Scope and validity metadata.
-- Fictional records marked with `data-demo-record`.
+- Fictional records remain isolated in a single replaceable data file.
 
 Tier semantics:
 
 | Tier | Meaning | Surface family |
 |---|---|---|
-| Bronze | Strong workplace foundations | Warm brown / pale peach |
-| Silver | Mature systems and positive employee experience | Cool grey / pale silver |
-| Gold | A workplace others can benchmark against | Gold / pale butter |
+| Silver | Strong workplace foundations | Cool grey / pale silver |
+| Gold | Mature systems and positive employee experience | Gold / pale butter |
+| Platinum | Advanced, consistent workplace practices | Slate blue / pale blue |
+| Diamond | A workplace others can benchmark against | Teal / pale mint |
 
 Source: `src/components/directory/employer-directory.tsx`.
 
@@ -469,14 +469,13 @@ Use this order:
 
 Do not delete required source copy merely to make the page shorter. Summarise the first layer without changing meaning, then keep the full text accessible.
 
-### Demo and placeholder policy
+### Temporary-content policy
 
 - Never silently invent production facts.
-- Demo data must remain visibly labelled.
-- Preserve `data-demo-content`, `data-demo-record`, and `data-demo-directory` hooks.
-- Tooltips identify the backend field that must replace demo values.
+- Preserve `data-content-key` hooks for unresolved source fields.
+- Tooltips identify the backend field that must replace temporary values.
 - Directory records are fictional and intentionally replaceable from one data source.
-- Testimonials are demo content, not published social proof.
+- Testimonials require verified client approval before production.
 - Production legal copy must come from counsel or confirmed client content.
 
 ## 10. Responsive rules
@@ -511,9 +510,9 @@ Do not delete required source copy merely to make the page shorter. Summarise th
 | Route | Primary UI patterns |
 |---|---|
 | `/` | Cinematic hero, proof bento, trust marquee, progressive disclosure, audience router, benefit bento, numbered process, tier cards, testimonial carousel, insight cards, final CTA |
-| `/about` | Centred hero, story disclosure, mission/vision split, differentiator cards, team/demo cards, CTA |
+| `/about` | Centred hero, story disclosure, mission/vision split, differentiator cards, team cards, CTA |
 | `/certification` | Hero, assessment dimensions, process sequence, tier cards, scoring disclosure, FAQ, CTA |
-| `/employers` | Hero, problem/solution disclosure, deliverables list, journey disclosure, pricing/demo block, case-study demos, application form |
+| `/employers` | Hero, problem/solution disclosure, deliverables list, journey disclosure, pricing block, case-study placeholders, application form |
 | `/directory` | Hero, trust explanation, use cases, tier legend, search/filter panel, live count, employer cards, empty state, CTA |
 | `/partners` | Hero, value disclosure, partner types, tier cards, process, application form |
 | `/resources` | Hero and resource navigation cards |
@@ -524,7 +523,7 @@ Do not delete required source copy merely to make the page shorter. Summarise th
 | `/resources/faq` | Grouped FAQ accordions |
 | `/news` | Press content and media enquiry form |
 | `/contact` | Contact details, contact form, CTA |
-| `/terms`, `/privacy`, `/cookies` | Narrow prose layouts with visible placeholder/demo treatment where source content is pending |
+| `/terms`, `/privacy`, `/cookies` | Narrow prose layouts with temporary content where source material is pending |
 
 ## 12. Component source map
 
@@ -544,11 +543,11 @@ Do not delete required source copy merely to make the page shorter. Summarise th
 | Section context bar | `src/components/sections/section-header-bar.tsx` |
 | Testimonials | `src/components/sections/testimonials-carousel.tsx` |
 | Employer directory | `src/components/directory/employer-directory.tsx` |
-| Demo placeholders | `src/components/placeholder.tsx` |
+| Temporary placeholders | `src/components/placeholder.tsx` |
 | Forms | `src/components/forms/` |
 | UI primitives | `src/components/ui/` |
 | Navigation and footer configuration | `src/lib/site-config.ts` |
-| Certified-employer demo data | `src/data/employers.ts` |
+| Certified-employer sample data | `src/data/employers.ts` |
 
 ## 13. Locked decisions from reviewed iterations
 
@@ -564,7 +563,7 @@ Another agent must preserve these unless the user explicitly changes them:
 8. The team illustration experiment remains reverted.
 9. The large certification-pathway image in the directory hero remains removed.
 10. Long content is summarised on the first layer, not deleted or semantically changed.
-11. Demo values remain clearly identified for backend replacement.
+11. Temporary values retain backend replacement hooks.
 12. The site stays premium-light, professional, minimally playful, and not heavily dark or vibrantly saturated.
 
 ## 14. Agent implementation checklist
@@ -573,7 +572,7 @@ Before changing UI:
 
 - Read `PRD.md`, `MEMORY.md`, this file, and the source-content document relevant to the page.
 - Inspect the existing component before creating a new abstraction.
-- Confirm whether the content is verified, demo, placeholder, or legally sensitive.
+- Confirm whether the content is verified, temporary, placeholder, or legally sensitive.
 - Identify the one user decision each section supports.
 - Check the current breakpoint behaviour.
 
@@ -587,7 +586,7 @@ While changing UI:
 - Use one dominant CTA per region.
 - Provide hover, focus, pressed, loading, success, error, and empty states where relevant.
 - Keep tier colour and text labels together.
-- Preserve demo hooks.
+- Preserve backend replacement hooks.
 - Do not add a library when CSS or an installed primitive already solves the problem.
 
 Before handing off:
@@ -604,7 +603,7 @@ Before handing off:
 
 ## 15. Compact prompt for another AI agent
 
-> Extend the Organisation of Choice website using its existing premium-light, evidence-led design system. Use Geist Sans, warm off-white backgrounds, navy editorial headings, teal primary actions, and restrained mint, sky, butter, and coral surfaces. Keep wide two-to-three-line headings, large chapter spacing, subtle tinted borders and shadows, complete dense bento grids, and concise first-layer summaries with full source meaning preserved through accessible progressive disclosure. Reuse the sticky glass header, section context bar, CTA bands, cards, forms, directory tier system, and existing Radix/shadcn primitives. Maintain 44px touch targets, visible focus, semantic HTML, reduced-motion support, and responsive one/two/three-column behaviour. Never invent proof, pricing, metrics, testimonials, legal text, or biographies; label demo data and preserve backend hooks. Do not restore rejected image treatments, pin the certification-process heading, or keep one testimonial permanently dark. Test real browser rendering, keyboard states, mobile overflow, and computed contrast before handoff.
+> Extend the Organisation of Choice website using its existing premium-light, evidence-led design system. Use Geist Sans, warm off-white backgrounds, navy editorial headings, teal primary actions, and restrained mint, sky, butter, and coral surfaces. Keep wide two-to-three-line headings, large chapter spacing, subtle tinted borders and shadows, complete dense bento grids, and concise first-layer summaries with full source meaning preserved through accessible progressive disclosure. Reuse the sticky glass header, section context bar, CTA bands, cards, forms, directory tier system, and existing Radix/shadcn primitives. Maintain 44px touch targets, visible focus, semantic HTML, reduced-motion support, and responsive one/two/three-column behaviour. Never invent proof, pricing, metrics, testimonials, legal text, or biographies; preserve backend replacement hooks for temporary content. Do not restore rejected image treatments, pin the certification-process heading, or keep one testimonial permanently dark. Test real browser rendering, keyboard states, mobile overflow, and computed contrast before handoff.
 
 ## 16. Scope note
 

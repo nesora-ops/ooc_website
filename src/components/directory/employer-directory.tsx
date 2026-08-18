@@ -19,25 +19,23 @@ const ALL = "All";
 
 const levelMeta: Record<
   CertificationLevel,
-  { description: string; badge: string; card: string; marker: string }
+  { description: string; badge: string }
 > = {
-  Bronze: {
-    description: "Strong workplace foundations",
-    badge: "border-[#9A633F]/45 bg-[#F2DFCF] text-[#6F3F22]",
-    card: "border-[#9A633F]/25 bg-[#FFF8F2]",
-    marker: "bg-[#9A633F] text-white",
-  },
   Silver: {
-    description: "Mature systems and positive employee experience",
+    description: "Strong workplace foundations",
     badge: "border-[#657483]/40 bg-[#E8EDF0] text-[#43515E]",
-    card: "border-[#657483]/25 bg-[#F4F7F9]",
-    marker: "bg-[#657483] text-white",
   },
   Gold: {
-    description: "A workplace others can benchmark against",
+    description: "Mature systems and positive employee experience",
     badge: "border-[#A87900]/40 bg-[#F7E8A4] text-[#674E00]",
-    card: "border-[#A87900]/25 bg-[#FFFAE8]",
-    marker: "bg-[#B88708] text-white",
+  },
+  Platinum: {
+    description: "Advanced, consistent workplace practices",
+    badge: "border-[#6078AA]/35 bg-[#E7ECFA] text-[#41557F]",
+  },
+  Diamond: {
+    description: "A workplace others can benchmark against",
+    badge: "border-[#08766D]/35 bg-[#DFF4EC] text-[#075E57]",
   },
 };
 
@@ -51,7 +49,7 @@ export function EmployerDirectory() {
 
   const industries = useMemo(() => unique(employers.map((e) => e.industry)), []);
   const locations = useMemo(() => unique(employers.map((e) => e.location)), []);
-  const levels = [ALL, "Bronze", "Silver", "Gold"];
+  const levels = [ALL, "Silver", "Gold", "Platinum", "Diamond"];
 
   const results = useMemo(() => {
     const q = query.trim().toLowerCase();
@@ -66,21 +64,15 @@ export function EmployerDirectory() {
 
   return (
     <div>
-      <aside className="mb-5 rounded-2xl border border-dashed border-coral/50 bg-coral/8 px-5 py-4 text-sm text-navy/75" data-demo-directory>
-        <strong className="text-navy-ink">Demo directory:</strong> organisation names, locations,
-        scopes, and validity dates are illustrative records ready to be replaced by backend data.
-      </aside>
-
-      <div className="mb-6 grid gap-2 sm:grid-cols-3" aria-label="Certification level guide">
-        {(Object.keys(levelMeta) as CertificationLevel[]).map((tier, index) => {
+      <div className="mb-6 grid gap-2 sm:grid-cols-2 lg:grid-cols-4" aria-label="Certification level guide">
+        {(Object.keys(levelMeta) as CertificationLevel[]).map((tier) => {
           const meta = levelMeta[tier];
           return (
-            <div key={tier} className={cn("flex items-center gap-3 rounded-2xl border p-3", meta.card)}>
-              <span className={cn("grid size-10 shrink-0 place-items-center rounded-full text-sm font-bold", meta.marker)}>
-                {index + 1}
-              </span>
-              <span>
-                <strong className="block text-sm text-navy-ink">{tier} certification</strong>
+            <div key={tier} className="rounded-2xl border border-navy/8 bg-white/75 p-4">
+              <Badge variant="outline" className={cn("px-3 py-1 font-semibold", meta.badge)}>
+                {tier}
+              </Badge>
+              <span className="mt-3 block">
                 <span className="block text-xs leading-5 text-muted-foreground">{meta.description}</span>
               </span>
             </div>
@@ -136,13 +128,8 @@ export function EmployerDirectory() {
           {results.map((employer) => (
             <li key={employer.id}>
               <Card
-                data-demo-record={employer.id}
-                className={cn(
-                  "group relative h-full overflow-hidden border-2 transition-transform duration-300 hover:-translate-y-1",
-                  levelMeta[employer.level].card
-                )}
+                className="group h-full border border-navy/10 bg-white/85 transition-transform duration-300 hover:-translate-y-1"
               >
-                <div className={cn("absolute inset-y-0 left-0 w-1.5", levelMeta[employer.level].marker)} />
                 <CardHeader>
                   <div className="flex flex-col items-start gap-4">
                     <Badge variant="outline" className={cn("px-3 py-1 font-semibold", levelMeta[employer.level].badge)}>
@@ -160,9 +147,6 @@ export function EmployerDirectory() {
                   </p>
                   <p>Scope: {employer.scope}</p>
                   <p className="pt-2 font-semibold text-navy-ink">{employer.validity}</p>
-                  <p className="pt-3 text-[0.65rem] font-semibold uppercase tracking-[0.14em] text-[#9a4635]">
-                    Demo employer record
-                  </p>
                 </CardContent>
               </Card>
             </li>

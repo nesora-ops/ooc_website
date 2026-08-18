@@ -68,7 +68,7 @@ export default function ContactPage() {
                           {detail.label}
                         </dt>
                         <dd className="mt-6 text-sm leading-6 text-muted-foreground">
-                          <Placeholder className="break-all">{detail.placeholder}</Placeholder>
+                          <Placeholder>{detail.placeholder}</Placeholder>
                         </dd>
                       </div>
                     );
@@ -86,7 +86,7 @@ export default function ContactPage() {
                           <div>
                             <dt className="text-sm font-medium text-navy-ink">{detail.label}</dt>
                             <dd className="mt-1 text-sm text-muted-foreground">
-                              <Placeholder className="break-all">{detail.placeholder}</Placeholder>
+                              <Placeholder>{detail.placeholder}</Placeholder>
                             </dd>
                           </div>
                         </div>
@@ -113,7 +113,7 @@ export default function ContactPage() {
             <div className="border-t border-navy/8 p-3 sm:p-4">
               <div className="mb-3 flex flex-col gap-2 px-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
-                  <p className="text-sm font-semibold text-navy-ink">Demo office location</p>
+                  <p className="text-sm font-semibold text-navy-ink">Office location</p>
                   <p className="mt-1 text-sm text-muted-foreground">
                     <Placeholder>office address</Placeholder>
                   </p>
@@ -128,7 +128,7 @@ export default function ContactPage() {
                 </a>
               </div>
               <iframe
-                title="Demo office location in Bandra Kurla Complex, Mumbai"
+                title="Office location in Bandra Kurla Complex, Mumbai"
                 src="https://www.openstreetmap.org/export/embed.html?bbox=72.8494%2C19.0477%2C72.8894%2C19.0877&layer=mapnik&marker=19.0677%2C72.8694"
                 loading="lazy"
                 className="h-80 w-full rounded-[1.5rem] border-0 bg-muted sm:h-96"

@@ -9,8 +9,8 @@ type PlaceholderProps = {
 };
 
 // Temporary presentation values. Backend integration should replace every
-// element carrying `data-demo-content`; the key preserves the source field.
-const demoValues: Record<string, string> = {
+// element carrying `data-content-key`; the key preserves the source field.
+const placeholderValues: Record<string, string> = {
   year: "2026",
   "grievance officer name and contact": "Aarav Mehta · grievance@organisationofchoice.com",
   "contact email": "hello@organisationofchoice.com",
@@ -38,7 +38,7 @@ const demoValues: Record<string, string> = {
   "effective date": "15 August 2026",
 };
 
-function demoValue(key: string) {
+function placeholderValue(key: string) {
   if (key.startsWith("testimonial quote")) {
     return "The assessment gave us a clear, practical view of where our employee experience was strong and where to act next.";
   }
@@ -46,28 +46,25 @@ function demoValue(key: string) {
     return "Naina Rao, People Director, Northstar Works";
   }
   if (key.startsWith("case study")) {
-    return "Demo case study: a growing employer used its assessment report to prioritise manager development and employee listening.";
+    return "A growing employer used its assessment report to prioritise manager development and employee listening.";
   }
-  return demoValues[key] ?? `Illustrative ${key}`;
+  return placeholderValues[key] ?? `Illustrative ${key}`;
 }
 
 export function Placeholder({ children, variant = "inline", className }: PlaceholderProps) {
   const key = Children.toArray(children).join("").trim();
-  const content = demoValue(key);
+  const content = placeholderValue(key);
 
   if (variant === "block") {
     return (
       <div
-        data-demo-content={key}
-        title={`Temporary demo data — replace from backend field: ${key}`}
+        data-content-key={key}
+        title={`Temporary content — replace from backend field: ${key}`}
         className={cn(
-          "relative rounded-2xl border border-dashed border-coral/55 bg-coral/8 p-5 pt-9 text-sm text-navy-ink",
+          "rounded-2xl border border-navy/8 bg-white/75 p-5 text-sm text-navy-ink",
           className
         )}
       >
-        <span className="absolute left-4 top-3 text-[0.65rem] font-semibold uppercase tracking-[0.16em] text-[#9a4635]">
-          Demo content
-        </span>
         {content}
       </div>
     );
@@ -75,14 +72,14 @@ export function Placeholder({ children, variant = "inline", className }: Placeho
 
   return (
     <span
-      data-demo-content={key}
-      title={`Temporary demo data — replace from backend field: ${key}`}
+      data-content-key={key}
+      title={`Temporary content — replace from backend field: ${key}`}
       className={cn(
-        "rounded-md border border-dashed border-coral/55 bg-coral/10 px-1.5 py-0.5 text-[0.92em] font-medium text-navy-ink",
+        "whitespace-normal text-[0.96em] font-medium text-navy-ink [hyphens:none] [overflow-wrap:normal] [word-break:normal]",
         className
       )}
     >
-      {content} <sup className="text-[0.58rem] font-bold uppercase tracking-wide text-[#9a4635]">demo</sup>
+      {content}
     </span>
   );
 }
