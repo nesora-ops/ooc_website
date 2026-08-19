@@ -26,7 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { consentField, emailField, phoneField, requiredText } from "@/lib/forms/schemas";
-import { useWeb3Form } from "@/lib/forms/use-web3-form";
+import { useFormSubmit } from "@/lib/forms/use-form-submit";
 
 // Fields per source doc, "For Employers → Application form".
 const schema = z.object({
@@ -49,7 +49,7 @@ const schema = z.object({
 type FormValues = z.input<typeof schema>;
 
 export function EmployerApplicationForm() {
-  const { state, submit } = useWeb3Form("OOC — Certification application");
+  const { state, submit } = useFormSubmit("certification");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
