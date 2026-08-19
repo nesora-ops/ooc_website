@@ -6,13 +6,13 @@ import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { FormFeedback } from "@/components/forms/form-feedback";
-import { useWeb3Form } from "@/lib/forms/use-web3-form";
+import { useFormSubmit } from "@/lib/forms/use-form-submit";
 import { emailField } from "@/lib/forms/schemas";
 
 export function NewsletterSignup() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
-  const { state, submit } = useWeb3Form("Newsletter signup");
+  const { state, submit } = useFormSubmit("newsletter");
 
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
