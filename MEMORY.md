@@ -10,7 +10,7 @@ Narrative/handoff layer. `PRD.md` is the spec, `PLAN.md` is the source of truth 
 
 **The frontend and Phase 6 visual redesign are complete.** All 13 routes retain source-document copy and now share a premium light design system, responsive chrome, and progressive GSAP motion. Build/lint/tsc are clean.
 
-The deferred backend work (PRD §10) becomes relevant only when the user asks. Forms intentionally remain unconnected when `NEXT_PUBLIC_WEB3FORMS_KEY` is unset.
+The deferred backend work (PRD §10) becomes relevant only when the user asks. Forms fall back to a "not yet connected" state when `NEXT_PUBLIC_FORMS_API_URL` is unset.
 
 ---
 
@@ -45,7 +45,7 @@ The follow-up visual pass centres inner-page heroes, adds generated workplace an
 
 **Global chrome** (`src/app/layout.tsx`): sticky `Header` with mobile Sheet drawer · `Footer` (5-column sitemap from `src/lib/site-config.ts`, embedded `NewsletterSignup`, `CookiePreferencesLink`) · `CookieConsent` (banner + preference dialog, localStorage via `useSyncExternalStore`).
 
-**Five forms**, all sharing `useWeb3Form` + `src/lib/forms/schemas.ts`: employer application, partner application, contact, media enquiry, newsletter. **None submit anywhere** — `NEXT_PUBLIC_WEB3FORMS_KEY` is unset, so they validate then show a "not yet connected" state. That is intended behaviour, not a bug.
+**Five forms**, all sharing `useFormSubmit` + `src/lib/forms/schemas.ts`: employer application (rendered under the "Apply for certification" heading on `/employers#apply` — it is one form, not two), partner application, contact, media enquiry, newsletter. They POST cross-origin to CertifyDB (the sibling `Code` repo) at `${NEXT_PUBLIC_FORMS_API_URL}/api/public/website/<segment>`, which owns the five `website_*` tables, the acknowledgement emails, and the `/admin/website-enquiries` console page. This site holds no DB, ORM, or email dependency of its own. When `NEXT_PUBLIC_FORMS_API_URL` is unset they validate and show a "not yet connected" state — intended behaviour for local dev, not a bug. Contact, certification and partner submissions send both a submitter acknowledgement and a super-admin notification; media and newsletter are recorded only.
 
 **Temporary content** in `src/data/`: `employers.ts` (8 fictional records), `blog-posts.ts` (10 source titles with temporary teasers/dates), `glossary.ts` (16 source definitions), `faqs.ts` (source Q&A with illustrative estimates), and `guides.ts` (temporary guide records). Former source placeholders render through `<Placeholder>` with `data-content-key` hooks; backend integration must replace them before production.
 
