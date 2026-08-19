@@ -12,7 +12,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { employers, type CertificationLevel } from "@/data/employers";
+import type { CertificationLevel, Employer } from "@/data/employers";
 import { cn } from "@/lib/utils";
 
 const ALL = "All";
@@ -41,14 +41,14 @@ const levelMeta: Record<
 
 const unique = (values: string[]) => [ALL, ...Array.from(new Set(values)).sort()];
 
-export function EmployerDirectory() {
+export function EmployerDirectory({ employers }: { employers: Employer[] }) {
   const [query, setQuery] = useState("");
   const [industry, setIndustry] = useState(ALL);
   const [location, setLocation] = useState(ALL);
   const [level, setLevel] = useState(ALL);
 
-  const industries = useMemo(() => unique(employers.map((e) => e.industry)), []);
-  const locations = useMemo(() => unique(employers.map((e) => e.location)), []);
+  const industries = useMemo(() => unique(employers.map((e) => e.industry)), [employers]);
+  const locations = useMemo(() => unique(employers.map((e) => e.location)), [employers]);
   const levels = [ALL, "Silver", "Gold", "Platinum", "Diamond"];
 
   const results = useMemo(() => {
@@ -60,7 +60,7 @@ export function EmployerDirectory() {
         (location === ALL || e.location === location) &&
         (level === ALL || e.level === level)
     );
-  }, [query, industry, location, level]);
+  }, [employers, query, industry, location, level]);
 
   return (
     <div>
@@ -145,7 +145,7 @@ export function EmployerDirectory() {
                   <p>
                     {employer.industry} · {employer.location}
                   </p>
-                  <p>Scope: {employer.scope}</p>
+                  {employer.scope && <p>Scope: {employer.scope}</p>}
                   <p className="pt-2 font-semibold text-navy-ink">{employer.validity}</p>
                 </CardContent>
               </Card>
