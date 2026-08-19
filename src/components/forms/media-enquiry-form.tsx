@@ -17,7 +17,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { emailField, requiredText } from "@/lib/forms/schemas";
-import { useWeb3Form } from "@/lib/forms/use-web3-form";
+import { useFormSubmit } from "@/lib/forms/use-form-submit";
 
 // Fields per source doc, "News & Press → Media enquiry form".
 const schema = z.object({
@@ -31,7 +31,7 @@ const schema = z.object({
 type FormValues = z.input<typeof schema>;
 
 export function MediaEnquiryForm() {
-  const { state, submit } = useWeb3Form("OOC — Media enquiry");
+  const { state, submit } = useFormSubmit("media");
 
   const form = useForm<FormValues>({
     resolver: zodResolver(schema),
