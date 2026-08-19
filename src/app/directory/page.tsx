@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { BadgeCheck, Search, ShieldCheck } from "lucide-react";
 
 import { EmployerDirectory } from "@/components/directory/employer-directory";
+import { getDirectoryEmployers } from "@/lib/certified-employers";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
@@ -32,7 +33,9 @@ const uses = [
   },
 ];
 
-export default function DirectoryPage() {
+export default async function DirectoryPage() {
+  const employers = await getDirectoryEmployers();
+
   return (
     <>
       <SectionHeaderBar label="For Job Seekers" />
@@ -134,7 +137,7 @@ export default function DirectoryPage() {
             Filter the directory, then read the clearly labelled certification tier on each employer card.
           </p>
           <div className="mt-8">
-            <EmployerDirectory />
+            <EmployerDirectory employers={employers} />
           </div>
         </div>
       </section>
