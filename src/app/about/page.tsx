@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Check, Eye, Scale, Users } from "lucide-react";
 
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
@@ -169,6 +170,13 @@ export default function AboutPage() {
         </p>
         <ul className="mt-8 grid gap-4 sm:grid-cols-3">
           <li className="rounded-lg border border-dashed border-gold/60 bg-muted p-4 text-sm">
+            <ImageSlot
+              contentKey="headshot — Ketaki, founder"
+              alt="Ketaki, Founder"
+              aspect="square"
+              sizes="(min-width: 640px) 20rem, 100vw"
+              className="mb-4"
+            />
             <p className="font-heading font-semibold text-navy-ink">
               Ketaki — Founder &amp; <Placeholder>designation</Placeholder>
             </p>
@@ -181,6 +189,13 @@ export default function AboutPage() {
               key={n}
               className="rounded-lg border border-dashed border-gold/60 bg-muted p-4 text-sm"
             >
+              <ImageSlot
+                contentKey={`headshot — team member ${n}`}
+                alt={`Team member ${n}`}
+                aspect="square"
+                sizes="(min-width: 640px) 20rem, 100vw"
+                className="mb-4"
+              />
               <p className="font-heading font-semibold text-navy-ink">
                 <Placeholder>team member name</Placeholder> —{" "}
                 <Placeholder>designation</Placeholder>

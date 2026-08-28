@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Award, BarChart3, Megaphone, RefreshCw, Route, SearchCheck } from "lucide-react";
 
 import { EmployerApplicationForm } from "@/components/forms/employer-application-form";
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -220,9 +221,16 @@ export default function EmployersPage() {
           </h2>
           <div className="mt-8 grid gap-6 sm:grid-cols-3">
             {[1, 2, 3].map((n) => (
-              <Placeholder key={n} variant="block">
-                case study {n} — organisation, level, one-line result
-              </Placeholder>
+              <div key={n} className="space-y-4">
+                <ImageSlot
+                  contentKey={`case study ${n} — certified workplace`}
+                  alt={`Case study ${n}`}
+                  aspect="video"
+                />
+                <Placeholder variant="block">
+                  case study {n} — organisation, level, one-line result
+                </Placeholder>
+              </div>
             ))}
           </div>
         </div>

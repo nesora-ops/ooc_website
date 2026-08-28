@@ -11,6 +11,9 @@ export type BlogPost = {
   teaser: string;
   date: string;
   author: string;
+  // Optional cover art. Left undefined until a file exists in
+  // public/images/blog/; the ImageSlot renders a labelled placeholder meanwhile.
+  image?: { src: string; alt: string };
 };
 
 const titles = [

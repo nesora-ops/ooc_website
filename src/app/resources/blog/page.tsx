@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 
+import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { blogPosts } from "@/data/blog-posts";
@@ -24,7 +25,14 @@ export default function BlogListingPage() {
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {blogPosts.map((post) => (
             <li key={post.slug}>
-              <Card className="h-full">
+              <Card className="h-full overflow-hidden pt-0">
+                <ImageSlot
+                  contentKey={`blog thumbnail — ${post.slug}`}
+                  alt={post.title}
+                  src={post.image?.src}
+                  aspect="video"
+                  className="rounded-none rounded-t-3xl border-0 border-b border-navy/8"
+                />
                 <CardHeader>
                   <CardTitle className="font-heading text-lg leading-snug text-navy-ink">
                     <Link href={`/resources/blog/${post.slug}`} className="hover:text-teal">

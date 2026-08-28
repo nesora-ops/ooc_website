@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 
 import { AudienceRouterCards } from "@/components/sections/audience-router-cards";
+import { ImageSlot } from "@/components/image-slot";
 import { CTABand } from "@/components/sections/cta-band";
 import { NumberedSteps } from "@/components/sections/numbered-steps";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
@@ -358,12 +359,19 @@ export default function Home() {
                 <Link
                   href={`/resources/blog/${post.slug}`}
                   className={cn(
-                    "group flex min-h-64 flex-col justify-between rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1",
+                    "group flex flex-col rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1",
                     index === 0 ? "bg-mint" : index === 1 ? "bg-sky" : "bg-butter/65"
                   )}
                 >
                   <span className="text-xs font-semibold text-muted-foreground">Insight 0{index + 1}</span>
-                  <span className="mt-12 text-2xl font-semibold leading-tight tracking-[-0.035em] text-navy-ink group-hover:text-teal">
+                  <ImageSlot
+                    contentKey={`insight thumbnail — ${post.slug}`}
+                    alt={post.title}
+                    src={post.image?.src}
+                    aspect="video"
+                    className="mt-5"
+                  />
+                  <span className="mt-5 text-2xl font-semibold leading-tight tracking-[-0.035em] text-navy-ink group-hover:text-teal">
                     {post.title}
                   </span>
                 </Link>

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { blogPosts } from "@/data/blog-posts";
@@ -39,6 +40,16 @@ export default async function BlogPostPage({ params }: Params) {
         <p className="mt-4 text-sm text-muted-foreground">
           {post.date} · {post.author}
         </p>
+
+        <ImageSlot
+          contentKey={`article hero — ${post.slug}`}
+          alt={post.title}
+          src={post.image?.src}
+          aspect="wide"
+          sizes="(min-width: 768px) 48rem, 100vw"
+          priority
+          className="mt-8"
+        />
 
         <div className="mt-10 space-y-6 text-muted-foreground">
           <p className="text-lg">{post.teaser}</p>

@@ -3,6 +3,7 @@ import { FileText, Image, MessageSquareText, UserRound } from "lucide-react";
 
 import { MediaEnquiryForm } from "@/components/forms/media-enquiry-form";
 import { Placeholder } from "@/components/placeholder";
+import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
@@ -57,6 +58,15 @@ export default function NewsPage() {
                     <Icon className="size-6 text-teal" aria-hidden strokeWidth={1.6} />
                     <h3 className="mt-6 text-lg font-semibold text-navy-ink">{item.title}</h3>
                     <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.body}</p>
+                    {item.title === "Logos & imagery" && (
+                      <ImageSlot
+                        contentKey="media kit — approved logo lockups"
+                        alt="Approved Organisation of Choice logo lockups"
+                        aspect="video"
+                        sizes="(min-width: 1024px) 24rem, 100vw"
+                        className="mt-5"
+                      />
+                    )}
                   </div>
                 );
               })}

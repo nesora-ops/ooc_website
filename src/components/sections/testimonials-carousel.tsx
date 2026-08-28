@@ -1,9 +1,20 @@
 "use client";
 
+import Image from "next/image";
 import { useRef } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-const testimonials = [
+// `avatar` is an optional path under public/images/testimonials/. Until one
+// exists the initials chip stands in, so nothing renders empty.
+type Testimonial = {
+  quote: string;
+  name: string;
+  role: string;
+  initials: string;
+  avatar?: string;
+};
+
+const testimonials: Testimonial[] = [
   {
     quote: "The assessment gave us a clear, practical view of where our employee experience was strong and where to act next.",
     name: "Naina Rao",
@@ -61,12 +72,28 @@ export function TestimonialsCarousel() {
               </blockquote>
             </div>
             <figcaption className="mt-12 flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="grid size-10 shrink-0 place-items-center rounded-full bg-mint text-xs font-bold text-teal group-hover:bg-white/12 group-hover:text-white group-focus-visible:bg-white/12 group-focus-visible:text-white"
-              >
-                {testimonial.initials}
-              </span>
+              {testimonial.avatar ? (
+                <span
+                  data-content-key={`testimonial portrait — ${testimonial.name}`}
+                  className="relative size-10 shrink-0 overflow-hidden rounded-full border border-navy/10"
+                >
+                  <Image
+                    src={testimonial.avatar}
+                    alt={testimonial.name}
+                    fill
+                    sizes="2.5rem"
+                    className="object-cover"
+                  />
+                </span>
+              ) : (
+                <span
+                  aria-hidden="true"
+                  data-content-key={`testimonial portrait — ${testimonial.name}`}
+                  className="grid size-10 shrink-0 place-items-center rounded-full bg-mint text-xs font-bold text-teal group-hover:bg-white/12 group-hover:text-white group-focus-visible:bg-white/12 group-focus-visible:text-white"
+                >
+                  {testimonial.initials}
+                </span>
+              )}
               <span className="min-w-0">
                 <span className="block text-sm font-semibold">{testimonial.name}</span>
                 <span className="mt-0.5 block text-xs leading-4 text-muted-foreground group-hover:text-white/65 group-focus-visible:text-white/65">

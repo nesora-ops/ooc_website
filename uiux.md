@@ -60,13 +60,31 @@ Do not drift into:
 - excessive badges, pills, decorative stamps, or floating icons;
 - invented metrics, customer logos, testimonials, biographies, prices, or legal claims;
 - sticky or pinned section headings that change position while the section scrolls;
-- imagery added only to fill space.
+- imagery added only to fill space, or in any slot not listed under "Current imagery position".
 
 ### Current imagery position
 
-The current project deliberately has no large project-owned illustration in the homepage proof area and no certification-pathway image in the Job Seeker directory hero. Those image treatments were reviewed and removed. Do not restore them without a new explicit request.
+Imagery is approved in a fixed set of slots, and nowhere else. Each is an
+`<ImageSlot>` (`src/components/image-slot.tsx`) carrying a `data-content-key`, and
+renders a labelled dashed block until a file is supplied. The catalogue lives in
+`public/images/README.md`. The approved slots are:
 
-If future imagery is approved, it must explain a concept, show a real person/product context, or reduce cognitive load. It must not become decorative wallpaper.
+- blog listing thumbnails and article heroes (`/resources/blog`);
+- the three homepage "Latest insights" thumbnails;
+- the three `#case-studies` images on `/employers`;
+- team headshots on `/about`;
+- testimonial portraits (optional — the initials chip remains the fallback);
+- the "Logos & imagery" tile in the `/news` media kit.
+
+Adding a slot anywhere else needs a new explicit request. The three removed
+treatments in §13 (items 7–9) stay removed: no homepage proof-area photo, no
+team illustration, no directory hero image.
+
+Any image occupying a slot must explain a concept, show a real person/product
+context, or reduce cognitive load. It must not become decorative wallpaper, and
+§2's prohibition on invented customer logos, testimonials, and biographies applies
+to imagery as much as to copy — a placeholder slot is preferable to a fabricated
+photograph.
 
 ## 3. Visual design tokens
 
@@ -562,6 +580,7 @@ Another agent must preserve these unless the user explicitly changes them:
 7. The large workplace meeting photo previously used in the homepage proof area remains removed.
 8. The team illustration experiment remains reverted.
 9. The large certification-pathway image in the directory hero remains removed.
+9a. Imagery is confined to the slots listed under §2 "Current imagery position"; items 7–9 above are not among them.
 10. Long content is summarised on the first layer, not deleted or semantically changed.
 11. Temporary values retain backend replacement hooks.
 12. The site stays premium-light, professional, minimally playful, and not heavily dark or vibrantly saturated.
