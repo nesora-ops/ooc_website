@@ -43,7 +43,7 @@ export default async function BlogPostPage({ params }: Params) {
 
         <ImageSlot
           contentKey={`article hero — ${post.slug}`}
-          alt={post.title}
+          alt={post.image?.alt ?? post.title}
           src={post.image?.src}
           aspect="wide"
           sizes="(min-width: 768px) 48rem, 100vw"

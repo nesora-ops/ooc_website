@@ -28,7 +28,7 @@ export default function BlogListingPage() {
               <Card className="h-full overflow-hidden pt-0">
                 <ImageSlot
                   contentKey={`blog thumbnail — ${post.slug}`}
-                  alt={post.title}
+                  alt={post.image?.alt ?? post.title}
                   src={post.image?.src}
                   aspect="video"
                   className="rounded-none rounded-t-3xl border-0 border-b border-navy/8"

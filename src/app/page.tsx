@@ -366,7 +366,7 @@ export default function Home() {
                   <span className="text-xs font-semibold text-muted-foreground">Insight 0{index + 1}</span>
                   <ImageSlot
                     contentKey={`insight thumbnail — ${post.slug}`}
-                    alt={post.title}
+                    alt={post.image?.alt ?? post.title}
                     src={post.image?.src}
                     aspect="video"
                     className="mt-5"
