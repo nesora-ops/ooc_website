@@ -120,7 +120,7 @@ export default function Home() {
           <p className="mx-auto max-w-xl text-sm font-semibold text-teal">
             Independent workplace certification for employers who invest in their people.
           </p>
-          <h1 className="mx-auto mt-7 max-w-6xl text-[clamp(3.7rem,10vw,8.8rem)] font-semibold leading-[0.84] tracking-[-0.075em] text-navy-ink">
+          <h1 className="mx-auto mt-7 max-w-6xl text-[clamp(3.25rem,8.5vw,7.6rem)] font-semibold leading-[0.86] tracking-[-0.07em] text-navy-ink">
             <span className="block">Be an Organisation</span>
             <span className="mt-2 block">
               of <span className="text-teal">Choice.</span>
@@ -193,7 +193,7 @@ export default function Home() {
         <div className="page-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
           <div>
             <p className="text-sm font-semibold text-teal">Why OOC exists</p>
-            <h2 className="mt-5 max-w-3xl text-[clamp(2.8rem,6vw,6rem)] font-semibold leading-[0.94] tracking-[-0.06em]">
+            <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Certification that means something.
             </h2>
           </div>
@@ -221,7 +221,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-teal">Find your route</p>
-            <h2 className="mt-4 text-[clamp(2.6rem,5vw,5rem)] font-semibold leading-none tracking-[-0.055em]">
+            <h2 className="mt-4 text-[clamp(2.35rem,4.5vw,4.4rem)] font-semibold leading-none tracking-[-0.05em]">
               One standard. Three ways in.
             </h2>
           </div>
@@ -257,7 +257,7 @@ export default function Home() {
       <section className="py-24 sm:py-32 lg:py-40">
         <div className="page-shell">
           <p className="text-sm font-semibold text-teal">The business case</p>
-          <h2 className="mt-4 max-w-5xl text-[clamp(2.6rem,5.5vw,5.6rem)] font-semibold leading-[0.96] tracking-[-0.06em]">
+          <h2 className="mt-4 max-w-5xl text-[clamp(2.35rem,4.8vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
             Being an Organisation of Choice pays in more than one way.
           </h2>
           <div className="mt-12 grid grid-flow-dense gap-4 lg:grid-cols-12">
@@ -266,7 +266,7 @@ export default function Home() {
               return (
                 <article key={benefit.title} className={cn("group min-h-72 rounded-[2rem] border border-navy/8 p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-8", benefit.className)}>
                   <Icon className="size-7 text-teal" strokeWidth={1.7} />
-                  <h3 className="mt-14 max-w-xl text-[clamp(1.7rem,3.2vw,3rem)] font-semibold leading-none tracking-[-0.045em]">
+                  <h3 className="mt-14 max-w-xl text-[clamp(1.55rem,2.8vw,2.6rem)] font-semibold leading-none tracking-[-0.04em]">
                     {benefit.title}
                   </h3>
                   <p className="mt-5 max-w-2xl text-sm leading-6 text-navy/72 sm:text-base">{benefit.body}</p>
@@ -281,7 +281,7 @@ export default function Home() {
         <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div className="h-fit lg:self-center">
             <p className="text-sm font-semibold text-teal">How it works</p>
-            <h2 className="mt-4 text-[clamp(2.8rem,5.8vw,5.8rem)] font-semibold leading-[0.94] tracking-[-0.06em]">
+            <h2 className="mt-4 text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Three steps to certification.
             </h2>
             <p className="mt-6 max-w-md leading-7 text-muted-foreground">
@@ -302,7 +302,7 @@ export default function Home() {
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
               <p className="text-sm font-semibold text-teal">Certification levels</p>
-              <h2 className="mt-4 text-[clamp(2.8rem,5.5vw,5.5rem)] font-semibold leading-[0.94] tracking-[-0.06em]">
+              <h2 className="mt-4 text-[clamp(2.5rem,4.8vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
                 A pathway, not just a plaque.
               </h2>
             </div>
@@ -317,7 +317,7 @@ export default function Home() {
                   <span className={cn("size-3 rounded-full", level.dot)} />
                   <span className="font-mono text-xs font-semibold tabular-nums text-navy/55">0{index + 1}</span>
                 </div>
-                <h3 className="mt-20 text-4xl font-semibold tracking-[-0.05em]">{level.name}</h3>
+                <h3 className="mt-20 text-3xl font-semibold tracking-[-0.045em]">{level.name}</h3>
                 <p className="mt-2 text-sm font-semibold text-navy/75">{level.note}</p>
                 <p className="mt-5 text-sm leading-6 text-navy/70">{level.body}</p>
               </article>
@@ -332,7 +332,7 @@ export default function Home() {
             <p className="mx-auto w-fit rounded-full border border-navy/10 bg-white/70 px-4 py-2 text-xs font-semibold text-teal">
               Certified voices
             </p>
-            <h2 className="mt-5 text-[clamp(2.5rem,5vw,4.8rem)] font-semibold leading-none tracking-[-0.055em]">
+            <h2 className="mt-5 text-[clamp(2.25rem,4.4vw,4.2rem)] font-semibold leading-none tracking-[-0.05em]">
               What certified organisations say.
             </h2>
           </div>
@@ -345,7 +345,7 @@ export default function Home() {
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
               <p className="text-sm font-semibold text-teal">Latest insights</p>
-              <h2 className="mt-4 text-[clamp(2.5rem,5vw,4.8rem)] font-semibold leading-none tracking-[-0.055em]">
+              <h2 className="mt-4 text-[clamp(2.25rem,4.4vw,4.2rem)] font-semibold leading-none tracking-[-0.05em]">
                 Ideas worth working with.
               </h2>
             </div>
