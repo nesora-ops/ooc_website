@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
-import { Award, Clock, Handshake, Mail, MapPin, Newspaper, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/forms/contact-form";
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -23,10 +24,9 @@ const contactDetails = [
   { label: "Hours", placeholder: "business hours", icon: Clock, tone: "bg-coral/10 text-[#9a4635]" },
 ];
 
-const teamContacts = [
-  { label: "Certification enquiries", placeholder: "certification email", icon: Award },
-  { label: "Partner programme", placeholder: "partners email", icon: Handshake },
-  { label: "Media & press", placeholder: "media email", icon: Newspaper },
+const partnerSites = [
+  { name: "CertifyDB", href: "https://certifydb.com" },
+  { name: "Better Earth Workplace", href: "https://betterearthworkplace.com" },
 ];
 
 export default function ContactPage() {
@@ -56,8 +56,8 @@ export default function ContactPage() {
                   Company information.
                 </h2>
                 <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
-                  Reach the programme team directly or choose the specialist desk that best fits
-                  your enquiry.
+                  Reach the programme team directly, or visit the partner sites behind the
+                  programme.
                 </p>
 
                 <dl className="mt-8 grid gap-3 sm:grid-cols-2">
@@ -75,7 +75,15 @@ export default function ContactPage() {
                           {"value" in detail ? (
                             detail.value
                           ) : (
-                            <Placeholder>{detail.placeholder}</Placeholder>
+                            <Placeholder
+                              className={
+                                detail.label === "Email"
+                                  ? "text-[0.82em] [overflow-wrap:anywhere]"
+                                  : undefined
+                              }
+                            >
+                              {detail.placeholder}
+                            </Placeholder>
                           )}
                         </dd>
                       </div>
@@ -84,23 +92,28 @@ export default function ContactPage() {
                 </dl>
 
                 <div className="mt-8 border-t border-navy/8 pt-6">
-                  <h3 className="text-sm font-semibold text-navy-ink">Specialist contacts</h3>
-                  <dl className="mt-4 space-y-4">
-                    {teamContacts.map((detail) => {
-                      const Icon = detail.icon;
-                      return (
-                        <div key={detail.label} className="flex gap-3">
-                          <Icon aria-hidden className="mt-0.5 size-4 shrink-0 text-teal" strokeWidth={1.8} />
-                          <div>
-                            <dt className="text-sm font-medium text-navy-ink">{detail.label}</dt>
-                            <dd className="mt-1 text-sm text-muted-foreground">
-                              <Placeholder>{detail.placeholder}</Placeholder>
-                            </dd>
-                          </div>
-                        </div>
-                      );
-                    })}
-                  </dl>
+                  <h3 className="text-sm font-semibold text-navy-ink">Our partner websites</h3>
+                  <ul className="mt-4 grid gap-4 sm:grid-cols-2">
+                    {partnerSites.map((site) => (
+                      <li key={site.name}>
+                        <a
+                          href={site.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="group block rounded-2xl focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-teal"
+                        >
+                          <ImageSlot
+                            contentKey={`partner logo — ${site.name}`}
+                            alt={`${site.name} logo`}
+                            sizes="(min-width: 1024px) 20vw, (min-width: 640px) 25vw, 50vw"
+                          />
+                          <span className="mt-2 block text-sm font-medium text-navy-ink group-hover:underline">
+                            {site.name} ↗
+                          </span>
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
 

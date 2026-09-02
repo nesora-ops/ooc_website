@@ -13,7 +13,7 @@ type PlaceholderProps = {
 const placeholderValues: Record<string, string> = {
   year: "2026",
   "grievance officer name and contact": "Aarav Mehta · grievance@organisationofchoice.com",
-  "contact email": "hello@organisationofchoice.com",
+  "contact email": "certify@betterearthworkplace.com",
   "business hours": "Monday–Friday · 9:30am–6:00pm IST",
   "certification email": "certification@organisationofchoice.com",
   "partners email": "partners@organisationofchoice.com",
