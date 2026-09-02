@@ -22,7 +22,7 @@ export function AudienceRouterCards({ cards, className }: { cards: AudienceCard[
         >
           <div>
             <p className="text-sm font-semibold text-teal">0{index + 1}</p>
-            <h3 className="mt-5 text-[clamp(1.8rem,4vw,3.4rem)] font-semibold leading-none tracking-[-0.045em]">{card.title}</h3>
+            <h3 className="mt-5 text-[clamp(1.65rem,3.5vw,3rem)] font-semibold leading-none tracking-[-0.04em]">{card.title}</h3>
             <p className="mt-5 max-w-2xl text-sm leading-6 text-navy/75 sm:text-base">{card.description}</p>
           </div>
           <Link href={card.href} className="mt-8 inline-flex items-center gap-2 text-sm font-semibold text-navy transition-colors hover:text-teal">
