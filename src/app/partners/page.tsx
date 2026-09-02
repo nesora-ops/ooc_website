@@ -139,7 +139,7 @@ export default function PartnersPage() {
       {/* WHY PARTNER */}
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <h2 className="!mx-0 max-w-5xl font-heading text-[clamp(3rem,6vw,5.8rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-navy-ink !text-left">
+          <h2 className="!mx-0 max-w-5xl font-heading text-[clamp(2.6rem,5.2vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-navy-ink !text-left">
             Turn trusted advice into visible client value.
           </h2>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground">
@@ -151,7 +151,7 @@ export default function PartnersPage() {
             <article className="relative overflow-hidden rounded-[2.25rem] border border-teal/10 bg-mint/85 p-7 sm:p-9 lg:col-span-7 lg:row-span-2 lg:p-11">
               <div aria-hidden className="absolute -right-16 -top-16 size-52 rounded-full border-[2.5rem] border-white/45" />
               <p className="relative text-sm font-semibold text-teal">Advice becomes action</p>
-              <h3 className="relative mt-5 max-w-xl font-heading text-3xl font-semibold leading-tight text-navy-ink sm:text-4xl">
+              <h3 className="relative mt-5 max-w-xl font-heading text-2xl font-semibold leading-tight text-navy-ink sm:text-3xl">
                 The conversation is already happening. Certification gives it a credible next step.
               </h3>
 
@@ -230,7 +230,7 @@ export default function PartnersPage() {
         <div aria-hidden className="absolute bottom-[8%] left-[43%] -z-10 size-60 rounded-full bg-butter/35 blur-3xl" />
 
         <div className="relative z-10 mx-auto max-w-4xl text-center lg:absolute lg:inset-0 lg:flex lg:flex-col lg:items-center lg:justify-center">
-          <h2 className="max-w-4xl font-heading text-[clamp(3rem,6vw,5.8rem)] font-semibold leading-[0.92] tracking-[-0.065em] text-navy-ink">
+          <h2 className="max-w-4xl font-heading text-[clamp(2.6rem,5.2vw,5rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-navy-ink">
             <span className="block">Built for firms that</span>
             <span className="block">advise employers.</span>
           </h2>
@@ -287,7 +287,7 @@ export default function PartnersPage() {
         <div aria-hidden className="absolute right-[8%] top-[8%] -z-10 size-64 rounded-full bg-sky/50 blur-3xl" />
         <div aria-hidden className="absolute bottom-[3%] left-[10%] -z-10 size-64 rounded-full bg-mint/55 blur-3xl" />
 
-        <h2 className="max-w-5xl font-heading text-[clamp(3rem,6vw,5.8rem)] font-semibold leading-[0.94] tracking-[-0.06em] text-navy-ink">
+        <h2 className="max-w-5xl font-heading text-[clamp(2.6rem,5.2vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-navy-ink">
           <span className="block">One route.</span>
           <span className="block">Your first certified client.</span>
         </h2>
@@ -309,7 +309,7 @@ export default function PartnersPage() {
                   <p className="font-mono text-xs font-semibold tabular-nums text-teal">
                     {String(index + 1).padStart(2, "0")}
                   </p>
-                  <h3 className="mt-3 font-heading text-3xl font-semibold text-navy-ink sm:text-4xl">
+                  <h3 className="mt-3 font-heading text-2xl font-semibold text-navy-ink sm:text-3xl">
                     {step.title}
                   </h3>
                   <p className="mt-4 max-w-sm text-sm leading-6 text-muted-foreground">
