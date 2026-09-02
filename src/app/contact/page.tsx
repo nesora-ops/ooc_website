@@ -12,9 +12,13 @@ export const metadata: Metadata = {
     "Exploring certification, considering partnership, or have a question about the programme? We'd like to hear from you.",
 };
 
+const officeAddress =
+  "315, Building 1, Millenium Business Park, Sector 2, Mahape, Navi Mumbai, Maharashtra 400710";
+const contactPhone = "+91 82913 88546";
+
 const contactDetails = [
-  { label: "Phone", placeholder: "phone number", icon: Phone, tone: "bg-mint/75 text-teal" },
-  { label: "Office", placeholder: "office address", icon: MapPin, tone: "bg-sky/70 text-navy" },
+  { label: "Phone", value: contactPhone, icon: Phone, tone: "bg-mint/75 text-teal" },
+  { label: "Office address", value: officeAddress, icon: MapPin, tone: "bg-sky/70 text-navy" },
   { label: "Email", placeholder: "contact email", icon: Mail, tone: "bg-butter/55 text-gold-ink" },
   { label: "Hours", placeholder: "business hours", icon: Clock, tone: "bg-coral/10 text-[#9a4635]" },
 ];
@@ -68,7 +72,11 @@ export default function ContactPage() {
                           {detail.label}
                         </dt>
                         <dd className="mt-6 text-sm leading-6 text-muted-foreground">
-                          <Placeholder>{detail.placeholder}</Placeholder>
+                          {"value" in detail ? (
+                            detail.value
+                          ) : (
+                            <Placeholder>{detail.placeholder}</Placeholder>
+                          )}
                         </dd>
                       </div>
                     );
@@ -114,12 +122,10 @@ export default function ContactPage() {
               <div className="mb-3 flex flex-col gap-2 px-2 sm:flex-row sm:items-center sm:justify-between">
                 <div>
                   <p className="text-sm font-semibold text-navy-ink">Office location</p>
-                  <p className="mt-1 text-sm text-muted-foreground">
-                    <Placeholder>office address</Placeholder>
-                  </p>
+                  <p className="mt-1 text-sm text-muted-foreground">{officeAddress}</p>
                 </div>
                 <a
-                  href="https://www.openstreetmap.org/?mlat=19.0677&mlon=72.8694#map=15/19.0677/72.8694"
+                  href="https://www.openstreetmap.org/?mlat=19.108618&mlon=73.019613#map=16/19.108618/73.019613"
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm font-semibold text-teal hover:underline"
@@ -128,8 +134,8 @@ export default function ContactPage() {
                 </a>
               </div>
               <iframe
-                title="Office location in Bandra Kurla Complex, Mumbai"
-                src="https://www.openstreetmap.org/export/embed.html?bbox=72.8494%2C19.0477%2C72.8894%2C19.0877&layer=mapnik&marker=19.0677%2C72.8694"
+                title="Office location in Millenium Business Park, Mahape"
+                src="https://www.openstreetmap.org/export/embed.html?bbox=72.999613%2C19.088618%2C73.039613%2C19.128618&layer=mapnik&marker=19.108618%2C73.019613"
                 loading="lazy"
                 className="h-80 w-full rounded-[1.5rem] border-0 bg-muted sm:h-96"
               />
