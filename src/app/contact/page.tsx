@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Award, Clock, Handshake, Mail, MapPin, Newspaper, Phone } from "lucide-react";
 
 import { ContactForm } from "@/components/forms/contact-form";
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -35,15 +36,26 @@ export default function ContactPage() {
       <SectionHeaderBar label="Contact" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl !max-w-none px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          Let&apos;s talk.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Whether you&apos;re exploring certification, considering partnership, or simply have a
-          question about the programme, we&apos;d like to hear from you. We respond to every enquiry
-          within <Placeholder className="border-0 bg-transparent px-0 py-0">response time</Placeholder>.
-        </p>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.78fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            Let&apos;s talk.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            Whether you&apos;re exploring certification, considering partnership, or simply have a
+            question, we&apos;d like to hear from you. We respond to every enquiry within{" "}
+            <Placeholder className="border-0 bg-transparent px-0 py-0">response time</Placeholder>.
+          </p>
+        </div>
+        <ImageSlot
+          contentKey="contact the programme team"
+          alt="Editorial illustration of a message, phone, location pin, and office"
+          src="/images/editorial/contact-team.png"
+          aspect="video"
+          priority
+          sizes="(min-width: 1024px) 40vw, 100vw"
+          className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+        />
       </section>
 
       {/* CONTACT DETAILS, FORM & MAP */}
