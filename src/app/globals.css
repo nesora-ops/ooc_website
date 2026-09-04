@@ -171,11 +171,38 @@
   .trust-marquee {
     animation: trust-marquee 32s linear infinite;
   }
+
+  .partner-pill {
+    animation: partner-pill-float 6s ease-in-out infinite alternate;
+    will-change: translate;
+  }
+
+  .partner-pill:nth-child(2n) {
+    animation-delay: -2.4s;
+    animation-duration: 7.5s;
+  }
+
+  .partner-pill:nth-child(3n) {
+    animation-delay: -4.1s;
+    animation-duration: 8.5s;
+  }
 }
 
 @keyframes trust-marquee {
   to {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes partner-pill-float {
+  to {
+    translate: 0 -7px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-pill {
+    animation: none;
   }
 }
 
