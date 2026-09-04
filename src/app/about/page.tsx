@@ -52,20 +52,14 @@ export default function AboutPage() {
       <section className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
-            <div className="relative mx-auto aspect-square w-full max-w-md">
-              <div className="absolute inset-8 rounded-full border border-teal/15 bg-white/70 shadow-[0_30px_90px_rgba(23,50,77,0.08)]" />
-              <div className="absolute left-0 top-1/2 w-40 -translate-y-1/2 rounded-full border border-navy/8 bg-sky px-6 py-4 text-center font-semibold text-navy-ink">
-                Claims
-              </div>
-              <div className="absolute right-0 top-1/2 w-40 -translate-y-1/2 rounded-full bg-teal px-6 py-4 text-center font-semibold text-white shadow-[0_18px_45px_rgba(10,113,104,0.22)]">
-                Trust
-              </div>
-              <div className="absolute left-1/2 top-1/2 grid size-28 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full border-8 border-mint bg-white text-center text-sm font-bold text-teal">
-                Independent<br />evidence
-              </div>
-              <div className="absolute left-[28%] top-1/2 h-px w-[18%] bg-teal/35" />
-              <div className="absolute right-[28%] top-1/2 h-px w-[18%] bg-teal/35" />
-            </div>
+            <ImageSlot
+              contentKey="evidence becomes trust"
+              alt="Editorial illustration showing workplace evidence becoming a trusted certification"
+              src="/images/editorial/evidence-to-trust.png"
+              aspect="video"
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="mx-auto max-w-md rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+            />
 
             <div>
               <h2 className="font-heading text-3xl font-bold text-navy-ink sm:text-5xl">
