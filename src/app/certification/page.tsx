@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Award, Building2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
@@ -45,6 +46,7 @@ const processStages = [
     detail: "We confirm eligibility, agree the assessment plan, and set the timeline with you.",
     icon: FileSearch,
     tone: "bg-sky text-navy",
+    imagePosition: "0% 50%",
   },
   {
     title: "Evidence & self-assessment",
@@ -53,6 +55,7 @@ const processStages = [
     detail: "Our team reviews submissions as they arrive, so gaps surface early rather than at the end.",
     icon: Building2,
     tone: "bg-mint text-teal",
+    imagePosition: "24% 50%",
   },
   {
     title: "Multi-stakeholder assessment",
@@ -61,6 +64,7 @@ const processStages = [
     detail: "Employee input is confidential, leadership responses are verified, and no result rests on one voice.",
     icon: MessageCircle,
     tone: "bg-butter/70 text-gold-ink",
+    imagePosition: "47% 50%",
   },
   {
     title: "Review & determination",
@@ -69,6 +73,7 @@ const processStages = [
     detail: "Mandatory gates are checked and the outcome is determined solely by the evidence.",
     icon: ShieldCheck,
     tone: "bg-coral/15 text-[#9a4635]",
+    imagePosition: "70% 50%",
   },
   {
     title: "Certification & beyond",
@@ -77,6 +82,7 @@ const processStages = [
     detail: "Annual verification and full reassessment keep the certification current and credible.",
     icon: Award,
     tone: "bg-navy text-white",
+    imagePosition: "100% 50%",
   },
 ];
 
@@ -145,27 +151,45 @@ export default function CertificationPage() {
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           Five checkpoints. One defensible outcome.
         </h2>
-        <ol className="relative mx-auto mt-14 max-w-5xl before:absolute before:bottom-0 before:left-6 before:top-0 before:w-px before:bg-teal/20 lg:before:left-0 lg:before:right-0 lg:before:top-8 lg:before:h-px lg:before:w-auto">
+        <ol className="relative mt-14 grid gap-8 before:absolute before:bottom-6 before:left-6 before:top-6 before:w-px before:bg-teal/20 lg:grid-cols-5 lg:gap-4 lg:before:bottom-auto lg:before:left-[10%] lg:before:right-[10%] lg:before:top-6 lg:before:h-px lg:before:w-auto">
           {processStages.map((stage) => {
             const Icon = stage.icon;
             return (
-              <li key={stage.title} className="relative grid gap-5 pb-10 pl-20 last:pb-0 lg:grid-cols-[7rem_1fr] lg:items-start lg:pl-0">
-                <div className="absolute left-0 top-0 lg:static">
-                  <span className={`grid size-12 place-items-center rounded-full ring-8 ring-background lg:size-16 ${stage.tone}`}>
-                    <Icon className="size-5 lg:size-6" aria-hidden strokeWidth={1.7} />
-                  </span>
-                </div>
-                <details className="group rounded-[1.75rem] border border-navy/8 bg-white/75 px-6 py-5 shadow-[0_18px_50px_rgba(23,50,77,0.05)] lg:px-8">
+              <li key={stage.title} className="relative grid min-w-0 grid-cols-[3rem_1fr] gap-4 lg:flex lg:flex-col lg:gap-0">
+                <span className={`relative z-10 grid size-12 place-items-center rounded-full ring-8 ring-background lg:mx-auto ${stage.tone}`}>
+                  <Icon className="size-5" aria-hidden strokeWidth={1.7} />
+                </span>
+
+                <details className="group min-w-0 overflow-hidden rounded-[1.75rem] border border-navy/8 bg-white/85 shadow-[0_18px_50px_rgba(23,50,77,0.07)] lg:mt-6 lg:h-full">
                   <summary className="cursor-pointer list-none marker:content-none">
-                    <span className="flex flex-wrap items-center justify-between gap-3">
-                      <span className="text-xl font-semibold text-navy-ink">{stage.title}</span>
-                      <span className="text-xs font-semibold text-teal">
+                    <span
+                      role="img"
+                      aria-label={`Illustration for ${stage.title}`}
+                      className="relative block h-36 bg-[#f5f3eb] bg-no-repeat after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-gradient-to-t after:from-white/90 after:to-transparent"
+                      style={{
+                        backgroundImage: "url('/images/editorial/assessment-process.png')",
+                        backgroundPosition: stage.imagePosition,
+                        backgroundSize: "600% auto",
+                      }}
+                    />
+                    <span className="block p-5">
+                      <span className="block text-xs font-semibold text-teal">
                         {stage.duration ?? "Ongoing"}
                       </span>
+                      <span className="mt-3 block text-xl font-semibold leading-tight text-navy-ink">
+                        {stage.title}
+                      </span>
+                      <span className="mt-3 block text-sm leading-6 text-muted-foreground">
+                        {stage.summary}
+                      </span>
+                      <span className="mt-5 flex items-center justify-between border-t border-navy/8 pt-4 text-xs font-semibold text-teal">
+                        <span className="group-open:hidden">View detail</span>
+                        <span className="hidden group-open:inline">Hide detail</span>
+                        <span aria-hidden className="text-lg leading-none group-open:rotate-45">+</span>
+                      </span>
                     </span>
-                    <span className="mt-2 block text-sm leading-6 text-muted-foreground">{stage.summary}</span>
                   </summary>
-                  <p className="mt-4 border-t border-navy/8 pt-4 text-sm leading-6 text-muted-foreground">
+                  <p className="border-t border-navy/8 px-5 pb-5 pt-4 text-sm leading-6 text-muted-foreground">
                     {stage.detail}
                   </p>
                 </details>
@@ -184,16 +208,26 @@ export default function CertificationPage() {
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             The four levels of certification.
           </h2>
-          <div className="mt-10 grid grid-flow-dense gap-3 sm:grid-cols-2 lg:grid-cols-4">
-            {levels.map((level) => (
-              <article key={level.name} className="rounded-[1.75rem] bg-white/80 p-6 shadow-[0_18px_50px_rgba(23,50,77,0.06)]">
-                <h3 className="font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
-                <p className="mt-3 text-sm leading-6 text-muted-foreground">{level.summary}</p>
-                <ProgressiveDetails className="mt-5" label="Full level description">
-                  <p className="text-sm leading-6">{level.body}</p>
-                </ProgressiveDetails>
-              </article>
-            ))}
+          <div className="mt-10 grid gap-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-start">
+            <ImageSlot
+              contentKey="four certification levels"
+              alt="Four ascending certification medallions representing Silver, Gold, Platinum, and Diamond"
+              src="/images/editorial/certification-levels.png"
+              aspect="video"
+              sizes="(min-width: 1024px) 38vw, 100vw"
+              className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+            />
+            <div className="grid gap-3 sm:grid-cols-2">
+              {levels.map((level) => (
+                <article key={level.name} className="rounded-[1.75rem] border border-navy/8 bg-white/80 p-6">
+                  <h3 className="font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">{level.summary}</p>
+                  <ProgressiveDetails className="mt-5" label="Full level description">
+                    <p className="text-sm leading-6">{level.body}</p>
+                  </ProgressiveDetails>
+                </article>
+              ))}
+            </div>
           </div>
         </div>
       </section>
