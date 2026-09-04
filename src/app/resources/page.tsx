@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowUpRight, BookOpen, CircleHelp, FileText, Languages } from "lucide-react";
 
+import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
@@ -47,14 +48,25 @@ export default function ResourcesPage() {
       <SectionHeaderBar label="Resources" />
 
       {/* HUB HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          Ideas worth working with.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Practical insight on workplace culture, employer branding, and what actually makes
-          organisations worth choosing — from the team that assesses them for a living.
-        </p>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            Ideas worth working with.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            Practical insight on culture, employer branding, and what makes organisations worth
+            choosing — from the people who assess workplaces for a living.
+          </p>
+        </div>
+        <ImageSlot
+          contentKey="workplace resource library"
+          alt="An editorial flat lay of workplace reports, guides, and marked-up research"
+          src="/images/editorial/resource-library.png"
+          aspect="video"
+          priority
+          sizes="(min-width: 1024px) 56vw, 100vw"
+          className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+        />
       </section>
 
       {/* HUB SECTIONS */}
