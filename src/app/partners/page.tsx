@@ -2,6 +2,7 @@ import Link from "next/link";
 import type { Metadata } from "next";
 
 import { PartnerApplicationForm } from "@/components/forms/partner-application-form";
+import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -120,20 +121,30 @@ export default function PartnersPage() {
       <SectionHeaderBar label="Channel Partners" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          Grow your practice by growing great workplaces.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          The Organisation of Choice™ partner programme lets consultants, advisors, and
-          professional firms bring independent workplace certification to the clients they already
-          serve — adding client value and a new revenue stream in the same move.
-        </p>
-        <div className="mt-8">
-          <Button asChild size="lg">
-            <Link href="#apply">Apply to Partner</Link>
-          </Button>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            Grow your practice by growing great workplaces.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            Bring independent workplace certification to the clients you already advise — adding
+            credible client value and a recurring revenue stream in the same move.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href="#apply">Apply to Partner</Link>
+            </Button>
+          </div>
         </div>
+        <ImageSlot
+          contentKey="partner advisory conversation"
+          alt="Three professional advisors discussing a workplace programme together"
+          src="/images/editorial/partner-advisory.png"
+          aspect="video"
+          priority
+          sizes="(min-width: 1024px) 54vw, 100vw"
+          className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+        />
       </section>
 
       {/* WHY PARTNER */}
@@ -247,7 +258,7 @@ export default function PartnersPage() {
           {partnerTypes.map((type) => (
             <li
               key={type.label}
-              className={`flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold shadow-[0_12px_34px_rgba(23,50,77,0.08)] sm:text-base lg:absolute ${type.className} ${type.tone}`}
+              className={`partner-pill flex items-center gap-2 rounded-full border px-5 py-3 text-sm font-semibold shadow-[0_12px_34px_rgba(23,50,77,0.08)] sm:text-base lg:absolute ${type.className} ${type.tone}`}
             >
               <span aria-hidden className="size-1.5 rounded-full bg-current opacity-65" />
               {type.label}
