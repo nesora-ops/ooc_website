@@ -127,6 +127,16 @@ export default function EmployersPage() {
                     aria-hidden
                     strokeWidth={1.6}
                   />
+                  {isDark && (
+                    <ImageSlot
+                      contentKey="certification deliverables"
+                      alt="A certification report, scorecard, and recognition mark arranged as a professional toolkit"
+                      src="/images/editorial/certification-deliverables.png"
+                      aspect="video"
+                      sizes="(min-width: 1024px) 54vw, 100vw"
+                      className="rounded-[1.5rem] border-white/10 bg-white"
+                    />
+                  )}
                   <div>
                     <h3 className={`text-xl font-semibold ${isDark ? "text-white" : "text-navy-ink"}`}>
                       {item.lead}
