@@ -190,15 +190,13 @@ export default function Home() {
       </section>
 
       <section className="py-24 sm:py-32 lg:py-40">
-        <div className="page-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-          <div>
+        <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+          <div className="max-w-xl">
             <p className="text-sm font-semibold text-teal">Why OOC exists</p>
             <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Certification that means something.
             </h2>
-          </div>
-          <div className="space-y-6 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            <p>
+            <p className="mt-7 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
               Organisation of Choice™ is an independent workplace certification programme that
               recognises employers who genuinely invest in their people, using evidence from
               culture, systems, policies, and employees&apos; lived experience.
@@ -206,7 +204,7 @@ export default function Home() {
             <p className="text-2xl font-semibold leading-tight text-navy-ink">
               It&apos;s not just a badge. It&apos;s proof.
             </p>
-            <ProgressiveDetails>
+            <ProgressiveDetails className="mt-6">
               <p>
                 Certification is earned through structured, multi-stakeholder assessment.
                 Employees, leadership, and independent assessors all contribute evidence, verified
@@ -214,6 +212,14 @@ export default function Home() {
               </p>
             </ProgressiveDetails>
           </div>
+          <ImageSlot
+            contentKey="editorial workplace collaboration"
+            alt="A workplace team discussing ideas together around a table"
+            src="/images/editorial/workplace-collaboration.png"
+            aspect="video"
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+          />
         </div>
       </section>
 
