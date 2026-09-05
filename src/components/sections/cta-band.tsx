@@ -16,7 +16,7 @@ type CTABandProps = {
 
 export function CTABand({ heading, body, primaryCta, secondaryCta, className }: CTABandProps) {
   return (
-    <section className={cn("noise-wash border-y border-coral/20 bg-coral/45 py-20 text-navy-ink lg:py-28", className)}>
+    <section className={cn("noise-wash border-y border-coral/20 bg-coral/45 py-14 text-navy-ink lg:py-20", className)}>
       <div className="mx-auto grid max-w-7xl gap-8 px-5 sm:px-8 lg:grid-cols-[1fr_auto] lg:items-end lg:px-10">
         <div className="max-w-4xl">
           <h2 className="text-[clamp(2.2rem,5.2vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.05em]">{heading}</h2>

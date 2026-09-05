@@ -120,7 +120,7 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
 
       {results.length === 0 ? (
         <p className="mt-6 rounded-2xl border border-border bg-white/70 p-8 text-muted-foreground">
-          No certified employers match your current filters. Try widening your search — or check
+          No certified employers match your current filters. Try widening your search, or check
           back soon: new organisations are certified throughout the year.
         </p>
       ) : (

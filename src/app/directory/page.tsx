@@ -11,21 +11,21 @@ import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "For Job Seekers & Certified Employer Directory — Organisation of Choice™",
+  title: "For Job Seekers & Certified Employer Directory | Organisation of Choice™",
   description:
-    "Every organisation in this directory has earned independent certification of its workplace — assessed on evidence, verified annually, and never for sale.",
+    "Every organisation in this directory has earned independent certification of its workplace, assessed on evidence, verified annually, and never for sale.",
 };
 
 const uses = [
   {
     lead: "Research an offer.",
     summary: "Check the employer’s verified level, scope, and validity before you decide.",
-    body: "Weighing an offer in hand? Search the organisation. If it's certified, you'll see its level, certified scope, and validity — independent context no interview will give you.",
+    body: "Weighing an offer in hand? Search the organisation. If it's certified, you'll see its level, certified scope, and validity, independent context no interview will give you.",
   },
   {
     lead: "Discover employers worth watching.",
     summary: "Build a shortlist using industry, location, and certification level.",
-    body: "Filter by industry, location, and certification level to build a shortlist of organisations that have proven their standards — including strong employers you may never have heard of.",
+    body: "Filter by industry, location, and certification level to build a shortlist of organisations that have proven their standards, including strong employers you may never have heard of.",
   },
   {
     lead: "Verify a claim.",
@@ -78,7 +78,7 @@ export default async function DirectoryPage() {
               <p className="font-heading text-5xl font-semibold text-navy/40">“Great culture”</p>
               <h3 className="mt-10 text-xl font-semibold text-navy-ink">What an employer says</h3>
               <p className="mt-3 leading-7 text-muted-foreground">
-                Careers pages, interviews, and reviews can be useful—but they are polished,
+                Careers pages, interviews, and reviews can be useful, but they are polished,
                 selective, or difficult to verify.
               </p>
             </div>

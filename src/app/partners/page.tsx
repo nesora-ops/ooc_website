@@ -9,7 +9,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Channel Partners — Organisation of Choice™",
+  title: "Channel Partners | Organisation of Choice™",
   description:
     "The OOC partner programme lets consultants, advisors, and professional firms bring independent workplace certification to the clients they already serve.",
 };
@@ -121,13 +121,13 @@ export default function PartnersPage() {
       <SectionHeaderBar label="Channel Partners" />
 
       {/* HERO */}
-      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
         <div>
           <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
             Grow your practice by growing great workplaces.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Bring independent workplace certification to the clients you already advise — adding
+            Bring independent workplace certification to the clients you already advise, adding
             credible client value and a recurring revenue stream in the same move.
           </p>
           <div className="mt-8">
@@ -148,14 +148,13 @@ export default function PartnersPage() {
       </section>
 
       {/* WHY PARTNER */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="!mx-0 max-w-5xl font-heading text-[clamp(2.6rem,5.2vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em] text-navy-ink !text-left">
             Turn trusted advice into visible client value.
           </h2>
           <p className="mt-7 max-w-3xl text-lg leading-8 text-muted-foreground">
-            Add a credible certification pathway to your client work — with recurring commercial
-            value and independent assessment built in.
+            Add a certification pathway to your client work, with built-in commercial value.
           </p>
 
           <div className="mt-14 grid grid-flow-dense gap-3 lg:grid-cols-12 lg:auto-rows-[minmax(15rem,auto)]">
@@ -224,8 +223,8 @@ export default function PartnersPage() {
                 <div>
                   <p className="text-sm font-semibold text-teal">Independent from you</p>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                    OOC owns evaluation, determination, and assessment risk — protecting your client
-                    relationship and the value of the mark they earn.
+                    OOC owns evaluation, determination, and assessment risk, protecting your
+                    client relationship and the value of the mark they earn.
                   </p>
                 </div>
               </div>
@@ -235,7 +234,7 @@ export default function PartnersPage() {
       </section>
 
       {/* WHO WE PARTNER WITH */}
-      <section className="relative isolate mx-auto max-w-7xl overflow-hidden px-5 py-24 sm:px-8 lg:min-h-[46rem] lg:px-10 lg:py-28">
+      <section className="relative isolate mx-auto max-w-7xl overflow-hidden px-5 py-14 sm:px-8 lg:min-h-[46rem] lg:px-10 lg:py-20">
         <div aria-hidden className="absolute left-[18%] top-[20%] -z-10 size-72 rounded-full bg-mint/65 blur-3xl" />
         <div aria-hidden className="absolute right-[16%] top-[12%] -z-10 size-64 rounded-full bg-sky/65 blur-3xl" />
         <div aria-hidden className="absolute bottom-[8%] left-[43%] -z-10 size-60 rounded-full bg-butter/35 blur-3xl" />
@@ -246,8 +245,8 @@ export default function PartnersPage() {
             <span className="block">advise employers.</span>
           </h2>
           <p className="mx-auto mt-8 max-w-xl text-base leading-7 text-muted-foreground sm:text-lg">
-            If your firm serves employers in another capacity and sees the fit, we&apos;d still like
-            to hear from you — the application form includes space to tell us about your practice.
+            If you serve employers and see the fit, tell us about your practice in the
+            application.
           </p>
         </div>
 
@@ -268,16 +267,16 @@ export default function PartnersPage() {
       </section>
 
       {/* PARTNER TIERS */}
-      <section id="tiers" className="bg-muted/40 py-16">
+      <section id="tiers" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Partner tiers</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Four tiers. One standard.
           </h2>
           <p className="mt-8 max-w-3xl text-muted-foreground">
-            Every partner joins at Silver tier and progresses on results. Tier reflects the scale
-            and maturity of the partnership — commercial terms, enablement, and visibility grow with
-            it. Advancement criteria: <Placeholder>tier advancement criteria</Placeholder>.
+            All partners start at Silver and progress on results. Terms, enablement, and
+            visibility grow with each tier. Advancement criteria:{" "}
+            <Placeholder>tier advancement criteria</Placeholder>.
           </p>
           <div className="mt-8 grid grid-flow-dense gap-3 sm:grid-cols-2 lg:grid-cols-4">
             {tiers.map((tier) => (
@@ -294,7 +293,7 @@ export default function PartnersPage() {
       </section>
 
       {/* HOW PARTNERSHIP WORKS */}
-      <section className="relative isolate mx-auto max-w-7xl overflow-hidden px-5 py-24 sm:px-8 lg:px-10 lg:py-32">
+      <section className="relative isolate mx-auto max-w-7xl overflow-hidden px-5 py-14 sm:px-8 lg:px-10 lg:py-20">
         <div aria-hidden className="absolute right-[8%] top-[8%] -z-10 size-64 rounded-full bg-sky/50 blur-3xl" />
         <div aria-hidden className="absolute bottom-[3%] left-[10%] -z-10 size-64 rounded-full bg-mint/55 blur-3xl" />
 
@@ -334,7 +333,7 @@ export default function PartnersPage() {
       </section>
 
       {/* PARTNER APPLICATION FORM */}
-      <section id="apply" className="bg-muted/40 py-16">
+      <section id="apply" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Partner application form

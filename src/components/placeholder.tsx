@@ -57,7 +57,7 @@ export function Placeholder({ children, variant = "inline", className }: Placeho
     return (
       <div
         data-content-key={key}
-        title={`Temporary content — replace from backend field: ${key}`}
+        title={`Temporary content: replace from backend field: ${key}`}
         className={cn(
           "rounded-2xl border border-navy/8 bg-white/75 p-5 text-sm text-navy-ink",
           className
@@ -71,7 +71,7 @@ export function Placeholder({ children, variant = "inline", className }: Placeho
   return (
     <span
       data-content-key={key}
-      title={`Temporary content — replace from backend field: ${key}`}
+      title={`Temporary content: replace from backend field: ${key}`}
       className={cn(
         "whitespace-normal text-[0.96em] font-medium text-navy-ink [hyphens:none] [overflow-wrap:normal] [word-break:normal]",
         className

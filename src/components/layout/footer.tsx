@@ -39,7 +39,7 @@ export function Footer() {
         <div className="mt-14 flex flex-col justify-between gap-5 border-t border-navy/10 pt-7 lg:flex-row lg:items-start">
           <div className="max-w-3xl space-y-2">
             <p className="text-xs leading-5 text-muted-foreground">
-              © <Placeholder>year</Placeholder> Organisation of Choice™ — a programme of Carbon Value Partners Private Limited.
+              © <Placeholder>year</Placeholder> Organisation of Choice™, a programme of Carbon Value Partners Private Limited.
             </p>
             <CookiePreferencesLink />
           </div>
@@ -47,7 +47,7 @@ export function Footer() {
             {socialLinks.map((platform) => (
               <span
                 key={platform}
-                title={`${platform} — coming soon`}
+                title={`${platform} (coming soon)`}
                 aria-disabled="true"
                 className="rounded-lg border border-dashed border-navy/20 bg-white/55 px-2.5 py-1.5 text-[11px] font-semibold text-muted-foreground"
               >

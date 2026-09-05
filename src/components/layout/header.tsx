@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu } from "lucide-react";
@@ -20,13 +21,14 @@ import { cn } from "@/lib/utils";
 function Logo() {
   return (
     <Link href="/" className="group flex shrink-0 items-center gap-2.5 text-navy" aria-label="Organisation of Choice home">
-      <span className="grid size-10 place-items-center rounded-xl bg-mint text-xs font-bold tracking-[-0.08em] text-teal ring-1 ring-teal/15 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-        OOC
-      </span>
-      <span className="hidden leading-[0.92] tracking-[-0.04em] sm:block xl:hidden 2xl:block">
-        <span className="block text-sm font-semibold">Organisation</span>
-        <span className="block text-sm font-semibold text-teal">of Choice™</span>
-      </span>
+      <Image
+        src="/images/brand/ooc_logo.png"
+        alt="Organisation of Choice"
+        width={40}
+        height={40}
+        className="transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105"
+        priority
+      />
     </Link>
   );
 }

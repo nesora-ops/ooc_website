@@ -8,7 +8,7 @@ import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Contact — Organisation of Choice™",
+  title: "Contact | Organisation of Choice™",
   description:
     "Exploring certification, considering partnership, or have a question about the programme? We'd like to hear from you.",
 };
@@ -158,7 +158,7 @@ export default function ContactPage() {
 
       <CTABand
         heading="Ready when you are."
-        body="The fastest way to explore certification is simply to apply — it's free, and it creates no obligation."
+        body="The fastest way to explore certification is simply to apply. It's free, and it creates no obligation."
         primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
       />
     </>

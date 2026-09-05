@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!post) return {};
 
   return {
-    title: `${post.title} — Organisation of Choice™`,
+    title: `${post.title} | Organisation of Choice™`,
     description: post.teaser,
   };
 }
@@ -33,7 +33,7 @@ export default async function BlogPostPage({ params }: Params) {
 
   return (
     <>
-      <SectionHeaderBar label="Resources — Blog" />
+      <SectionHeaderBar label="Resources: Blog" />
 
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-3xl font-bold text-navy-ink sm:text-4xl">{post.title}</h1>

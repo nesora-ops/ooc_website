@@ -31,10 +31,16 @@ const apiBase = process.env.NEXT_PUBLIC_FORMS_API_URL;
 export function useFormSubmit(path: string) {
   const [state, setState] = useState<FormState>({ status: "idle" });
 
-  async function submit(data: Record<string, unknown>) {
+  /**
+   * Returns the state it settled on as well as setting it, so a caller can react
+   * to a specific failure (the certification wizard sends a rejected email back
+   * to its contact step) without reading it back through an effect.
+   */
+  async function submit(data: Record<string, unknown>): Promise<FormState> {
     if (!apiBase) {
-      setState({ status: "not-connected" });
-      return;
+      const next: FormState = { status: "not-connected" };
+      setState(next);
+      return next;
     }
 
     setState({ status: "submitting" });
@@ -47,21 +53,24 @@ export function useFormSubmit(path: string) {
       });
       const result = await response.json().catch(() => ({}));
 
-      if (response.ok && result.success) {
-        setState({ status: "success" });
-      } else {
-        // The API returns { error }, so a server-side validation message
-        // surfaces to the user verbatim.
-        setState({
-          status: "error",
-          message: result.error ?? "Something went wrong. Please try again.",
-        });
-      }
+      // The API returns { error }, so a server-side validation message
+      // surfaces to the user verbatim.
+      const next: FormState =
+        response.ok && result.success
+          ? { status: "success" }
+          : {
+              status: "error",
+              message: result.error ?? "Something went wrong. Please try again.",
+            };
+      setState(next);
+      return next;
     } catch {
-      setState({
+      const next: FormState = {
         status: "error",
         message: "Something went wrong. Please try again.",
-      });
+      };
+      setState(next);
+      return next;
     }
   }
 

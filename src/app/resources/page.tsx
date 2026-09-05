@@ -6,9 +6,9 @@ import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Resources — Organisation of Choice™",
+  title: "Resources | Organisation of Choice™",
   description:
-    "Practical insight on workplace culture, employer branding, and what actually makes organisations worth choosing — from the team that assesses them for a living.",
+    "Practical insight on workplace culture, employer branding, and what actually makes organisations worth choosing, from the team that assesses them for a living.",
 };
 
 const sections = [
@@ -48,14 +48,14 @@ export default function ResourcesPage() {
       <SectionHeaderBar label="Resources" />
 
       {/* HUB HERO */}
-      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[0.85fr_1.15fr] lg:items-center lg:px-8">
         <div>
           <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
             Ideas worth working with.
           </h1>
           <p className="mt-6 max-w-xl text-lg text-muted-foreground">
             Practical insight on culture, employer branding, and what makes organisations worth
-            choosing — from the people who assess workplaces for a living.
+            choosing, from the people who assess workplaces for a living.
           </p>
         </div>
         <ImageSlot
@@ -70,7 +70,7 @@ export default function ResourcesPage() {
       </section>
 
       {/* HUB SECTIONS */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-flow-dense gap-3 lg:grid-cols-12 lg:grid-rows-2">
             {sections.map((section, index) => {

@@ -13,17 +13,17 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Assessment scope",
     definition:
-      "The defined boundary of a certification — the whole organisation, or specific locations, divisions, or entities. The scope always appears alongside the certification in the public directory.",
+      "The defined boundary of a certification: the whole organisation, or specific locations, divisions, or entities. The scope always appears alongside the certification in the public directory.",
   },
   {
     term: "Assessor group",
     definition:
-      "One of the distinct perspectives contributing evidence to an assessment — including employees, leadership, and independent assessors. Every section of the framework draws on multiple assessor groups.",
+      "One of the distinct perspectives contributing evidence to an assessment, including employees, leadership, and independent assessors. Every section of the framework draws on multiple assessor groups.",
   },
   {
     term: "Certification level",
     definition:
-      "The tier awarded on certification — Silver, Gold, Platinum, or Diamond — reflecting the overall assessment result against published thresholds.",
+      "The tier awarded on certification (Silver, Gold, Platinum, or Diamond), reflecting the overall assessment result against published thresholds.",
   },
   {
     term: "Certification mark",
@@ -38,7 +38,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Employee experience",
     definition:
-      "How employees actually encounter the workplace day to day — distinct from what policies say. OOC assessment measures both, and weights lived experience heavily.",
+      "How employees actually experience the workplace day to day, distinct from what policies state. OOC assessment measures both, and weights lived experience heavily.",
   },
   {
     term: "Employer brand",
@@ -63,7 +63,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Mandatory criteria",
     definition:
-      "Non-negotiable requirements — typically matters of legal compliance, safety, and fair treatment — that must be met in full for certification at any level, regardless of scores elsewhere.",
+      "Non-negotiable requirements, typically covering legal compliance, safety, and fair treatment, that must be met in full for certification at any level, regardless of scores elsewhere.",
   },
   {
     term: "Multi-stakeholder assessment",
@@ -78,7 +78,7 @@ export const glossaryTerms: GlossaryTerm[] = [
   {
     term: "Scoring summary",
     definition:
-      "The consolidated results document showing section-by-section scores, benchmarks, and the overall determination — provided in full to the assessed organisation.",
+      "The consolidated results document showing section-by-section scores, benchmarks, and the overall determination, provided in full to the assessed organisation.",
   },
   {
     // Source doc leaves the validity period itself as a placeholder; the

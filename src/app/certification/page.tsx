@@ -10,29 +10,29 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { certificationFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "The Certification — Organisation of Choice™",
+  title: "The Certification | Organisation of Choice™",
   description:
     "How OOC certification works: what we assess, the stage-by-stage assessment process, the four certification levels, and how scoring is applied.",
 };
 
 const levels = [
   {
-    name: "Silver — Strong foundations.",
+    name: "Silver: Strong foundations.",
     summary: "Fair, compliant, and well-run with the essential people systems in place.",
     body: "Silver certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. It is the credible starting point, with a clear report showing the route to Gold.",
   },
   {
-    name: "Gold — Engaged and improving.",
+    name: "Gold: Engaged and improving.",
     summary: "Mature systems, positive employee experience, and systematic improvement.",
     body: "Gold certification signifies an organisation whose investment in people is producing measurable results: employees report a positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional.",
   },
   {
-    name: "Platinum — Advanced and consistent.",
+    name: "Platinum: Advanced and consistent.",
     summary: "Industry-leading practices and an outstanding, consistent employee experience.",
     body: "Platinum certification recognises advanced workplaces with industry-leading practices, an outstanding and consistent employee experience, and evidence of innovation in how people are led, developed, and cared for.",
   },
   {
-    name: "Diamond — A workplace others benchmark against.",
+    name: "Diamond: A workplace others benchmark against.",
     summary: "Sustained excellence across people practices, experience, and leadership.",
     body: "Diamond certification is the highest level of recognition, reserved for organisations that sustain exceptional evidence across the framework and provide a workplace standard others can benchmark against.",
   },
@@ -92,19 +92,18 @@ export default function CertificationPage() {
       <SectionHeaderBar label="The Certification" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Certification you can stand behind.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Every Organisation of Choice™ certification is the outcome of a structured,
-          evidence-based, multi-stakeholder assessment. This page explains exactly how it works —
-          because a certification is only as credible as the process behind it.
+          Every OOC certification comes from structured, multi-stakeholder assessment. Here is
+          exactly how it works.
         </p>
       </section>
 
       {/* WHAT WE ASSESS */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Built systems meet lived experience.
@@ -147,7 +146,7 @@ export default function CertificationPage() {
       </section>
 
       {/* THE ASSESSMENT PROCESS */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           Five checkpoints. One defensible outcome.
         </h2>
@@ -200,7 +199,7 @@ export default function CertificationPage() {
       </section>
 
       {/* CERTIFICATION LEVELS */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             Certification levels
@@ -233,7 +232,7 @@ export default function CertificationPage() {
       </section>
 
       {/* SCORING & CRITERIA */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Scoring &amp; criteria
         </p>
@@ -253,8 +252,8 @@ export default function CertificationPage() {
           </p>
           <p>
             Mandatory criteria operate independently of the score. These are the non-negotiables of
-            a legitimate workplace — matters of legal compliance, safety, and fair treatment — and
-            an organisation that does not meet them cannot be certified at any level, regardless of
+            a legitimate workplace, covering legal compliance, safety, and fair treatment. An
+            organisation that does not meet them cannot be certified at any level, regardless of
             its performance elsewhere. This is what keeps every OOC certification meaningful.
           </p>
           <p>
@@ -262,14 +261,14 @@ export default function CertificationPage() {
             section-by-section results, benchmarks against comparable organisations, and the lead
             assessor&apos;s prioritised recommendations. Organisations that fall short of
             certification receive the same detailed report, and may be reassessed after addressing
-            the gaps — because the purpose of the framework is better workplaces, not gatekeeping
+            the gaps, because the purpose of the framework is better workplaces, not gatekeeping
             for its own sake.
           </p>
         </ProgressiveDetails>
       </section>
 
       {/* FAQ */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="mx-auto max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Frequently asked questions.
@@ -280,7 +279,7 @@ export default function CertificationPage() {
 
       <CTABand
         heading="See where your organisation stands."
-        body="The assessment tells you what your people already know — and shows the world what you've built."
+        body="The assessment tells you what your people already know, and shows the world what you've built."
         primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
       />
     </>

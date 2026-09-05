@@ -3,6 +3,7 @@ export const siteName = "Organisation of Choice™";
 export const primaryCta = { label: "Apply for Certification", href: "/employers#apply" };
 
 export const mainNav = [
+  { label: "Home", href: "/" },
   { label: "About", href: "/about" },
   { label: "Certification", href: "/certification" },
   { label: "For Employers", href: "/employers" },

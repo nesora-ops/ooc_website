@@ -72,7 +72,7 @@ export function PartnerApplicationForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you — your application is with us."
+        title="Thank you. Your application is with us."
         message={
           <>
             The partnerships team will review your details and respond within{" "}
@@ -80,7 +80,7 @@ export function PartnerApplicationForm() {
             practice.
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected — your details were validated but not sent.
+                Form submission is not yet connected. Your details were validated but not sent.
               </p>
             )}
           </>

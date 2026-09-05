@@ -8,9 +8,9 @@ import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "About — Organisation of Choice™",
+  title: "About | Organisation of Choice™",
   description:
-    "Organisation of Choice™ exists to make workplace quality visible — giving employers independent recognition and talent a signal they can trust.",
+    "Organisation of Choice™ exists to make workplace quality visible, giving employers independent recognition and talent a signal they can trust.",
 };
 
 const differentiators = [
@@ -22,7 +22,7 @@ const differentiators = [
   {
     lead: "We assess from every angle.",
     summary: "Employees, leadership, and independent evaluators each contribute evidence.",
-    body: "A workplace looks different from the boardroom than it does from the floor. That is why our framework gathers structured input from multiple assessor groups — employees, leadership, and independent evaluators — across every dimension of the employment experience. No single perspective can carry a certification on its own.",
+    body: "A workplace looks different from the boardroom than it does from the floor. That is why our framework gathers structured input from multiple assessor groups, including employees, leadership, and independent evaluators, across every dimension of the employment experience. No single perspective can carry a certification on its own.",
   },
   {
     lead: "We certify improvement, not perfection.",
@@ -37,19 +37,18 @@ export default function AboutPage() {
       <SectionHeaderBar label="About" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Making workplace quality visible.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Organisation of Choice™ exists for a simple reason: the organisations that treat their
-          people well deserve to be recognised for it — and the people choosing where to work
-          deserve a signal they can trust.
+          Organisations that invest in their people deserve recognition. And people choosing where
+          to work deserve a signal they can trust.
         </p>
       </section>
 
       {/* OUR STORY */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <ImageSlot
@@ -91,14 +90,14 @@ export default function AboutPage() {
       </section>
 
       {/* MISSION AND VISION */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[2.25rem] border border-navy/8 bg-white/70 sm:grid-cols-2">
           <div className="p-8 sm:p-10 lg:p-12">
             <Eye className="size-8 text-teal" aria-hidden strokeWidth={1.6} />
             <h2 className="mt-8 font-heading text-3xl font-semibold text-navy-ink">Make it visible.</h2>
             <p className="mt-3 text-muted-foreground">
               To recognise and certify employers who demonstrably invest in their people, through
-              independent, multi-stakeholder assessment — and to give talent everywhere a
+              independent, multi-stakeholder assessment, and to give talent everywhere a
               trustworthy signal of where great workplaces can be found.
             </p>
           </div>
@@ -107,7 +106,7 @@ export default function AboutPage() {
             <h2 className="mt-8 font-heading text-3xl font-semibold text-white">Make it matter.</h2>
             <p className="mt-3 text-white/72">
               A working world in which workplace quality is as visible, comparable, and valued as
-              financial performance — and in which being an organisation of choice is every
+              financial performance, and in which being an organisation of choice is every
               employer&apos;s ambition.
             </p>
           </div>
@@ -115,7 +114,7 @@ export default function AboutPage() {
       </section>
 
       {/* WHAT MAKES US DIFFERENT */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Why our certification holds its value.
@@ -150,7 +149,7 @@ export default function AboutPage() {
       </section>
 
       {/* TEAM AND GOVERNANCE */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Team and governance
         </p>
@@ -158,8 +157,7 @@ export default function AboutPage() {
           The people behind the programme.
         </h2>
         <p className="mt-8 max-w-3xl text-muted-foreground">
-          Organisation of Choice™ is led by its founder and supported by a team of assessors,
-          advisors, and programme specialists who share one standard: every certification must be
+          Led by its founder, with a team of assessors and advisors. Every certification must be
           defensible on the evidence.
         </p>
         <ul className="mt-8 grid gap-4 sm:grid-cols-3">
@@ -172,7 +170,7 @@ export default function AboutPage() {
               className="mb-4"
             />
             <p className="font-heading font-semibold text-navy-ink">
-              Ketaki — Founder &amp; <Placeholder>designation</Placeholder>
+              Ketaki, Founder &amp; <Placeholder>designation</Placeholder>
             </p>
             <p className="mt-2">
               <Placeholder>two-line biography</Placeholder>
@@ -191,7 +189,7 @@ export default function AboutPage() {
                 className="mb-4"
               />
               <p className="font-heading font-semibold text-navy-ink">
-                <Placeholder>team member name</Placeholder> —{" "}
+                <Placeholder>team member name</Placeholder>,{" "}
                 <Placeholder>designation</Placeholder>
               </p>
               <p className="mt-2">
