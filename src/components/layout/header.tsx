@@ -21,14 +21,23 @@ import { cn } from "@/lib/utils";
 function Logo() {
   return (
     <Link href="/" className="group flex shrink-0 items-center gap-2.5 text-navy" aria-label="Organisation of Choice home">
-      <Image
-        src="/images/brand/ooc_logo.png"
-        alt="Organisation of Choice"
-        width={40}
-        height={40}
-        className="transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105"
-        priority
-      />
+      <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-teal/15 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
+        {/* The mark is a 2.43:1 landscape PNG on an opaque white ground, so the
+            badge is white too and the image is contained rather than cropped —
+            the rule lines run to its edges and a cover crop would cut them. */}
+        <Image
+          src="/images/brand/logo_only_ooc.png"
+          alt=""
+          width={577}
+          height={237}
+          className="w-[85%] object-contain"
+          priority
+        />
+      </span>
+      <span className="hidden leading-[0.92] tracking-[-0.04em] sm:block xl:hidden 2xl:block">
+        <span className="block text-sm font-semibold">Organisation</span>
+        <span className="block text-sm font-semibold text-teal">of Choice™</span>
+      </span>
     </Link>
   );
 }
