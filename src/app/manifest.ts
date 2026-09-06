@@ -10,11 +10,11 @@ export default function manifest(): MetadataRoute.Manifest {
       "Independent workplace certification for employers who want to prove they're a great place to work.",
     start_url: "/",
     display: "standalone",
-    theme_color: "#0D5C46",
-    background_color: "#0A4536",
+    theme_color: "#FFFFFF",
+    background_color: "#1F2A5A",
     icons: [
       {
-        src: "/images/brand/favicon-512.png",
+        src: "/images/brand/favicon-512-navy.png",
         sizes: "512x512",
         type: "image/png",
         purpose: "any",

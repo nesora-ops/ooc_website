@@ -138,10 +138,10 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
                           its wordmark and laurel illegible (see brand/seal.tsx,
                           96px floor), so the monogram stands in at 28px. */}
                       <Image
-                        src="/images/brand/mark-green.png"
+                        src="/images/brand/mark-navy.png"
                         alt=""
-                        width={28}
-                        height={28}
+                        width={577}
+                        height={200}
                         className="h-[28px] w-auto shrink-0"
                       />
                       <Badge variant="outline" className={cn("px-3 py-1 font-semibold", levelMeta[employer.level].badge)}>

@@ -16,7 +16,7 @@ export function BadgeEmbed({ snippet }: { snippet: string }) {
 
   return (
     <div className="mt-6">
-      <pre className="overflow-x-auto rounded-2xl border border-navy/10 bg-white/85 p-4 text-left text-xs leading-6 text-ooc-ink">
+      <pre className="overflow-x-auto rounded-2xl border border-navy/10 bg-white/85 p-4 text-left text-xs leading-6 text-ooc-navy">
         <code>{snippet}</code>
       </pre>
       <Button type="button" onClick={copy} className="mt-4">

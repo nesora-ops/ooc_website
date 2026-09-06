@@ -9,7 +9,11 @@ import { cn } from "@/lib/utils";
 // this component was added to fix. Every seal in the site goes through here so
 // the floor stays in one file — `size` is clamped, not merely documented.
 //
-// Need a mark under 96px? Use mark-green.png / mark-white.png instead. The
+// seal.png's disc is transparent and its wordmark is navy, so it needs a light
+// ground behind it. The footer's #edf5f2 already serves as that plate; on a dark
+// surface it would need an explicit white/#EDF5F2 circular plate instead.
+//
+// Need a mark under 96px? Use mark-navy.png / mark-white.png instead. The
 // directory cards do this at 28px (components/directory/employer-directory.tsx).
 const MIN_SEAL_PX = 96;
 

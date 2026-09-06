@@ -48,9 +48,11 @@
   --color-coral: var(--coral);
   --color-sky: var(--sky);
   --color-butter: var(--butter);
+  --color-ooc-navy: var(--ooc-navy);
+  --color-ooc-navy-ink: var(--ooc-navy-ink);
+  --color-ooc-navy-line: var(--ooc-navy-line);
+  --color-ooc-navy-mute: var(--ooc-navy-mute);
   --color-ooc-green-700: var(--ooc-green-700);
-  --color-ooc-green-800: var(--ooc-green-800);
-  --color-ooc-ink: var(--ooc-ink);
   --color-ooc-gold: var(--ooc-gold);
   --radius-sm: calc(var(--radius) * 0.55);
   --radius-md: calc(var(--radius) * 0.8);
@@ -75,11 +77,16 @@
   --sky: #dfe9ff;
   --butter: #f7e8a4;
 
-  /* Brand palette for the logo lockup, header bar, and seal surfaces.
+  /* Brand palette for the logo lockup, header, and seal surfaces.
+     Measured on white: --ooc-navy 13.7:1, --ooc-navy-mute 7.3:1, both well
+     clear of AA. Never lighten navy text with opacity — step down to
+     --ooc-navy-mute instead.
      --ooc-gold is an accent only (underlines, rules) — never body text. */
+  --ooc-navy: #1f2a5a;
+  --ooc-navy-ink: #12193a;
+  --ooc-navy-line: #e4e8f2;
+  --ooc-navy-mute: #4a5578;
   --ooc-green-700: #0d5c46;
-  --ooc-green-800: #0a4536;
-  --ooc-ink: #12211c;
   --ooc-gold: #c8922e;
 
   --background: #fbfcf8;
@@ -123,6 +130,8 @@
 
   html {
     @apply scroll-smooth font-sans;
+    /* Clears the 76px sticky header plus breathing room. */
+    scroll-padding-top: 92px;
   }
 
   body {

@@ -21,10 +21,10 @@ export const metadata: Metadata = {
   // Explicit files in public/images/brand replace the old app/favicon.ico convention.
   icons: {
     icon: [
-      { url: "/images/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/images/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/images/brand/favicon-16-navy.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/brand/favicon-32-navy.png", sizes: "32x32", type: "image/png" },
     ],
-    apple: [{ url: "/images/brand/favicon-180.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/images/brand/favicon-180-navy.png", sizes: "180x180", type: "image/png" }],
   },
 };
 

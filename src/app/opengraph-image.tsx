@@ -30,7 +30,7 @@ export default async function OpengraphImage() {
           alignItems: "center",
           justifyContent: "center",
           gap: 40,
-          backgroundColor: "#0A4536",
+          backgroundColor: "#FFFFFF",
           fontFamily: "sans-serif",
         }}
       >
@@ -38,7 +38,7 @@ export default async function OpengraphImage() {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={seal} alt="" width={300} height={300} />
         ) : null}
-        <div style={{ display: "flex", color: "#ffffff", fontSize: 54, fontWeight: 600 }}>
+        <div style={{ display: "flex", color: "#1F2A5A", fontSize: 54, fontWeight: 600 }}>
           Organisation of Choice
         </div>
       </div>
