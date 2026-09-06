@@ -18,25 +18,39 @@ import {
 import { mainNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
+// Reversed lockup for the solid green bar. The full circular seal is never used
+// here — at header scale its wordmark and laurel are unreadable, so the bar gets
+// the horizontal mark (>=640px) or the CC monogram alone (<640px).
+// See components/brand/seal.tsx for where the seal *is* allowed.
 function Logo() {
   return (
-    <Link href="/" className="group flex shrink-0 items-center gap-2.5 text-navy" aria-label="Organisation of Choice home">
-      <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-teal/15 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-        {/* The mark is a 2.43:1 landscape PNG on an opaque white ground, so the
-            badge is white too and the image is contained rather than cropped —
-            the rule lines run to its edges and a cover crop would cut them. */}
-        <Image
-          src="/images/brand/logo_only_ooc.png"
-          alt=""
-          width={577}
-          height={237}
-          className="w-[85%] object-contain"
-          priority
-        />
-      </span>
-      <span className="hidden leading-[0.92] tracking-[-0.04em] sm:block xl:hidden 2xl:block">
-        <span className="block text-sm font-semibold">Organisation</span>
-        <span className="block text-sm font-semibold text-teal">of Choice™</span>
+    <Link
+      href="/"
+      className="flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-gold focus-visible:ring-offset-2 focus-visible:ring-offset-ooc-green-800"
+      aria-label="Organisation of Choice, home"
+    >
+      <Image
+        src="/images/brand/mark-white.png"
+        alt="Organisation of Choice"
+        width={120}
+        height={34}
+        priority
+        className="hidden h-[34px] w-auto sm:block"
+      />
+      <Image
+        src="/images/brand/monogram-cc-white.png"
+        alt="Organisation of Choice"
+        width={30}
+        height={30}
+        priority
+        className="h-[30px] w-auto sm:hidden"
+      />
+      <span aria-hidden className="hidden h-[30px] w-px bg-white/28 sm:block" />
+      <span className="hidden text-[14px] font-semibold leading-[1.15] tracking-[-0.01em] text-white sm:block">
+        <span className="block">Organisation</span>
+        <span className="block">
+          of Choice<sup className="text-[0.6em] font-semibold">™</sup>
+        </span>
       </span>
     </Link>
   );
@@ -46,8 +60,8 @@ export function Header() {
   const pathname = usePathname();
 
   return (
-    <header className="sticky top-0 z-40 px-3 py-3 sm:px-5">
-      <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between rounded-2xl border border-white/75 bg-white/82 px-3 shadow-[0_14px_50px_rgba(23,50,77,0.09)] backdrop-blur-xl sm:px-4 lg:px-5">
+    <header className="sticky top-0 z-40 bg-ooc-green-800">
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:h-[76px] sm:px-8 lg:px-10">
         <Logo />
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
@@ -59,8 +73,11 @@ export function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-lg px-2.5 py-2 text-[0.78rem] font-semibold text-foreground/75 transition-colors hover:bg-mint/70 hover:text-teal",
-                  active && "bg-mint text-teal"
+                  // White on #0A4536 is ~9:1; 0.82 is the floor kept for AA.
+                  "rounded-md px-2.5 py-2 text-[14px] font-medium text-white/[0.82] underline-offset-[6px] transition-colors outline-none",
+                  "hover:text-white hover:underline hover:decoration-ooc-gold hover:decoration-2",
+                  "focus-visible:text-white focus-visible:underline focus-visible:decoration-ooc-gold focus-visible:decoration-2",
+                  active && "text-white"
                 )}
               >
                 {item.label}
@@ -70,7 +87,10 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:block">
-          <Button asChild className="group">
+          <Button
+            asChild
+            className="group h-auto rounded-full bg-white px-[22px] py-[14px] text-ooc-green-800 shadow-none hover:bg-[#F2F6F4] hover:text-ooc-green-800 hover:shadow-none"
+          >
             <Link href={primaryCta.href}>
               {primaryCta.label}
               <ArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -80,12 +100,20 @@ export function Header() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Open menu">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-white hover:bg-white/12 hover:text-white xl:hidden"
+              aria-label="Open menu"
+            >
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full border-l-0 bg-background sm:max-w-md">
-            <SheetHeader className="border-b border-border pb-5">
+          <SheetContent
+            side="right"
+            className="w-full border-l-0 bg-ooc-green-800 text-white [&>button]:text-white [&>button]:opacity-100 sm:max-w-md"
+          >
+            <SheetHeader className="border-b border-white/15 pb-5">
               <SheetTitle>
                 <Logo />
               </SheetTitle>
@@ -100,8 +128,8 @@ export function Header() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "rounded-xl px-4 py-3 text-base font-semibold text-foreground transition-colors hover:bg-mint",
-                        active && "bg-mint text-teal"
+                        "rounded-xl px-4 py-3 text-[18px] font-semibold text-white transition-colors hover:bg-white/10",
+                        active && "bg-white/12"
                       )}
                     >
                       {item.label}
@@ -112,7 +140,10 @@ export function Header() {
             </nav>
             <div className="mt-auto px-4 pb-4">
               <SheetClose asChild>
-                <Button asChild className="w-full">
+                <Button
+                  asChild
+                  className="h-auto w-full rounded-full bg-white px-[22px] py-[14px] text-ooc-green-800 shadow-none hover:bg-[#F2F6F4] hover:text-ooc-green-800 hover:shadow-none"
+                >
                   <Link href={primaryCta.href}>{primaryCta.label}</Link>
                 </Button>
               </SheetClose>

@@ -48,6 +48,10 @@
   --color-coral: var(--coral);
   --color-sky: var(--sky);
   --color-butter: var(--butter);
+  --color-ooc-green-700: var(--ooc-green-700);
+  --color-ooc-green-800: var(--ooc-green-800);
+  --color-ooc-ink: var(--ooc-ink);
+  --color-ooc-gold: var(--ooc-gold);
   --radius-sm: calc(var(--radius) * 0.55);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -70,6 +74,13 @@
   --coral: #ff8b70;
   --sky: #dfe9ff;
   --butter: #f7e8a4;
+
+  /* Brand palette for the logo lockup, header bar, and seal surfaces.
+     --ooc-gold is an accent only (underlines, rules) — never body text. */
+  --ooc-green-700: #0d5c46;
+  --ooc-green-800: #0a4536;
+  --ooc-ink: #12211c;
+  --ooc-gold: #c8922e;
 
   --background: #fbfcf8;
   --foreground: #263846;

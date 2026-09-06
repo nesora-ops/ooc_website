@@ -1,5 +1,6 @@
 import Link from "next/link";
 
+import { Seal } from "@/components/brand/seal";
 import { CookiePreferencesLink } from "@/components/layout/cookie-preferences-link";
 import { NewsletterSignup } from "@/components/sections/newsletter-signup";
 import { Placeholder } from "@/components/placeholder";
@@ -17,6 +18,12 @@ export function Footer() {
             </p>
           </div>
           <NewsletterSignup />
+        </div>
+
+        {/* The footer ground is light (#edf5f2), so the transparent seal sits on
+            it directly — no white plate needed. */}
+        <div className="mx-auto max-w-6xl">
+          <Seal size={96} className="mb-8" />
         </div>
 
         <div className="mx-auto grid max-w-6xl gap-10 text-left sm:grid-cols-2 lg:grid-cols-5">

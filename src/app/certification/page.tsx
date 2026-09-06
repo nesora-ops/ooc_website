@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Award, Building2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
+import { Seal } from "@/components/brand/seal";
 import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
@@ -93,6 +94,7 @@ export default function CertificationPage() {
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <Seal size={200} priority className="mb-2" />
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           Certification you can stand behind.
         </h1>
