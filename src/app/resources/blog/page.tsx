@@ -7,14 +7,14 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { blogPosts } from "@/data/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog — Organisation of Choice™",
+  title: "Blog | Organisation of Choice™",
   description: "Regular insight on culture, talent, and certification.",
 };
 
 export default function BlogListingPage() {
   return (
     <>
-      <SectionHeaderBar label="Resources — Blog" />
+      <SectionHeaderBar label="Resources: Blog" />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-4xl font-bold text-navy-ink">Blog.</h1>

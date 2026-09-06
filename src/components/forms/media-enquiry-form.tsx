@@ -42,13 +42,13 @@ export function MediaEnquiryForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you — we have your enquiry."
+        title="Thank you. We have your enquiry."
         message={
           <>
             If you&apos;ve indicated a deadline, we&apos;ll prioritise accordingly.
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected — your details were validated but not sent.
+                Form submission is not yet connected. Your details were validated but not sent.
               </p>
             )}
           </>

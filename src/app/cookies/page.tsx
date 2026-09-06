@@ -4,7 +4,7 @@ import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy — Organisation of Choice™",
+  title: "Cookie Policy | Organisation of Choice™",
   description:
     "How Organisation of Choice™ uses cookies and similar technologies on organisationofchoice.com.",
 };
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function CookiesPage() {
   return (
     <>
-      <SectionHeaderBar label="Legal — Cookie Policy" />
+      <SectionHeaderBar label="Legal: Cookie Policy" />
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-4xl font-bold text-navy-ink">Cookie Policy.</h1>
@@ -27,12 +27,12 @@ export default function CookiesPage() {
           </p>
           <p>
             We use the following categories of cookies. (a) Strictly necessary cookies, which are
-            required for the website to function — including cookies that maintain form state and
-            remember your cookie preferences — and which cannot be switched off through the site.
+            required for the website to function, including cookies that maintain form state and
+            remember your cookie preferences. These cannot be switched off through the site.
             (b) Analytics cookies, which help us understand how visitors use the site so that we can
             improve it; these are set only with your consent and the information they collect is
-            aggregated. (c) Functional cookies, which remember choices you make — such as directory
-            filters — to improve your experience on return visits. The specific cookies in use,
+            aggregated. (c) Functional cookies, which remember choices you make, such as directory
+            filters, to improve your experience on return visits. The specific cookies in use,
             their providers, and their durations are listed in the cookie preference centre:{" "}
             <Placeholder>cookie inventory</Placeholder>.
           </p>

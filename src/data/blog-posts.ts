@@ -17,8 +17,8 @@ export type BlogPost = {
 };
 
 const titles = [
-  'Why "Great Culture" Claims No Longer Work — and What Does',
-  "The Real Cost of Attrition — and the Culture Levers That Reduce It",
+  'Why "Great Culture" Claims No Longer Work, and What Does',
+  "The Real Cost of Attrition, and the Culture Levers That Reduce It",
   "Silver, Gold, Platinum, Diamond: How to Read an OOC Certification Level",
   "Ten Questions to Ask in an Interview That Reveal Real Culture",
   "Inside a Multi-Stakeholder Assessment: Why One Voice Is Never Enough",

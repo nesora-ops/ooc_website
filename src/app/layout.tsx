@@ -18,6 +18,14 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
+  // Explicit files in public/images/brand replace the old app/favicon.ico convention.
+  icons: {
+    icon: [
+      { url: "/images/brand/favicon-16-navy.png", sizes: "16x16", type: "image/png" },
+      { url: "/images/brand/favicon-32-navy.png", sizes: "32x32", type: "image/png" },
+    ],
+    apple: [{ url: "/images/brand/favicon-180-navy.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

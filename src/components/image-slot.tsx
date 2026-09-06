@@ -7,8 +7,8 @@ import { cn } from "@/lib/utils";
 // without hunting through JSX. Empty slots render as labelled dashed blocks.
 //
 // See uiux.md — imagery must explain a concept, show a real person or product
-// context, or reduce cognitive load. The homepage proof area, directory hero,
-// and team illustration remain out of scope by standing decision.
+// context, or reduce cognitive load. Real team, client, certification, and
+// office photography should only be supplied when verified source assets exist.
 
 type Aspect = "square" | "video" | "portrait" | "wide";
 

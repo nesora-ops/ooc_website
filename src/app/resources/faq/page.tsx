@@ -5,7 +5,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { resourcesFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "FAQs — Organisation of Choice™",
+  title: "FAQs | Organisation of Choice™",
   description: "Straight answers for employers, job seekers, and partners.",
 };
 
@@ -18,7 +18,7 @@ const groups = [
 export default function FAQPage() {
   return (
     <>
-      <SectionHeaderBar label="Resources — FAQs" />
+      <SectionHeaderBar label="Resources: FAQs" />
 
       <section data-standard-layout className="mx-auto max-w-3xl px-4 py-16 text-left sm:px-6 lg:px-8">
         <h1 className="font-heading text-4xl font-bold text-navy-ink">

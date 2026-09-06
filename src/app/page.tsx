@@ -21,15 +21,15 @@ import { blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Organisation of Choice™ — Independent Workplace Certification",
+  title: "Organisation of Choice™ | Independent Workplace Certification",
   description:
-    "The independent workplace certification that proves your commitment to your people — through rigorous, multi-stakeholder assessment, not self-declaration.",
+    "The independent workplace certification that proves your commitment to your people, backed by rigorous multi-stakeholder assessment, not self-declaration.",
 };
 
 const benefits = [
   {
     title: "Attract & retain talent.",
-    body: "Give candidates independent proof of your culture — and current employees another reason to stay.",
+    body: "Give candidates independent proof of your culture and current employees another reason to stay.",
     icon: Users,
     className: "bg-mint lg:col-span-7",
   },
@@ -57,17 +57,17 @@ const steps = [
   {
     title: "Apply.",
     description:
-      "Tell us about your organisation and the scope you want certified — the whole organisation, or specific locations and divisions. We confirm eligibility and agree the assessment plan with you.",
+      "Tell us about your organisation. We confirm eligibility and agree an assessment plan with you.",
   },
   {
     title: "Get assessed.",
     description:
-      "Our multi-stakeholder assessment gathers structured evidence from employees, leadership, and independent assessors through our digital platform, evaluated against the published OOC framework.",
+      "Employees, leadership, and independent assessors each contribute structured evidence through our platform.",
   },
   {
     title: "Get certified.",
     description:
-      "Receive your certification level — Silver, Gold, Platinum, or Diamond — along with a detailed report, your public directory listing, and the OOC certification mark for your employer brand.",
+      "Receive your level (Silver to Diamond), a detailed report, directory listing, and the OOC mark.",
   },
 ];
 
@@ -115,7 +115,7 @@ export default function Home() {
     <>
       <SectionHeaderBar label="Home" />
 
-      <section className="noise-wash relative overflow-hidden pb-20 pt-20 sm:pb-28 sm:pt-28 lg:pb-36 lg:pt-32">
+      <section className="noise-wash relative overflow-hidden pb-12 pt-12 sm:pb-18 sm:pt-18 lg:pb-24 lg:pt-24">
         <div className="page-shell relative text-center">
           <p className="mx-auto max-w-xl text-sm font-semibold text-teal">
             Independent workplace certification for employers who invest in their people.
@@ -127,8 +127,8 @@ export default function Home() {
             </span>
           </h1>
           <p className="mx-auto mt-8 max-w-3xl text-base leading-7 text-muted-foreground sm:text-xl sm:leading-8">
-            The independent workplace certification that proves your commitment to your people —
-            through rigorous, multi-stakeholder assessment, not self-declaration.
+            The independent workplace certification that proves your commitment to your people,
+            backed by rigorous multi-stakeholder assessment, not self-declaration.
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="group">
@@ -189,24 +189,21 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32 lg:py-40">
-        <div className="page-shell grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-start">
-          <div>
+      <section className="py-14 sm:py-20 lg:py-28">
+        <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+          <div className="max-w-xl">
             <p className="text-sm font-semibold text-teal">Why OOC exists</p>
             <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Certification that means something.
             </h2>
-          </div>
-          <div className="space-y-6 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-            <p>
-              Organisation of Choice™ is an independent workplace certification programme that
-              recognises employers who genuinely invest in their people, using evidence from
-              culture, systems, policies, and employees&apos; lived experience.
+            <p className="mt-7 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
+              OOC certifies employers who invest in their people, verified through evidence,
+              not self-declaration.
             </p>
             <p className="text-2xl font-semibold leading-tight text-navy-ink">
               It&apos;s not just a badge. It&apos;s proof.
             </p>
-            <ProgressiveDetails>
+            <ProgressiveDetails className="mt-6">
               <p>
                 Certification is earned through structured, multi-stakeholder assessment.
                 Employees, leadership, and independent assessors all contribute evidence, verified
@@ -214,10 +211,18 @@ export default function Home() {
               </p>
             </ProgressiveDetails>
           </div>
+          <ImageSlot
+            contentKey="editorial workplace collaboration"
+            alt="A workplace team discussing ideas together around a table"
+            src="/images/editorial/workplace-collaboration.png"
+            aspect="video"
+            sizes="(min-width: 1024px) 58vw, 100vw"
+            className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+          />
         </div>
       </section>
 
-      <section className="border-y border-navy/8 bg-white/45 py-24 sm:py-32">
+      <section className="border-y border-navy/8 bg-white/45 py-14 sm:py-20">
         <div className="page-shell">
           <div className="max-w-3xl">
             <p className="text-sm font-semibold text-teal">Find your route</p>
@@ -254,7 +259,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32 lg:py-40">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell">
           <p className="text-sm font-semibold text-teal">The business case</p>
           <h2 className="mt-4 max-w-5xl text-[clamp(2.35rem,4.8vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
@@ -277,7 +282,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-navy/8 bg-muted/65 py-24 sm:py-32 lg:py-40">
+      <section className="border-y border-navy/8 bg-muted/65 py-14 sm:py-20 lg:py-28">
         <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div className="h-fit lg:self-center">
             <p className="text-sm font-semibold text-teal">How it works</p>
@@ -297,7 +302,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32 lg:py-40">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell">
           <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
             <div>
@@ -326,7 +331,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="border-y border-navy/8 bg-sky/30 py-24 sm:py-32">
+      <section className="border-y border-navy/8 bg-sky/30 py-14 sm:py-20">
         <div className="page-shell">
           <div className="mx-auto max-w-3xl text-center">
             <p className="mx-auto w-fit rounded-full border border-navy/10 bg-white/70 px-4 py-2 text-xs font-semibold text-teal">
@@ -340,7 +345,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-24 sm:py-32 lg:py-40">
+      <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
@@ -383,7 +388,7 @@ export default function Home() {
 
       <CTABand
         heading="Ready to prove you are an Organisation of Choice?"
-        body="Join the employers who've turned their culture into certified, public proof — and let the right talent find you."
+        body="Turn your culture into certified public proof. Let the right talent find you."
         primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
         secondaryCta={{ label: "Explore Certified Employers", href: "/directory" }}
       />

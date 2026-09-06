@@ -4,14 +4,14 @@ import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Terms of Service — Organisation of Choice™",
+  title: "Terms of Service | Organisation of Choice™",
   description: "Terms of Service for Organisation of Choice™, a programme of Carbon Value Partners Private Limited.",
 };
 
 export default function TermsPage() {
   return (
     <>
-      <SectionHeaderBar label="Legal — Terms of Service" />
+      <SectionHeaderBar label="Legal: Terms of Service" />
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-4xl font-bold text-navy-ink">Terms of Service.</h1>

@@ -1,5 +1,7 @@
 "use client";
 
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, Menu } from "lucide-react";
@@ -17,15 +19,41 @@ import {
 import { mainNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
+// The header never carries the full seal — at 34px its wordmark, laurel, and
+// star row stop resolving. It gets the horizontal lockup (>=640px) or the CC
+// monogram alone (<640px), both transparent navy.
+// See components/brand/seal.tsx for where the seal is allowed.
 function Logo() {
   return (
-    <Link href="/" className="group flex shrink-0 items-center gap-2.5 text-navy" aria-label="Organisation of Choice home">
-      <span className="grid size-10 place-items-center rounded-xl bg-mint text-xs font-bold tracking-[-0.08em] text-teal ring-1 ring-teal/15 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-        OOC
-      </span>
-      <span className="hidden leading-[0.92] tracking-[-0.04em] sm:block xl:hidden 2xl:block">
-        <span className="block text-sm font-semibold">Organisation</span>
-        <span className="block text-sm font-semibold text-teal">of Choice™</span>
+    <Link
+      href="/"
+      className="flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
+      aria-label="Organisation of Choice, home"
+    >
+      {/* 577x200 (2.88:1) and 246x179 — declared at their true intrinsic ratio
+          so next/image reserves the right box; height is driven by CSS. */}
+      <Image
+        src="/images/brand/mark-navy.png"
+        alt="Organisation of Choice"
+        width={577}
+        height={200}
+        priority
+        className="hidden h-[28px] w-auto sm:block md:h-[34px]"
+      />
+      <Image
+        src="/images/brand/monogram-cc-navy.png"
+        alt="Organisation of Choice"
+        width={246}
+        height={179}
+        priority
+        className="h-[30px] w-auto sm:hidden"
+      />
+      <span aria-hidden className="hidden h-[30px] w-px bg-ooc-navy-line sm:block" />
+      <span className="hidden text-[14px] font-semibold leading-[1.15] tracking-[-0.01em] text-ooc-navy sm:block">
+        <span className="block">Organisation</span>
+        <span className="block">
+          of Choice<sup className="text-[0.6em] font-semibold">™</sup>
+        </span>
       </span>
     </Link>
   );
@@ -33,10 +61,25 @@ function Logo() {
 
 export function Header() {
   const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+
+  // The bar is white on a light hero, so the seam needs help. A hairline holds
+  // it at rest and the shadow fades in only once content is actually behind it.
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 8);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
 
   return (
-    <header className="sticky top-0 z-40 px-3 py-3 sm:px-5">
-      <div className="mx-auto flex h-[4.25rem] max-w-7xl items-center justify-between rounded-2xl border border-white/75 bg-white/82 px-3 shadow-[0_14px_50px_rgba(23,50,77,0.09)] backdrop-blur-xl sm:px-4 lg:px-5">
+    <header
+      className={cn(
+        "sticky top-0 z-40 border-b border-ooc-navy-line bg-white transition-shadow duration-[180ms] ease-out",
+        scrolled ? "shadow-[0_8px_24px_rgba(31,42,90,0.06)]" : "shadow-none"
+      )}
+    >
+      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:h-[76px] lg:px-10">
         <Logo />
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
@@ -48,8 +91,12 @@ export function Header() {
                 href={item.href}
                 aria-current={active ? "page" : undefined}
                 className={cn(
-                  "rounded-lg px-2.5 py-2 text-[0.78rem] font-semibold text-foreground/75 transition-colors hover:bg-mint/70 hover:text-teal",
-                  active && "bg-mint text-teal"
+                  // --ooc-navy-mute is ~6.4:1 on white; never dim navy with opacity.
+                  "rounded-md px-2.5 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
+                  "hover:text-ooc-navy hover:underline hover:decoration-ooc-gold hover:decoration-2",
+                  "focus-visible:text-ooc-navy focus-visible:underline focus-visible:decoration-ooc-gold focus-visible:decoration-2",
+                  "focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2",
+                  active && "font-semibold text-ooc-navy no-underline hover:no-underline"
                 )}
               >
                 {item.label}
@@ -59,7 +106,10 @@ export function Header() {
         </nav>
 
         <div className="hidden xl:block">
-          <Button asChild className="group">
+          <Button
+            asChild
+            className="group h-auto rounded-full bg-ooc-navy px-[22px] py-[10px] font-semibold text-white shadow-none hover:bg-ooc-navy-ink hover:text-white hover:shadow-none"
+          >
             <Link href={primaryCta.href}>
               {primaryCta.label}
               <ArrowUpRight className="transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -69,12 +119,20 @@ export function Header() {
 
         <Sheet>
           <SheetTrigger asChild>
-            <Button variant="ghost" size="icon" className="xl:hidden" aria-label="Open menu">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="text-ooc-navy hover:bg-ooc-navy-line/60 hover:text-ooc-navy xl:hidden"
+              aria-label="Open menu"
+            >
               <Menu className="size-5" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="w-full border-l-0 bg-background sm:max-w-md">
-            <SheetHeader className="border-b border-border pb-5">
+          <SheetContent
+            side="right"
+            className="flex w-full flex-col border-l border-ooc-navy-line bg-white sm:max-w-md"
+          >
+            <SheetHeader className="border-b border-ooc-navy-line pb-5">
               <SheetTitle>
                 <Logo />
               </SheetTitle>
@@ -89,8 +147,8 @@ export function Header() {
                       href={item.href}
                       aria-current={active ? "page" : undefined}
                       className={cn(
-                        "rounded-xl px-4 py-3 text-base font-semibold text-foreground transition-colors hover:bg-mint",
-                        active && "bg-mint text-teal"
+                        "rounded-xl px-4 py-3 text-[18px] text-ooc-navy transition-colors hover:bg-ooc-navy-line/60",
+                        active ? "font-semibold" : "font-medium"
                       )}
                     >
                       {item.label}
@@ -101,7 +159,10 @@ export function Header() {
             </nav>
             <div className="mt-auto px-4 pb-4">
               <SheetClose asChild>
-                <Button asChild className="w-full">
+                <Button
+                  asChild
+                  className="h-auto w-full rounded-full bg-ooc-navy px-[22px] py-[10px] font-semibold text-white shadow-none hover:bg-ooc-navy-ink hover:text-white hover:shadow-none"
+                >
                   <Link href={primaryCta.href}>{primaryCta.label}</Link>
                 </Button>
               </SheetClose>

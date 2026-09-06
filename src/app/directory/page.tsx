@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { BadgeCheck, Search, ShieldCheck } from "lucide-react";
 
 import { EmployerDirectory } from "@/components/directory/employer-directory";
+import { ImageSlot } from "@/components/image-slot";
 import { getDirectoryEmployers } from "@/lib/certified-employers";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -10,21 +11,21 @@ import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "For Job Seekers & Certified Employer Directory — Organisation of Choice™",
+  title: "For Job Seekers & Certified Employer Directory | Organisation of Choice™",
   description:
-    "Every organisation in this directory has earned independent certification of its workplace — assessed on evidence, verified annually, and never for sale.",
+    "Every organisation in this directory has earned independent certification of its workplace, assessed on evidence, verified annually, and never for sale.",
 };
 
 const uses = [
   {
     lead: "Research an offer.",
     summary: "Check the employer’s verified level, scope, and validity before you decide.",
-    body: "Weighing an offer in hand? Search the organisation. If it's certified, you'll see its level, certified scope, and validity — independent context no interview will give you.",
+    body: "Weighing an offer in hand? Search the organisation. If it's certified, you'll see its level, certified scope, and validity, independent context no interview will give you.",
   },
   {
     lead: "Discover employers worth watching.",
     summary: "Build a shortlist using industry, location, and certification level.",
-    body: "Filter by industry, location, and certification level to build a shortlist of organisations that have proven their standards — including strong employers you may never have heard of.",
+    body: "Filter by industry, location, and certification level to build a shortlist of organisations that have proven their standards, including strong employers you may never have heard of.",
   },
   {
     lead: "Verify a claim.",
@@ -41,18 +42,29 @@ export default async function DirectoryPage() {
       <SectionHeaderBar label="For Job Seekers" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-6xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          Choose your next employer on proof, not promises.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Every listed employer has earned independent, annually verified workplace certification.
-        </p>
-        <div className="mt-8">
-          <Button asChild size="lg">
-            <Link href="#directory">Search the directory</Link>
-          </Button>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            Choose your next employer on proof, not promises.
+          </h1>
+          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
+            Every listed employer has earned independent, annually verified workplace certification.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href="#directory">Search the directory</Link>
+            </Button>
+          </div>
         </div>
+        <ImageSlot
+          contentKey="job seeker researching employers"
+          alt="A professional calmly researching employers on a laptop"
+          src="/images/editorial/job-seeker-research.png"
+          aspect="video"
+          priority
+          sizes="(min-width: 1024px) 54vw, 100vw"
+          className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+        />
       </section>
 
       {/* WHY IT MATTERS */}
@@ -66,7 +78,7 @@ export default async function DirectoryPage() {
               <p className="font-heading text-5xl font-semibold text-navy/40">“Great culture”</p>
               <h3 className="mt-10 text-xl font-semibold text-navy-ink">What an employer says</h3>
               <p className="mt-3 leading-7 text-muted-foreground">
-                Careers pages, interviews, and reviews can be useful—but they are polished,
+                Careers pages, interviews, and reviews can be useful, but they are polished,
                 selective, or difficult to verify.
               </p>
             </div>

@@ -29,7 +29,7 @@ export function NewsletterSignup() {
     return (
       <FormFeedback
         status="success"
-        title="You're subscribed — welcome."
+        title="You're subscribed. Welcome."
         message="The next edition will find you."
       />
     );

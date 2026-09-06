@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import Image from "next/image";
 
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -120,7 +121,7 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
 
       {results.length === 0 ? (
         <p className="mt-6 rounded-2xl border border-border bg-white/70 p-8 text-muted-foreground">
-          No certified employers match your current filters. Try widening your search — or check
+          No certified employers match your current filters. Try widening your search, or check
           back soon: new organisations are certified throughout the year.
         </p>
       ) : (
@@ -132,9 +133,21 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
               >
                 <CardHeader>
                   <div className="flex flex-col items-start gap-4">
-                    <Badge variant="outline" className={cn("px-3 py-1 font-semibold", levelMeta[employer.level].badge)}>
-                      {employer.level} certification
-                    </Badge>
+                    <div className="flex items-center gap-3">
+                      {/* Not the full seal: a card mark this small would render
+                          its wordmark and laurel illegible (see brand/seal.tsx,
+                          96px floor), so the monogram stands in at 28px. */}
+                      <Image
+                        src="/images/brand/mark-navy.png"
+                        alt=""
+                        width={577}
+                        height={200}
+                        className="h-[28px] w-auto shrink-0"
+                      />
+                      <Badge variant="outline" className={cn("px-3 py-1 font-semibold", levelMeta[employer.level].badge)}>
+                        {employer.level} certification
+                      </Badge>
+                    </div>
                     <CardTitle className="font-heading text-lg text-navy-ink">
                       {employer.name}
                     </CardTitle>

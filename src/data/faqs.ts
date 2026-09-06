@@ -35,7 +35,7 @@ export const certificationFaqs: FAQItem[] = [
   {
     question: "Is our assessment data confidential?",
     answer:
-      "Yes. Your detailed results are shared only with you. The public record is your certification level, scope, and validity — never your underlying scores or evidence. Employee responses are confidential and never attributed to individuals.",
+      "Yes. Your detailed results are shared only with you. The public record shows your certification level, scope, and validity. Your underlying scores and evidence remain private. Employee responses are confidential and never attributed to individuals.",
   },
 ];
 
@@ -49,7 +49,7 @@ export const resourcesFaqs: { employers: FAQItem[]; jobSeekers: FAQItem[]; partn
     {
       question: "Can we certify part of our organisation?",
       answer:
-        "Yes. You define the scope at application — the whole organisation, or specific locations, divisions, or entities. The certified scope is always stated in the public directory, so the mark is never used more broadly than it was earned.",
+        "Yes. You define the scope at application: the whole organisation, or specific locations, divisions, or entities. The certified scope is always stated in the public directory, so the mark is never used more broadly than it was earned.",
     },
     {
       question: "What happens if we fail a mandatory criterion?",
@@ -66,12 +66,12 @@ export const resourcesFaqs: { employers: FAQItem[]; jobSeekers: FAQItem[]; partn
     {
       question: "Does certification guarantee I'll be happy at an organisation?",
       answer:
-        "No certification can promise that — fit is personal. What it guarantees is that the organisation met an independently verified standard across its policies, systems, and employee experience. It's a far stronger starting point than marketing claims, used best alongside your own research and judgement.",
+        "No certification can promise that. Fit is personal. What it guarantees is that the organisation met an independently verified standard across its policies, systems, and employee experience. It's a far stronger starting point than marketing claims, used best alongside your own research and judgement.",
     },
     {
       question: "An employer displays the OOC mark but isn't in the directory. What does that mean?",
       answer:
-        "Every valid certification appears in the directory. If an organisation displays the mark but has no listing, its certification may have lapsed or the usage may be unauthorised — we'd ask you to report it via the contact page so we can investigate.",
+        "Every valid certification appears in the directory. If an organisation displays the mark but has no listing, its certification may have lapsed or the usage may be unauthorised. Please report it via the contact page so we can investigate.",
     },
     {
       question: "Does it cost anything to use the directory?",
@@ -82,7 +82,7 @@ export const resourcesFaqs: { employers: FAQItem[]; jobSeekers: FAQItem[]; partn
     {
       question: "Who can become a channel partner?",
       answer:
-        "Professional firms and advisors who serve employers — including HR and CSR consultants, chartered accountancy firms, company secretaries, ESG advisors, legal firms, and industry associations. The partner page describes the tiers and application process.",
+        "Professional firms and advisors who serve employers, including HR and CSR consultants, chartered accountancy firms, company secretaries, ESG advisors, legal firms, and industry associations. The partner page describes the tiers and application process.",
     },
     {
       question: "Do partners influence assessment outcomes?",

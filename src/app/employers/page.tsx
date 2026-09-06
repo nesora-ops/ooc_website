@@ -10,9 +10,9 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "For Employers — Organisation of Choice™",
+  title: "For Employers | Organisation of Choice™",
   description:
-    "OOC certification converts the culture you've invested in into independent, public, verifiable proof — the kind that wins candidates and reassures clients.",
+    "OOC certification converts the culture you've invested in into independent, public, verifiable proof. The kind that wins candidates and reassures clients.",
 };
 
 const included = [
@@ -60,14 +60,13 @@ export default function EmployersPage() {
       <SectionHeaderBar label="For Employers" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
           You&apos;ve built a great workplace. Now prove it.
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Organisation of Choice™ certification converts the culture you&apos;ve invested in into
-          independent, public, verifiable proof — the kind that wins candidates, reassures clients,
-          and strengthens every part of your employer brand.
+          Independent, public proof that wins candidates, reassures clients, and strengthens your
+          employer brand.
         </p>
         <div className="mt-8">
           <Button asChild size="lg">
@@ -77,7 +76,7 @@ export default function EmployersPage() {
       </section>
 
       {/* THE PROBLEM WE SOLVE */}
-      <section id="why-certify" className="bg-muted/40 py-16">
+      <section id="why-certify" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             The problem we solve
@@ -92,9 +91,9 @@ export default function EmployersPage() {
             <p>
               Talent markets run on trust, and trust is in short supply. Candidates have learned to
               discount what careers pages say about culture, because every organisation says the
-              same things. Meanwhile, the employers genuinely doing the work — fair policies, real
-              development, leadership that listens — struggle to distinguish themselves from those
-              who merely claim it.
+              same things. Meanwhile, the employers genuinely doing the work, with fair policies,
+              real development, and leadership that listens, struggle to distinguish themselves
+              from those who merely claim it.
             </p>
             <p>
               Independent certification resolves the standoff. When an external assessor with
@@ -108,7 +107,7 @@ export default function EmployersPage() {
       </section>
 
       {/* WHAT YOU RECEIVE */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           One assessment. Six useful outputs.
         </h2>
@@ -127,6 +126,16 @@ export default function EmployersPage() {
                     aria-hidden
                     strokeWidth={1.6}
                   />
+                  {isDark && (
+                    <ImageSlot
+                      contentKey="certification deliverables"
+                      alt="A certification report, scorecard, and recognition mark arranged as a professional toolkit"
+                      src="/images/editorial/certification-deliverables.png"
+                      aspect="video"
+                      sizes="(min-width: 1024px) 54vw, 100vw"
+                      className="rounded-[1.5rem] border-white/10 bg-white"
+                    />
+                  )}
                   <div>
                     <h3 className={`text-xl font-semibold ${isDark ? "text-white" : "text-navy-ink"}`}>
                       {item.lead}
@@ -143,7 +152,7 @@ export default function EmployersPage() {
       </section>
 
       {/* THE PROCESS FOR YOU */}
-      <section className="bg-muted/40 py-16">
+      <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
             The process for you
@@ -158,7 +167,7 @@ export default function EmployersPage() {
             <p>
               Certification is designed to run alongside your normal operations, not on top of them.
               After application and scoping, your team completes a structured self-assessment and
-              evidence submission through our digital platform — most organisations assign a single
+              evidence submission through our digital platform. Most organisations assign a single
               coordinator and involve function heads only where their area is being evidenced.
               Employee input is gathered confidentially and efficiently, with no burden on your HR
               team to administer it.
@@ -181,7 +190,7 @@ export default function EmployersPage() {
       </section>
 
       {/* PRICING */}
-      <section id="pricing" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="pricing" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
           Transparent, size-based pricing.
         </h2>
@@ -206,14 +215,13 @@ export default function EmployersPage() {
         <div className="mx-auto mt-6 max-w-5xl rounded-[1.5rem] border border-dashed border-coral/55 bg-coral/8 p-6">
           <Placeholder className="border-0 bg-transparent px-0 py-0">pricing tiers</Placeholder>
           <p className="mt-3 text-sm leading-6 text-muted-foreground">
-            Every application receives a written quotation before commitment. The fee covers the
-            assessment, report, certification, directory listing, and annual verification.
+            Every application receives a written quote before any commitment.
           </p>
         </div>
       </section>
 
       {/* CASE STUDIES */}
-      <section id="case-studies" className="bg-muted/40 py-16">
+      <section id="case-studies" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Case studies</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -228,7 +236,7 @@ export default function EmployersPage() {
                   aspect="video"
                 />
                 <Placeholder variant="block">
-                  case study {n} — organisation, level, one-line result
+                  case study {n}: organisation, level, one-line result
                 </Placeholder>
               </div>
             ))}
@@ -237,7 +245,7 @@ export default function EmployersPage() {
       </section>
 
       {/* APPLICATION FORM */}
-      <section id="apply" className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
+      <section id="apply" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <p className="mx-auto max-w-3xl text-center text-xs font-semibold uppercase tracking-widest text-gold-ink">
           Application form
         </p>

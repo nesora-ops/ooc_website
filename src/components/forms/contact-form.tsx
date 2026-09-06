@@ -60,7 +60,7 @@ export function ContactForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you — your message is on its way."
+        title="Thank you. Your message is on its way."
         message={
           <>
             A member of the team will come back to you within{" "}
@@ -68,7 +68,7 @@ export function ContactForm() {
             may find an immediate answer on our certification page.
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected — your details were validated but not sent.
+                Form submission is not yet connected. Your details were validated but not sent.
               </p>
             )}
           </>

@@ -4,7 +4,7 @@ import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Privacy Policy — Organisation of Choice™",
+  title: "Privacy Policy | Organisation of Choice™",
   description:
     "Privacy Policy for Organisation of Choice™, a programme of Carbon Value Partners Private Limited.",
 };
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function PrivacyPage() {
   return (
     <>
-      <SectionHeaderBar label="Legal — Privacy Policy" />
+      <SectionHeaderBar label="Legal: Privacy Policy" />
 
       <section className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-4xl font-bold text-navy-ink">Privacy Policy.</h1>
