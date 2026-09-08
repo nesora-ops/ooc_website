@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, ChevronDown, Menu } from "lucide-react";
@@ -20,34 +19,28 @@ import {
 import { mainNav, policiesNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-// The header never carries the full seal — at 40px its wordmark, laurel, and
-// star row stop resolving. It gets the emblem alone, contained inside a white
-// circle, beside the wordmark set as text.
-// See components/brand/seal.tsx for where the seal is allowed.
+// The header lockup: a tinted disc reading "OOC" beside the stacked wordmark.
+// Set as text, not artwork — the emblem's laurel and rule lines stop resolving
+// at 44px, and the full seal is worse still (see components/brand/seal.tsx for
+// where the seal is allowed). 32 / 44 / 72px share this construction; the
+// header takes 44.
 function Logo() {
   return (
     <Link
       href="/"
-      className="group flex shrink-0 items-center gap-2.5 rounded-sm text-navy outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
+      className="group flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
       aria-label="Organisation of Choice, home"
     >
-      <span className="grid size-10 shrink-0 place-items-center overflow-hidden rounded-full bg-white ring-1 ring-teal/15 transition-transform duration-300 group-hover:-rotate-3 group-hover:scale-105">
-        {/* The mark is a 2.43:1 landscape PNG on an opaque white ground, so the
-            badge is white too and the image is contained rather than cropped —
-            the rule lines run to its edges and a cover crop would cut them. */}
-        <Image
-          src="/images/brand/logo_only_ooc.png"
-          alt=""
-          width={577}
-          height={237}
-          className="w-[85%] object-contain"
-          priority
-        />
+      <span
+        aria-hidden
+        className="grid size-11 shrink-0 place-items-center rounded-full bg-[#d3e9f2] text-[13px] font-bold tracking-[0.02em] text-ooc-navy transition-transform duration-300 group-hover:scale-105"
+      >
+        OOC
       </span>
-      <span className="hidden leading-[0.92] tracking-[-0.04em] sm:block">
-        <span className="block text-sm font-semibold">Organisation</span>
-        <span className="block text-sm font-semibold text-teal">
-          of Choice<sup className="text-[0.6em] font-semibold">™</sup>
+      <span className="hidden leading-[1.15] tracking-[-0.015em] text-ooc-navy sm:block">
+        <span className="block text-[15px] font-bold">Organisation</span>
+        <span className="block text-[15px] font-bold">
+          of Choice<sup className="text-[0.55em] font-bold">™</sup>
         </span>
       </span>
     </Link>
@@ -88,7 +81,7 @@ export function Header() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   // --ooc-navy-mute is ~6.4:1 on white; never dim navy with opacity.
-                  "rounded-md px-2.5 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
+                  "whitespace-nowrap rounded-md px-2 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
                   "hover:text-ooc-navy hover:underline hover:decoration-ooc-gold hover:decoration-2",
                   "focus-visible:text-ooc-navy focus-visible:underline focus-visible:decoration-ooc-gold focus-visible:decoration-2",
                   "focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2",
@@ -103,7 +96,7 @@ export function Header() {
           <Popover>
             <PopoverTrigger
               className={cn(
-                "flex items-center gap-1 rounded-md px-2.5 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
+                "flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
                 "hover:text-ooc-navy hover:underline hover:decoration-ooc-gold hover:decoration-2",
                 "focus-visible:text-ooc-navy focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2",
                 policiesActive && "font-semibold text-ooc-navy no-underline hover:no-underline"
