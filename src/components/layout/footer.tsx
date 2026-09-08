@@ -20,13 +20,27 @@ export function Footer() {
           <NewsletterSignup />
         </div>
 
-        {/* The footer ground is light (#edf5f2), so the transparent seal sits on
-            it directly — no white plate needed. */}
+        {/* A lockup row, not a lone seal: on its own above the columns the seal
+            read as an orphan. The footer ground is light (#edf5f2), so the
+            seal's white face sits on it directly — no plate, ring, or shadow.
+            72px is the seal's hard floor (see brand/seal.tsx); the brief asked
+            for 64px on mobile, which would render the inner wording illegible. */}
         <div className="mx-auto max-w-6xl">
-          <Seal size={96} className="mb-8" />
+          <div className="flex flex-wrap items-center gap-[18px] pb-[26px]">
+            <Seal size={72} alt="Organisation of Choice" />
+            <span aria-hidden className="h-[52px] w-px shrink-0 bg-[#BFD8CE]" />
+            <span className="pl-[18px] text-[19px] font-extrabold leading-[1.15] tracking-[-0.015em] text-[#0B2B3C]">
+              <span className="block">Organisation</span>
+              <span className="block">of Choice</span>
+            </span>
+            <p className="min-w-[180px] max-w-[40ch] flex-1 text-[14px] leading-[1.6] text-[#4C6A60]">
+              Independent workplace certification for employers who invest in their people.
+            </p>
+          </div>
+          <hr className="border-t border-[#C9E0D6]" />
         </div>
 
-        <div className="mx-auto grid max-w-6xl gap-10 text-left sm:grid-cols-2 lg:grid-cols-5">
+        <div className="mx-auto mt-[26px] grid max-w-6xl gap-10 text-left sm:grid-cols-2 lg:grid-cols-5">
           {footerColumns.map((column) => (
             <div key={column.title}>
               <h2 className="text-sm font-semibold text-navy-ink">{column.title}</h2>
