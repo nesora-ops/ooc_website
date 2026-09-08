@@ -18,8 +18,9 @@ const staticRoutes = [
   { path: "/resources/faq", priority: 0.6 },
   { path: "/news", priority: 0.6 },
   { path: "/contact", priority: 0.7 },
-  { path: "/terms", priority: 0.3 },
-  { path: "/privacy", priority: 0.3 },
+  { path: "/badge", priority: 0.4 },
+  { path: "/terms-of-service", priority: 0.3 },
+  { path: "/privacy-policy", priority: 0.3 },
   { path: "/cookies", priority: 0.3 },
 ];
 
