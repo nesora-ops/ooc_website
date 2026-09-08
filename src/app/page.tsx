@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -21,7 +22,6 @@ import { blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Organisation of Choice™ | Independent Workplace Certification",
   description:
     "The independent workplace certification that proves your commitment to your people, backed by rigorous multi-stakeholder assessment, not self-declaration.",
 };
@@ -71,34 +71,37 @@ const steps = [
   },
 ];
 
+// The badges have a white circular face, so the cards behind them are white and
+// carry no fill, shadow, or ring — `accent` is used for the descriptor line and
+// the hover border only.
 const levels = [
   {
     name: "Silver",
     note: "Strong foundations",
     body: "Recognises organisations with the essential people practices in place: compliant, fair, and well run.",
-    className: "bg-[#e8edf0]",
-    dot: "bg-[#71808a]",
+    badge: "/images/brand/ooc-badge-silver.png",
+    accent: "#6B7B84",
   },
   {
     name: "Gold",
     note: "Engaged and improving",
     body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
-    className: "bg-butter/70",
-    dot: "bg-gold-ink",
+    badge: "/images/brand/ooc-badge-gold.png",
+    accent: "#C08A2E",
   },
   {
     name: "Platinum",
     note: "Advanced and consistent",
     body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
-    className: "bg-sky",
-    dot: "bg-[#6d80c5]",
+    badge: "/images/brand/ooc-badge-platinum.png",
+    accent: "#7C8CA8",
   },
   {
     name: "Diamond",
     note: "A workplace others benchmark against",
     body: "Recognises sustained excellence across people practices, employee experience, and organisational leadership.",
-    className: "bg-mint",
-    dot: "bg-teal",
+    badge: "/images/brand/ooc-badge-diamond.png",
+    accent: "#0E7A62",
   },
 ];
 
@@ -117,16 +120,19 @@ export default function Home() {
 
       <section className="noise-wash relative overflow-hidden pb-12 pt-12 sm:pb-18 sm:pt-18 lg:pb-24 lg:pt-24">
         <div className="page-shell relative text-center">
-          <p className="mx-auto max-w-xl text-sm font-semibold text-teal">
-            Independent workplace certification for employers who invest in their people.
+          {/* Eyebrow and H1 were 13px against a ~96px H1 — two unrelated scales.
+              Both are pinned to the brand spec here so they read as one family. */}
+          <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-[#0E7A62]">
+            Independent workplace certification
           </p>
-          <h1 className="mx-auto mt-7 max-w-6xl text-[clamp(3.25rem,8.5vw,7.6rem)] font-semibold leading-[0.86] tracking-[-0.07em] text-navy-ink">
-            <span className="block">Be an Organisation</span>
-            <span className="mt-2 block">
-              of <span className="text-teal">Choice.</span>
-            </span>
+          {/* The <br /> is explicit, not a width accident: the line must break
+              after "Organisation" at every breakpoint. */}
+          <h1 className="mx-auto mt-5 max-w-[15ch] text-[clamp(38px,5.4vw,68px)] font-extrabold leading-[1.04] tracking-[-0.028em] text-navy-ink">
+            Be an Organisation
+            <br />
+            of <span className="text-[#0E7A62]">Choice.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-7 text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[19px] leading-[1.65] text-[#56666D]">
             The independent workplace certification that proves your commitment to your people,
             backed by rigorous multi-stakeholder assessment, not self-declaration.
           </p>
@@ -317,14 +323,24 @@ export default function Home() {
           </div>
           <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {levels.map((level, index) => (
-              <article key={level.name} className={cn("group rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8", level.className)}>
-                <div className="flex items-center justify-between">
-                  <span className={cn("size-3 rounded-full", level.dot)} />
-                  <span className="font-mono text-xs font-semibold tabular-nums text-navy/55">0{index + 1}</span>
+              <article
+                key={level.name}
+                style={{ "--tier-accent": level.accent } as React.CSSProperties}
+                className="flex flex-col gap-[14px] rounded-[18px] border border-[#E6EDEA] bg-white px-[22px] pb-7 pt-[26px] transition-colors duration-200 hover:border-(--tier-accent)"
+              >
+                <div className="flex items-start justify-between gap-3">
+                  <Image
+                    src={level.badge}
+                    alt={`Organisation of Choice ${level.name} certification badge`}
+                    width={96}
+                    height={96}
+                    className="size-20 object-contain sm:size-24"
+                  />
+                  <span className="font-mono text-[11px] tabular-nums text-[#B4C0C5]">0{index + 1}</span>
                 </div>
-                <h3 className="mt-20 text-3xl font-semibold tracking-[-0.045em]">{level.name}</h3>
-                <p className="mt-2 text-sm font-semibold text-navy/75">{level.note}</p>
-                <p className="mt-5 text-sm leading-6 text-navy/70">{level.body}</p>
+                <h3 className="text-[22px] font-bold tracking-[-0.02em] text-[#0B2B3C]">{level.name}</h3>
+                <p className="text-[14px] font-bold text-(--tier-accent)">{level.note}</p>
+                <p className="text-[14px] leading-[1.6] text-[#5A6B72]">{level.body}</p>
               </article>
             ))}
           </div>
@@ -383,6 +399,47 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* THE MARK YOU EARN — near-white ground so the seal's white face sits flat.
+          Never move this onto the navy or green surfaces. */}
+      <section className="bg-[#F7FAF8] px-6 py-16 lg:py-24">
+        <div className="mx-auto flex max-w-[1040px] flex-col items-center gap-14 text-center min-[900px]:flex-row min-[900px]:text-left">
+          <Image
+            src="/images/brand/ooc-seal-full.png"
+            alt="Organisation of Choice certification seal"
+            width={240}
+            height={240}
+            className="size-[140px] shrink-0 object-contain min-[900px]:size-[200px] lg:size-[240px]"
+          />
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0E7A62]">
+              The certification mark
+            </p>
+            <h2 className="mt-3 text-[clamp(28px,3.4vw,40px)] font-bold leading-[1.15] tracking-[-0.02em] text-navy-ink">
+              Earned, not bought.
+            </h2>
+            <p className="mt-3.5 max-w-[46ch] text-base leading-[1.65] text-[#56666D]">
+              Certified employers display the Organisation of Choice seal across careers pages,
+              job adverts, and offer letters. It signals an independent assessment, valid for
+              twelve months.
+            </p>
+            <div className="mt-[22px] flex flex-wrap justify-center gap-3 min-[900px]:justify-start">
+              <Link
+                href="/badge"
+                className="rounded-full bg-[#0E7A62] px-[22px] py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b6350]"
+              >
+                Brand guidelines
+              </Link>
+              <Link
+                href="/directory"
+                className="rounded-full border border-[#D6E2DC] bg-transparent px-[22px] py-3 text-[14px] font-bold text-[#0B2B3C] transition-colors hover:bg-white"
+              >
+                Verify a seal
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 
