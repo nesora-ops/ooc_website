@@ -4,7 +4,7 @@ import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Cookie Policy | Organisation of Choice™",
+  title: "Cookie Policy",
   description:
     "How Organisation of Choice™ uses cookies and similar technologies on organisationofchoice.com.",
 };

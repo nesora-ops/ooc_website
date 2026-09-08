@@ -8,7 +8,7 @@ import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "About | Organisation of Choice™",
+  title: "About",
   description:
     "Organisation of Choice™ exists to make workplace quality visible, giving employers independent recognition and talent a signal they can trust.",
 };

@@ -5,7 +5,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { resourcesFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "FAQs | Organisation of Choice™",
+  title: "FAQs",
   description: "Straight answers for employers, job seekers, and partners.",
 };
 

@@ -8,7 +8,7 @@ import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Contact | Organisation of Choice™",
+  title: "Contact",
   description:
     "Exploring certification, considering partnership, or have a question about the programme? We'd like to hear from you.",
 };

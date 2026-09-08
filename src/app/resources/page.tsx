@@ -6,7 +6,7 @@ import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Resources | Organisation of Choice™",
+  title: "Resources",
   description:
     "Practical insight on workplace culture, employer branding, and what actually makes organisations worth choosing, from the team that assesses them for a living.",
 };
