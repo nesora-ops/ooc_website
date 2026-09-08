@@ -13,6 +13,13 @@ export const mainNav = [
   { label: "Contact", href: "/contact" },
 ] as const;
 
+// The header "Policies" menu. Deliberately the two policies only — the Cookie
+// Policy stays in the footer's Legal & Contact column.
+export const policiesNav = [
+  { label: "Privacy Policy", href: "/privacy-policy" },
+  { label: "Terms of Service", href: "/terms-of-service" },
+] as const;
+
 export const footerColumns = [
   {
     title: "Organisation of Choice",
@@ -52,8 +59,8 @@ export const footerColumns = [
     title: "Legal & Contact",
     links: [
       { label: "Contact Us", href: "/contact" },
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
+      { label: "Terms of Service", href: "/terms-of-service" },
+      { label: "Privacy Policy", href: "/privacy-policy" },
       { label: "Cookie Policy", href: "/cookies" },
     ],
   },
