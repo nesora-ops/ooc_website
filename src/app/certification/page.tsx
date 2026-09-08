@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Award, Building2, FileSearch, MessageCircle, ShieldCheck } from "lucide-react";
 
@@ -11,7 +12,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { certificationFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "The Certification | Organisation of Choice™",
+  title: "The Certification",
   description:
     "How OOC certification works: what we assess, the stage-by-stage assessment process, the four certification levels, and how scoring is applied.",
 };
@@ -21,21 +22,25 @@ const levels = [
     name: "Silver: Strong foundations.",
     summary: "Fair, compliant, and well-run with the essential people systems in place.",
     body: "Silver certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. It is the credible starting point, with a clear report showing the route to Gold.",
+    badge: "/images/brand/ooc-badge-silver.png",
   },
   {
     name: "Gold: Engaged and improving.",
     summary: "Mature systems, positive employee experience, and systematic improvement.",
     body: "Gold certification signifies an organisation whose investment in people is producing measurable results: employees report a positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional.",
+    badge: "/images/brand/ooc-badge-gold.png",
   },
   {
     name: "Platinum: Advanced and consistent.",
     summary: "Industry-leading practices and an outstanding, consistent employee experience.",
     body: "Platinum certification recognises advanced workplaces with industry-leading practices, an outstanding and consistent employee experience, and evidence of innovation in how people are led, developed, and cared for.",
+    badge: "/images/brand/ooc-badge-platinum.png",
   },
   {
     name: "Diamond: A workplace others benchmark against.",
     summary: "Sustained excellence across people practices, experience, and leadership.",
     body: "Diamond certification is the highest level of recognition, reserved for organisations that sustain exceptional evidence across the framework and provide a workplace standard others can benchmark against.",
+    badge: "/images/brand/ooc-badge-diamond.png",
   },
 ];
 
@@ -220,8 +225,16 @@ export default function CertificationPage() {
             />
             <div className="grid gap-3 sm:grid-cols-2">
               {levels.map((level) => (
-                <article key={level.name} className="rounded-[1.75rem] border border-navy/8 bg-white/80 p-6">
-                  <h3 className="font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
+                <article key={level.name} className="rounded-[1.75rem] border border-navy/8 bg-white p-6">
+                  {/* The badge face is white — this card must stay solid white. */}
+                  <Image
+                    src={level.badge}
+                    alt={`Organisation of Choice ${level.name.split(":")[0]} certification badge`}
+                    width={128}
+                    height={128}
+                    className="size-32 object-contain"
+                  />
+                  <h3 className="mt-4 font-heading text-xl font-semibold text-navy-ink">{level.name}</h3>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">{level.summary}</p>
                   <ProgressiveDetails className="mt-5" label="Full level description">
                     <p className="text-sm leading-6">{level.body}</p>
