@@ -4,7 +4,7 @@ import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "Terms of Service | Organisation of Choice™",
+  title: "Terms of Service",
   description: "Terms of Service for Organisation of Choice™, a programme of Carbon Value Partners Private Limited.",
 };
 
