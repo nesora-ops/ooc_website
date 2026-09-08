@@ -6,12 +6,12 @@ export const alt = "Organisation of Choice™";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
-// seal.png is transparent, so it needs a ground to sit on. Composited here at
-// build time rather than shipping a second, pre-flattened seal file.
+// The seal is transparent outside its ring, so it needs a ground to sit on.
+// Composited here at build time rather than shipping a pre-flattened seal file.
 export default async function OpengraphImage() {
   let seal: string | null = null;
   try {
-    const file = await readFile(join(process.cwd(), "public/images/brand/seal.png"));
+    const file = await readFile(join(process.cwd(), "public/images/brand/ooc-seal-full.png"));
     seal = `data:image/png;base64,${file.toString("base64")}`;
   } catch {
     // Asset not present yet — render the branded ground alone rather than
