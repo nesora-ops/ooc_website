@@ -10,13 +10,18 @@ import { cn } from "@/lib/utils";
 // context, or reduce cognitive load. Real team, client, certification, and
 // office photography should only be supplied when verified source assets exist.
 
-type Aspect = "square" | "video" | "portrait" | "wide";
+type Aspect = "square" | "video" | "portrait" | "wide" | "4/3" | "4/5" | "5/4" | "tall" | "fill";
 
 const ASPECT_CLASS: Record<Aspect, string> = {
   square: "aspect-square",
   video: "aspect-video",
   portrait: "aspect-[3/4]",
   wide: "aspect-[21/9]",
+  "4/3": "aspect-[4/3]",
+  "4/5": "aspect-[4/5]",
+  "5/4": "aspect-[5/4]",
+  tall: "aspect-[3/4] lg:aspect-[4/5]",
+  fill: "h-full min-h-[380px]",
 };
 
 const TINTS = ["bg-mint", "bg-sky", "bg-butter/65", "bg-coral/25"] as const;
