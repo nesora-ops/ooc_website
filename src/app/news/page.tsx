@@ -18,14 +18,25 @@ export default function NewsPage() {
       <SectionHeaderBar label="News & Press" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          News &amp; press.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Programme announcements, newly certified organisations, and resources for journalists
-          covering the changing world of work.
-        </p>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.85fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            News &amp; press.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            Programme announcements, newly certified organisations, and resources for journalists
+            covering the changing world of work.
+          </p>
+        </div>
+        <ImageSlot
+          contentKey="news and press editorial"
+          alt="Paper-craft illustration of a newspaper, microphone, press badge, and pen"
+          src="/images/editorial/news-press-hero.png"
+          aspect="4/3"
+          priority
+          sizes="(min-width: 1024px) 45vw, 100vw"
+          className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+        />
       </section>
 
       {/* MEDIA KIT */}
