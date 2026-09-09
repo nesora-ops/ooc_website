@@ -1,3 +1,4 @@
+import Image from "next/image";
 import type { Metadata } from "next";
 import { Clock, Mail, MapPin, Phone } from "lucide-react";
 
@@ -34,27 +35,63 @@ export default function ContactPage() {
     <>
       <SectionHeaderBar label="Contact" />
 
-      {/* HERO */}
-      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[1fr_0.78fr] lg:items-center lg:px-8">
-        <div>
-          <h1 className="max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-            Let&apos;s talk.
-          </h1>
-          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-            Whether you&apos;re exploring certification, considering partnership, or simply have a
-            question, we&apos;d like to hear from you. We respond to every enquiry within{" "}
-            <Placeholder className="border-0 bg-transparent px-0 py-0">response time</Placeholder>.
-          </p>
+      {/* HERO — Full-size image with overlaid typography */}
+      <section data-standard-layout className="py-8 sm:py-12 lg:py-16">
+        <div className="page-shell">
+          <div className="relative min-h-[520px] sm:min-h-[580px] lg:min-h-[620px] w-full overflow-hidden rounded-[2.5rem] border border-navy/10 shadow-[0_28px_80px_rgba(23,50,77,0.12)] flex items-center">
+            {/* Full-size background image */}
+            <Image
+              src="/images/editorial/contact-team-advisory.png"
+              alt="The Organisation of Choice advisory and partnership team in a consultation meeting"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover object-[center_35%]"
+            />
+
+            {/* Cinematic gradient overlay scrim for high typography contrast */}
+            <div className="pointer-events-none absolute inset-0 bg-gradient-to-t from-[#0A1D2E]/95 via-[#0A1D2E]/70 to-[#0A1D2E]/30 lg:bg-gradient-to-r lg:from-[#0A1D2E]/95 lg:via-[#0A1D2E]/75 lg:to-transparent" />
+            <div className="pointer-events-none absolute inset-0 bg-navy/15 mix-blend-multiply" />
+
+            {/* Overlaid Content */}
+            <div className="relative z-10 p-8 sm:p-14 lg:p-20 max-w-2xl">
+              <span className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/10 px-3.5 py-1.5 text-xs font-bold uppercase tracking-[0.14em] text-white backdrop-blur-md">
+                <span className="size-2 rounded-full bg-emerald-400" />
+                Direct Advisory & Enquiries
+              </span>
+
+              <h1 className="mt-5 font-heading text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-[4rem] lg:leading-[1.05] drop-shadow-[0_2px_8px_rgba(0,0,0,0.3)]">
+                Let&apos;s talk.
+              </h1>
+
+              <p
+                className="mt-6 text-base leading-relaxed sm:text-lg lg:text-xl font-normal max-w-xl drop-shadow-[0_1px_3px_rgba(0,0,0,0.4)]"
+                style={{ color: "#FFFFFF" }}
+              >
+                Whether you&apos;re exploring certification, considering partnership, or simply have a
+                question, we&apos;d like to hear from you. We respond to every enquiry within{" "}
+                <Placeholder className="border-0 bg-transparent px-0 py-0 !text-white font-semibold underline decoration-white/60 underline-offset-4">
+                  response time
+                </Placeholder>.
+              </p>
+
+              <div className="mt-10 flex flex-wrap items-center gap-6 border-t border-white/15 pt-8 text-xs sm:text-sm font-medium text-white/85">
+                <div className="flex items-center gap-2.5">
+                  <span className="size-2 rounded-full bg-emerald-400" />
+                  <span>Dedicated partner advisors</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="size-2 rounded-full bg-amber-300" />
+                  <span>48-hour response SLA</span>
+                </div>
+                <div className="flex items-center gap-2.5">
+                  <span className="size-2 rounded-full bg-sky-300" />
+                  <span>Confidential scoping</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <ImageSlot
-          contentKey="contact the programme team"
-          alt="The Organisation of Choice advisory and partnership team in a consultation meeting"
-          src="/images/editorial/contact-team-advisory.png"
-          aspect="4/3"
-          priority
-          sizes="(min-width: 1024px) 45vw, 100vw"
-          className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
-        />
       </section>
 
       {/* CONTACT DETAILS, FORM & MAP */}
