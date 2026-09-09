@@ -60,19 +60,30 @@ export default function EmployersPage() {
       <SectionHeaderBar label="For Employers" />
 
       {/* HERO */}
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          You&apos;ve built a great workplace. Now prove it.
-        </h1>
-        <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Independent, public proof that wins candidates, reassures clients, and strengthens your
-          employer brand.
-        </p>
-        <div className="mt-8">
-          <Button asChild size="lg">
-            <Link href="#apply">Apply for Certification</Link>
-          </Button>
+      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-10 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
+        <div>
+          <h1 className="max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
+            You&apos;ve built a great workplace. Now prove it.
+          </h1>
+          <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
+            Independent, public proof that wins candidates, reassures clients, and strengthens your
+            employer brand.
+          </p>
+          <div className="mt-8">
+            <Button asChild size="lg">
+              <Link href="#apply">Apply for Certification</Link>
+            </Button>
+          </div>
         </div>
+        <ImageSlot
+          contentKey="employer workplace culture proof"
+          alt="A business leader presenting a quality excellence initiative to engaged colleagues in a modern office"
+          src="/images/editorial/employer-culture-proof.png"
+          aspect="4/3"
+          priority
+          sizes="(min-width: 1024px) 54vw, 100vw"
+          className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+        />
       </section>
 
       {/* THE PROBLEM WE SOLVE */}
