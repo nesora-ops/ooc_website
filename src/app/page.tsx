@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import {
@@ -28,14 +29,20 @@ export const metadata: Metadata = {
 
 const benefits = [
   {
-    title: "Attract & retain talent.",
-    body: "Give candidates independent proof of your culture and current employees another reason to stay.",
-    icon: Users,
+    title: "Proof, not promises.",
+    body: "Candidates have learned to discount culture claims on careers pages. Independent certification provides evidence they can verify before applying.",
+    icon: Sparkles,
     className: "bg-mint lg:col-span-7",
   },
   {
-    title: "Build a credible employer brand.",
-    body: "Use the OOC mark across your employer brand. Third-party validation says what self-promotion cannot.",
+    title: "Protect what you have built.",
+    body: "Certification benchmarks your people practices against a rigorous standard, showing where to invest to retain key talent.",
+    icon: Users,
+    className: "bg-butter/70 lg:col-span-5",
+  },
+  {
+    title: "Strengthen client confidence.",
+    body: "Clients, investors, and boards increasingly scrutinise workplace standards. The OOC mark demonstrates operational maturity.",
     icon: Megaphone,
     className: "bg-sky lg:col-span-5",
   },
@@ -43,29 +50,28 @@ const benefits = [
     title: "Improve with evidence.",
     body: "Turn assessment evidence into a practical report with benchmarks and prioritised recommendations.",
     icon: ChartNoAxesCombined,
-    className: "bg-butter/65 lg:col-span-5",
-  },
-  {
-    title: "Stand out to every stakeholder.",
-    body: "Signal workplace quality, governance, and sustainability to clients, investors, and partners.",
-    icon: Sparkles,
-    className: "bg-coral/40 lg:col-span-7",
+    className: "bg-coral/20 lg:col-span-7",
   },
 ];
 
 const steps = [
   {
-    title: "Apply.",
+    title: "Apply and scope",
     description:
-      "Tell us about your organisation. We confirm eligibility and agree an assessment plan with you.",
+      "Define the boundaries of your certification, from single entities to entire corporate groups.",
   },
   {
-    title: "Get assessed.",
+    title: "Gather evidence",
     description:
       "Employees, leadership, and independent assessors each contribute structured evidence through our platform.",
   },
   {
-    title: "Get certified.",
+    title: "Independent review",
+    description:
+      "Assessors evaluate every dimension against published criteria. Mandatory fundamentals act as gates.",
+  },
+  {
+    title: "Certified recognition",
     description:
       "Receive your level (Silver to Diamond), a detailed report, directory listing, and the OOC mark.",
   },
@@ -76,29 +82,29 @@ const levels = [
     name: "Silver",
     note: "Strong foundations",
     body: "Recognises organisations with the essential people practices in place: compliant, fair, and well run.",
-    className: "bg-[#e8edf0]",
-    dot: "bg-[#71808a]",
+    badge: "/images/brand/ooc-badge-silver.png",
+    accent: "#6B7B84",
   },
   {
     name: "Gold",
     note: "Engaged and improving",
     body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
-    className: "bg-butter/70",
-    dot: "bg-gold-ink",
+    badge: "/images/brand/ooc-badge-gold.png",
+    accent: "#C08A2E",
   },
   {
     name: "Platinum",
     note: "Advanced and consistent",
     body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
-    className: "bg-sky",
-    dot: "bg-[#6d80c5]",
+    badge: "/images/brand/ooc-badge-platinum.png",
+    accent: "#7C8CA8",
   },
   {
     name: "Diamond",
     note: "A workplace others benchmark against",
     body: "Recognises sustained excellence across people practices, employee experience, and organisational leadership.",
-    className: "bg-mint",
-    dot: "bg-teal",
+    badge: "/images/brand/ooc-badge-diamond.png",
+    accent: "#0E7A62",
   },
 ];
 
@@ -190,7 +196,7 @@ export default function Home() {
       </section>
 
       <section className="py-14 sm:py-20 lg:py-28">
-        <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-center lg:gap-16">
+        <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
           <div className="max-w-xl">
             <p className="text-sm font-semibold text-teal">Why OOC exists</p>
             <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
@@ -217,7 +223,7 @@ export default function Home() {
             src="/images/editorial/workplace-collaboration.png"
             aspect="video"
             sizes="(min-width: 1024px) 58vw, 100vw"
-            className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+            className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)] transition-all duration-500 ease-out"
           />
         </div>
       </section>
@@ -302,29 +308,51 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="py-14 sm:py-20 lg:py-28">
+      <section className="py-16 sm:py-20 lg:py-28 bg-[#FAFBFB] border-y border-navy/8">
         <div className="page-shell">
-          <div className="grid gap-10 lg:grid-cols-[0.8fr_1.2fr] lg:items-end">
-            <div>
-              <p className="text-sm font-semibold text-teal">Certification levels</p>
-              <h2 className="mt-4 text-[clamp(2.5rem,4.8vw,4.8rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            <div className="max-w-2xl">
+              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0E7A62]">
+                Certification levels
+              </p>
+              <h2 className="mt-3 text-[clamp(2.4rem,4.5vw,4.2rem)] font-bold leading-[1.05] tracking-[-0.035em] text-navy-ink">
                 A pathway, not just a plaque.
               </h2>
+              <p className="mt-4 text-base leading-relaxed text-[#5A6B72] sm:text-lg">
+                Wherever you start, the framework shows you the path to the next level. Four ascending tiers recognizing foundational compliance through to industry-defining excellence.
+              </p>
             </div>
-            <p className="max-w-xl text-base leading-7 text-muted-foreground lg:justify-self-end">
-              Wherever you start, the framework shows you the path to the next level.
-            </p>
+            <Button asChild variant="outline" className="w-fit self-start md:self-end">
+              <Link href="/certification">Explore all criteria</Link>
+            </Button>
           </div>
-          <div className="mt-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+          <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {levels.map((level, index) => (
-              <article key={level.name} className={cn("group rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1 sm:p-8", level.className)}>
-                <div className="flex items-center justify-between">
-                  <span className={cn("size-3 rounded-full", level.dot)} />
-                  <span className="font-mono text-xs font-semibold tabular-nums text-navy/55">0{index + 1}</span>
+              <article
+                key={level.name}
+                style={{ "--tier-accent": level.accent } as React.CSSProperties}
+                className="group flex flex-col justify-between rounded-[22px] border border-navy/8 bg-white p-7 shadow-[0_12px_36px_rgba(23,50,77,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-(--tier-accent) hover:shadow-[0_20px_48px_rgba(23,50,77,0.08)]"
+              >
+                <div>
+                  <div className="flex items-start justify-between gap-3">
+                    <Image
+                      src={level.badge}
+                      alt={`Organisation of Choice ${level.name} certification badge`}
+                      width={96}
+                      height={96}
+                      className="size-20 object-contain sm:size-24 transition-transform duration-300 group-hover:scale-105"
+                    />
+                    <span className="font-mono text-xs font-semibold tabular-nums text-navy/40">0{index + 1}</span>
+                  </div>
+                  <h3 className="mt-6 text-2xl font-bold tracking-[-0.02em] text-[#0B2B3C]">{level.name}</h3>
+                  <p className="mt-1.5 text-sm font-semibold text-(--tier-accent)">{level.note}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-[#5A6B72]">{level.body}</p>
                 </div>
-                <h3 className="mt-20 text-3xl font-semibold tracking-[-0.045em]">{level.name}</h3>
-                <p className="mt-2 text-sm font-semibold text-navy/75">{level.note}</p>
-                <p className="mt-5 text-sm leading-6 text-navy/70">{level.body}</p>
+                <div className="mt-8 border-t border-navy/8 pt-4 flex items-center justify-between text-xs font-semibold text-(--tier-accent)">
+                  <span>Tier 0{index + 1}</span>
+                  <span className="text-navy/40 group-hover:translate-x-0.5 transition-transform">→</span>
+                </div>
               </article>
             ))}
           </div>
@@ -358,13 +386,13 @@ export default function Home() {
               Visit the resource hub <ArrowRight className="size-4" />
             </Link>
           </div>
-          <ul className="mt-12 grid gap-4 lg:grid-cols-3">
+          <ul className="mt-12 grid gap-4 lg:grid-cols-3 items-stretch">
             {blogPosts.slice(0, 3).map((post, index) => (
-              <li key={post.slug}>
+              <li key={post.slug} className="flex h-full">
                 <Link
                   href={`/resources/blog/${post.slug}`}
                   className={cn(
-                    "group flex flex-col rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1",
+                    "group flex h-full w-full flex-col rounded-[2rem] border border-navy/8 p-7 transition-transform duration-300 hover:-translate-y-1",
                     index === 0 ? "bg-mint" : index === 1 ? "bg-sky" : "bg-butter/65"
                   )}
                 >
@@ -376,7 +404,7 @@ export default function Home() {
                     aspect="video"
                     className="mt-5"
                   />
-                  <span className="mt-5 text-2xl font-semibold leading-tight tracking-[-0.035em] text-navy-ink group-hover:text-teal">
+                  <span className="mt-5 flex-1 text-2xl font-semibold leading-tight tracking-[-0.035em] text-navy-ink group-hover:text-teal">
                     {post.title}
                   </span>
                 </Link>
