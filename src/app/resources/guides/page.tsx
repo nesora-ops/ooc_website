@@ -6,7 +6,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { guides } from "@/data/guides";
 
 export const metadata: Metadata = {
-  title: "Guides & Whitepapers | Organisation of Choice™",
+  title: "Guides & Whitepapers",
   description: "Deeper, downloadable resources for HR leaders.",
 };
 

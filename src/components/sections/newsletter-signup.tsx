@@ -68,7 +68,7 @@ export function NewsletterSignup() {
       {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
       <p className="mt-3 text-xs text-muted-foreground">
         By subscribing you agree to our{" "}
-        <Link href="/privacy" className="underline hover:text-teal">
+        <Link href="/privacy-policy" className="underline hover:text-teal">
           Privacy Policy
         </Link>
         .

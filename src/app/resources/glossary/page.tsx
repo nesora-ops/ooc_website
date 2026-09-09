@@ -5,7 +5,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { glossaryTerms } from "@/data/glossary";
 
 export const metadata: Metadata = {
-  title: "Glossary | Organisation of Choice™",
+  title: "Glossary",
   description: "The language of workplace certification, defined.",
 };
 

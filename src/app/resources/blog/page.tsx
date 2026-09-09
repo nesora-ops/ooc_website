@@ -7,7 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { blogPosts } from "@/data/blog-posts";
 
 export const metadata: Metadata = {
-  title: "Blog | Organisation of Choice™",
+  title: "Blog",
   description: "Regular insight on culture, talent, and certification.",
 };
 

@@ -9,7 +9,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "Channel Partners | Organisation of Choice™",
+  title: "Channel Partners",
   description:
     "The OOC partner programme lets consultants, advisors, and professional firms bring independent workplace certification to the clients they already serve.",
 };

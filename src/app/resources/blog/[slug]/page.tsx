@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
   if (!post) return {};
 
   return {
-    title: `${post.title} | Organisation of Choice™`,
+    title: post.title,
     description: post.teaser,
   };
 }

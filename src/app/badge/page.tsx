@@ -6,7 +6,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { siteUrl } from "@/lib/site-url";
 
 export const metadata: Metadata = {
-  title: "Certification Badge | Organisation of Choice™",
+  title: "Certification Badge",
   description:
     "Certified organisations can embed the Organisation of Choice seal on their own website. Copy the ready-made HTML snippet.",
 };

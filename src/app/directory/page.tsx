@@ -11,7 +11,7 @@ import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "For Job Seekers & Certified Employer Directory | Organisation of Choice™",
+  title: "For Job Seekers & Certified Employer Directory",
   description:
     "Every organisation in this directory has earned independent certification of its workplace, assessed on evidence, verified annually, and never for sale.",
 };

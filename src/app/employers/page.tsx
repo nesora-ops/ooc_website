@@ -10,7 +10,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
-  title: "For Employers | Organisation of Choice™",
+  title: "For Employers",
   description:
     "OOC certification converts the culture you've invested in into independent, public, verifiable proof. The kind that wins candidates and reassures clients.",
 };

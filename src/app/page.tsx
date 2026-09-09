@@ -22,7 +22,6 @@ import { blogPosts } from "@/data/blog-posts";
 import { cn } from "@/lib/utils";
 
 export const metadata: Metadata = {
-  title: "Organisation of Choice™ | Independent Workplace Certification",
   description:
     "The independent workplace certification that proves your commitment to your people, backed by rigorous multi-stakeholder assessment, not self-declaration.",
 };
@@ -77,6 +76,9 @@ const steps = [
   },
 ];
 
+// The badges have a white circular face, so the cards behind them are white and
+// carry no fill, shadow, or ring — `accent` is used for the descriptor line and
+// the hover border only.
 const levels = [
   {
     name: "Silver",
@@ -123,16 +125,19 @@ export default function Home() {
 
       <section className="noise-wash relative overflow-hidden pb-12 pt-12 sm:pb-18 sm:pt-18 lg:pb-24 lg:pt-24">
         <div className="page-shell relative text-center">
-          <p className="mx-auto max-w-xl text-sm font-semibold text-teal">
-            Independent workplace certification for employers who invest in their people.
+          {/* Eyebrow and H1 were 13px against a ~96px H1 — two unrelated scales.
+              Both are pinned to the brand spec here so they read as one family. */}
+          <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-[#0E7A62]">
+            Independent workplace certification
           </p>
-          <h1 className="mx-auto mt-7 max-w-6xl text-[clamp(3.25rem,8.5vw,7.6rem)] font-semibold leading-[0.86] tracking-[-0.07em] text-navy-ink">
-            <span className="block">Be an Organisation</span>
-            <span className="mt-2 block">
-              of <span className="text-teal">Choice.</span>
-            </span>
+          {/* The <br /> is explicit, not a width accident: the line must break
+              after "Organisation" at every breakpoint. */}
+          <h1 className="mx-auto mt-5 max-w-[15ch] text-[clamp(38px,5.4vw,68px)] font-extrabold leading-[1.04] tracking-[-0.028em] text-navy-ink">
+            Be an Organisation
+            <br />
+            of <span className="text-[#0E7A62]">Choice.</span>
           </h1>
-          <p className="mx-auto mt-8 max-w-3xl text-base leading-7 text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="mx-auto mt-6 max-w-[52ch] text-[19px] leading-[1.65] text-[#56666D]">
             The independent workplace certification that proves your commitment to your people,
             backed by rigorous multi-stakeholder assessment, not self-declaration.
           </p>
@@ -411,6 +416,47 @@ export default function Home() {
               </li>
             ))}
           </ul>
+        </div>
+      </section>
+
+      {/* THE MARK YOU EARN — near-white ground so the seal's white face sits flat.
+          Never move this onto the navy or green surfaces. */}
+      <section className="bg-[#F7FAF8] px-6 py-16 lg:py-24">
+        <div className="mx-auto flex max-w-[1040px] flex-col items-center gap-14 text-center min-[900px]:flex-row min-[900px]:text-left">
+          <Image
+            src="/images/brand/ooc-seal-full.png"
+            alt="Organisation of Choice certification seal"
+            width={240}
+            height={240}
+            className="size-[140px] shrink-0 object-contain min-[900px]:size-[200px] lg:size-[240px]"
+          />
+          <div>
+            <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0E7A62]">
+              The certification mark
+            </p>
+            <h2 className="mt-3 text-[clamp(28px,3.4vw,40px)] font-bold leading-[1.15] tracking-[-0.02em] text-navy-ink">
+              Earned, not bought.
+            </h2>
+            <p className="mt-3.5 max-w-[46ch] text-base leading-[1.65] text-[#56666D]">
+              Certified employers display the Organisation of Choice seal across careers pages,
+              job adverts, and offer letters. It signals an independent assessment, valid for
+              twelve months.
+            </p>
+            <div className="mt-[22px] flex flex-wrap justify-center gap-3 min-[900px]:justify-start">
+              <Link
+                href="/badge"
+                className="rounded-full bg-[#0E7A62] px-[22px] py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b6350]"
+              >
+                Brand guidelines
+              </Link>
+              <Link
+                href="/directory"
+                className="rounded-full border border-[#D6E2DC] bg-transparent px-[22px] py-3 text-[14px] font-bold text-[#0B2B3C] transition-colors hover:bg-white"
+              >
+                Verify a seal
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
 

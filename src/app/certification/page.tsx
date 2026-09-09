@@ -12,7 +12,7 @@ import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { certificationFaqs } from "@/data/faqs";
 
 export const metadata: Metadata = {
-  title: "The Certification | Organisation of Choice™",
+  title: "The Certification",
   description:
     "How OOC certification works: what we assess, the stage-by-stage assessment process, the four certification levels, and how scoring is applied.",
 };

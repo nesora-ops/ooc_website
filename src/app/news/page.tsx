@@ -7,7 +7,7 @@ import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 
 export const metadata: Metadata = {
-  title: "News & Press | Organisation of Choice™",
+  title: "News & Press",
   description:
     "Programme announcements, newly certified organisations, and resources for journalists covering the changing world of work.",
 };

@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ArrowUpRight, Menu } from "lucide-react";
+import { ArrowUpRight, ChevronDown, Menu } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
 import {
   Sheet,
   SheetTrigger,
@@ -16,43 +16,31 @@ import {
   SheetDescription,
   SheetClose,
 } from "@/components/ui/sheet";
-import { mainNav, primaryCta } from "@/lib/site-config";
+import { mainNav, policiesNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-// The header never carries the full seal — at 34px its wordmark, laurel, and
-// star row stop resolving. It gets the horizontal lockup (>=640px) or the CC
-// monogram alone (<640px), both transparent navy.
-// See components/brand/seal.tsx for where the seal is allowed.
+// The header lockup: a tinted disc reading "OOC" beside the stacked wordmark.
+// Set as text, not artwork — the emblem's laurel and rule lines stop resolving
+// at 44px, and the full seal is worse still (see components/brand/seal.tsx for
+// where the seal is allowed). 32 / 44 / 72px share this construction; the
+// header takes 44.
 function Logo() {
   return (
     <Link
       href="/"
-      className="flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
+      className="group flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
       aria-label="Organisation of Choice, home"
     >
-      {/* 577x200 (2.88:1) and 246x179 — declared at their true intrinsic ratio
-          so next/image reserves the right box; height is driven by CSS. */}
-      <Image
-        src="/images/brand/mark-navy.png"
-        alt="Organisation of Choice"
-        width={577}
-        height={200}
-        priority
-        className="hidden h-[28px] w-auto sm:block md:h-[34px]"
-      />
-      <Image
-        src="/images/brand/monogram-cc-navy.png"
-        alt="Organisation of Choice"
-        width={246}
-        height={179}
-        priority
-        className="h-[30px] w-auto sm:hidden"
-      />
-      <span aria-hidden className="hidden h-[30px] w-px bg-ooc-navy-line sm:block" />
-      <span className="hidden text-[14px] font-semibold leading-[1.15] tracking-[-0.01em] text-ooc-navy sm:block">
-        <span className="block">Organisation</span>
-        <span className="block">
-          of Choice<sup className="text-[0.6em] font-semibold">™</sup>
+      <span
+        aria-hidden
+        className="grid size-11 shrink-0 place-items-center rounded-full bg-[#d3e9f2] text-[13px] font-bold tracking-[0.02em] text-ooc-navy transition-transform duration-300 group-hover:scale-105"
+      >
+        OOC
+      </span>
+      <span className="hidden leading-[1.15] tracking-[-0.015em] text-ooc-navy sm:block">
+        <span className="block text-[15px] font-bold">Organisation</span>
+        <span className="block text-[15px] font-bold">
+          of Choice<sup className="text-[0.55em] font-bold">™</sup>
         </span>
       </span>
     </Link>
@@ -62,6 +50,7 @@ function Logo() {
 export function Header() {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
+  const policiesActive = policiesNav.some((item) => pathname === item.href);
 
   // The bar is white on a light hero, so the seam needs help. A hairline holds
   // it at rest and the shadow fades in only once content is actually behind it.
@@ -92,7 +81,7 @@ export function Header() {
                 aria-current={active ? "page" : undefined}
                 className={cn(
                   // --ooc-navy-mute is ~6.4:1 on white; never dim navy with opacity.
-                  "rounded-md px-2.5 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
+                  "whitespace-nowrap rounded-md px-2 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
                   "hover:text-ooc-navy hover:underline hover:decoration-ooc-gold hover:decoration-2",
                   "focus-visible:text-ooc-navy focus-visible:underline focus-visible:decoration-ooc-gold focus-visible:decoration-2",
                   "focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2",
@@ -103,6 +92,32 @@ export function Header() {
               </Link>
             );
           })}
+
+          <Popover>
+            <PopoverTrigger
+              className={cn(
+                "flex items-center gap-1 whitespace-nowrap rounded-md px-2 py-2 text-[14px] font-medium text-ooc-navy-mute underline-offset-[6px] transition-colors outline-none",
+                "hover:text-ooc-navy hover:underline hover:decoration-ooc-gold hover:decoration-2",
+                "focus-visible:text-ooc-navy focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2",
+                policiesActive && "font-semibold text-ooc-navy no-underline hover:no-underline"
+              )}
+            >
+              Policies
+              <ChevronDown aria-hidden className="size-4" />
+            </PopoverTrigger>
+            <PopoverContent align="end" className="w-56 p-1.5">
+              {policiesNav.map((item) => (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={pathname === item.href ? "page" : undefined}
+                  className="block rounded-md px-3 py-2 text-[14px] font-medium text-ooc-navy-mute transition-colors hover:bg-ooc-navy-line/60 hover:text-ooc-navy"
+                >
+                  {item.label}
+                </Link>
+              ))}
+            </PopoverContent>
+          </Popover>
         </nav>
 
         <div className="hidden xl:block">
@@ -138,7 +153,7 @@ export function Header() {
               </SheetTitle>
               <SheetDescription className="sr-only">Site navigation menu</SheetDescription>
             </SheetHeader>
-            <nav className="flex flex-col gap-1 px-4" aria-label="Mobile navigation">
+            <nav className="flex flex-col gap-1 overflow-y-auto px-4" aria-label="Mobile navigation">
               {mainNav.map((item) => {
                 const active = pathname === item.href || pathname.startsWith(`${item.href}/`);
                 return (
@@ -156,6 +171,24 @@ export function Header() {
                   </SheetClose>
                 );
               })}
+
+              <p className="mt-4 px-4 pb-1 text-xs font-semibold uppercase tracking-widest text-ooc-navy-mute">
+                Policies
+              </p>
+              {policiesNav.map((item) => (
+                <SheetClose asChild key={item.href}>
+                  <Link
+                    href={item.href}
+                    aria-current={pathname === item.href ? "page" : undefined}
+                    className={cn(
+                      "rounded-xl px-4 py-3 text-[18px] text-ooc-navy transition-colors hover:bg-ooc-navy-line/60",
+                      pathname === item.href ? "font-semibold" : "font-medium"
+                    )}
+                  >
+                    {item.label}
+                  </Link>
+                </SheetClose>
+              ))}
             </nav>
             <div className="mt-auto px-4 pb-4">
               <SheetClose asChild>
