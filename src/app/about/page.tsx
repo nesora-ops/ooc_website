@@ -119,31 +119,41 @@ export default function AboutPage() {
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Why our certification holds its value.
           </h2>
-          <div className="mx-auto mt-12 max-w-5xl divide-y divide-navy/10 border-y border-navy/10">
-            {differentiators.map((item, index) => {
-              const icons = [Scale, Users, Eye];
-              const Icon = icons[index];
-              return (
-                <details key={item.lead} className="group py-2">
-                  <summary className="grid cursor-pointer list-none items-center gap-5 py-6 marker:content-none sm:grid-cols-[3.5rem_1fr_auto]">
-                    <span className="grid size-12 place-items-center rounded-full bg-white text-teal shadow-sm">
-                      <Icon className="size-5" aria-hidden strokeWidth={1.7} />
-                    </span>
-                    <span>
-                      <span className="block text-xl font-semibold text-navy-ink">{item.lead}</span>
-                      <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
-                    </span>
-                    <span className="hidden text-sm font-semibold text-teal sm:block">
-                      <span className="group-open:hidden">Read principle</span>
-                      <span className="hidden group-open:inline">Close</span>
-                    </span>
-                  </summary>
-                  <p className="max-w-3xl pb-7 text-sm leading-7 text-muted-foreground sm:pl-[5.1rem]">
-                    {item.body}
-                  </p>
-                </details>
-              );
-            })}
+          <div className="mt-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
+            <ImageSlot
+              contentKey="leadership discussion and rigour"
+              alt="A professional leading a whiteboard strategy discussion with colleagues"
+              src="/images/editorial/leadership-discussion.png"
+              aspect="square"
+              sizes="(min-width: 1024px) 42vw, 100vw"
+              className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
+            />
+            <div className="mx-auto max-w-5xl divide-y divide-navy/10 border-y border-navy/10">
+              {differentiators.map((item, index) => {
+                const icons = [Scale, Users, Eye];
+                const Icon = icons[index];
+                return (
+                  <details key={item.lead} className="group py-2">
+                    <summary className="grid cursor-pointer list-none items-center gap-5 py-6 marker:content-none sm:grid-cols-[3.5rem_1fr_auto]">
+                      <span className="grid size-12 place-items-center rounded-full bg-white text-teal shadow-sm">
+                        <Icon className="size-5" aria-hidden strokeWidth={1.7} />
+                      </span>
+                      <span>
+                        <span className="block text-xl font-semibold text-navy-ink">{item.lead}</span>
+                        <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
+                      </span>
+                      <span className="hidden text-sm font-semibold text-teal sm:block">
+                        <span className="group-open:hidden">Read principle</span>
+                        <span className="hidden group-open:inline">Close</span>
+                      </span>
+                    </summary>
+                    <p className="max-w-3xl pb-7 text-sm leading-7 text-muted-foreground sm:pl-[5.1rem]">
+                      {item.body}
+                    </p>
+                  </details>
+                );
+              })}
+            </div>
           </div>
         </div>
       </section>
