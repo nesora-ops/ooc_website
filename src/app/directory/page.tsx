@@ -42,29 +42,40 @@ export default async function DirectoryPage() {
       <SectionHeaderBar label="For Job Seekers" />
 
       {/* HERO */}
-      <section data-standard-layout className="mx-auto grid max-w-6xl gap-10 px-4 py-16 sm:px-6 lg:grid-cols-[0.9fr_1.1fr] lg:items-center lg:px-8">
-        <div>
-          <h1 className="max-w-2xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-            Choose your next employer on proof, not promises.
-          </h1>
-          <p className="mt-6 max-w-xl text-lg text-muted-foreground">
-            Every listed employer has earned independent, annually verified workplace certification.
-          </p>
-          <div className="mt-8">
-            <Button asChild size="lg">
-              <Link href="#directory">Search the directory</Link>
-            </Button>
+      <section data-standard-layout className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-[1400px] px-6 sm:px-8 lg:px-12">
+          <div className="grid grid-cols-1 items-center justify-between gap-10 lg:grid-cols-[1.12fr_0.88fr] lg:gap-16">
+            <div className="w-full order-2 lg:order-1 flex justify-start">
+              <div className="w-full max-w-2xl lg:max-w-3xl">
+                <ImageSlot
+                  contentKey="job seeker researching employers"
+                  alt="A professional calmly researching employers on a laptop"
+                  src="/images/editorial/job-seeker-research.png"
+                  aspect="video"
+                  priority
+                  sizes="(min-width: 1024px) 55vw, 100vw"
+                  className="w-full rounded-[2.5rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
+                />
+              </div>
+            </div>
+            <div className="max-w-xl order-1 lg:order-2">
+              <span className="text-xs font-bold uppercase tracking-[0.14em] text-teal">
+                Verified Directory
+              </span>
+              <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight text-navy-ink sm:text-5xl lg:text-[3.35rem] lg:leading-[1.1]">
+                Choose your next employer on proof, not promises.
+              </h1>
+              <p className="mt-6 max-w-lg text-lg text-muted-foreground">
+                Every listed employer has earned independent, annually verified workplace certification.
+              </p>
+              <div className="mt-8">
+                <Button asChild size="lg" className="rounded-full bg-teal hover:bg-teal/90 px-8 py-6 text-base font-semibold shadow-[0_10px_30px_rgba(10,113,104,0.2)]">
+                  <Link href="#directory">Search the directory</Link>
+                </Button>
+              </div>
+            </div>
           </div>
         </div>
-        <ImageSlot
-          contentKey="job seeker researching employers"
-          alt="A professional calmly researching employers on a laptop"
-          src="/images/editorial/job-seeker-research.png"
-          aspect="video"
-          priority
-          sizes="(min-width: 1024px) 54vw, 100vw"
-          className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)]"
-        />
       </section>
 
       {/* WHY IT MATTERS */}
