@@ -49,7 +49,7 @@ export default function ContactPage() {
         <ImageSlot
           contentKey="contact the programme team"
           alt="The Organisation of Choice advisory and partnership team in a consultation meeting"
-          src="/images/editorial/contact-team.png"
+          src="/images/editorial/contact-team-advisory.png"
           aspect="4/3"
           priority
           sizes="(min-width: 1024px) 45vw, 100vw"
