@@ -49,11 +49,11 @@ export default function ContactPage() {
         </div>
         <ImageSlot
           contentKey="contact the programme team"
-          alt="Editorial illustration of a message, phone, location pin, and office"
+          alt="The Organisation of Choice advisory and partnership team in a consultation meeting"
           src="/images/editorial/contact-team.png"
-          aspect="video"
+          aspect="4/3"
           priority
-          sizes="(min-width: 1024px) 40vw, 100vw"
+          sizes="(min-width: 1024px) 45vw, 100vw"
           className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
         />
       </section>
