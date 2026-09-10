@@ -170,43 +170,33 @@ export default function AboutPage() {
           Led by its founder, with a team of assessors and advisors. Every certification must be
           defensible on the evidence.
         </p>
-        <ul className="mt-8 grid gap-4 sm:grid-cols-3">
-          <li className="rounded-lg border border-dashed border-gold/60 bg-muted p-4 text-sm">
+        <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
+          <li className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground">
             <ImageSlot
               contentKey="headshot — Ketaki, founder"
               alt="Ketaki, Founder"
               aspect="square"
-              sizes="(min-width: 640px) 20rem, 100vw"
-              className="mb-4"
+              sizes="(min-width: 640px) 18rem, 100vw"
+              className="mb-5"
             />
-            <p className="font-heading font-semibold text-navy-ink">
+            <p className="font-heading text-base font-semibold text-navy-ink">
               Ketaki, Founder &amp; <Placeholder>designation</Placeholder>
             </p>
-            <p className="mt-2">
-              <Placeholder>two-line biography</Placeholder>
+            <p className="mt-3 leading-6">
+              <Placeholder>founder biography</Placeholder>
             </p>
           </li>
-          {[1, 2].map((n) => (
-            <li
-              key={n}
-              className="rounded-lg border border-dashed border-gold/60 bg-muted p-4 text-sm"
-            >
-              <ImageSlot
-                contentKey={`headshot — team member ${n}`}
-                alt={`Team member ${n}`}
-                aspect="square"
-                sizes="(min-width: 640px) 20rem, 100vw"
-                className="mb-4"
-              />
-              <p className="font-heading font-semibold text-navy-ink">
-                <Placeholder>team member name</Placeholder>,{" "}
-                <Placeholder>designation</Placeholder>
-              </p>
-              <p className="mt-2">
-                <Placeholder>two-line biography</Placeholder>
-              </p>
-            </li>
-          ))}
+          <li className="flex flex-col rounded-2xl border border-navy/8 bg-muted/60 p-6 text-sm text-muted-foreground">
+            <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+              In the founder&apos;s words
+            </p>
+            <p className="mt-3 font-heading text-base font-semibold text-navy-ink">
+              How Ketaki approaches certification.
+            </p>
+            <p className="mt-3 leading-6">
+              <Placeholder>founder approach</Placeholder>
+            </p>
+          </li>
         </ul>
       </section>
 
