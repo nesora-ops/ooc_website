@@ -9,7 +9,7 @@ import { CTABand } from "@/components/sections/cta-band";
 import { FAQAccordion } from "@/components/sections/faq-accordion";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { certificationFaqs } from "@/data/faqs";
+import { getFaqs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "The Certification",
@@ -108,7 +108,9 @@ const processStages = [
   },
 ];
 
-export default function CertificationPage() {
+export default async function CertificationPage() {
+  const certificationFaqs = await getFaqs("certification");
+
   return (
     <>
       <SectionHeaderBar label="The Certification" />

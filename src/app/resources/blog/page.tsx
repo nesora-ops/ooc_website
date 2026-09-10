@@ -4,14 +4,16 @@ import type { Metadata } from "next";
 import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { blogPosts } from "@/data/blog-posts";
+import { getBlogPosts } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Blog",
   description: "Regular insight on culture, talent, and certification.",
 };
 
-export default function BlogListingPage() {
+export default async function BlogListingPage() {
+  const blogPosts = await getBlogPosts();
+
   return (
     <>
       <SectionHeaderBar label="Resources: Blog" />

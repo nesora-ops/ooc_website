@@ -2,20 +2,26 @@ import type { Metadata } from "next";
 
 import { FAQAccordion } from "@/components/sections/faq-accordion";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { resourcesFaqs } from "@/data/faqs";
+import { getFaqs } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "FAQs",
   description: "Straight answers for employers, job seekers, and partners.",
 };
 
-const groups = [
-  { heading: "For employers.", items: resourcesFaqs.employers },
-  { heading: "For job seekers.", items: resourcesFaqs.jobSeekers },
-  { heading: "For partners.", items: resourcesFaqs.partners },
-];
+export default async function FAQPage() {
+  const [employers, jobSeekers, partners] = await Promise.all([
+    getFaqs("employers"),
+    getFaqs("jobSeekers"),
+    getFaqs("partners"),
+  ]);
 
-export default function FAQPage() {
+  const groups = [
+    { heading: "For employers.", items: employers },
+    { heading: "For job seekers.", items: jobSeekers },
+    { heading: "For partners.", items: partners },
+  ];
+
   return (
     <>
       <SectionHeaderBar label="Resources: FAQs" />

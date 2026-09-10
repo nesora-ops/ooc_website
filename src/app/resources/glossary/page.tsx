@@ -2,27 +2,33 @@ import type { Metadata } from "next";
 
 import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { glossaryTerms } from "@/data/glossary";
+import type { GlossaryTerm } from "@/data/glossary";
+import { getGlossaryTerms } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Glossary",
   description: "The language of workplace certification, defined.",
 };
 
-// glossaryTerms is already alphabetical (see data/glossary.ts); group it by
-// first letter so each block gets a heading, an anchor, and a quick-nav target.
-const groups = glossaryTerms.reduce<{ letter: string; terms: typeof glossaryTerms }[]>(
-  (acc, entry) => {
-    const letter = entry.term[0].toUpperCase();
-    const current = acc[acc.length - 1];
-    if (current && current.letter === letter) current.terms.push(entry);
-    else acc.push({ letter, terms: [entry] });
-    return acc;
-  },
-  [],
-);
+// Group by first letter so each block gets a heading, an anchor, and a
+// quick-nav target. Sorted here rather than trusting the source: admin-entered
+// terms arrive in whatever order they were added.
+function groupByLetter(terms: GlossaryTerm[]) {
+  return [...terms]
+    .sort((a, b) => a.term.localeCompare(b.term))
+    .reduce<{ letter: string; terms: GlossaryTerm[] }[]>((acc, entry) => {
+      const letter = entry.term[0].toUpperCase();
+      const current = acc[acc.length - 1];
+      if (current && current.letter === letter) current.terms.push(entry);
+      else acc.push({ letter, terms: [entry] });
+      return acc;
+    }, []);
+}
 
-export default function GlossaryPage() {
+export default async function GlossaryPage() {
+  const glossaryTerms = await getGlossaryTerms();
+  const groups = groupByLetter(glossaryTerms);
+
   return (
     <>
       <SectionHeaderBar label="Resources: Glossary" />

@@ -3,14 +3,23 @@ import type { Metadata } from "next";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { guides } from "@/data/guides";
+import { getGuides } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Guides & Whitepapers",
   description: "Deeper, downloadable resources for HR leaders.",
 };
 
-export default function GuidesPage() {
+/** "2.4 MB" for the download button. */
+function formatSize(bytes?: number) {
+  if (!bytes) return null;
+  const mb = bytes / (1024 * 1024);
+  return mb >= 1 ? `${mb.toFixed(1)} MB` : `${Math.max(1, Math.round(bytes / 1024))} KB`;
+}
+
+export default async function GuidesPage() {
+  const guides = await getGuides();
+
   return (
     <>
       <SectionHeaderBar label="Resources: Guides" />
@@ -34,9 +43,22 @@ export default function GuidesPage() {
                 </CardHeader>
                 <CardContent className="flex flex-col items-start gap-4">
                   <p className="text-sm text-muted-foreground">{guide.description}</p>
-                  <Button variant="outline" disabled>
-                    Download (coming soon)
-                  </Button>
+                  {guide.fileUrl ? (
+                    <Button variant="outline" asChild>
+                      <a href={guide.fileUrl} target="_blank" rel="noreferrer" download>
+                        Download PDF
+                        {formatSize(guide.fileSize) && (
+                          <span className="ml-1 text-xs opacity-70">
+                            ({formatSize(guide.fileSize)})
+                          </span>
+                        )}
+                      </a>
+                    </Button>
+                  ) : (
+                    <Button variant="outline" disabled>
+                      Download (coming soon)
+                    </Button>
+                  )}
                 </CardContent>
               </Card>
             </li>

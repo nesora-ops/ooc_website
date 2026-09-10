@@ -6,6 +6,7 @@ import { ImageSlot } from "@/components/image-slot";
 import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
+import { getContactDetails } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -13,23 +14,40 @@ export const metadata: Metadata = {
     "Exploring certification, considering partnership, or have a question about the programme? We'd like to hear from you.",
 };
 
-const officeAddress =
+// Fallbacks, used for any field the admin has not filled in at
+// /admin/website-content -> Contact. They are also what shows if CertifyDB is
+// unreachable.
+const DEFAULT_ADDRESS =
   "315, Building 1, Millenium Business Park, Sector 2, Mahape, Navi Mumbai, Maharashtra 400710";
-const contactPhone = "+91 82913 88546";
-
-const contactDetails = [
-  { label: "Phone", value: contactPhone, icon: Phone, tone: "bg-mint/75 text-teal" },
-  { label: "Office address", value: officeAddress, icon: MapPin, tone: "bg-sky/70 text-navy" },
-  { label: "Email", placeholder: "contact email", icon: Mail, tone: "bg-butter/55 text-gold-ink" },
-  { label: "Hours", placeholder: "business hours", icon: Clock, tone: "bg-coral/10 text-[#9a4635]" },
-];
-
-const partnerSites = [
+const DEFAULT_PHONE = "+91 82913 88546";
+const DEFAULT_MAP_URL =
+  "https://www.openstreetmap.org/?mlat=19.108618&mlon=73.019613#map=16/19.108618/73.019613";
+const DEFAULT_PARTNER_SITES = [
   { name: "CertifyDB", href: "https://certifydb.com" },
   { name: "Better Earth Workplace", href: "https://betterearthworkplace.com" },
 ];
 
-export default function ContactPage() {
+export default async function ContactPage() {
+  const contact = await getContactDetails();
+
+  const officeAddress = contact.address ?? DEFAULT_ADDRESS;
+  const contactPhone = contact.phone ?? DEFAULT_PHONE;
+  const mapUrl = contact.mapUrl ?? DEFAULT_MAP_URL;
+  const partnerSites = contact.partnerSites ?? DEFAULT_PARTNER_SITES;
+
+  // A field with no published value keeps its <Placeholder>, which is what the
+  // page did before any of this was editable.
+  const contactDetails = [
+    { label: "Phone", value: contactPhone, icon: Phone, tone: "bg-mint/75 text-teal" },
+    { label: "Office address", value: officeAddress, icon: MapPin, tone: "bg-sky/70 text-navy" },
+    contact.email
+      ? { label: "Email", value: contact.email, icon: Mail, tone: "bg-butter/55 text-gold-ink" }
+      : { label: "Email", placeholder: "contact email", icon: Mail, tone: "bg-butter/55 text-gold-ink" },
+    contact.hours
+      ? { label: "Hours", value: contact.hours, icon: Clock, tone: "bg-coral/10 text-[#9a4635]" }
+      : { label: "Hours", placeholder: "business hours", icon: Clock, tone: "bg-coral/10 text-[#9a4635]" },
+  ];
+
   return (
     <>
       <SectionHeaderBar label="Contact" />
@@ -52,7 +70,10 @@ export default function ContactPage() {
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
             Whether you&apos;re exploring certification, considering partnership, or simply have a
             question, we&apos;d like to hear from you. We respond to every enquiry within{" "}
-            <Placeholder className="border-0 bg-transparent px-0 py-0">response time</Placeholder>.
+            {contact.responseTime ?? (
+              <Placeholder className="border-0 bg-transparent px-0 py-0">response time</Placeholder>
+            )}
+            .
           </p>
 
           <div className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-3 border-t border-navy/8 pt-6 text-sm font-medium text-muted-foreground">
@@ -159,7 +180,7 @@ export default function ContactPage() {
                 </h2>
                 <p className="mt-3 max-w-md text-sm leading-6 text-muted-foreground">
                   Share a few details and the right member of our team will respond within{" "}
-                  <Placeholder>response time</Placeholder>.
+                  {contact.responseTime ?? <Placeholder>response time</Placeholder>}.
                 </p>
                 <div className="mt-8">
                   <ContactForm />
@@ -174,7 +195,7 @@ export default function ContactPage() {
                   <p className="mt-1 text-sm text-muted-foreground">{officeAddress}</p>
                 </div>
                 <a
-                  href="https://www.openstreetmap.org/?mlat=19.108618&mlon=73.019613#map=16/19.108618/73.019613"
+                  href={mapUrl}
                   target="_blank"
                   rel="noreferrer"
                   className="text-sm font-semibold text-teal hover:underline"

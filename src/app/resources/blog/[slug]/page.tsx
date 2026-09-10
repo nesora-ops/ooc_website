@@ -3,19 +3,27 @@ import { notFound } from "next/navigation";
 import type { Metadata } from "next";
 
 import { ImageSlot } from "@/components/image-slot";
+import { Markdown } from "@/components/markdown";
 import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { blogPosts } from "@/data/blog-posts";
+import { getBlogPost, getBlogPosts } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
-export function generateStaticParams() {
-  return blogPosts.map((post) => ({ slug: post.slug }));
+export async function generateStaticParams() {
+  const posts = await getBlogPosts();
+  return posts.map((post) => ({ slug: post.slug }));
 }
+
+// A post published in the admin after this page was built is not in
+// generateStaticParams, so it must still render on first request rather than
+// 404. Unpublishing one leaves a stale page until the tag is revalidated, which
+// the admin's save already triggers.
+export const dynamicParams = true;
 
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPost(slug);
 
   if (!post) return {};
 
@@ -27,7 +35,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Params) {
   const { slug } = await params;
-  const post = blogPosts.find((p) => p.slug === slug);
+  const post = await getBlogPost(slug);
 
   if (!post) notFound();
 
@@ -51,12 +59,16 @@ export default async function BlogPostPage({ params }: Params) {
           className="mt-8"
         />
 
-        <div className="mt-10 space-y-6 text-muted-foreground">
-          <p className="text-lg">{post.teaser}</p>
-          <Placeholder variant="block">
-            full article body for &ldquo;{post.title}&rdquo;
-          </Placeholder>
-        </div>
+        {post.bodyMarkdown ? (
+          <Markdown className="mt-10">{post.bodyMarkdown}</Markdown>
+        ) : (
+          <div className="mt-10 space-y-6 text-muted-foreground">
+            <p className="text-lg">{post.teaser}</p>
+            <Placeholder variant="block">
+              full article body for &ldquo;{post.title}&rdquo;
+            </Placeholder>
+          </div>
+        )}
 
         <Link
           href="/resources/blog"

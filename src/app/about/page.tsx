@@ -6,6 +6,7 @@ import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
+import { getTeam } from "@/lib/content";
 
 export const metadata: Metadata = {
   title: "About",
@@ -31,7 +32,9 @@ const differentiators = [
   },
 ];
 
-export default function AboutPage() {
+export default async function AboutPage() {
+  const team = await getTeam();
+
   return (
     <>
       <SectionHeaderBar label="About" />
@@ -171,21 +174,45 @@ export default function AboutPage() {
           defensible on the evidence.
         </p>
         <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
-          <li className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground">
-            <ImageSlot
-              contentKey="headshot — Ketaki, founder"
-              alt="Ketaki, Founder"
-              aspect="square"
-              sizes="(min-width: 640px) 18rem, 100vw"
-              className="mb-5"
-            />
-            <p className="font-heading text-base font-semibold text-navy-ink">
-              Ketaki, Founder &amp; <Placeholder>designation</Placeholder>
-            </p>
-            <p className="mt-3 leading-6">
-              <Placeholder>founder biography</Placeholder>
-            </p>
-          </li>
+          {/* Published from /admin/website-content -> Founder & Team. With nothing
+              published the founder card keeps the placeholders it has always shown. */}
+          {team.length > 0 ? (
+            team.map((member) => (
+              <li
+                key={member.name}
+                className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground"
+              >
+                <ImageSlot
+                  contentKey={`headshot — ${member.name}`}
+                  alt={member.designation ? `${member.name}, ${member.designation}` : member.name}
+                  src={member.imageUrl}
+                  aspect="square"
+                  sizes="(min-width: 640px) 18rem, 100vw"
+                  className="mb-5"
+                />
+                <p className="font-heading text-base font-semibold text-navy-ink">
+                  {member.designation ? `${member.name}, ${member.designation}` : member.name}
+                </p>
+                {member.bio && <p className="mt-3 leading-6">{member.bio}</p>}
+              </li>
+            ))
+          ) : (
+            <li className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground">
+              <ImageSlot
+                contentKey="headshot — Ketaki, founder"
+                alt="Ketaki, Founder"
+                aspect="square"
+                sizes="(min-width: 640px) 18rem, 100vw"
+                className="mb-5"
+              />
+              <p className="font-heading text-base font-semibold text-navy-ink">
+                Ketaki, Founder &amp; <Placeholder>designation</Placeholder>
+              </p>
+              <p className="mt-3 leading-6">
+                <Placeholder>founder biography</Placeholder>
+              </p>
+            </li>
+          )}
           <li className="flex flex-col rounded-2xl border border-navy/8 bg-muted/60 p-6 text-sm text-muted-foreground">
             <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
               In the founder&apos;s words
