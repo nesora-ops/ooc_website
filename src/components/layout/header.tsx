@@ -19,12 +19,13 @@ import {
 import { mainNav, policiesNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-// The header lockup: a gold disc reading "OOC" beside the stacked wordmark.
+// The header lockup: a tinted disc reading "OOC" beside the stacked wordmark.
 // Set as text, not artwork — the emblem's laurel and rule lines stop resolving
 // at 44px, and the full seal is worse still (see components/brand/seal.tsx for
 // where the seal is allowed). 32 / 44 / 72px share this construction; the
-// header takes 44. The disc is filled favicon gold (#C08A2E) with white "OOC";
-// the wordmark stays navy — gold text on the white bar fails contrast.
+// header takes 44. The disc is pale blue (#d3e9f2) with navy "OOC" — the gold
+// fill tried in 3d67761 was reverted; navy on pale blue also carries the
+// stronger contrast ratio of the two.
 function Logo() {
   return (
     <Link
@@ -34,7 +35,7 @@ function Logo() {
     >
       <span
         aria-hidden
-        className="grid size-11 shrink-0 place-items-center rounded-full bg-[#C08A2E] text-[13px] font-bold tracking-[0.02em] text-white transition-transform duration-300 group-hover:scale-105"
+        className="grid size-11 shrink-0 place-items-center rounded-full bg-[#d3e9f2] text-[13px] font-bold tracking-[0.02em] text-ooc-navy transition-transform duration-300 group-hover:scale-105"
       >
         OOC
       </span>
