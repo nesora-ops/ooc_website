@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { mediaSrc } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 // MINIMUM SIZE: 72px. Do not render the full seal any smaller.
@@ -38,7 +39,7 @@ export function Seal({
 
   return (
     <Image
-      src="/images/brand/ooc-seal-full.png"
+      src={mediaSrc("/images/brand/ooc-seal-full.png")}
       alt={alt}
       width={px}
       height={px}

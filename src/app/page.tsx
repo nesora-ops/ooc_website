@@ -84,28 +84,28 @@ const levels = [
     name: "Silver",
     note: "Strong foundations",
     body: "Recognises organisations with the essential people practices in place: compliant, fair, and well run.",
-    badge: "/images/brand/ooc-badge-silver.png",
+    badge: "/images/brand/ooc-badge-silver.webp",
     accent: "#6B7B84",
   },
   {
     name: "Gold",
     note: "Engaged and improving",
     body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
-    badge: "/images/brand/ooc-badge-gold.png",
+    badge: "/images/brand/ooc-badge-gold.webp",
     accent: "#C08A2E",
   },
   {
     name: "Platinum",
     note: "Advanced and consistent",
     body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
-    badge: "/images/brand/ooc-badge-platinum.png",
+    badge: "/images/brand/ooc-badge-platinum.webp",
     accent: "#7C8CA8",
   },
   {
     name: "Diamond",
     note: "A workplace others benchmark against",
     body: "Recognises sustained excellence across people practices, employee experience, and organisational leadership.",
-    badge: "/images/brand/ooc-badge-diamond.png",
+    badge: "/images/brand/ooc-badge-diamond.webp",
     accent: "#0E7A62",
   },
 ];
@@ -228,6 +228,7 @@ export default function Home() {
             src="/images/editorial/workplace-collaboration.png"
             aspect="video"
             sizes="(min-width: 1024px) 58vw, 100vw"
+            priority
             className="rounded-[2.25rem] shadow-[0_28px_80px_rgba(23,50,77,0.12)] transition-all duration-500 ease-out"
           />
         </div>
@@ -424,7 +425,7 @@ export default function Home() {
       <section className="bg-[#F7FAF8] px-6 py-16 lg:py-24">
         <div className="mx-auto flex max-w-[1040px] flex-col items-center gap-14 text-center min-[900px]:flex-row min-[900px]:text-left">
           <Image
-            src="/images/brand/ooc-seal-full.png"
+            src="/images/brand/ooc-seal-full.webp"
             alt="Organisation of Choice certification seal"
             width={240}
             height={240}

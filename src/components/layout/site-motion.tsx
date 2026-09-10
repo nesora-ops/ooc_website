@@ -17,37 +17,23 @@ export function SiteMotion({ children }: { children: ReactNode }) {
       const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
       if (reduced) return;
 
-      gsap.utils.toArray<HTMLElement>("main > section, main > div > section").forEach((section) => {
+      // Images must paint at full opacity. A fade/scale on [data-motion-media]
+      // made 2MB photos look like they were still loading. Motion is a short
+      // translate on below-fold sections only — never opacity on media.
+      gsap.utils.toArray<HTMLElement>("main > section, main > div > section").forEach((section, index) => {
+        if (index === 0) return
         ScrollTrigger.create({
           trigger: section,
-          start: "top 88%",
+          start: "top 92%",
           once: true,
           onEnter: () => {
             gsap.fromTo(
               section,
-              { opacity: 0.45, y: 28 },
-              { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }
+              { y: 16 },
+              { y: 0, duration: 0.35, ease: "power2.out" }
             );
           },
         });
-      });
-
-      gsap.utils.toArray<HTMLElement>("[data-motion-media]").forEach((media) => {
-        gsap.fromTo(
-          media,
-          { scale: 0.88, autoAlpha: 0.55 },
-          {
-            scale: 1,
-            autoAlpha: 1,
-            ease: "none",
-            scrollTrigger: {
-              trigger: media,
-              start: "top 92%",
-              end: "bottom 32%",
-              scrub: 0.7,
-            },
-          }
-        );
       });
 
     },

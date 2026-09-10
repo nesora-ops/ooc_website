@@ -138,7 +138,7 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
                           its wordmark and laurel illegible (see brand/seal.tsx,
                           96px floor), so the monogram stands in at 28px. */}
                       <Image
-                        src="/images/brand/mark-gold.png"
+                        src="/images/brand/mark-gold.webp"
                         alt=""
                         width={577}
                         height={200}

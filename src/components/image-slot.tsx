@@ -1,5 +1,6 @@
 import Image from "next/image";
 
+import { mediaSrc, PHOTO_BLUR } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
 // Approved image slots. Mirrors the `data-content-key` convention in
@@ -71,7 +72,17 @@ export function ImageSlot({
         {...(motion ? { "data-motion-media": "" } : {})}
         className={shared}
       >
-        <Image src={src} alt={alt} fill sizes={sizes} priority={priority} className="object-cover" />
+        <Image
+          src={mediaSrc(src)}
+          alt={alt}
+          fill
+          sizes={sizes}
+          priority={priority}
+          quality={72}
+          placeholder="blur"
+          blurDataURL={PHOTO_BLUR}
+          className="object-cover"
+        />
       </div>
     );
   }

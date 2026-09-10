@@ -24,7 +24,7 @@ const levels = [
     levelTitle: "Silver",
     summary: "Fair, compliant, and well-run with the essential people systems in place.",
     body: "Silver certification signifies a fair, compliant, well-run workplace: sound policies, essential people systems in place, and no failures on any mandatory criterion. It is the credible starting point, with a clear report showing the route to Gold.",
-    badge: "/images/brand/ooc-badge-silver.png",
+    badge: "/images/brand/ooc-badge-silver.webp",
     accent: "#6B7B84",
     benchmark: "Statutory compliance & core people systems",
   },
@@ -34,7 +34,7 @@ const levels = [
     levelTitle: "Gold",
     summary: "Mature systems, positive employee experience, and systematic improvement.",
     body: "Gold certification signifies an organisation whose investment in people is producing measurable results: employees report a positive experience, people systems are mature and consistently applied, and improvement is systematic rather than occasional.",
-    badge: "/images/brand/ooc-badge-gold.png",
+    badge: "/images/brand/ooc-badge-gold.webp",
     accent: "#C08A2E",
     benchmark: "Mature systems & measured engagement",
   },
@@ -44,7 +44,7 @@ const levels = [
     levelTitle: "Platinum",
     summary: "Industry-leading practices and an outstanding, consistent employee experience.",
     body: "Platinum certification recognises advanced workplaces with industry-leading practices, an outstanding and consistent employee experience, and evidence of innovation in how people are led, developed, and cared for.",
-    badge: "/images/brand/ooc-badge-platinum.png",
+    badge: "/images/brand/ooc-badge-platinum.webp",
     accent: "#7C8CA8",
     benchmark: "Industry-leading & consistent execution",
   },
@@ -54,7 +54,7 @@ const levels = [
     levelTitle: "Diamond",
     summary: "Sustained excellence across people practices, experience, and leadership.",
     body: "Diamond certification is the highest level of recognition, reserved for organisations that sustain exceptional evidence across the framework and provide a workplace standard others can benchmark against.",
-    badge: "/images/brand/ooc-badge-diamond.png",
+    badge: "/images/brand/ooc-badge-diamond.webp",
     accent: "#0E7A62",
     benchmark: "Benchmark standard for organisational leadership",
   },
@@ -191,7 +191,7 @@ export default async function CertificationPage() {
                       aria-label={`Illustration for ${stage.title}`}
                       className="relative block h-36 bg-[#f5f3eb] bg-no-repeat after:absolute after:inset-x-0 after:bottom-0 after:h-14 after:bg-gradient-to-t after:from-white/90 after:to-transparent"
                       style={{
-                        backgroundImage: "url('/images/editorial/assessment-process.png')",
+                        backgroundImage: "url('/images/editorial/assessment-process.webp')",
                         backgroundPosition: stage.imagePosition,
                         backgroundSize: "600% auto",
                       }}

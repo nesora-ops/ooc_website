@@ -60,6 +60,7 @@ export default async function AboutPage() {
               src="/images/editorial/evidence-to-trust.png"
               aspect="video"
               sizes="(min-width: 1024px) 42vw, 100vw"
+              priority
               className="mx-auto max-w-md rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
             />
 
