@@ -88,7 +88,7 @@ export default function ResourcesPage() {
                       <ArrowUpRight className={`size-5 ${isDark ? "text-white/60" : "text-navy/45"}`} aria-hidden />
                     </span>
                     {isDark && (
-                      <span className="font-heading text-5xl font-semibold leading-none text-white/12 sm:text-7xl">
+                      <span className="font-heading text-5xl font-semibold leading-none text-white/90 sm:text-7xl">
                         Ideas,<br />unpacked.
                       </span>
                     )}
