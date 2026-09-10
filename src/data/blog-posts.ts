@@ -50,6 +50,6 @@ export const blogPosts: BlogPost[] = titles.map((title, index) => {
     teaser: `A practical introduction to ${title.toLowerCase()}.`,
     date: publicationDates[index % publicationDates.length],
     author: "Organisation of Choice Team",
-    image: index < 6 ? { src: `/images/blog/blog-${index + 1}.png`, alt: `Cover art for ${title}` } : undefined,
+    image: { src: `/images/blog/blog-${index + 1}.png`, alt: `Cover art for ${title}` },
   };
 });
