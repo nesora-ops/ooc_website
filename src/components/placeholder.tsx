@@ -12,12 +12,12 @@ type PlaceholderProps = {
 // element carrying `data-content-key`; the key preserves the source field.
 const placeholderValues: Record<string, string> = {
   year: "2026",
-  "grievance officer name and contact": "Aarav Mehta · grievance@organisationofchoice.com",
+  "grievance officer name and contact": "Aarav Mehta · certify@betterearthworkplace.com",
   "contact email": "certify@betterearthworkplace.com",
   "business hours": "Monday–Friday · 9:30am–6:00pm IST",
-  "certification email": "certification@organisationofchoice.com",
-  "partners email": "partners@organisationofchoice.com",
-  "media email": "media@organisationofchoice.com",
+  "certification email": "certify@betterearthworkplace.com",
+  "partners email": "certify@betterearthworkplace.com",
+  "media email": "certify@betterearthworkplace.com",
   "response time": "two working days",
   duration: "approximately two weeks",
   "typical duration": "8–12 weeks",
@@ -29,8 +29,10 @@ const placeholderValues: Record<string, string> = {
   "founder designation": "Founder & Programme Director",
   "founder background summary": "people strategy, organisational development, and responsible business",
   designation: "Programme Director",
-  "two-line biography": "Workplace-culture specialist focused on evidence-led people practices and responsible growth.",
-  "team member name": "Rhea Kapoor",
+  "founder biography":
+    "Ketaki founded Organisation of Choice™ after two decades in people strategy, organisational development, and responsible business. Her work has spanned building HR functions from the ground up, advising leadership teams through periods of rapid growth, and designing the listening and evidence practices that show whether a workplace is genuinely improving. She started OOC to give that discipline a public, independent form.",
+  "founder approach":
+    "Certification, in Ketaki's view, should be earned on evidence and never negotiated. Every OOC assessment draws on employees, leadership, and independent assessors together, because a workplace looks different from the floor than it does from the boardroom. The detailed reports that follow are designed to be acted on: they show an organisation exactly where it stands and precisely what would move it forward.",
   "available on request": "available through the media desk",
   "cookie inventory": "Essential preference storage and privacy-safe analytics",
   "effective date": "15 August 2026",
