@@ -244,6 +244,7 @@ export default function EmployersPage() {
                 <ImageSlot
                   contentKey={`case study ${n} — certified workplace`}
                   alt={`Case study ${n}`}
+                  src={`/images/editorial/case-study-${n}.png`}
                   aspect="video"
                 />
                 <Placeholder variant="block">

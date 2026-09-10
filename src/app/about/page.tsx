@@ -126,7 +126,7 @@ export default async function AboutPage() {
             <ImageSlot
               contentKey="leadership discussion and rigour"
               alt="A professional leading a whiteboard strategy discussion with colleagues"
-              src="/images/editorial/leadership-discussion.png"
+              src="/images/editorial/replaced_one.png"
               aspect="square"
               sizes="(min-width: 1024px) 42vw, 100vw"
               className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
