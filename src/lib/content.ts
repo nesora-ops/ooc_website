@@ -192,7 +192,7 @@ export async function getBlogPosts(): Promise<LiveBlogPost[]> {
         bodyMarkdown: text(row.data.bodyMarkdown) || undefined,
         image: coverUrl
           ? { src: coverUrl, alt: text(row.data.coverAlt) || text(row.data.title) }
-          : undefined,
+          : blogPosts.find(p => p.slug === row.slug)?.image,
       };
     });
 
