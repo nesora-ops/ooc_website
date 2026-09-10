@@ -22,6 +22,8 @@ MONOGRAM (interlocking CC + laurel, no wording — survives small sizes)
 HEADER MARKS
   ooc-mark-navy.png        Header mark for the white sticky bar.
   ooc-mark-white.png       Header mark for the green bar.
+  mark-gold.png            Gold (#C08A2E) recolour of mark-navy.png, used on the
+                           directory listing cards at 28px to match the favicon.
 
 FAVICON / APP ICONS (pre-sized, drop in as-is)
   favicon-16.png           gold monogram
