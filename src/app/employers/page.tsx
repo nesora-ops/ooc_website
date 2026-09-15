@@ -89,7 +89,7 @@ export default function EmployersPage() {
       {/* THE PROBLEM WE SOLVE */}
       <section id="why-certify" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
             The problem we solve
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -165,7 +165,7 @@ export default function EmployersPage() {
       {/* THE PROCESS FOR YOU */}
       <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
             The process for you
           </p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
@@ -234,7 +234,7 @@ export default function EmployersPage() {
       {/* CASE STUDIES */}
       <section id="case-studies" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Case studies</p>
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">Case studies</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Organisations that made it official.
           </h2>
@@ -258,7 +258,7 @@ export default function EmployersPage() {
 
       {/* APPLICATION FORM */}
       <section id="apply" className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <p className="mx-auto max-w-3xl text-center text-xs font-semibold uppercase tracking-widest text-gold-ink">
+        <p className="mx-auto max-w-3xl text-center text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
           Application form
         </p>
         <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 text-center font-heading text-3xl font-bold text-navy-ink">

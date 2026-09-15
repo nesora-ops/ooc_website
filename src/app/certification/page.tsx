@@ -227,7 +227,7 @@ export default async function CertificationPage() {
       <section className="bg-muted/30 py-16 sm:py-20">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
               Certification levels
             </p>
             <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink sm:text-4xl">
@@ -251,7 +251,7 @@ export default async function CertificationPage() {
                 />
               </div>
               <div className="p-7 sm:p-10 flex flex-col justify-center">
-                <span className="text-xs font-bold uppercase tracking-[0.14em] text-teal">
+                <span className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">
                   Progressive Framework
                 </span>
                 <h3 className="mt-2 text-2xl font-bold text-navy-ink sm:text-3xl">
@@ -295,7 +295,11 @@ export default async function CertificationPage() {
                   <p className="text-[11px] font-semibold text-(--tier-accent) uppercase tracking-wider">
                     {level.benchmark}
                   </p>
-                  <ProgressiveDetails className="mt-3 border-0 pt-0 text-xs" label="Detailed requirements">
+                  <ProgressiveDetails
+                    className="mt-3 border-0 pt-0"
+                    labelClassName="text-xs font-bold uppercase tracking-wider text-(--tier-accent)"
+                    label="Detailed requirements"
+                  >
                     <p className="text-xs leading-relaxed text-muted-foreground">{level.body}</p>
                   </ProgressiveDetails>
                 </div>
@@ -307,7 +311,7 @@ export default async function CertificationPage() {
 
       {/* SCORING & CRITERIA */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
+        <p className="mx-auto max-w-3xl text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
           Scoring &amp; criteria
         </p>
         <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

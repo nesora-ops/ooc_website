@@ -6,14 +6,21 @@ export function ProgressiveDetails({
   children,
   label = "Read the full detail",
   className,
+  labelClassName,
 }: {
   children: ReactNode;
   label?: string;
   className?: string;
+  labelClassName?: string;
 }) {
   return (
     <details className={cn("group border-t border-navy/10 pt-4", className)}>
-      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal marker:content-none">
+      <summary
+        className={cn(
+          "flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal marker:content-none",
+          labelClassName
+        )}
+      >
         {label}
         <span
           aria-hidden

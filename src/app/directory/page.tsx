@@ -59,7 +59,7 @@ export default async function DirectoryPage() {
               </div>
             </div>
             <div className="max-w-xl order-1 lg:order-2">
-              <span className="text-xs font-bold uppercase tracking-[0.14em] text-teal">
+              <span className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">
                 Verified Directory
               </span>
               <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight text-navy-ink sm:text-5xl lg:text-[3.35rem] lg:leading-[1.1]">
@@ -152,7 +152,7 @@ export default async function DirectoryPage() {
       {/* DIRECTORY */}
       <section id="directory" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Directory</p>
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">Directory</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Certified Employer Directory.
           </h2>

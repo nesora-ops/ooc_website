@@ -164,7 +164,7 @@ export default async function AboutPage() {
 
       {/* TEAM AND GOVERNANCE */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
+        <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
           Team and governance
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">

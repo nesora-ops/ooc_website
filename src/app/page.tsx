@@ -318,7 +318,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div className="max-w-2xl">
-              <p className="text-xs font-bold uppercase tracking-[0.14em] text-[#0E7A62]">
+              <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-[#0E7A62]">
                 Certification levels
               </p>
               <h2 className="mt-3 text-[clamp(2.4rem,4.5vw,4.2rem)] font-bold leading-[1.05] tracking-[-0.035em] text-navy-ink">
@@ -432,7 +432,7 @@ export default function Home() {
             className="size-[140px] shrink-0 object-contain min-[900px]:size-[200px] lg:size-[240px]"
           />
           <div>
-            <p className="text-xs font-bold uppercase tracking-[0.12em] text-[#0E7A62]">
+            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-[#0E7A62]">
               The certification mark
             </p>
             <h2 className="mt-3 text-[clamp(28px,3.4vw,40px)] font-bold leading-[1.15] tracking-[-0.02em] text-navy-ink">

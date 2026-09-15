@@ -269,7 +269,7 @@ export default function PartnersPage() {
       {/* PARTNER TIERS */}
       <section id="tiers" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">Partner tiers</p>
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">Partner tiers</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
             Four tiers. One standard.
           </h2>
@@ -335,7 +335,7 @@ export default function PartnersPage() {
       {/* PARTNER APPLICATION FORM */}
       <section id="apply" className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="mx-auto max-w-3xl text-xs font-semibold uppercase tracking-widest text-gold-ink">
+          <p className="mx-auto max-w-3xl text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
             Partner application form
           </p>
           <h2 className="mx-auto mt-4 max-w-3xl border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
