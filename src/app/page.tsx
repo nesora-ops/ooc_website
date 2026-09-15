@@ -159,7 +159,7 @@ export default function Home() {
           >
             <article className="rounded-3xl bg-mint p-6">
               <BadgeCheck className="size-6 text-teal" />
-              <p className="mt-16 text-sm font-semibold text-teal">Independent assessment</p>
+              <p className="mt-16 text-base font-semibold text-teal">Independent assessment</p>
               <p className="mt-2 text-2xl font-semibold leading-tight text-navy-ink">
                 Earned through evidence, never self-declared.
               </p>
@@ -203,7 +203,7 @@ export default function Home() {
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
           <div className="max-w-xl">
-            <p className="text-sm font-semibold text-teal">Why OOC exists</p>
+            <p className="text-base font-semibold text-teal">Why OOC exists</p>
             <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Certification that means something.
             </h2>
@@ -237,7 +237,7 @@ export default function Home() {
       <section className="border-y border-navy/8 bg-white/45 py-14 sm:py-20">
         <div className="page-shell">
           <div className="max-w-3xl">
-            <p className="text-sm font-semibold text-teal">Find your route</p>
+            <p className="text-base font-semibold text-teal">Find your route</p>
             <h2 className="mt-4 text-[clamp(2.35rem,4.5vw,4.4rem)] font-semibold leading-none tracking-[-0.05em]">
               One standard. Three ways in.
             </h2>
@@ -273,7 +273,7 @@ export default function Home() {
 
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell">
-          <p className="text-sm font-semibold text-teal">The business case</p>
+          <p className="text-base font-semibold text-teal">The business case</p>
           <h2 className="mt-4 max-w-5xl text-[clamp(2.35rem,4.8vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
             Being an Organisation of Choice pays in more than one way.
           </h2>
@@ -297,7 +297,7 @@ export default function Home() {
       <section className="border-y border-navy/8 bg-muted/65 py-14 sm:py-20 lg:py-28">
         <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div className="h-fit lg:self-center">
-            <p className="text-sm font-semibold text-teal">How it works</p>
+            <p className="text-base font-semibold text-teal">How it works</p>
             <h2 className="mt-4 text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
               Three steps to certification.
             </h2>
@@ -383,7 +383,7 @@ export default function Home() {
         <div className="page-shell">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <p className="text-sm font-semibold text-teal">Latest insights</p>
+              <p className="text-base font-semibold text-teal">Latest insights</p>
               <h2 className="mt-4 text-[clamp(2.25rem,4.4vw,4.2rem)] font-semibold leading-none tracking-[-0.05em]">
                 Ideas worth working with.
               </h2>

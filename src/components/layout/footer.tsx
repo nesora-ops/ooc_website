@@ -12,7 +12,7 @@ export function Footer() {
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mb-16 grid gap-8 rounded-[2rem] border border-teal/10 bg-mint/80 p-6 shadow-[0_24px_70px_rgba(23,50,77,0.08)] sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:p-10">
           <div>
-            <p className="text-sm font-semibold text-teal">Useful thinking, once a month.</p>
+            <p className="text-base font-semibold text-teal">Useful thinking, once a month.</p>
             <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
               Practical insight on workplace culture, employer branding, and certification.
             </p>

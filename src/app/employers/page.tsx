@@ -207,7 +207,7 @@ export default function EmployersPage() {
         </h2>
         <div className="mx-auto mt-12 grid max-w-5xl overflow-hidden rounded-[2.25rem] border border-navy/8 bg-white/75 lg:grid-cols-[1fr_auto_1fr]">
           <div className="p-8 lg:p-10">
-            <p className="text-sm font-semibold text-teal">Your quotation considers</p>
+            <p className="text-base font-semibold text-teal">Your quotation considers</p>
             <p className="mt-5 font-heading text-3xl font-semibold text-navy-ink">
               Organisation size<br /><span className="text-muted-foreground">+</span> certified scope
             </p>
@@ -216,7 +216,7 @@ export default function EmployersPage() {
             <span className="font-heading text-4xl font-semibold text-gold-ink">=</span>
           </div>
           <div className="p-8 lg:p-10">
-            <p className="text-sm font-semibold text-teal">Never your result</p>
+            <p className="text-base font-semibold text-teal">Never your result</p>
             <p className="mt-5 text-lg leading-8 text-muted-foreground">
               Silver, Gold, Platinum, and Diamond cost the same for organisations of equal size and scope.
               Outcomes are never for sale.

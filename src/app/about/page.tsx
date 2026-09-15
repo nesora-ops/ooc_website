@@ -146,7 +146,7 @@ export default async function AboutPage() {
                         <span className="block text-xl font-semibold text-navy-ink">{item.lead}</span>
                         <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
                       </span>
-                      <span className="hidden text-sm font-semibold text-teal sm:block">
+                      <span className="hidden text-base font-semibold text-teal sm:block">
                         <span className="group-open:hidden">Read principle</span>
                         <span className="hidden group-open:inline">Close</span>
                       </span>

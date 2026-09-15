@@ -13,7 +13,7 @@ export function ProgressiveDetails({
 }) {
   return (
     <details className={cn("group border-t border-navy/10 pt-4", className)}>
-      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-sm font-semibold text-teal marker:content-none">
+      <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-base font-semibold text-teal marker:content-none">
         {label}
         <span
           aria-hidden
