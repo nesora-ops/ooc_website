@@ -197,7 +197,7 @@ export default async function CertificationPage() {
                       }}
                     />
                     <span className="block p-5">
-                      <span className="block text-sm font-semibold text-teal">
+                      <span className="block text-sm font-bold uppercase tracking-[0.06em] text-teal">
                         {stage.duration ?? "Ongoing"}
                       </span>
                       <span className="mt-3 block text-xl font-semibold leading-tight text-navy-ink">
@@ -206,7 +206,7 @@ export default async function CertificationPage() {
                       <span className="mt-3 block text-sm leading-6 text-muted-foreground">
                         {stage.summary}
                       </span>
-                      <span className="mt-5 flex items-center justify-between border-t border-navy/8 pt-4 text-sm font-semibold text-teal">
+                      <span className="mt-5 flex items-center justify-between border-t border-navy/8 pt-4 text-sm font-bold uppercase tracking-[0.06em] text-teal">
                         <span className="group-open:hidden">View detail</span>
                         <span className="hidden group-open:inline">Hide detail</span>
                         <span aria-hidden className="text-lg leading-none group-open:rotate-45">+</span>

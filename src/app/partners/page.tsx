@@ -160,7 +160,7 @@ export default function PartnersPage() {
           <div className="mt-14 grid grid-flow-dense gap-3 lg:grid-cols-12 lg:auto-rows-[minmax(15rem,auto)]">
             <article className="relative overflow-hidden rounded-[2.25rem] border border-teal/10 bg-mint/85 p-7 sm:p-9 lg:col-span-7 lg:row-span-2 lg:p-11">
               <div aria-hidden className="absolute -right-16 -top-16 size-52 rounded-full border-[2.5rem] border-white/45" />
-              <p className="relative text-base font-semibold text-teal">Advice becomes action</p>
+              <p className="relative text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-teal">Advice becomes action</p>
               <h3 className="relative mt-5 max-w-xl font-heading text-2xl font-semibold leading-tight text-navy-ink sm:text-3xl">
                 The conversation is already happening. Certification gives it a credible next step.
               </h3>
@@ -176,22 +176,22 @@ export default function PartnersPage() {
 
               <div className="relative mt-10 divide-y divide-teal/15 border-y border-teal/15">
                 <div className="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
-                  <p className="text-base font-semibold text-teal">You bring</p>
+                  <p className="text-sm font-bold uppercase tracking-[0.06em] text-teal">You bring</p>
                   <p className="font-medium text-navy-ink">The relationship and client context.</p>
                 </div>
                 <div className="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
-                  <p className="text-base font-semibold text-teal">OOC brings</p>
+                  <p className="text-sm font-bold uppercase tracking-[0.06em] text-teal">OOC brings</p>
                   <p className="font-medium text-navy-ink">The framework, platform, and independent assessment.</p>
                 </div>
                 <div className="grid gap-2 py-5 sm:grid-cols-[8rem_1fr]">
-                  <p className="text-base font-semibold text-teal">Clients gain</p>
+                  <p className="text-sm font-bold uppercase tracking-[0.06em] text-teal">Clients gain</p>
                   <p className="font-medium text-navy-ink">A defined process, credible outcome, and visible value.</p>
                 </div>
               </div>
             </article>
 
             <article className="rounded-[2.25rem] border border-navy/8 bg-sky/75 p-7 sm:p-9 lg:col-span-5">
-              <p className="text-base font-semibold text-navy">Recurring commercial value</p>
+              <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-navy">Recurring commercial value</p>
               <h3 className="mt-4 font-heading text-3xl font-semibold leading-tight text-navy-ink">
                 One introduction. Value that can recur.
               </h3>
@@ -206,13 +206,13 @@ export default function PartnersPage() {
             </article>
 
             <article className="rounded-[2.25rem] border border-gold/15 bg-white/85 p-7 sm:p-9 lg:col-span-5">
-              <p className="text-base font-semibold text-gold-ink">Supported, never conflicted</p>
+              <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-gold-ink">Supported, never conflicted</p>
               <h3 className="mt-4 font-heading text-3xl font-semibold leading-tight text-navy-ink">
                 Your expertise stays yours. Assessment stays ours.
               </h3>
               <div className="mt-6 grid gap-6 sm:grid-cols-2">
                 <div>
-                  <p className="text-base font-semibold text-teal">Support for you</p>
+                  <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-teal">Support for you</p>
                   <ul className="mt-3 space-y-2 text-sm leading-5 text-muted-foreground">
                     <li>Programme training</li>
                     <li>Co-branded materials</li>
@@ -221,7 +221,7 @@ export default function PartnersPage() {
                   </ul>
                 </div>
                 <div>
-                  <p className="text-base font-semibold text-teal">Independent from you</p>
+                  <p className="text-[17px] font-semibold uppercase leading-none tracking-[0.1em] text-teal">Independent from you</p>
                   <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     OOC owns evaluation, determination, and assessment risk, protecting your
                     client relationship and the value of the mark they earn.

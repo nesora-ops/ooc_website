@@ -1,26 +1,15 @@
+import Link from "next/link";
 import type { Metadata } from "next";
 
-import { BadgeEmbed } from "@/components/brand/badge-embed";
 import { Seal } from "@/components/brand/seal";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { siteUrl } from "@/lib/site-url";
+import { Button } from "@/components/ui/button";
 
 export const metadata: Metadata = {
   title: "Certification Badge",
   description:
-    "Certified organisations can embed the Organisation of Choice seal on their own website. Copy the ready-made HTML snippet.",
+    "Certified organisations receive the Organisation of Choice seal and embeddable brand kit as part of certification onboarding.",
 };
-
-// Absolute, not root-relative: the snippet is pasted onto the employer's own
-// domain, where "/images/brand/seal.png" would resolve against their host.
-const snippet = `<a href="${siteUrl}" target="_blank" rel="noopener">
-  <img
-    src="${siteUrl}/images/brand/seal.png"
-    alt="Certified Organisation of Choice"
-    width="160"
-    height="160"
-  />
-</a>`;
 
 export default function BadgePage() {
   return (
@@ -34,11 +23,15 @@ export default function BadgePage() {
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
           Certified organisations may display the Organisation of Choice seal for the term of
-          their certification. Paste this snippet wherever you want the badge to appear.
+          their certification. The embeddable badge code and full brand kit are issued directly
+          during onboarding, once certification is confirmed, so the mark is only ever in the
+          hands of organisations who have actually earned it.
         </p>
 
-        <div className="mx-auto mt-10 w-full max-w-2xl text-left">
-          <BadgeEmbed snippet={snippet} />
+        <div className="mt-10">
+          <Button asChild size="lg">
+            <Link href="/employers#apply">Apply for Certification</Link>
+          </Button>
         </div>
       </section>
     </>
