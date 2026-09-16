@@ -17,7 +17,7 @@ export function ProgressiveDetails({
     <details className={cn("group border-t border-navy/10 pt-4", className)}>
       <summary
         className={cn(
-          "flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal marker:content-none",
+          "flex min-h-11 cursor-pointer list-none items-center justify-between gap-4 text-base font-bold uppercase leading-none tracking-[0.06em] text-teal marker:content-none",
           labelClassName
         )}
       >
