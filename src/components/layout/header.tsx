@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ArrowUpRight, ChevronDown, Menu } from "lucide-react";
@@ -19,26 +20,24 @@ import {
 import { mainNav, policiesNav, primaryCta } from "@/lib/site-config";
 import { cn } from "@/lib/utils";
 
-// The header lockup: a tinted disc reading "OOC" beside the stacked wordmark.
-// Set as text, not artwork — the emblem's laurel and rule lines stop resolving
-// at 44px, and the full seal is worse still (see components/brand/seal.tsx for
-// where the seal is allowed). 32 / 44 / 72px share this construction; the
-// header takes 44. The disc is pale blue (#d3e9f2) with navy "OOC" — the gold
-// fill tried in 3d67761 was reverted; navy on pale blue also carries the
-// stronger contrast ratio of the two.
+// The header lockup: the OOC ring logo beside the stacked wordmark. The bar is
+// white, so it takes the transparent logo (ooc-logo-white-* is for dark
+// grounds). 36px on mobile, 44px from md up.
 function Logo() {
   return (
     <Link
       href="/"
       className="group flex shrink-0 items-center gap-3 rounded-sm outline-none focus-visible:ring-2 focus-visible:ring-ooc-navy focus-visible:ring-offset-2"
-      aria-label="Organisation of Choice, home"
+      aria-label="Organisation of Choice — home"
     >
-      <span
-        aria-hidden
-        className="grid size-11 shrink-0 place-items-center rounded-full bg-[#d3e9f2] text-[13px] font-bold tracking-[0.02em] text-ooc-navy transition-transform duration-300 group-hover:scale-105"
-      >
-        OOC
-      </span>
+      <Image
+        src="/ooc-logo-transparent-256.png"
+        alt="Organisation of Choice logo"
+        width={44}
+        height={44}
+        preload
+        className="size-9 shrink-0 transition-transform duration-300 group-hover:scale-105 md:size-11"
+      />
       <span className="hidden leading-[1.15] tracking-[-0.015em] text-ooc-navy sm:block">
         <span className="block text-[15px] font-bold">Organisation</span>
         <span className="block text-[15px] font-bold">

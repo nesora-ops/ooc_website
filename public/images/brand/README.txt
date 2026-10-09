@@ -25,13 +25,9 @@ HEADER MARKS
   mark-gold.png            Gold (#C08A2E) recolour of mark-navy.png, used on the
                            directory listing cards at 28px to match the favicon.
 
-FAVICON / APP ICONS (pre-sized, drop in as-is)
-  favicon-16.png           gold monogram
-  favicon-32.png           gold monogram
-  favicon-48.png           gold monogram
-  apple-touch-icon.png     180x180, full seal
-  icon-192.png             192x192, full seal
-  icon-512.png             512x512, full seal
+FAVICON / APP ICONS
+  Moved to the public root (favicon.ico, favicon-16/32.png,
+  apple-touch-icon.png, android-chrome-192/512.png, site.webmanifest).
 
 COLOURS
   ink / navy heading   #0B2B3C

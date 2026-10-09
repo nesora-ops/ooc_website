@@ -54,6 +54,8 @@
   --color-ooc-navy-mute: var(--ooc-navy-mute);
   --color-ooc-green-700: var(--ooc-green-700);
   --color-ooc-gold: var(--ooc-gold);
+  --color-ooc-brand-navy: var(--ooc-brand-navy);
+  --color-ooc-brand-gold: var(--ooc-brand-gold);
   --radius-sm: calc(var(--radius) * 0.55);
   --radius-md: calc(var(--radius) * 0.8);
   --radius-lg: var(--radius);
@@ -88,6 +90,10 @@
   --ooc-navy-mute: #4a5578;
   --ooc-green-700: #0d5c46;
   --ooc-gold: #c8922e;
+
+  /* The ring logo's own navy and gold (public/ooc-logo-*.png). */
+  --ooc-brand-navy: #2d2d5b;
+  --ooc-brand-gold: #c78f38;
 
   --background: #fbfcf8;
   --foreground: #263846;

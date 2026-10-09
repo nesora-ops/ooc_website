@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { GeistSans } from "geist/font/sans";
 import "./globals.css";
 
@@ -26,17 +26,20 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_IN",
   },
-  // Explicit files in public/images/brand replace the old app/favicon.ico convention.
-  // 16 and 32 are the gold CC monogram, not the full seal - the seal's inner
-  // wording is unreadable at those sizes.
+  // The OOC ring logo, served from the public root. favicon.ico carries 16/32/48.
   icons: {
     icon: [
-      { url: "/images/brand/favicon-32.png", sizes: "32x32", type: "image/png" },
-      { url: "/images/brand/favicon-16.png", sizes: "16x16", type: "image/png" },
-      { url: "/images/brand/favicon-48.png", sizes: "48x48", type: "image/png" },
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/favicon-16.png", sizes: "16x16", type: "image/png" },
     ],
-    apple: [{ url: "/images/brand/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
+  manifest: "/site.webmanifest",
+};
+
+export const viewport: Viewport = {
+  themeColor: "#2D2D5B",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
