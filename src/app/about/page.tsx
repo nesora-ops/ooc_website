@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Check, Eye, Scale, Users } from "lucide-react";
 
 import { ImageSlot } from "@/components/image-slot";
-import { Placeholder } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
@@ -32,8 +31,38 @@ const differentiators = [
   },
 ];
 
+// Defaults for the founder and advisor. Anything published from
+// /admin/website-content -> Founder & Team overrides the matching field by name;
+// people only in the CMS are listed after these.
+const fallbackTeam = [
+  {
+    name: "Ketaki",
+    designation: "Founder",
+    imageUrl: "/images/team/ketaki.jpg",
+    bio: "As the Founder of Organisation of Choice™ (OOC), Ketaki believes that true certification must be earned through evidence, integrity, and transparency, never negotiation. Her vision is to redefine workplace excellence by ensuring that every assessment reflects the perspectives of employees, leadership, and independent assessors. Recognising that an organisation is experienced differently at every level, she advocates a holistic and unbiased approach to certification. Under her leadership, OOC goes beyond recognition, providing organisations with actionable insights, detailed assessment reports, and a clear roadmap for continuous improvement, sustainable growth, and long-term organisational excellence.",
+  },
+  {
+    name: "Dipak",
+    designation: "Sales & Growth Advisor",
+    imageUrl: "/images/team/dipak.jpg",
+    bio: "As Sales & Growth Advisor at Organisation of Choice™ (OOC), Dipak brings a strategic perspective to business growth, market positioning, and meaningful corporate engagement. The role goes beyond conventional sales, focusing on building influential partnerships, unlocking new market opportunities, and positioning OOC as a trusted benchmark for organisational excellence. By connecting business ambition with responsible leadership, workplace culture, and long-term value creation, Dipak helps shape OOC's growth journey while championing a future where business success and people-centric practices advance together.",
+  },
+];
+
 export default async function AboutPage() {
-  const team = await getTeam();
+  const published = await getTeam();
+  const team = [
+    ...fallbackTeam.map((base) => {
+      const row = published.find((member) => member.name === base.name);
+      return {
+        name: base.name,
+        designation: row?.designation || base.designation,
+        bio: row?.bio || base.bio,
+        imageUrl: row?.imageUrl || base.imageUrl,
+      };
+    }),
+    ...published.filter((row) => !fallbackTeam.some((base) => base.name === row.name)),
+  ];
 
   return (
     <>
@@ -79,9 +108,8 @@ export default async function AboutPage() {
                   evidence-led assessment.
                 </p>
                 <p>
-                  Founded by Ketaki, <Placeholder>founder designation</Placeholder>, and informed by
-                  <Placeholder>founder background summary</Placeholder>, the programme applies the
-                  same spirit of scrutiny used for other important organisational standards.
+                  Founded by Ketaki, the programme applies the same spirit of scrutiny used for
+                  other important organisational standards.
                 </p>
                 <p>
                   OOC operates as an independent certification programme of Carbon Value Partners
@@ -175,56 +203,25 @@ export default async function AboutPage() {
           defensible on the evidence.
         </p>
         <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
-          {/* Published from /admin/website-content -> Founder & Team. With nothing
-              published the founder card keeps the placeholders it has always shown. */}
-          {team.length > 0 ? (
-            team.map((member) => (
-              <li
-                key={member.name}
-                className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground"
-              >
-                <ImageSlot
-                  contentKey={`headshot — ${member.name}`}
-                  alt={member.designation ? `${member.name}, ${member.designation}` : member.name}
-                  src={member.imageUrl}
-                  aspect="square"
-                  sizes="(min-width: 640px) 18rem, 100vw"
-                  className="mb-5"
-                />
-                <p className="font-heading text-base font-semibold text-navy-ink">
-                  {member.designation ? `${member.name}, ${member.designation}` : member.name}
-                </p>
-                {member.bio && <p className="mt-3 leading-6">{member.bio}</p>}
-              </li>
-            ))
-          ) : (
-            <li className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground">
+          {team.map((member) => (
+            <li
+              key={member.name}
+              className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground"
+            >
               <ImageSlot
-                contentKey="headshot — Ketaki, founder"
-                alt="Ketaki, Founder"
+                contentKey={`headshot — ${member.name}`}
+                alt={member.designation ? `${member.name}, ${member.designation}` : member.name}
+                src={member.imageUrl}
                 aspect="square"
                 sizes="(min-width: 640px) 18rem, 100vw"
                 className="mb-5"
               />
               <p className="font-heading text-base font-semibold text-navy-ink">
-                Ketaki, Founder &amp; <Placeholder>designation</Placeholder>
+                {member.designation ? `${member.name}, ${member.designation}` : member.name}
               </p>
-              <p className="mt-3 leading-6">
-                <Placeholder>founder biography</Placeholder>
-              </p>
+              {member.bio && <p className="mt-3 leading-6">{member.bio}</p>}
             </li>
-          )}
-          <li className="flex flex-col rounded-2xl border border-navy/8 bg-muted/60 p-6 text-sm text-muted-foreground">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-              In the founder&apos;s words
-            </p>
-            <p className="mt-3 font-heading text-base font-semibold text-navy-ink">
-              How Ketaki approaches certification.
-            </p>
-            <p className="mt-3 leading-6">
-              <Placeholder>founder approach</Placeholder>
-            </p>
-          </li>
+          ))}
         </ul>
       </section>
 

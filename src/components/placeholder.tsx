@@ -26,13 +26,6 @@ const placeholderValues: Record<string, string> = {
   "level thresholds": "illustrative evidence thresholds defined during assessment",
   "partner commercial terms": "illustrative referral terms agreed per engagement",
   "tier advancement criteria": "illustrative referral, training, and quality milestones",
-  "founder designation": "Founder & Programme Director",
-  "founder background summary": "people strategy, organisational development, and responsible business",
-  designation: "Programme Director",
-  "founder biography":
-    "Ketaki founded Organisation of Choice™ after two decades in people strategy, organisational development, and responsible business. Her work has spanned building HR functions from the ground up, advising leadership teams through periods of rapid growth, and designing the listening and evidence practices that show whether a workplace is genuinely improving. She started OOC to give that discipline a public, independent form.",
-  "founder approach":
-    "Certification, in Ketaki's view, should be earned on evidence and never negotiated. Every OOC assessment draws on employees, leadership, and independent assessors together, because a workplace looks different from the floor than it does from the boardroom. The detailed reports that follow are designed to be acted on: they show an organisation exactly where it stands and precisely what would move it forward.",
   "available on request": "available through the media desk",
   "cookie inventory": "Essential preference storage and privacy-safe analytics",
   "effective date": "15 August 2026",
