@@ -79,6 +79,41 @@ export default async function AboutPage() {
         </p>
       </section>
 
+      {/* TEAM AND GOVERNANCE */}
+      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
+        <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
+          Team and governance
+        </p>
+        <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
+          The people behind the programme.
+        </h2>
+        <p className="mt-8 max-w-3xl text-muted-foreground">
+          Led by its founder, with a team of assessors and advisors. Every certification must be
+          defensible on the evidence.
+        </p>
+        <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
+          {team.map((member) => (
+            <li
+              key={member.name}
+              className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground"
+            >
+              <ImageSlot
+                contentKey={`headshot — ${member.name}`}
+                alt={member.designation ? `${member.name}, ${member.designation}` : member.name}
+                src={member.imageUrl}
+                aspect="square"
+                sizes="(min-width: 640px) 18rem, 100vw"
+                className="mb-5"
+              />
+              <p className="font-heading text-base font-semibold text-navy-ink">
+                {member.designation ? `${member.name}, ${member.designation}` : member.name}
+              </p>
+              {member.bio && <p className="mt-3 leading-6">{member.bio}</p>}
+            </li>
+          ))}
+        </ul>
+      </section>
+
       {/* OUR STORY */}
       <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
@@ -188,41 +223,6 @@ export default async function AboutPage() {
             </div>
           </div>
         </div>
-      </section>
-
-      {/* TEAM AND GOVERNANCE */}
-      <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
-        <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
-          Team and governance
-        </p>
-        <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-          The people behind the programme.
-        </h2>
-        <p className="mt-8 max-w-3xl text-muted-foreground">
-          Led by its founder, with a team of assessors and advisors. Every certification must be
-          defensible on the evidence.
-        </p>
-        <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
-          {team.map((member) => (
-            <li
-              key={member.name}
-              className="flex flex-col rounded-2xl border border-navy/8 bg-white/70 p-6 text-sm text-muted-foreground"
-            >
-              <ImageSlot
-                contentKey={`headshot — ${member.name}`}
-                alt={member.designation ? `${member.name}, ${member.designation}` : member.name}
-                src={member.imageUrl}
-                aspect="square"
-                sizes="(min-width: 640px) 18rem, 100vw"
-                className="mb-5"
-              />
-              <p className="font-heading text-base font-semibold text-navy-ink">
-                {member.designation ? `${member.name}, ${member.designation}` : member.name}
-              </p>
-              {member.bio && <p className="mt-3 leading-6">{member.bio}</p>}
-            </li>
-          ))}
-        </ul>
       </section>
 
       <CTABand
