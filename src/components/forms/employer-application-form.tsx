@@ -172,7 +172,9 @@ export function EmployerApplicationForm() {
       return;
     }
     await form.handleSubmit(async (values) => {
-      const result = await submit(values);
+      // This site certifies one programme. The BEW site sends its applicant's
+      // choice in the same field; CertifyDB shows it in Website Enquiries.
+      const result = await submit({ ...values, programName: "Organisation of Choice" });
       // CertifyDB rejects an address that already has an auth account. That is
       // a step 2 problem, so send the applicant back to the field they have to
       // change rather than stranding them on the security step.
