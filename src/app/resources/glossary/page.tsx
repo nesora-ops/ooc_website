@@ -3,12 +3,13 @@ import type { Metadata } from "next";
 import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import type { GlossaryTerm } from "@/data/glossary";
-import { getGlossaryTerms } from "@/lib/content";
+import { glossaryDefaults } from "@/content/pages/glossary";
+import { getGlossaryTerms, getPage } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Glossary",
-  description: "The language of workplace certification, defined.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("glossary", glossaryDefaults);
+  return { title: page.metaTitle, description: page.metaDescription };
+}
 
 // Group by first letter so each block gets a heading, an anchor, and a
 // quick-nav target. Sorted here rather than trusting the source: admin-entered
@@ -26,22 +27,22 @@ function groupByLetter(terms: GlossaryTerm[]) {
 }
 
 export default async function GlossaryPage() {
-  const glossaryTerms = await getGlossaryTerms();
+  const [page, glossaryTerms] = await Promise.all([getPage("glossary", glossaryDefaults), getGlossaryTerms()]);
   const groups = groupByLetter(glossaryTerms);
 
   return (
     <>
-      <SectionHeaderBar label="Resources: Glossary" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       <section className="mx-auto max-w-5xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-bold text-navy-ink">Glossary.</h1>
+        <h1 className="font-heading text-4xl font-bold text-navy-ink">{page.heroTitle}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          The language of workplace certification, in plain terms.
+          {page.heroIntro}
         </p>
 
         <div className="mt-8 flex flex-wrap items-center gap-x-4 gap-y-3 border-y border-navy/8 py-4">
           <span className="text-xs font-semibold uppercase tracking-widest text-gold-ink">
-            {glossaryTerms.length} terms
+            {glossaryTerms.length} {page.countLabel}
           </span>
           <nav aria-label="Jump to letter" className="flex flex-wrap gap-1.5">
             {groups.map((group) => (
