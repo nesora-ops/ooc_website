@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { FormFeedback } from "@/components/forms/form-feedback";
+import { renderTokens } from "@/components/placeholder-text";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -17,6 +18,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { emailField, requiredText } from "@/lib/forms/schemas";
+import type { FormCopy } from "@/lib/forms/copy";
 import { useFormSubmit } from "@/lib/forms/use-form-submit";
 
 // Fields per source doc, "News & Press → Media enquiry form".
@@ -30,7 +32,7 @@ const schema = z.object({
 
 type FormValues = z.input<typeof schema>;
 
-export function MediaEnquiryForm() {
+export function MediaEnquiryForm({ copy }: { copy: FormCopy }) {
   const { state, submit } = useFormSubmit("media");
 
   const form = useForm<FormValues>({
@@ -42,13 +44,13 @@ export function MediaEnquiryForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you. We have your enquiry."
+        title={copy.successTitle}
         message={
           <>
-            If you&apos;ve indicated a deadline, we&apos;ll prioritise accordingly.
+            {renderTokens(copy.successMessage, copy.values)}
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected. Your details were validated but not sent.
+                {copy.notConnectedNote}
               </p>
             )}
           </>
@@ -130,7 +132,7 @@ export function MediaEnquiryForm() {
         />
 
         {state.status === "error" && (
-          <FormFeedback status="error" message={state.message ?? "Please try again."} />
+          <FormFeedback status="error" title={copy.errorTitle} message={state.message ?? copy.errorFallback} />
         )}
 
         <Button type="submit" size="lg" disabled={state.status === "submitting"}>
