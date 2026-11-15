@@ -8,14 +8,14 @@ import { OPEN_COOKIE_PREFERENCES_EVENT } from "@/components/layout/cookie-consen
  * cookie preference centre linked in the website footer" — without this the
  * dialog is unreachable once the banner has been dismissed.
  */
-export function CookiePreferencesLink() {
+export function CookiePreferencesLink({ label }: { label: string }) {
   return (
     <button
       type="button"
       onClick={() => window.dispatchEvent(new Event(OPEN_COOKIE_PREFERENCES_EVENT))}
       className="text-xs text-white/60 underline transition-colors hover:text-white"
     >
-      Cookie preferences
+      {label}
     </button>
   );
 }
