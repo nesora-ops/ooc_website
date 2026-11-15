@@ -9,7 +9,7 @@ import "react-phone-number-input/style.css";
 import { z } from "zod";
 
 import { FormFeedback } from "@/components/forms/form-feedback";
-import { Placeholder } from "@/components/placeholder";
+import { renderTokens } from "@/components/placeholder-text";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Combobox } from "@/components/ui/combobox";
@@ -32,6 +32,7 @@ import {
 import { COUNTRIES } from "@/lib/data/countries";
 import { INDUSTRIES, OTHER_INDUSTRY } from "@/lib/data/industries";
 import { consentField, emailField, requiredText } from "@/lib/forms/schemas";
+import type { FormCopy } from "@/lib/forms/copy";
 import { useFormSubmit } from "@/lib/forms/use-form-submit";
 import { cn } from "@/lib/utils";
 
@@ -104,7 +105,7 @@ const STEP_FIELDS: Record<number, (keyof FormValues)[]> = {
   3: ["password", "confirmPassword", "termsAccepted"],
 };
 
-export function EmployerApplicationForm() {
+export function EmployerApplicationForm({ copy }: { copy: FormCopy }) {
   const { state, submit } = useFormSubmit("certification");
   const [step, setStep] = useState(1);
   const [showPassword, setShowPassword] = useState(false);
@@ -186,16 +187,13 @@ export function EmployerApplicationForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you. Your application is with us."
+        title={copy.successTitle}
         message={
           <>
-            Our programme team will review your details and respond within{" "}
-            <Placeholder>response time</Placeholder> with your eligibility confirmation, quotation,
-            and proposed assessment plan. In the meantime, you can read how the assessment works on
-            our certification page.
+            {renderTokens(copy.successMessage, copy.values)}
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected. Your details were validated but not sent.
+                {copy.notConnectedNote}
               </p>
             )}
           </>
@@ -538,8 +536,7 @@ export function EmployerApplicationForm() {
                   </FormControl>
                   <div className="space-y-1">
                     <FormLabel className="font-normal">
-                      I agree to the processing of this information in accordance with the Privacy
-                      Policy.
+                      {copy.consent}
                     </FormLabel>
                     <FormMessage />
                   </div>
@@ -550,7 +547,7 @@ export function EmployerApplicationForm() {
         )}
 
         {state.status === "error" && (
-          <FormFeedback status="error" message={state.message ?? "Please try again."} />
+          <FormFeedback status="error" title={copy.errorTitle} message={state.message ?? copy.errorFallback} />
         )}
 
         <div className="flex flex-wrap items-center gap-3">
