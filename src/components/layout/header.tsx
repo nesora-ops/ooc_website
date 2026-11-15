@@ -17,13 +17,13 @@ import {
   SheetDescription,
   SheetClose,
 } from "@/components/ui/sheet";
-import { mainNav, policiesNav, primaryCta } from "@/lib/site-config";
+import type { SiteContent } from "@/content/site";
 import { cn } from "@/lib/utils";
 
 // The header lockup: the OOC ring logo beside the stacked wordmark. The bar is
 // white, so it takes the transparent logo (ooc-logo-white-* is for dark
 // grounds). 36px on mobile, 44px from md up.
-function Logo() {
+function Logo({ site }: { site: SiteContent }) {
   return (
     <Link
       href="/"
@@ -39,16 +39,18 @@ function Logo() {
         className="size-9 shrink-0 transition-transform duration-300 group-hover:scale-105 md:size-11"
       />
       <span className="hidden leading-[1.15] tracking-[-0.015em] text-ooc-navy sm:block">
-        <span className="block text-[15px] font-bold">Organisation</span>
+        <span className="block text-[15px] font-bold">{site.wordmarkLine1}</span>
         <span className="block text-[15px] font-bold">
-          of Choice<sup className="text-[0.55em] font-bold">™</sup>
+          {site.wordmarkLine2}<sup className="text-[0.55em] font-bold">™</sup>
         </span>
       </span>
     </Link>
   );
 }
 
-export function Header() {
+export function Header({ site }: { site: SiteContent }) {
+  const { mainNav, policiesNav } = site;
+  const primaryCta = { label: site.primaryCtaLabel, href: site.primaryCtaHref };
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const policiesActive = policiesNav.some((item) => pathname === item.href);
@@ -70,7 +72,7 @@ export function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between gap-4 px-5 sm:px-8 md:h-[76px] lg:px-10">
-        <Logo />
+        <Logo site={site} />
 
         <nav className="hidden items-center gap-1 xl:flex" aria-label="Primary navigation">
           {mainNav.map((item) => {
@@ -103,7 +105,7 @@ export function Header() {
                 policiesActive && "font-semibold text-ooc-navy no-underline hover:no-underline"
               )}
             >
-              Policies
+              {site.policiesLabel}
               <ChevronDown aria-hidden className="size-4" />
             </PopoverTrigger>
             <PopoverContent align="end" className="w-56 p-1.5">
@@ -150,7 +152,7 @@ export function Header() {
           >
             <SheetHeader className="border-b border-ooc-navy-line pb-5">
               <SheetTitle>
-                <Logo />
+                <Logo site={site} />
               </SheetTitle>
               <SheetDescription className="sr-only">Site navigation menu</SheetDescription>
             </SheetHeader>
@@ -174,7 +176,7 @@ export function Header() {
               })}
 
               <p className="mt-4 px-4 pb-1 text-xs font-semibold uppercase tracking-widest text-ooc-navy-mute">
-                Policies
+                {site.policiesLabel}
               </p>
               {policiesNav.map((item) => (
                 <SheetClose asChild key={item.href}>
