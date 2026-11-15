@@ -4,24 +4,25 @@ import type { Metadata } from "next";
 import { ImageSlot } from "@/components/image-slot";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { getBlogPosts } from "@/lib/content";
+import { blogDefaults } from "@/content/pages/blog";
+import { getBlogPosts, getPage } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Regular insight on culture, talent, and certification.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("blog", blogDefaults);
+  return { title: page.metaTitle, description: page.metaDescription };
+}
 
 export default async function BlogListingPage() {
-  const blogPosts = await getBlogPosts();
+  const [page, blogPosts] = await Promise.all([getPage("blog", blogDefaults), getBlogPosts()]);
 
   return (
     <>
-      <SectionHeaderBar label="Resources: Blog" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
-        <h1 className="font-heading text-4xl font-bold text-navy-ink">Blog.</h1>
+        <h1 className="font-heading text-4xl font-bold text-navy-ink">{page.heroTitle}</h1>
         <p className="mt-4 max-w-2xl text-lg text-muted-foreground">
-          Regular insight on culture, talent, and certification.
+          {page.heroIntro}
         </p>
 
         <ul className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
