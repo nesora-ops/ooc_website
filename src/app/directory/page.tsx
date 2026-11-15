@@ -5,41 +5,30 @@ import { BadgeCheck, Search, ShieldCheck } from "lucide-react";
 import { EmployerDirectory } from "@/components/directory/employer-directory";
 import { ImageSlot } from "@/components/image-slot";
 import { getDirectoryEmployers } from "@/lib/certified-employers";
+import { RichParagraphs } from "@/components/placeholder";
 import { CTABand } from "@/components/sections/cta-band";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { Button } from "@/components/ui/button";
+import { directoryDefaults } from "@/content/pages/directory";
+import { getLevels, getPage } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "For Job Seekers & Certified Employer Directory",
-  description:
-    "Every organisation in this directory has earned independent certification of its workplace, assessed on evidence, verified annually, and never for sale.",
-};
-
-const uses = [
-  {
-    lead: "Research an offer.",
-    summary: "Check the employer’s verified level, scope, and validity before you decide.",
-    body: "Weighing an offer in hand? Search the organisation. If it's certified, you'll see its level, certified scope, and validity, independent context no interview will give you.",
-  },
-  {
-    lead: "Discover employers worth watching.",
-    summary: "Build a shortlist using industry, location, and certification level.",
-    body: "Filter by industry, location, and certification level to build a shortlist of organisations that have proven their standards, including strong employers you may never have heard of.",
-  },
-  {
-    lead: "Verify a claim.",
-    summary: "Confirm that an OOC mark is current and authorised.",
-    body: "If an employer displays the OOC mark, confirm it here. Every legitimate certification appears in this directory with its scope and validity period; if it isn't listed, it isn't certified.",
-  },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("directory", directoryDefaults);
+  return { title: page.metaTitle, description: page.metaDescription };
+}
 
 export default async function DirectoryPage() {
-  const employers = await getDirectoryEmployers();
+  const [page, levels, employers] = await Promise.all([
+    getPage("directory", directoryDefaults),
+    getLevels(),
+    getDirectoryEmployers(),
+  ]);
+  const levelDescriptions = Object.fromEntries(levels.map((level) => [level.slug, level.directoryDescription]));
 
   return (
     <>
-      <SectionHeaderBar label="For Job Seekers" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       {/* HERO */}
       <section data-standard-layout className="relative overflow-hidden py-16 sm:py-20 lg:py-24">
@@ -49,8 +38,8 @@ export default async function DirectoryPage() {
               <div className="w-full max-w-2xl lg:max-w-3xl">
                 <ImageSlot
                   contentKey="job seeker researching employers"
-                  alt="A professional calmly researching employers on a laptop"
-                  src="/images/editorial/job-seeker-research.png"
+                  alt={page.heroImageAlt}
+                  src={page.heroImage}
                   aspect="video"
                   priority
                   sizes="(min-width: 1024px) 55vw, 100vw"
@@ -60,17 +49,17 @@ export default async function DirectoryPage() {
             </div>
             <div className="max-w-xl order-1 lg:order-2">
               <span className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">
-                Verified Directory
+                {page.heroEyebrow}
               </span>
               <h1 className="mt-3 font-heading text-4xl font-bold tracking-tight text-navy-ink sm:text-5xl lg:text-[3.35rem] lg:leading-[1.1]">
-                Choose your next employer on proof, not promises.
+                {page.heroTitle}
               </h1>
               <p className="mt-6 max-w-lg text-lg text-muted-foreground">
-                Every listed employer has earned independent, annually verified workplace certification.
+                {page.heroIntro}
               </p>
               <div className="mt-8">
                 <Button asChild size="lg" className="rounded-full bg-teal hover:bg-teal/90 px-8 py-6 text-base font-semibold shadow-[0_10px_30px_rgba(10,113,104,0.2)]">
-                  <Link href="#directory">Search the directory</Link>
+                  <Link href={page.heroButtonHref}>{page.heroButtonLabel}</Link>
                 </Button>
               </div>
             </div>
@@ -82,39 +71,29 @@ export default async function DirectoryPage() {
       <section id="why-it-matters" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            Replace polished promises with a better starting point.
+            {page.whyTitle}
           </h2>
           <div className="mx-auto mt-12 grid max-w-5xl items-stretch lg:grid-cols-[1fr_auto_1fr]">
             <div className="rounded-t-[2rem] border border-navy/8 bg-white/70 p-8 lg:rounded-l-[2rem] lg:rounded-tr-none">
-              <p className="font-heading text-5xl font-semibold text-navy/40">“Great culture”</p>
-              <h3 className="mt-10 text-xl font-semibold text-navy-ink">What an employer says</h3>
+              <p className="font-heading text-5xl font-semibold text-navy/40">{page.claimWord}</p>
+              <h3 className="mt-10 text-xl font-semibold text-navy-ink">{page.claimTitle}</h3>
               <p className="mt-3 leading-7 text-muted-foreground">
-                Careers pages, interviews, and reviews can be useful, but they are polished,
-                selective, or difficult to verify.
+                {page.claimBody}
               </p>
             </div>
             <div className="relative z-10 grid min-h-24 place-items-center bg-mint px-8 lg:-mx-1 lg:min-h-full">
               <ShieldCheck className="size-12 text-teal" aria-hidden strokeWidth={1.5} />
             </div>
             <div className="rounded-b-[2rem] border border-navy/8 bg-navy p-8 text-white lg:rounded-r-[2rem] lg:rounded-bl-none">
-              <p className="font-heading text-5xl font-semibold text-butter">Verified</p>
-              <h3 className="mt-10 text-xl font-semibold text-white">What the evidence supports</h3>
+              <p className="font-heading text-5xl font-semibold text-butter">{page.proofWord}</p>
+              <h3 className="mt-10 text-xl font-semibold text-white">{page.proofTitle}</h3>
               <p className="mt-3 leading-7 text-white/70">
-                Confidential employee input, leadership evidence, independent assessment, a
-                published standard, and annual verification.
+                {page.proofBody}
               </p>
             </div>
           </div>
-          <ProgressiveDetails className="mx-auto mt-8 max-w-5xl" label="Why independent proof matters">
-            <p>
-              Silver confirms strong foundations, Gold shows mature systems and a positive
-              employee experience, Platinum recognises advanced consistency, and Diamond marks a
-              workplace others can benchmark against.
-            </p>
-            <p>
-              Certification does not replace your judgement. It gives you verified evidence before
-              you interview, ask hard questions, and decide whether the organisation is right for you.
-            </p>
+          <ProgressiveDetails className="mx-auto mt-8 max-w-5xl" label={page.whyDetailsLabel}>
+            <RichParagraphs text={page.whyDetails} />
           </ProgressiveDetails>
         </div>
       </section>
@@ -122,14 +101,14 @@ export default async function DirectoryPage() {
       {/* HOW TO USE THE DIRECTORY */}
       <section className="mx-auto max-w-6xl px-4 py-16 sm:px-6 lg:px-8">
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-          Search. Compare. Verify.
+          {page.usesTitle}
         </h2>
         <div className="mx-auto mt-12 max-w-5xl divide-y divide-navy/10 border-y border-navy/10">
-          {uses.map((use, index) => {
+          {page.uses.map((use, index) => {
             const icons = [Search, BadgeCheck, ShieldCheck];
-            const Icon = icons[index];
+            const Icon = icons[index % icons.length];
             return (
-              <details key={use.lead} className="group">
+              <details key={index} className="group">
                 <summary className="grid cursor-pointer list-none items-center gap-5 py-7 marker:content-none sm:grid-cols-[3.5rem_1fr_auto]">
                   <span className="grid size-12 place-items-center rounded-full bg-mint text-teal">
                     <Icon className="size-5" aria-hidden strokeWidth={1.7} />
@@ -152,23 +131,37 @@ export default async function DirectoryPage() {
       {/* DIRECTORY */}
       <section id="directory" className="bg-muted/40 py-16">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
-          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">Directory</p>
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">{page.directoryEyebrow}</p>
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            Certified Employer Directory.
+            {page.directoryTitle}
           </h2>
           <p className="mx-auto mt-5 max-w-2xl text-center text-muted-foreground">
-            Filter the directory, then read the clearly labelled certification tier on each employer card.
+            {page.directoryIntro}
           </p>
           <div className="mt-8">
-            <EmployerDirectory employers={employers} />
+            <EmployerDirectory
+              employers={employers}
+              levelDescriptions={levelDescriptions}
+              copy={{
+                searchLabel: page.searchLabel,
+                searchPlaceholder: page.searchPlaceholder,
+                industryLabel: page.industryLabel,
+                locationLabel: page.locationLabel,
+                levelLabel: page.levelLabel,
+                resultsLabel: page.resultsLabel,
+                emptyMessage: page.emptyMessage,
+                cardLevelSuffix: page.cardLevelSuffix,
+                cardScopeLabel: page.cardScopeLabel,
+              }}
+            />
           </div>
         </div>
       </section>
 
       <CTABand
-        heading="Represent an employer that belongs here?"
-        body="Certification starts with a simple application."
-        primaryCta={{ label: "Get your organisation certified", href: "/employers#apply" }}
+        heading={page.ctaTitle}
+        body={page.ctaBody}
+        primaryCta={{ label: page.ctaPrimaryLabel, href: page.ctaPrimaryHref }}
       />
     </>
   );
