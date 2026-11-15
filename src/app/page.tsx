@@ -14,142 +14,78 @@ import { AudienceRouterCards } from "@/components/sections/audience-router-cards
 import { ImageSlot } from "@/components/image-slot";
 import { CTABand } from "@/components/sections/cta-band";
 import { NumberedSteps } from "@/components/sections/numbered-steps";
+import { RichParagraphs } from "@/components/placeholder";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
 import { TestimonialsCarousel } from "@/components/sections/testimonials-carousel";
 import { Button } from "@/components/ui/button";
-import { blogPosts } from "@/data/blog-posts";
+import { homeDefaults } from "@/content/pages/home";
+import { getBlogPosts, getLevels, getPage } from "@/lib/content";
+import { mediaSrc } from "@/lib/image";
 import { cn } from "@/lib/utils";
 
-export const metadata: Metadata = {
-  description:
-    "The independent workplace certification that proves your commitment to your people, backed by rigorous multi-stakeholder assessment, not self-declaration.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("home", homeDefaults);
+  return {
+    // Absolute: home's tab title is the site name itself, not "%s · …".
+    title: { absolute: page.metaTitle },
+    description: page.metaDescription,
+  };
+}
 
-const benefits = [
-  {
-    title: "Proof, not promises.",
-    body: "Candidates have learned to discount culture claims on careers pages. Independent certification provides evidence they can verify before applying.",
-    icon: Sparkles,
-    className: "bg-mint lg:col-span-7",
-  },
-  {
-    title: "Protect what you have built.",
-    body: "Certification benchmarks your people practices against a rigorous standard, showing where to invest to retain key talent.",
-    icon: Users,
-    className: "bg-butter/70 lg:col-span-5",
-  },
-  {
-    title: "Strengthen client confidence.",
-    body: "Clients, investors, and boards increasingly scrutinise workplace standards. The OOC mark demonstrates operational maturity.",
-    icon: Megaphone,
-    className: "bg-sky lg:col-span-5",
-  },
-  {
-    title: "Improve with evidence.",
-    body: "Turn assessment evidence into a practical report with benchmarks and prioritised recommendations.",
-    icon: ChartNoAxesCombined,
-    className: "bg-coral/20 lg:col-span-7",
-  },
-];
-
-const steps = [
-  {
-    title: "Apply and scope",
-    description:
-      "Define the boundaries of your certification, from single entities to entire corporate groups.",
-  },
-  {
-    title: "Gather evidence",
-    description:
-      "Employees, leadership, and independent assessors each contribute structured evidence through our platform.",
-  },
-  {
-    title: "Independent review",
-    description:
-      "Assessors evaluate every dimension against published criteria. Mandatory fundamentals act as gates.",
-  },
-  {
-    title: "Certified recognition",
-    description:
-      "Receive your level (Silver to Diamond), a detailed report, directory listing, and the OOC mark.",
-  },
+// Per-card styling, in card order. The words are in src/content/pages/home.ts.
+const BENEFIT_STYLES = [
+  { icon: Sparkles, className: "bg-mint lg:col-span-7" },
+  { icon: Users, className: "bg-butter/70 lg:col-span-5" },
+  { icon: Megaphone, className: "bg-sky lg:col-span-5" },
+  { icon: ChartNoAxesCombined, className: "bg-coral/20 lg:col-span-7" },
 ];
 
 // The badges have a white circular face, so the cards behind them are white and
-// carry no fill, shadow, or ring — `accent` is used for the descriptor line and
+// carry no fill, shadow, or ring — the accent is used for the descriptor line and
 // the hover border only.
-const levels = [
-  {
-    name: "Silver",
-    note: "Strong foundations",
-    body: "Recognises organisations with the essential people practices in place: compliant, fair, and well run.",
-    badge: "/images/brand/ooc-badge-silver.webp",
-    accent: "#6B7B84",
-  },
-  {
-    name: "Gold",
-    note: "Engaged and improving",
-    body: "Recognises mature people systems, demonstrated employee engagement, and continuous improvement.",
-    badge: "/images/brand/ooc-badge-gold.webp",
-    accent: "#C08A2E",
-  },
-  {
-    name: "Platinum",
-    note: "Advanced and consistent",
-    body: "Recognises industry-leading practices, outstanding employee experience, and exceptional employers.",
-    badge: "/images/brand/ooc-badge-platinum.webp",
-    accent: "#7C8CA8",
-  },
-  {
-    name: "Diamond",
-    note: "A workplace others benchmark against",
-    body: "Recognises sustained excellence across people practices, employee experience, and organisational leadership.",
-    badge: "/images/brand/ooc-badge-diamond.webp",
-    accent: "#0E7A62",
-  },
-];
+const LEVEL_ACCENTS = ["#6B7B84", "#C08A2E", "#7C8CA8", "#0E7A62"];
 
-const trustItems = [
-  "Independent, third-party assessment",
-  "Multi-stakeholder evaluation",
-  "Annual verification",
-  "Published standard",
-  "Evidence before outcome",
-];
+const VOICE_DOTS = ["bg-coral", "bg-butter", "bg-mint"];
 
-export default function Home() {
+export default async function Home() {
+  const [page, levels, blogPosts] = await Promise.all([
+    getPage("home", homeDefaults),
+    getLevels(),
+    getBlogPosts(),
+  ]);
+  const trustItems = page.trustItems.map((item) => item.label);
+
   return (
     <>
-      <SectionHeaderBar label="Home" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       <section className="noise-wash relative overflow-hidden pb-12 pt-12 sm:pb-18 sm:pt-18 lg:pb-24 lg:pt-24">
         <div className="page-shell relative text-center">
           {/* Eyebrow and H1 were 13px against a ~96px H1 — two unrelated scales.
               Both are pinned to the brand spec here so they read as one family. */}
           <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-[#0E7A62]">
-            Independent workplace certification
+            {page.heroEyebrow}
           </p>
           {/* The <br /> is explicit, not a width accident: the line must break
               after "Organisation" at every breakpoint. */}
           <h1 className="mx-auto mt-5 max-w-[15ch] text-[clamp(38px,5.4vw,68px)] font-extrabold leading-[1.04] tracking-[-0.028em] text-navy-ink">
-            Be an Organisation
+            {page.heroTitleLine1}
             <br />
-            of <span className="text-[#0E7A62]">Choice.</span>
+            {page.heroTitleLine2} <span className="text-[#0E7A62]">{page.heroTitleAccent}</span>
           </h1>
           <p className="mx-auto mt-6 max-w-[52ch] text-[19px] leading-[1.65] text-[#56666D]">
-            The independent workplace certification that proves your commitment to your people,
-            backed by rigorous multi-stakeholder assessment, not self-declaration.
+            {page.heroIntro}
           </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <Button asChild size="lg" className="group">
-              <Link href="/employers#apply">
-                Apply for Certification
+              <Link href={page.heroPrimaryHref}>
+                {page.heroPrimaryLabel}
                 <ArrowRight className="transition-transform group-hover:translate-x-1" />
               </Link>
             </Button>
             <Button asChild size="lg" variant="outline">
-              <Link href="/directory">Explore Certified Employers</Link>
+              <Link href={page.heroSecondaryHref}>{page.heroSecondaryLabel}</Link>
             </Button>
           </div>
 
@@ -159,31 +95,31 @@ export default function Home() {
           >
             <article className="rounded-3xl bg-mint p-6">
               <BadgeCheck className="size-6 text-teal" />
-              <p className="mt-16 text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">Independent assessment</p>
+              <p className="mt-16 text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.panelAssessmentEyebrow}</p>
               <p className="mt-2 text-2xl font-semibold leading-tight text-navy-ink">
-                Earned through evidence, never self-declared.
+                {page.panelAssessmentText}
               </p>
             </article>
             <article className="rounded-3xl bg-navy p-6 text-white">
-              <p className="text-sm font-semibold text-mint">Every perspective matters</p>
+              <p className="text-sm font-semibold text-mint">{page.panelVoicesTitle}</p>
               <div className="mt-10 space-y-3">
-                {["Employees", "Leadership", "Independent assessors"].map((voice, index) => (
-                  <div key={voice} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/7 px-4 py-3">
+                {page.panelVoices.map(({ label: voice }, index) => (
+                  <div key={index} className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/7 px-4 py-3">
                     <span className="text-sm font-medium">{voice}</span>
-                    <span className={cn("size-2.5 rounded-full", index === 0 ? "bg-coral" : index === 1 ? "bg-butter" : "bg-mint")} />
+                    <span className={cn("size-2.5 rounded-full", VOICE_DOTS[index % VOICE_DOTS.length])} />
                   </div>
                 ))}
               </div>
             </article>
             <article className="rounded-3xl bg-sky p-6">
-              <p className="text-sm font-semibold text-[#5068aa]">A visible pathway</p>
+              <p className="text-sm font-semibold text-[#5068aa]">{page.panelPathwayTitle}</p>
               <div className="mt-10 flex items-end gap-2.5" aria-label="Silver, Gold, Platinum and Diamond certification levels">
                 <div className="h-14 flex-1 rounded-2xl bg-[#8aa0af]" />
                 <div className="h-20 flex-1 rounded-2xl bg-gold" />
                 <div className="h-[6.5rem] flex-1 rounded-2xl bg-[#6d80c5]" />
                 <div className="h-32 flex-1 rounded-2xl bg-teal" />
               </div>
-              <p className="mt-4 text-base font-semibold text-navy-ink">Silver. Gold. Platinum. Diamond.</p>
+              <p className="mt-4 text-base font-semibold text-navy-ink">{page.panelPathwayText}</p>
             </article>
           </div>
         </div>
@@ -203,29 +139,24 @@ export default function Home() {
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell grid gap-10 lg:grid-cols-[0.82fr_1.18fr] lg:items-start lg:gap-16">
           <div className="max-w-xl">
-            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">Why OOC exists</p>
+            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.whyEyebrow}</p>
             <h2 className="mt-5 max-w-3xl text-[clamp(2.5rem,5.2vw,5.2rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
-              Certification that means something.
+              {page.whyTitle}
             </h2>
             <p className="mt-7 text-base leading-7 text-muted-foreground sm:text-lg sm:leading-8">
-              OOC certifies employers who invest in their people, verified through evidence,
-              not self-declaration.
+              {page.whyIntro}
             </p>
             <p className="text-2xl font-semibold leading-tight text-navy-ink">
-              It&apos;s not just a badge. It&apos;s proof.
+              {page.whyTagline}
             </p>
-            <ProgressiveDetails className="mt-6">
-              <p>
-                Certification is earned through structured, multi-stakeholder assessment.
-                Employees, leadership, and independent assessors all contribute evidence, verified
-                by people with no stake in the outcome.
-              </p>
+            <ProgressiveDetails className="mt-6" label={page.whyDetailsLabel}>
+              <RichParagraphs text={page.whyDetails} />
             </ProgressiveDetails>
           </div>
           <ImageSlot
             contentKey="editorial workplace collaboration"
-            alt="A workplace team discussing ideas together around a table"
-            src="/images/editorial/workplace-collaboration.png"
+            alt={page.whyImageAlt}
+            src={page.whyImage}
             aspect="video"
             sizes="(min-width: 1024px) 58vw, 100vw"
             priority
@@ -237,51 +168,27 @@ export default function Home() {
       <section className="border-y border-navy/8 bg-white/45 py-14 sm:py-20">
         <div className="page-shell">
           <div className="max-w-3xl">
-            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">Find your route</p>
+            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.routeEyebrow}</p>
             <h2 className="mt-4 text-[clamp(2.35rem,4.5vw,4.4rem)] font-semibold leading-none tracking-[-0.05em]">
-              One standard. Three ways in.
+              {page.routeTitle}
             </h2>
           </div>
-          <AudienceRouterCards
-            className="mt-12"
-            cards={[
-              {
-                title: "For Employers",
-                description:
-                  "Attract and retain the talent you need with certification that stands up to scrutiny. Benchmark your workplace, receive an actionable roadmap, and turn your culture into a competitive advantage.",
-                href: "/certification",
-                linkLabel: "See how certification works",
-              },
-              {
-                title: "For Job Seekers",
-                description:
-                  'Anyone can claim "great culture" in a job advertisement. OOC-certified employers have proven it. Search the directory and make your next move with confidence.',
-                href: "/directory",
-                linkLabel: "Explore the directory",
-              },
-              {
-                title: "For Partners",
-                description:
-                  "Consultants, advisors, and professional firms can bring OOC to their client network, help organisations become certified employers, and build a new revenue stream.",
-                href: "/partners",
-                linkLabel: "Discover the partner programme",
-              },
-            ]}
-          />
+          <AudienceRouterCards className="mt-12" cards={page.routeCards} />
         </div>
       </section>
 
       <section className="py-14 sm:py-20 lg:py-28">
         <div className="page-shell">
-          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">The business case</p>
+          <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.benefitsEyebrow}</p>
           <h2 className="mt-4 max-w-5xl text-[clamp(2.35rem,4.8vw,4.8rem)] font-semibold leading-[0.98] tracking-[-0.055em]">
-            Being an Organisation of Choice pays in more than one way.
+            {page.benefitsTitle}
           </h2>
           <div className="mt-12 grid grid-flow-dense gap-4 lg:grid-cols-12">
-            {benefits.map((benefit) => {
-              const Icon = benefit.icon;
+            {page.benefits.map((benefit, index) => {
+              const style = BENEFIT_STYLES[index % BENEFIT_STYLES.length];
+              const Icon = style.icon;
               return (
-                <article key={benefit.title} className={cn("group min-h-72 rounded-[2rem] border border-navy/8 p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-8", benefit.className)}>
+                <article key={index} className={cn("group min-h-72 rounded-[2rem] border border-navy/8 p-6 transition-transform duration-300 hover:-translate-y-1 sm:p-8", style.className)}>
                   <Icon className="size-7 text-teal" strokeWidth={1.7} />
                   <h3 className="mt-14 max-w-xl text-[clamp(1.55rem,2.8vw,2.6rem)] font-semibold leading-none tracking-[-0.04em]">
                     {benefit.title}
@@ -297,19 +204,19 @@ export default function Home() {
       <section className="border-y border-navy/8 bg-muted/65 py-14 sm:py-20 lg:py-28">
         <div className="page-shell grid gap-12 lg:grid-cols-[0.75fr_1.25fr] lg:gap-20">
           <div className="h-fit lg:self-center">
-            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">How it works</p>
+            <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.stepsEyebrow}</p>
             <h2 className="mt-4 text-[clamp(2.5rem,5vw,5rem)] font-semibold leading-[0.96] tracking-[-0.055em]">
-              Three steps to certification.
+              {page.stepsTitle}
             </h2>
             <p className="mt-6 max-w-md leading-7 text-muted-foreground">
-              A clear path from application to independently verified recognition.
+              {page.stepsIntro}
             </p>
             <Button asChild size="lg" className="mt-8">
-              <Link href="/employers#apply">Apply for Certification</Link>
+              <Link href={page.stepsButtonHref}>{page.stepsButtonLabel}</Link>
             </Button>
           </div>
           <div>
-            <NumberedSteps className="grid-cols-1 sm:grid-cols-1 lg:grid-cols-1" steps={steps} />
+            <NumberedSteps className="grid-cols-1 sm:grid-cols-1 lg:grid-cols-1" steps={page.steps} />
           </div>
         </div>
       </section>
@@ -319,31 +226,31 @@ export default function Home() {
           <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
             <div className="max-w-2xl">
               <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-[#0E7A62]">
-                Certification levels
+                {page.levelsEyebrow}
               </p>
               <h2 className="mt-3 text-[clamp(2.4rem,4.5vw,4.2rem)] font-bold leading-[1.05] tracking-[-0.035em] text-navy-ink">
-                A pathway, not just a plaque.
+                {page.levelsTitle}
               </h2>
               <p className="mt-4 text-base leading-relaxed text-[#5A6B72] sm:text-lg">
-                Wherever you start, the framework shows you the path to the next level. Four ascending tiers recognizing foundational compliance through to industry-defining excellence.
+                {page.levelsIntro}
               </p>
             </div>
             <Button asChild variant="outline" className="w-fit self-start md:self-end">
-              <Link href="/certification">Explore all criteria</Link>
+              <Link href={page.levelsButtonHref}>{page.levelsButtonLabel}</Link>
             </Button>
           </div>
 
           <div className="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-4 items-stretch">
             {levels.map((level, index) => (
               <article
-                key={level.name}
-                style={{ "--tier-accent": level.accent } as React.CSSProperties}
+                key={level.slug}
+                style={{ "--tier-accent": LEVEL_ACCENTS[index] } as React.CSSProperties}
                 className="group flex flex-col justify-between rounded-[22px] border border-navy/8 bg-white p-7 shadow-[0_12px_36px_rgba(23,50,77,0.04)] transition-all duration-300 hover:-translate-y-1 hover:border-(--tier-accent) hover:shadow-[0_20px_48px_rgba(23,50,77,0.08)]"
               >
                 <div>
                   <div className="flex items-start justify-between gap-3">
                     <Image
-                      src={level.badge}
+                      src={mediaSrc(level.badge)}
                       alt={`Organisation of Choice ${level.name} certification badge`}
                       width={96}
                       height={96}
@@ -352,11 +259,11 @@ export default function Home() {
                     <span className="font-mono text-xs font-semibold tabular-nums text-navy/40">0{index + 1}</span>
                   </div>
                   <h3 className="mt-6 text-2xl font-bold tracking-[-0.02em] text-[#0B2B3C]">{level.name}</h3>
-                  <p className="mt-1.5 text-sm font-semibold text-(--tier-accent)">{level.note}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-[#5A6B72]">{level.body}</p>
+                  <p className="mt-1.5 text-sm font-semibold text-(--tier-accent)">{level.homeNote}</p>
+                  <p className="mt-4 text-sm leading-relaxed text-[#5A6B72]">{level.homeBody}</p>
                 </div>
                 <div className="mt-8 border-t border-navy/8 pt-4 flex items-center justify-between text-xs font-semibold text-(--tier-accent)">
-                  <span>Tier 0{index + 1}</span>
+                  <span>{page.levelsTierLabel} 0{index + 1}</span>
                   <span className="text-navy/40 group-hover:translate-x-0.5 transition-transform">→</span>
                 </div>
               </article>
@@ -369,13 +276,13 @@ export default function Home() {
         <div className="page-shell">
           <div className="mx-auto max-w-3xl text-center">
             <p className="mx-auto w-fit rounded-full border border-navy/10 bg-white/70 px-4 py-2 text-xs font-semibold text-teal">
-              Certified voices
+              {page.testimonialsEyebrow}
             </p>
             <h2 className="mt-5 text-[clamp(2.25rem,4.4vw,4.2rem)] font-semibold leading-none tracking-[-0.05em]">
-              What certified organisations say.
+              {page.testimonialsTitle}
             </h2>
           </div>
-          <TestimonialsCarousel />
+          <TestimonialsCarousel testimonials={page.testimonials} />
         </div>
       </section>
 
@@ -383,13 +290,13 @@ export default function Home() {
         <div className="page-shell">
           <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-end">
             <div>
-              <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">Latest insights</p>
+              <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal">{page.insightsEyebrow}</p>
               <h2 className="mt-4 text-[clamp(2.25rem,4.4vw,4.2rem)] font-semibold leading-none tracking-[-0.05em]">
-                Ideas worth working with.
+                {page.insightsTitle}
               </h2>
             </div>
-            <Link href="/resources" className="inline-flex items-center gap-2 text-sm font-semibold text-teal hover:underline">
-              Visit the resource hub <ArrowRight className="size-4" />
+            <Link href={page.insightsLinkHref} className="inline-flex items-center gap-2 text-sm font-semibold text-teal hover:underline">
+              {page.insightsLinkLabel} <ArrowRight className="size-4" />
             </Link>
           </div>
           <ul className="mt-12 grid gap-4 lg:grid-cols-3 items-stretch">
@@ -402,7 +309,7 @@ export default function Home() {
                     index === 0 ? "bg-mint" : index === 1 ? "bg-sky" : "bg-butter/65"
                   )}
                 >
-                  <span className="text-xs font-semibold text-muted-foreground">Insight 0{index + 1}</span>
+                  <span className="text-xs font-semibold text-muted-foreground">{page.insightsCardLabel} 0{index + 1}</span>
                   <ImageSlot
                     contentKey={`insight thumbnail — ${post.slug}`}
                     alt={post.image?.alt ?? post.title}
@@ -433,28 +340,26 @@ export default function Home() {
           />
           <div>
             <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-[#0E7A62]">
-              The certification mark
+              {page.markEyebrow}
             </p>
             <h2 className="mt-3 text-[clamp(28px,3.4vw,40px)] font-bold leading-[1.15] tracking-[-0.02em] text-navy-ink">
-              Earned, not bought.
+              {page.markTitle}
             </h2>
             <p className="mt-3.5 max-w-[46ch] text-base leading-[1.65] text-[#56666D]">
-              Certified employers display the Organisation of Choice seal across careers pages,
-              job adverts, and offer letters. It signals an independent assessment, valid for
-              twelve months.
+              {page.markBody}
             </p>
             <div className="mt-[22px] flex flex-wrap justify-center gap-3 min-[900px]:justify-start">
               <Link
-                href="/badge"
+                href={page.markPrimaryHref}
                 className="rounded-full bg-[#0E7A62] px-[22px] py-3 text-[14px] font-bold text-white transition-colors hover:bg-[#0b6350]"
               >
-                Brand guidelines
+                {page.markPrimaryLabel}
               </Link>
               <Link
-                href="/directory"
+                href={page.markSecondaryHref}
                 className="rounded-full border border-[#D6E2DC] bg-transparent px-[22px] py-3 text-[14px] font-bold text-[#0B2B3C] transition-colors hover:bg-white"
               >
-                Verify a seal
+                {page.markSecondaryLabel}
               </Link>
             </div>
           </div>
@@ -462,10 +367,10 @@ export default function Home() {
       </section>
 
       <CTABand
-        heading="Ready to prove you are an Organisation of Choice?"
-        body="Turn your culture into certified public proof. Let the right talent find you."
-        primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
-        secondaryCta={{ label: "Explore Certified Employers", href: "/directory" }}
+        heading={page.ctaTitle}
+        body={page.ctaBody}
+        primaryCta={{ label: page.ctaPrimaryLabel, href: page.ctaPrimaryHref }}
+        secondaryCta={{ label: page.ctaSecondaryLabel, href: page.ctaSecondaryHref }}
       />
     </>
   );
