@@ -8,8 +8,9 @@ import { Input } from "@/components/ui/input";
 import { FormFeedback } from "@/components/forms/form-feedback";
 import { useFormSubmit } from "@/lib/forms/use-form-submit";
 import { emailField } from "@/lib/forms/schemas";
+import type { SiteContent } from "@/content/site";
 
-export function NewsletterSignup() {
+export function NewsletterSignup({ site }: { site: SiteContent }) {
   const [email, setEmail] = useState("");
   const [error, setError] = useState<string | null>(null);
   const { state, submit } = useFormSubmit("newsletter");
@@ -29,8 +30,8 @@ export function NewsletterSignup() {
     return (
       <FormFeedback
         status="success"
-        title="You're subscribed. Welcome."
-        message="The next edition will find you."
+        title={site.newsletterSuccessTitle}
+        message={site.newsletterSuccessMessage}
       />
     );
   }
@@ -39,7 +40,8 @@ export function NewsletterSignup() {
     return (
       <FormFeedback
         status="not-connected"
-        message="Newsletter signup isn't connected to a live email service yet, but your address was validated successfully."
+        title={site.formNotConnectedTitle}
+        message={site.newsletterNotConnected}
       />
     );
   }
@@ -49,12 +51,12 @@ export function NewsletterSignup() {
       {/* h2, not h3: this is a top-level footer section, and content-light
           pages have no intervening h2 — h3 here created an h1→h3 jump. */}
       <h2 className="font-heading text-xl font-semibold text-navy-ink">
-        Insight worth hiring for, monthly.
+        {site.newsletterHeading}
       </h2>
       <form onSubmit={handleSubmit} className="mt-4 flex flex-col gap-2 sm:flex-row">
         <Input
           type="email"
-          placeholder="you@company.com"
+          placeholder={site.newsletterPlaceholder}
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           aria-label="Email address"
@@ -62,14 +64,14 @@ export function NewsletterSignup() {
           className="border-white bg-white text-foreground"
         />
         <Button type="submit" disabled={state.status === "submitting"}>
-          {state.status === "submitting" ? "Subscribing…" : "Subscribe"}
+          {state.status === "submitting" ? site.newsletterButtonBusy : site.newsletterButton}
         </Button>
       </form>
       {error && <p className="mt-2 text-sm text-destructive">{error}</p>}
       <p className="mt-3 text-xs text-muted-foreground">
-        By subscribing you agree to our{" "}
+        {site.newsletterConsentBefore}{" "}
         <Link href="/privacy-policy" className="underline hover:text-teal">
-          Privacy Policy
+          {site.newsletterConsentLink}
         </Link>
         .
       </p>
