@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { FormFeedback } from "@/components/forms/form-feedback";
-import { Placeholder } from "@/components/placeholder";
+import { renderTokens } from "@/components/placeholder-text";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -26,6 +26,7 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { consentField, emailField, optionalPhoneField, requiredText } from "@/lib/forms/schemas";
+import type { FormCopy } from "@/lib/forms/copy";
 import { useFormSubmit } from "@/lib/forms/use-form-submit";
 
 const enquiryTypes = [
@@ -48,7 +49,7 @@ const schema = z.object({
 
 type FormValues = z.input<typeof schema>;
 
-export function ContactForm() {
+export function ContactForm({ copy }: { copy: FormCopy }) {
   const { state, submit } = useFormSubmit("contact");
 
   const form = useForm<FormValues>({
@@ -60,15 +61,13 @@ export function ContactForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you. Your message is on its way."
+        title={copy.successTitle}
         message={
           <>
-            A member of the team will come back to you within{" "}
-            <Placeholder>response time</Placeholder>. If your question is about certification, you
-            may find an immediate answer on our certification page.
+            {renderTokens(copy.successMessage, copy.values)}
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected. Your details were validated but not sent.
+                {copy.notConnectedNote}
               </p>
             )}
           </>
@@ -173,8 +172,7 @@ export function ContactForm() {
               </FormControl>
               <div className="space-y-1">
                 <FormLabel className="font-normal">
-                  I agree to the processing of this information in accordance with the Privacy
-                  Policy.
+                  {copy.consent}
                 </FormLabel>
                 <FormMessage />
               </div>
@@ -183,7 +181,7 @@ export function ContactForm() {
         />
 
         {state.status === "error" && (
-          <FormFeedback status="error" message={state.message ?? "Please try again."} />
+          <FormFeedback status="error" title={copy.errorTitle} message={state.message ?? copy.errorFallback} />
         )}
 
         <Button type="submit" size="lg" disabled={state.status === "submitting"}>
