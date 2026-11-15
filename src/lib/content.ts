@@ -1,7 +1,12 @@
+import { cache } from "react";
+
+import { levelDefaults, type Level } from "@/content/levels";
+import { siteDefaults, type SiteContent } from "@/content/site";
 import { certificationFaqs, resourcesFaqs, type FAQItem } from "@/data/faqs";
 import { glossaryTerms, type GlossaryTerm } from "@/data/glossary";
 import { blogPosts, type BlogPost } from "@/data/blog-posts";
 import { guides, type Guide } from "@/data/guides";
+import type { FormCopy } from "@/lib/forms/copy";
 
 /**
  * Editable website content, fetched from CertifyDB's admin console
@@ -55,6 +60,132 @@ function text(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
 
+// ─── Page copy ──────────────────────────────────────────────────────────────
+
+/** A list item: one row of cards, links or quotes. Flat, every value a string. */
+type ContentItem = Record<string, string>;
+
+/**
+ * The shape of every page's built-in copy (src/content/pages/*.ts): field name
+ * → string, or → list of flat items. It mirrors the module's fields in
+ * CertifyDB's lib/website-content-sites/ooc.ts, name for name.
+ */
+export type PageDefaults = Record<string, string | ContentItem[]>;
+
+/**
+ * Lays the admin's saved values over the built-in copy, field by field:
+ *
+ *   - a string field: a non-blank saved value wins, a blank or missing one
+ *     keeps the default;
+ *   - a list: a non-empty saved list replaces the default list, and each saved
+ *     item's blank fields fall back to the default item at the same index (if
+ *     there is one); an empty saved list keeps the default list.
+ *
+ * Saved keys with no default are ignored, so the page only ever sees the shape
+ * it was written for.
+ */
+export function mergeContent<T extends PageDefaults>(
+  defaults: T,
+  data: Record<string, unknown> | null | undefined
+): T {
+  if (!data) return defaults;
+
+  const merged: Record<string, string | ContentItem[]> = { ...defaults };
+  for (const [key, fallback] of Object.entries(defaults)) {
+    const saved = data[key];
+
+    if (typeof fallback === "string") {
+      const value = text(saved);
+      if (value) merged[key] = value;
+      continue;
+    }
+
+    if (!Array.isArray(saved) || saved.length === 0) continue;
+    const itemKeys = Object.keys(fallback[0] ?? {});
+    merged[key] = saved.map((raw, index) => {
+      const base = fallback[index] ?? Object.fromEntries(itemKeys.map((k) => [k, ""]));
+      const item = raw && typeof raw === "object" ? (raw as Record<string, unknown>) : {};
+      const next: ContentItem = { ...base };
+      for (const k of itemKeys) {
+        const value = text(item[k]);
+        if (value) next[k] = value;
+      }
+      return next;
+    });
+  }
+  return merged as T;
+}
+
+/**
+ * A page's copy: the "page-<key>" module merged over its built-in defaults.
+ * Never throws — with CertifyDB unreachable or the module unsaved, this is
+ * simply the defaults.
+ */
+export async function getPage<T extends PageDefaults>(key: string, defaults: T): Promise<T> {
+  const rows = await fetchModule(`page-${key}`);
+  return mergeContent(defaults, rows?.[0]?.data);
+}
+
+/** Site-wide copy (header, footer, cookie banner, shared form messages). */
+export const getSite = cache(async (): Promise<SiteContent> => {
+  const rows = await fetchModule("site");
+  return mergeContent(siteDefaults, rows?.[0]?.data);
+});
+
+/**
+ * The certification levels, always all four in the built-in order. A saved
+ * entry is matched by slug; a hidden or missing one keeps its defaults.
+ */
+export const getLevels = cache(async (): Promise<Level[]> => {
+  const rows = await fetchModule("levels");
+  if (!rows) return levelDefaults;
+  return levelDefaults.map((level) => {
+    const row = rows.find((r) => r.slug === level.slug);
+    return row ? { ...mergeContent(level, row.data), slug: level.slug } : level;
+  });
+});
+
+/** <Placeholder> key → site-wide field holding its value. */
+const PLACEHOLDER_FIELDS: Record<string, keyof SiteContent> = {
+  year: "year",
+  "response time": "responseTime",
+  duration: "duration",
+  "typical duration": "typicalDuration",
+  "validity period": "validityPeriod",
+  "pricing tiers": "pricingTiers",
+  "level thresholds": "levelThresholds",
+  "partner commercial terms": "partnerCommercialTerms",
+  "tier advancement criteria": "tierAdvancementCriteria",
+  "available on request": "mediaKitAvailability",
+};
+
+/**
+ * The editable values behind <Placeholder> and {key} tokens in page copy.
+ * Keys not listed here keep their built-in text (components/placeholder-text.tsx).
+ * The Contact page still prefers the Contact module's own response time where it
+ * already did.
+ */
+export const getPlaceholderValues = cache(async (): Promise<Record<string, string>> => {
+  const site = await getSite();
+  const values: Record<string, string> = {};
+  for (const [key, field] of Object.entries(PLACEHOLDER_FIELDS)) values[key] = site[field] as string;
+  return values;
+});
+
+/** A form's copy: its own success message plus the messages all forms share. */
+export async function getFormCopy(successTitle: string, successMessage: string): Promise<FormCopy> {
+  const [site, values] = await Promise.all([getSite(), getPlaceholderValues()]);
+  return {
+    successTitle,
+    successMessage,
+    notConnectedNote: site.formNotConnectedNote,
+    errorTitle: site.formErrorTitle,
+    errorFallback: site.formErrorFallback,
+    consent: site.formConsent,
+    values,
+  };
+}
+
 // ─── Singleton sections ─────────────────────────────────────────────────────
 
 export type LegalSection = {
@@ -97,20 +228,26 @@ export type ContactDetails = {
   hours: string;
   responseTime: string;
   mapUrl: string;
-  partnerSites: { name: string; href: string }[];
+  /** OOC only (extra field on the shared module): the map iframe's src. */
+  mapEmbedUrl: string;
+  partnerSites: { name: string; href: string; logoUrl?: string }[];
 };
 
 /** Contact details. Every field is independently optional — the page keeps its
  *  existing value for anything left blank. */
-export async function getContactDetails(): Promise<Partial<ContactDetails>> {
+export const getContactDetails = cache(async (): Promise<Partial<ContactDetails>> => {
   const rows = await fetchModule("contact");
   const data = rows?.[0]?.data;
   if (!data) return {};
 
   const partnerSites = Array.isArray(data.partnerSites)
-    ? (data.partnerSites as { name?: string; href?: string }[])
+    ? (data.partnerSites as { name?: string; href?: string; logoUrl?: string }[])
         .filter((site) => text(site?.name) && text(site?.href))
-        .map((site) => ({ name: text(site.name), href: text(site.href) }))
+        .map((site) => ({
+          name: text(site.name),
+          href: text(site.href),
+          logoUrl: text(site.logoUrl) || undefined,
+        }))
     : undefined;
 
   return {
@@ -120,9 +257,10 @@ export async function getContactDetails(): Promise<Partial<ContactDetails>> {
     hours: text(data.hours) || undefined,
     responseTime: text(data.responseTime) || undefined,
     mapUrl: text(data.mapUrl) || undefined,
+    mapEmbedUrl: text(data.mapEmbedUrl) || undefined,
     partnerSites: partnerSites?.length ? partnerSites : undefined,
   };
-}
+});
 
 // ─── Collections ────────────────────────────────────────────────────────────
 
