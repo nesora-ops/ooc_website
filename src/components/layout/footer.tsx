@@ -3,21 +3,34 @@ import Link from "next/link";
 import { Seal } from "@/components/brand/seal";
 import { CookiePreferencesLink } from "@/components/layout/cookie-preferences-link";
 import { NewsletterSignup } from "@/components/sections/newsletter-signup";
-import { Placeholder } from "@/components/placeholder";
-import { footerColumns, socialLinks } from "@/lib/site-config";
+import { Rich } from "@/components/placeholder";
+import type { SiteContent } from "@/content/site";
 
-export function Footer() {
+/** Consecutive links with the same column heading form one column. */
+function columnsOf(links: SiteContent["footerLinks"]) {
+  const columns: { title: string; links: { label: string; href: string }[] }[] = [];
+  for (const link of links) {
+    const current = columns[columns.length - 1];
+    if (current && current.title === link.column) current.links.push(link);
+    else columns.push({ title: link.column, links: [link] });
+  }
+  return columns;
+}
+
+export function Footer({ site }: { site: SiteContent }) {
+  const footerColumns = columnsOf(site.footerLinks);
+
   return (
     <footer className="border-t border-navy/8 bg-[#edf5f2] text-navy-ink">
       <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8 lg:px-10 lg:py-20">
         <div className="mb-16 grid gap-8 rounded-[2rem] border border-teal/10 bg-mint/80 p-6 shadow-[0_24px_70px_rgba(23,50,77,0.08)] sm:p-8 lg:grid-cols-[0.8fr_1.2fr] lg:items-center lg:p-10">
           <div>
-            <p className="text-xl font-semibold text-teal">Useful thinking, once a month.</p>
+            <p className="text-xl font-semibold text-teal">{site.newsletterBandTitle}</p>
             <p className="mt-2 max-w-md text-sm leading-6 text-muted-foreground">
-              Practical insight on workplace culture, employer branding, and certification.
+              {site.newsletterBandIntro}
             </p>
           </div>
-          <NewsletterSignup />
+          <NewsletterSignup site={site} />
         </div>
 
         {/* A lockup row, not a lone seal: on its own above the columns the seal
@@ -30,11 +43,11 @@ export function Footer() {
             <Seal size={72} alt="Organisation of Choice" />
             <span aria-hidden className="h-[52px] w-px shrink-0 bg-[#BFD8CE]" />
             <span className="pl-[18px] text-[19px] font-extrabold leading-[1.15] tracking-[-0.015em] text-[#0B2B3C]">
-              <span className="block">Organisation</span>
-              <span className="block">of Choice</span>
+              <span className="block">{site.wordmarkLine1}</span>
+              <span className="block">{site.wordmarkLine2}</span>
             </span>
             <p className="min-w-[180px] max-w-[40ch] flex-1 text-[14px] leading-[1.6] text-[#4C6A60]">
-              Independent workplace certification for employers who invest in their people.
+              {site.footerTagline}
             </p>
           </div>
           <hr className="border-t border-[#C9E0D6]" />
@@ -60,12 +73,12 @@ export function Footer() {
         <div className="mt-14 flex flex-col justify-between gap-5 border-t border-navy/10 pt-7 lg:flex-row lg:items-start">
           <div className="max-w-3xl space-y-2">
             <p className="text-xs leading-5 text-muted-foreground">
-              © <Placeholder>year</Placeholder> Organisation of Choice™, a programme of Carbon Value Partners Private Limited.
+              <Rich text={site.copyright} />
             </p>
-            <CookiePreferencesLink />
+            <CookiePreferencesLink label={site.cookiePreferencesLabel} />
           </div>
           <div className="flex flex-wrap items-center gap-2">
-            {socialLinks.map((platform) => (
+            {site.socialLinks.map(({ label: platform }) => (
               <span
                 key={platform}
                 title={`${platform} (coming soon)`}
