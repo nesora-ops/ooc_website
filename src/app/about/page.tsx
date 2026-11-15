@@ -4,32 +4,15 @@ import { Check, Eye, Scale, Users } from "lucide-react";
 import { ImageSlot } from "@/components/image-slot";
 import { CTABand } from "@/components/sections/cta-band";
 import { ProgressiveDetails } from "@/components/sections/progressive-details";
+import { RichParagraphs } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { getTeam } from "@/lib/content";
+import { aboutDefaults } from "@/content/pages/about";
+import { getPage, getTeam } from "@/lib/content";
 
-export const metadata: Metadata = {
-  title: "About",
-  description:
-    "Organisation of Choice™ exists to make workplace quality visible, giving employers independent recognition and talent a signal they can trust.",
-};
-
-const differentiators = [
-  {
-    lead: "We are independent.",
-    summary: "Outcomes follow published criteria and cannot be purchased or negotiated.",
-    body: "Certification cannot be purchased, and assessment outcomes are never negotiable. Our assessors have no commercial stake in any organisation's result, and our criteria are published for anyone to read. When an organisation carries the OOC mark, it is because the evidence supported it.",
-  },
-  {
-    lead: "We assess from every angle.",
-    summary: "Employees, leadership, and independent evaluators each contribute evidence.",
-    body: "A workplace looks different from the boardroom than it does from the floor. That is why our framework gathers structured input from multiple assessor groups, including employees, leadership, and independent evaluators, across every dimension of the employment experience. No single perspective can carry a certification on its own.",
-  },
-  {
-    lead: "We certify improvement, not perfection.",
-    summary: "Silver, Gold, Platinum, and Diamond create a visible route forward.",
-    body: "The Silver, Gold, Platinum, and Diamond levels exist because building a great workplace is a journey. Our detailed assessment reports show every organisation exactly where it stands and precisely what would move it forward. Certification with us is the beginning of a relationship, not the end of a transaction.",
-  },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const page = await getPage("about", aboutDefaults);
+  return { title: page.metaTitle, description: page.metaDescription };
+}
 
 // Defaults for the founder and advisor. Anything published from
 // /admin/website-content -> Founder & Team overrides the matching field by name;
@@ -50,7 +33,7 @@ const fallbackTeam = [
 ];
 
 export default async function AboutPage() {
-  const published = await getTeam();
+  const [page, published] = await Promise.all([getPage("about", aboutDefaults), getTeam()]);
   const team = [
     ...fallbackTeam.map((base) => {
       const row = published.find((member) => member.name === base.name);
@@ -66,30 +49,28 @@ export default async function AboutPage() {
 
   return (
     <>
-      <SectionHeaderBar label="About" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       {/* HERO */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <h1 className="mt-4 max-w-3xl font-heading text-4xl font-bold text-navy-ink sm:text-5xl">
-          Making workplace quality visible.
+          {page.heroTitle}
         </h1>
         <p className="mt-6 max-w-2xl text-lg text-muted-foreground">
-          Organisations that invest in their people deserve recognition. And people choosing where
-          to work deserve a signal they can trust.
+          {page.heroIntro}
         </p>
       </section>
 
       {/* TEAM AND GOVERNANCE */}
       <section className="mx-auto max-w-6xl px-4 py-10 sm:px-6 lg:px-8">
         <p className="text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-gold-ink">
-          Team and governance
+          {page.teamEyebrow}
         </p>
         <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-          The people behind the programme.
+          {page.teamTitle}
         </h2>
         <p className="mt-8 max-w-3xl text-muted-foreground">
-          Led by its founder, with a team of assessors and advisors. Every certification must be
-          defensible on the evidence.
+          {page.teamIntro}
         </p>
         <ul className="mx-auto mt-8 grid max-w-3xl gap-6 sm:grid-cols-2">
           {team.map((member) => (
@@ -120,8 +101,8 @@ export default async function AboutPage() {
           <div className="grid items-center gap-12 lg:grid-cols-[0.9fr_1.1fr]">
             <ImageSlot
               contentKey="evidence becomes trust"
-              alt="Editorial illustration showing workplace evidence becoming a trusted certification"
-              src="/images/editorial/evidence-to-trust.png"
+              alt={page.storyImageAlt}
+              src={page.storyImage}
               aspect="video"
               sizes="(min-width: 1024px) 42vw, 100vw"
               priority
@@ -130,26 +111,13 @@ export default async function AboutPage() {
 
             <div>
               <h2 className="font-heading text-3xl font-bold text-navy-ink sm:text-5xl">
-                The missing link between good work and credible recognition.
+                {page.storyTitle}
               </h2>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                OOC was created to make genuine investment in people visible through evidence,
-                multiple perspectives, and independent verification.
+                {page.storyIntro}
               </p>
-              <ProgressiveDetails className="mt-8 max-w-xl" label="Read the full OOC story">
-                <p>
-                  Employers doing the real work have rarely had a rigorous way to separate their
-                  investment from ordinary culture claims. OOC closes that gap with independent,
-                  evidence-led assessment.
-                </p>
-                <p>
-                  Founded by Ketaki, the programme applies the same spirit of scrutiny used for
-                  other important organisational standards.
-                </p>
-                <p>
-                  OOC operates as an independent certification programme of Carbon Value Partners
-                  Private Limited. Every certification is earned, evidenced, and annually verified.
-                </p>
+              <ProgressiveDetails className="mt-8 max-w-xl" label={page.storyDetailsLabel}>
+                <RichParagraphs text={page.storyDetails} />
               </ProgressiveDetails>
             </div>
           </div>
@@ -161,20 +129,16 @@ export default async function AboutPage() {
         <div className="mx-auto grid max-w-5xl overflow-hidden rounded-[2.25rem] border border-navy/8 bg-white/70 sm:grid-cols-2">
           <div className="p-8 sm:p-10 lg:p-12">
             <Eye className="size-8 text-teal" aria-hidden strokeWidth={1.6} />
-            <h2 className="mt-8 font-heading text-3xl font-semibold text-navy-ink">Make it visible.</h2>
+            <h2 className="mt-8 font-heading text-3xl font-semibold text-navy-ink">{page.missionTitle}</h2>
             <p className="mt-3 text-muted-foreground">
-              To recognise and certify employers who demonstrably invest in their people, through
-              independent, multi-stakeholder assessment, and to give talent everywhere a
-              trustworthy signal of where great workplaces can be found.
+              {page.missionBody}
             </p>
           </div>
           <div className="border-t border-navy/8 bg-navy p-8 sm:border-l sm:border-t-0 sm:p-10 lg:p-12">
             <Check className="size-8 text-butter" aria-hidden strokeWidth={1.6} />
-            <h2 className="mt-8 font-heading text-3xl font-semibold text-white">Make it matter.</h2>
+            <h2 className="mt-8 font-heading text-3xl font-semibold text-white">{page.visionTitle}</h2>
             <p className="mt-3 text-white/72">
-              A working world in which workplace quality is as visible, comparable, and valued as
-              financial performance, and in which being an organisation of choice is every
-              employer&apos;s ambition.
+              {page.visionBody}
             </p>
           </div>
         </div>
@@ -184,23 +148,23 @@ export default async function AboutPage() {
       <section className="bg-muted/40 py-10">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
           <h2 className="mt-4 border-b border-gold/40 pb-4 font-heading text-3xl font-bold text-navy-ink">
-            Why our certification holds its value.
+            {page.principlesTitle}
           </h2>
           <div className="mt-12 grid gap-10 lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
             <ImageSlot
               contentKey="leadership discussion and rigour"
-              alt="A professional leading a whiteboard strategy discussion with colleagues"
-              src="/images/editorial/replaced_one.png"
+              alt={page.principlesImageAlt}
+              src={page.principlesImage}
               aspect="square"
               sizes="(min-width: 1024px) 42vw, 100vw"
               className="rounded-[2.25rem] bg-white shadow-[0_28px_80px_rgba(23,50,77,0.1)]"
             />
             <div className="mx-auto max-w-5xl divide-y divide-navy/10 border-y border-navy/10">
-              {differentiators.map((item, index) => {
+              {page.principles.map((item, index) => {
                 const icons = [Scale, Users, Eye];
-                const Icon = icons[index];
+                const Icon = icons[index % icons.length];
                 return (
-                  <details key={item.lead} className="group py-2">
+                  <details key={index} className="group py-2">
                     <summary className="grid cursor-pointer list-none items-center gap-5 py-6 marker:content-none sm:grid-cols-[3.5rem_1fr_auto]">
                       <span className="grid size-12 place-items-center rounded-full bg-white text-teal shadow-sm">
                         <Icon className="size-5" aria-hidden strokeWidth={1.7} />
@@ -210,8 +174,8 @@ export default async function AboutPage() {
                         <span className="mt-1 block text-sm text-muted-foreground">{item.summary}</span>
                       </span>
                       <span className="hidden text-[23px] font-bold uppercase leading-none tracking-[0.06em] text-teal sm:block">
-                        <span className="group-open:hidden">Read principle</span>
-                        <span className="hidden group-open:inline">Close</span>
+                        <span className="group-open:hidden">{page.principlesOpenLabel}</span>
+                        <span className="hidden group-open:inline">{page.principlesCloseLabel}</span>
                       </span>
                     </summary>
                     <p className="max-w-3xl pb-7 text-sm leading-7 text-muted-foreground sm:pl-[5.1rem]">
@@ -226,9 +190,9 @@ export default async function AboutPage() {
       </section>
 
       <CTABand
-        heading="Join the organisations proving it."
-        body="If your organisation invests in its people, let's make that investment visible."
-        primaryCta={{ label: "Apply for Certification", href: "/employers#apply" }}
+        heading={page.ctaTitle}
+        body={page.ctaBody}
+        primaryCta={{ label: page.ctaPrimaryLabel, href: page.ctaPrimaryHref }}
       />
     </>
   );
