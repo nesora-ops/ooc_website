@@ -6,7 +6,8 @@ import { ImageSlot } from "@/components/image-slot";
 import { Markdown } from "@/components/markdown";
 import { Placeholder } from "@/components/placeholder";
 import { SectionHeaderBar } from "@/components/sections/section-header-bar";
-import { getBlogPost, getBlogPosts } from "@/lib/content";
+import { blogDefaults } from "@/content/pages/blog";
+import { getBlogPost, getBlogPosts, getPage } from "@/lib/content";
 
 type Params = { params: Promise<{ slug: string }> };
 
@@ -35,13 +36,13 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function BlogPostPage({ params }: Params) {
   const { slug } = await params;
-  const post = await getBlogPost(slug);
+  const [page, post] = await Promise.all([getPage("blog", blogDefaults), getBlogPost(slug)]);
 
   if (!post) notFound();
 
   return (
     <>
-      <SectionHeaderBar label="Resources: Blog" />
+      <SectionHeaderBar label={page.breadcrumb} />
 
       <article className="mx-auto max-w-3xl px-4 py-16 sm:px-6 lg:px-8">
         <h1 className="font-heading text-3xl font-bold text-navy-ink sm:text-4xl">{post.title}</h1>
@@ -74,7 +75,7 @@ export default async function BlogPostPage({ params }: Params) {
           href="/resources/blog"
           className="mt-12 inline-block font-medium text-teal hover:underline"
         >
-          ← Back to all articles
+          {page.backLinkLabel}
         </Link>
       </article>
     </>
