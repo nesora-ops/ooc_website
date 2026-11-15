@@ -5,7 +5,7 @@ import { useForm } from "react-hook-form";
 import { z } from "zod";
 
 import { FormFeedback } from "@/components/forms/form-feedback";
-import { Placeholder } from "@/components/placeholder";
+import { renderTokens } from "@/components/placeholder-text";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
@@ -19,6 +19,7 @@ import {
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { consentField, emailField, phoneField, requiredText } from "@/lib/forms/schemas";
+import type { FormCopy } from "@/lib/forms/copy";
 import { useFormSubmit } from "@/lib/forms/use-form-submit";
 
 // Fields per source doc, "Channel Partners → Partner application form".
@@ -48,7 +49,7 @@ const textFields = [
   { name: "designation", label: "Designation" },
 ] as const;
 
-export function PartnerApplicationForm() {
+export function PartnerApplicationForm({ copy }: { copy: FormCopy }) {
   const { state, submit } = useFormSubmit("partner");
 
   const form = useForm<FormValues>({
@@ -72,15 +73,13 @@ export function PartnerApplicationForm() {
     return (
       <FormFeedback
         status={state.status}
-        title="Thank you. Your application is with us."
+        title={copy.successTitle}
         message={
           <>
-            The partnerships team will review your details and respond within{" "}
-            <Placeholder>response time</Placeholder>. We look forward to learning more about your
-            practice.
+            {renderTokens(copy.successMessage, copy.values)}
             {state.status === "not-connected" && (
               <p className="mt-3 italic">
-                Form submission is not yet connected. Your details were validated but not sent.
+                {copy.notConnectedNote}
               </p>
             )}
           </>
@@ -161,8 +160,7 @@ export function PartnerApplicationForm() {
               </FormControl>
               <div className="space-y-1">
                 <FormLabel className="font-normal">
-                  I agree to the processing of this information in accordance with the Privacy
-                  Policy.
+                  {copy.consent}
                 </FormLabel>
                 <FormMessage />
               </div>
@@ -171,7 +169,7 @@ export function PartnerApplicationForm() {
         />
 
         {state.status === "error" && (
-          <FormFeedback status="error" message={state.message ?? "Please try again."} />
+          <FormFeedback status="error" title={copy.errorTitle} message={state.message ?? copy.errorFallback} />
         )}
 
         <Button type="submit" size="lg" disabled={state.status === "submitting"}>
