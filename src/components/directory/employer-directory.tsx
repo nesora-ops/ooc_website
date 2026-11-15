@@ -18,31 +18,40 @@ import { cn } from "@/lib/utils";
 
 const ALL = "All";
 
-const levelMeta: Record<
-  CertificationLevel,
-  { description: string; badge: string }
-> = {
-  Silver: {
-    description: "Strong workplace foundations",
-    badge: "border-[#657483]/40 bg-[#E8EDF0] text-[#43515E]",
-  },
-  Gold: {
-    description: "Mature systems and positive employee experience",
-    badge: "border-[#A87900]/40 bg-[#F7E8A4] text-[#674E00]",
-  },
-  Platinum: {
-    description: "Advanced, consistent workplace practices",
-    badge: "border-[#6078AA]/35 bg-[#E7ECFA] text-[#41557F]",
-  },
-  Diamond: {
-    description: "A workplace others can benchmark against",
-    badge: "border-[#08766D]/35 bg-[#DFF4EC] text-[#075E57]",
-  },
+// Badge colours per level. The level descriptions arrive as a prop (from the
+// Certification levels list), keyed by slug ("silver").
+const levelMeta: Record<CertificationLevel, { badge: string }> = {
+  Silver: { badge: "border-[#657483]/40 bg-[#E8EDF0] text-[#43515E]" },
+  Gold: { badge: "border-[#A87900]/40 bg-[#F7E8A4] text-[#674E00]" },
+  Platinum: { badge: "border-[#6078AA]/35 bg-[#E7ECFA] text-[#41557F]" },
+  Diamond: { badge: "border-[#08766D]/35 bg-[#DFF4EC] text-[#075E57]" },
+};
+
+export type DirectoryCopy = {
+  searchLabel: string;
+  searchPlaceholder: string;
+  industryLabel: string;
+  locationLabel: string;
+  levelLabel: string;
+  resultsLabel: string;
+  emptyMessage: string;
+  cardLevelSuffix: string;
+  cardScopeLabel: string;
 };
 
 const unique = (values: string[]) => [ALL, ...Array.from(new Set(values)).sort()];
 
-export function EmployerDirectory({ employers }: { employers: Employer[] }) {
+export function EmployerDirectory({
+  employers,
+  levelDescriptions,
+  copy,
+}: {
+  employers: Employer[];
+  levelDescriptions: Record<string, string>;
+  copy: DirectoryCopy;
+}) {
+  const describe = (level: CertificationLevel) => levelDescriptions[level.toLowerCase()] ?? "";
+
   const [query, setQuery] = useState("");
   const [industry, setIndustry] = useState(ALL);
   const [location, setLocation] = useState(ALL);
@@ -74,7 +83,7 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
                 {tier}
               </Badge>
               <span className="mt-3 block">
-                <span className="block text-xs leading-5 text-muted-foreground">{meta.description}</span>
+                <span className="block text-xs leading-5 text-muted-foreground">{describe(tier)}</span>
               </span>
             </div>
           );
@@ -84,31 +93,31 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
       <div className="grid gap-4 rounded-3xl border border-teal/10 bg-mint/55 p-5 sm:grid-cols-2 lg:grid-cols-4 lg:p-6">
         <div className="lg:col-span-1">
           <label htmlFor="directory-search" className="text-sm font-medium text-navy-ink">
-            Search by organisation name
+            {copy.searchLabel}
           </label>
           <Input
             id="directory-search"
             className="mt-2"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Organisation name"
+            placeholder={copy.searchPlaceholder}
           />
         </div>
 
         <FilterSelect
-          label="Industry"
+          label={copy.industryLabel}
           value={industry}
           onChange={setIndustry}
           options={industries}
         />
         <FilterSelect
-          label="Location"
+          label={copy.locationLabel}
           value={location}
           onChange={setLocation}
           options={locations}
         />
         <FilterSelect
-          label="Certification level"
+          label={copy.levelLabel}
           value={level}
           onChange={setLevel}
           options={levels}
@@ -116,13 +125,12 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
       </div>
 
       <p className="mt-6 text-sm text-muted-foreground" role="status">
-        {results.length} of {employers.length} certified organisations
+        {results.length} of {employers.length} {copy.resultsLabel}
       </p>
 
       {results.length === 0 ? (
         <p className="mt-6 rounded-2xl border border-border bg-white/70 p-8 text-muted-foreground">
-          No certified employers match your current filters. Try widening your search, or check
-          back soon: new organisations are certified throughout the year.
+          {copy.emptyMessage}
         </p>
       ) : (
         <ul className="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
@@ -145,7 +153,7 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
                         className="h-[28px] w-auto shrink-0"
                       />
                       <Badge variant="outline" className={cn("px-3 py-1 font-semibold", levelMeta[employer.level].badge)}>
-                        {employer.level} certification
+                        {employer.level} {copy.cardLevelSuffix}
                       </Badge>
                     </div>
                     <CardTitle className="font-heading text-lg text-navy-ink">
@@ -154,11 +162,11 @@ export function EmployerDirectory({ employers }: { employers: Employer[] }) {
                   </div>
                 </CardHeader>
                 <CardContent className="space-y-1 text-sm text-muted-foreground">
-                  <p className="mb-4 font-medium text-navy/75">{levelMeta[employer.level].description}</p>
+                  <p className="mb-4 font-medium text-navy/75">{describe(employer.level)}</p>
                   <p>
                     {employer.industry} · {employer.location}
                   </p>
-                  {employer.scope && <p>Scope: {employer.scope}</p>}
+                  {employer.scope && <p>{copy.cardScopeLabel} {employer.scope}</p>}
                   <p className="pt-2 font-semibold text-navy-ink">{employer.validity}</p>
                 </CardContent>
               </Card>
