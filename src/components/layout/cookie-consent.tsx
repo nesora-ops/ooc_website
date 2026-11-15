@@ -13,6 +13,7 @@ import {
   DialogDescription,
   DialogFooter,
 } from "@/components/ui/dialog";
+import type { SiteContent } from "@/content/site";
 
 const STORAGE_KEY = "ooc-cookie-consent";
 
@@ -51,7 +52,7 @@ function parseConsent(raw: string): Consent | null {
   }
 }
 
-export function CookieConsent() {
+export function CookieConsent({ site }: { site: SiteContent }) {
   const raw = useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot);
   const consent = parseConsent(raw);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -104,10 +105,9 @@ export function CookieConsent() {
         <div className="flex flex-col items-start justify-between gap-4 px-5 py-4 sm:flex-row sm:items-center sm:px-6">
           {/* Verbatim source-doc banner copy; the Cookie Policy link is ours. */}
           <p className="max-w-2xl text-sm leading-6 text-muted-foreground">
-            We use cookies to run this site and, with your consent, to understand how it&apos;s
-            used. You can accept all cookies, or manage your preferences. See our{" "}
+            {site.cookieBannerText}{" "}
             <Link href="/cookies" className="font-medium text-teal underline underline-offset-2">
-              Cookie Policy
+              {site.cookieBannerLink}
             </Link>
             .
           </p>
@@ -119,9 +119,9 @@ export function CookieConsent() {
               className="border-navy/15 bg-white text-navy hover:bg-mint"
               onClick={openPreferences}
             >
-              Manage preferences
+              {site.cookieManageButton}
             </Button>
-            <Button onClick={acceptAll}>Accept all</Button>
+            <Button onClick={acceptAll}>{site.cookieAcceptButton}</Button>
           </div>
         </div>
       </div>
@@ -130,29 +130,23 @@ export function CookieConsent() {
       <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
         <DialogContent>
           <DialogHeader>
-            <DialogTitle>Cookie preferences</DialogTitle>
-            <DialogDescription>
-              Choose which categories of cookies we can use. You can change this at any time.
-            </DialogDescription>
+            <DialogTitle>{site.cookieDialogTitle}</DialogTitle>
+            <DialogDescription>{site.cookieDialogIntro}</DialogDescription>
           </DialogHeader>
 
           <div className="flex flex-col gap-4">
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-medium text-navy-ink">Strictly necessary</p>
-                <p className="text-sm text-muted-foreground">
-                  Required for the site to function. Always on.
-                </p>
+                <p className="text-sm font-medium text-navy-ink">{site.cookieNecessaryTitle}</p>
+                <p className="text-sm text-muted-foreground">{site.cookieNecessaryText}</p>
               </div>
               <Switch checked disabled aria-label="Strictly necessary cookies (always on)" />
             </div>
 
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-medium text-navy-ink">Analytics</p>
-                <p className="text-sm text-muted-foreground">
-                  Helps us understand how visitors use the site.
-                </p>
+                <p className="text-sm font-medium text-navy-ink">{site.cookieAnalyticsTitle}</p>
+                <p className="text-sm text-muted-foreground">{site.cookieAnalyticsText}</p>
               </div>
               <Switch
                 checked={draft.analytics}
@@ -163,10 +157,8 @@ export function CookieConsent() {
 
             <div className="flex items-center justify-between gap-4">
               <div>
-                <p className="text-sm font-medium text-navy-ink">Functional</p>
-                <p className="text-sm text-muted-foreground">
-                  Remembers choices you make to improve your experience.
-                </p>
+                <p className="text-sm font-medium text-navy-ink">{site.cookieFunctionalTitle}</p>
+                <p className="text-sm text-muted-foreground">{site.cookieFunctionalText}</p>
               </div>
               <Switch
                 checked={draft.functional}
@@ -177,7 +169,7 @@ export function CookieConsent() {
           </div>
 
           <DialogFooter>
-            <Button onClick={savePreferences}>Save preferences</Button>
+            <Button onClick={savePreferences}>{site.cookieSaveButton}</Button>
           </DialogFooter>
         </DialogContent>
       </Dialog>
